@@ -24,7 +24,7 @@ Open http://127.0.0.1:4317/.
 - `scripts/check-site.mjs`: homepage checks.
 - `.openai/hosting.json`: existing Sites project and static directory configuration.
 
-Serve `dist/` as the website root when deploying to a static host. This repository does not configure automatic deployment.
+Serve `dist/` as the website root when deploying to a static host. `netlify.toml` sets the Netlify publish directory to `dist` and runs the homepage checks before deployment. The Netlify project is connected to this repository's `main` branch for continuous deployment.
 
 ## Review status
 
