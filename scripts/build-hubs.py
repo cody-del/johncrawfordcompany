@@ -58,7 +58,7 @@ def head(page, hero_key=None, accessibility=False):
     title = page['title_tag']
     desc = page['meta_description']
     path = page['slug']
-    hub_css_version = 'accents-2' if page['name'] == 'Shades' else 'hubs-1'
+    hub_css_version = 'accents-3' if page['name'] == 'Shades' else 'hubs-1'
     body_class = 'interior-page accent-review-page' if page['name'] == 'Shades' else 'interior-page'
     og = IMAGES[hero_key]['src'] if hero_key else '/assets/showroom-illustration.svg'
     schema = [{
@@ -142,7 +142,7 @@ def intro(section, page):
     if page['name'] == 'Blinds':
         body += '<p>We carry Hunter Douglas and Alta blinds and can help you compare the choices for your windows.</p>'
     if page['name'] == 'Shades':
-        floral = decorative_accent('floral-corner-br.webp', 'hub-accent-floral', 401, 400)
+        floral = decorative_accent('floral-corner-complete.png', 'hub-accent-floral', 1254, 1254)
         return f'''<section class="section hub-introduction" aria-labelledby="introduction-heading">
       <div class="container hub-intro-grid"><div class="hub-intro-heading"><h2 id="introduction-heading">{e(section['title'])}</h2>{floral}</div><div class="hub-prose">{body}</div></div>
     </section>'''
