@@ -119,3 +119,30 @@
   .hub-related > .container > div { gap: 7px 24px; }
   .hub-readable h1 { font-size: 38px; }
 }
+
+/* Client-supplied accents: the Shades page is the placement review. */
+.accent-review-page .hub-accent-divider { position: relative; height: 0; z-index: 1; pointer-events: none; }
+.accent-review-page .hub-accent-horizon { position: absolute; top: 0; left: 50%; width: min(480px, calc(100vw - 80px)); height: auto; transform: translate(-50%, -50%); }
+.accent-review-page .hub-collections, .accent-review-page .hub-questions { position: relative; }
+.accent-review-page .hub-accent-floral { position: absolute; width: 66px; height: auto; right: max(28px, calc((100vw - 1320px) / 2)); bottom: 16px; pointer-events: none; }
+.accent-review-page .hub-accent-medallion { position: absolute; top: 0; left: 50%; width: 84px; height: auto; transform: translate(-50%, -50%); pointer-events: none; }
+.accent-review-page .hub-contact-accent { position: relative; isolation: isolate; }
+.accent-review-page .hub-contact-accent-grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1.05fr .95fr; gap: var(--hub-gap); align-items: start; }
+.accent-review-page .hub-contact-message > p { max-width: 600px; margin-top: 19px; }
+.accent-review-page .hub-contact-details address { margin: 0; color: var(--walnut); font-size: 17px; line-height: 1.7; }
+.accent-review-page .hub-contact-details .hub-hours { margin-top: 10px; font-size: 15px; }
+.accent-review-page .hub-contact-details > .text-link { margin-top: 12px; }
+.accent-review-page .hub-accent-palm { position: absolute; z-index: 0; right: 0; bottom: 0; width: 220px; height: auto; pointer-events: none; }
+@media (max-width: 900px) {
+  .accent-review-page .hub-contact-accent-grid { grid-template-columns: 1fr; gap: 28px; }
+  .accent-review-page .hub-contact-accent { padding-bottom: 130px; }
+  .accent-review-page .hub-accent-palm { width: 180px; }
+}
+@media (max-width: 700px) {
+  .accent-review-page .hub-accent-horizon { width: min(340px, calc(100vw - 40px)); }
+  .accent-review-page .hub-accent-floral { right: 20px; width: 56px; }
+  .accent-review-page .hub-collections { padding-bottom: 94px; }
+  .accent-review-page .hub-accent-medallion { width: 72px; }
+  .accent-review-page .hub-contact-accent { padding-bottom: 140px; }
+  .accent-review-page .hub-accent-palm { width: 138px; }
+}

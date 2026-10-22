@@ -33,6 +33,11 @@ def image(key, hero=False, caption=True):
             + (f'<figcaption>{e(im["caption"])}</figcaption>' if caption else '') + '</figure>')
 
 
+def decorative_accent(filename, css_class, width, height):
+    return (f'<img class="{css_class}" src="/assets/accents/{filename}" alt="" '
+            f'aria-hidden="true" width="{width}" height="{height}" loading="lazy" decoding="async">')
+
+
 def partials(path):
     header = re.search(r'<header class="site-header">[\s\S]*?</header>', HOME).group()
     footer = re.search(r'<footer class="site-footer"[\s\S]*?</footer>', HOME).group()
@@ -53,6 +58,8 @@ def head(page, hero_key=None, accessibility=False):
     title = page['title_tag']
     desc = page['meta_description']
     path = page['slug']
+    hub_css_version = 'accents-1' if page['name'] == 'Shades' else 'hubs-1'
+    body_class = 'interior-page accent-review-page' if page['name'] == 'Shades' else 'interior-page'
     og = IMAGES[hero_key]['src'] if hero_key else '/assets/showroom-illustration.svg'
     schema = [{
         '@context': 'https://schema.org', '@type': 'BreadcrumbList',
@@ -97,11 +104,11 @@ def head(page, hero_key=None, accessibility=False):
   <link rel="preload" href="/assets/brand-latin-0.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/assets/fonts.css?v=fonts-2">
   <link rel="stylesheet" href="/styles.css?v=hubs-1">
-  <link rel="stylesheet" href="/hubs.css?v=hubs-1">
+  <link rel="stylesheet" href="/hubs.css?v={hub_css_version}">
   <script src="/app.js?v=hubs-1" defer></script>
   <script type="application/ld+json">{json.dumps(schema, ensure_ascii=False).replace('<', chr(92)+'u003c')}</script>
 </head>
-<body class="interior-page">
+<body class="{body_class}">
 <a class="skip-link" href="#main">Skip to content</a>'''
 
 
@@ -163,12 +170,14 @@ def catalog(section, keys, mode):
                      '<div class="collection-grid">' + ''.join(cards[4:]) + '</div>')
     else:
         card_html = '<div class="collection-grid">' + ''.join(cards) + '</div>'
+    accent = decorative_accent('floral-corner-br.webp', 'hub-accent-floral', 401, 400) if mode == 'Shades' else ''
+    accent_markup = '\n      ' + accent if accent else ''
     return f'''<section class="section {'linen ' if mode != 'Shutters' else ''}hub-collections" id="collections" aria-labelledby="collections-heading">
       <div class="container">
         <div class="hub-section-heading"><h2 id="collections-heading">{e(section['title'])}</h2>{body}</div>
         <nav class="collection-jump-links" aria-label="Browse collections">{anchors}</nav>
         {card_html}
-      </div>
+      </div>{accent_markup}
     </section>'''
 
 
@@ -190,9 +199,10 @@ def advice(sections, linen=False):
     return '<div class="section hub-advice-section' + (' linen' if linen else '') + '"><div class="container hub-advice-grid">' + ''.join(blocks) + '</div></div>'
 
 
-def faq(section, linen=True):
+def faq(section, linen=True, accent=False):
     questions = ''.join(f'<details><summary>{e(q["question"])}</summary><p>{e(q["answer"])}</p></details>' for q in section['faqs'])
-    return f'''<section class="section {'linen ' if linen else ''}hub-questions" aria-labelledby="questions-heading">
+    medallion = '\n      ' + decorative_accent('peeking-medallion-half.webp', 'hub-accent-medallion', 776, 388) if accent else ''
+    return f'''<section class="section {'linen ' if linen else ''}hub-questions" aria-labelledby="questions-heading">{medallion}
       <div class="container questions-grid"><div class="questions-intro"><h2 id="questions-heading">{e(section['title'])}</h2>
         <a class="text-link" href="tel:+18188845464">Ask John and Max: (818) 884-5464</a></div>
         <div class="faq-list">{questions}</div>
@@ -200,7 +210,21 @@ def faq(section, linen=True):
     </section>'''
 
 
-def contact(section):
+def contact(section, accent=False):
+    if accent:
+        palm = decorative_accent('palm-corner.svg', 'hub-accent-palm', 400, 400)
+        return f'''<section class="section hub-contact hub-contact-accent" id="contact" aria-labelledby="contact-heading">
+      <div class="container hub-contact-accent-grid">
+        <div class="hub-contact-message"><h2 id="contact-heading">{e(section['title'])}</h2>{paragraphs(section)}</div>
+        <div class="hub-contact-details">
+          <address>22311 Ventura Blvd #101<br>Woodland Hills, CA 91364</address><p class="hub-hours">Monday-Friday, 9 am-5 pm</p>
+          <div class="hub-contact-actions"><a class="btn btn-primary" href="tel:+18188845464">Call (818) 884-5464</a>
+            <a class="btn btn-showroom-contact" href="{e(DIRECTIONS)}" target="_blank" rel="noopener noreferrer">Get directions<span class="sr-only"> (opens in a new tab)</span></a></div>
+          <a class="text-link" href="mailto:john@johncrawford.com?subject=Window%20treatment%20consultation">Email us your project</a>
+        </div>
+      </div>
+      {palm}
+    </section>'''
     return f'''<section class="section hub-contact" id="contact" aria-labelledby="contact-heading">
       <div class="container hub-contact-grid">
         <div class="hub-showroom-art"><img src="/assets/showroom-illustration.svg?v=trees-2" alt="The John Crawford Company storefront, illustrated with its tile roof and palm trees." width="2394" height="1030" loading="lazy" decoding="async"></div>
@@ -241,6 +265,9 @@ for page in PAGES:
     name, secs = page['name'], page['sections']
     header, footer, mobile = partials(page['slug'])
     body = [hero(page, CONFIG[name]['hero']), intro(secs[1], page)]
+    if name == 'Shades':
+        horizon = decorative_accent('horizon-divider.svg', 'hub-accent-horizon', 480, 60)
+        body.insert(1, f'<div class="hub-accent-divider" aria-hidden="true">{horizon}</div>')
     if name == 'Motorized Shades':
         body += [powerview(secs[2]), advice(secs[3:5]), advice(secs[5:7], linen=True), faq(secs[7], linen=False), contact(secs[8])]
     else:
@@ -251,7 +278,7 @@ for page in PAGES:
         elif name == 'Drapery':
             body += [advice(secs[3:5]), advice([secs[5]], linen=True), faq(secs[6], linen=False), contact(secs[7])]
         else:
-            body += [advice(secs[3:5]), faq(secs[5]), contact(secs[6])]
+            body += [advice(secs[3:5]), faq(secs[5], accent=name == 'Shades'), contact(secs[6], accent=name == 'Shades')]
     html = head(page, CONFIG[name]['hero']) + header + '<main id="main">' + '\n'.join(body) + related(page) + '</main>' + footer + mobile + '</body></html>\n'
     target = DIST / page['slug'].strip('/') / 'index.html'
     target.parent.mkdir(exist_ok=True)
