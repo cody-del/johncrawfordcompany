@@ -121,11 +121,8 @@
 }
 
 /* Client-supplied accents: the Shades page is the placement review. */
-.accent-review-page .hub-accent-divider { position: relative; height: 0; z-index: 1; pointer-events: none; }
-.accent-review-page .hub-accent-horizon { position: absolute; top: 0; left: 50%; width: min(480px, calc(100vw - 80px)); height: auto; transform: translate(-50%, -50%); }
-.accent-review-page .hub-collections, .accent-review-page .hub-questions { position: relative; }
-.accent-review-page .hub-accent-floral { position: absolute; width: 66px; height: auto; right: max(28px, calc((100vw - 1320px) / 2)); bottom: 16px; pointer-events: none; }
-.accent-review-page .hub-accent-medallion { position: absolute; top: 0; left: 50%; width: 84px; height: auto; transform: translate(-50%, -50%); pointer-events: none; }
+.accent-review-page .hub-intro-heading { display: flex; flex-direction: column; align-items: flex-start; }
+.accent-review-page .hub-accent-floral { width: 104px; height: auto; margin-top: 30px; transform: scaleX(-1); pointer-events: none; }
 .accent-review-page .hub-contact-accent { position: relative; isolation: isolate; }
 .accent-review-page .hub-contact-accent-grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1.05fr .95fr; gap: var(--hub-gap); align-items: start; }
 .accent-review-page .hub-contact-message > p { max-width: 600px; margin-top: 19px; }
@@ -139,10 +136,9 @@
   .accent-review-page .hub-accent-palm { width: 180px; }
 }
 @media (max-width: 700px) {
-  .accent-review-page .hub-accent-horizon { width: min(340px, calc(100vw - 40px)); }
-  .accent-review-page .hub-accent-floral { right: 20px; width: 56px; }
-  .accent-review-page .hub-collections { padding-bottom: 94px; }
-  .accent-review-page .hub-accent-medallion { width: 72px; }
+  .accent-review-page .hub-intro-heading { display: contents; }
+  .accent-review-page .hub-introduction .hub-prose { order: 1; }
+  .accent-review-page .hub-accent-floral { order: 2; width: 76px; margin-top: 0; }
   .accent-review-page .hub-contact-accent { padding-bottom: 140px; }
   .accent-review-page .hub-accent-palm { width: 138px; }
 }

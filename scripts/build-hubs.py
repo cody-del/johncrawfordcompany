@@ -58,7 +58,7 @@ def head(page, hero_key=None, accessibility=False):
     title = page['title_tag']
     desc = page['meta_description']
     path = page['slug']
-    hub_css_version = 'accents-1' if page['name'] == 'Shades' else 'hubs-1'
+    hub_css_version = 'accents-2' if page['name'] == 'Shades' else 'hubs-1'
     body_class = 'interior-page accent-review-page' if page['name'] == 'Shades' else 'interior-page'
     og = IMAGES[hero_key]['src'] if hero_key else '/assets/showroom-illustration.svg'
     schema = [{
@@ -141,6 +141,11 @@ def intro(section, page):
         body += '<p>We also carry Alta shades if you\'d like to compare another option for your project.</p>'
     if page['name'] == 'Blinds':
         body += '<p>We carry Hunter Douglas and Alta blinds and can help you compare the choices for your windows.</p>'
+    if page['name'] == 'Shades':
+        floral = decorative_accent('floral-corner-br.webp', 'hub-accent-floral', 401, 400)
+        return f'''<section class="section hub-introduction" aria-labelledby="introduction-heading">
+      <div class="container hub-intro-grid"><div class="hub-intro-heading"><h2 id="introduction-heading">{e(section['title'])}</h2>{floral}</div><div class="hub-prose">{body}</div></div>
+    </section>'''
     return f'''<section class="section hub-introduction" aria-labelledby="introduction-heading">
       <div class="container hub-intro-grid"><h2 id="introduction-heading">{e(section['title'])}</h2><div class="hub-prose">{body}</div></div>
     </section>'''
@@ -170,14 +175,12 @@ def catalog(section, keys, mode):
                      '<div class="collection-grid">' + ''.join(cards[4:]) + '</div>')
     else:
         card_html = '<div class="collection-grid">' + ''.join(cards) + '</div>'
-    accent = decorative_accent('floral-corner-br.webp', 'hub-accent-floral', 401, 400) if mode == 'Shades' else ''
-    accent_markup = '\n      ' + accent if accent else ''
     return f'''<section class="section {'linen ' if mode != 'Shutters' else ''}hub-collections" id="collections" aria-labelledby="collections-heading">
       <div class="container">
         <div class="hub-section-heading"><h2 id="collections-heading">{e(section['title'])}</h2>{body}</div>
         <nav class="collection-jump-links" aria-label="Browse collections">{anchors}</nav>
         {card_html}
-      </div>{accent_markup}
+      </div>
     </section>'''
 
 
@@ -199,10 +202,9 @@ def advice(sections, linen=False):
     return '<div class="section hub-advice-section' + (' linen' if linen else '') + '"><div class="container hub-advice-grid">' + ''.join(blocks) + '</div></div>'
 
 
-def faq(section, linen=True, accent=False):
+def faq(section, linen=True):
     questions = ''.join(f'<details><summary>{e(q["question"])}</summary><p>{e(q["answer"])}</p></details>' for q in section['faqs'])
-    medallion = '\n      ' + decorative_accent('peeking-medallion-half.webp', 'hub-accent-medallion', 776, 388) if accent else ''
-    return f'''<section class="section {'linen ' if linen else ''}hub-questions" aria-labelledby="questions-heading">{medallion}
+    return f'''<section class="section {'linen ' if linen else ''}hub-questions" aria-labelledby="questions-heading">
       <div class="container questions-grid"><div class="questions-intro"><h2 id="questions-heading">{e(section['title'])}</h2>
         <a class="text-link" href="tel:+18188845464">Ask John and Max: (818) 884-5464</a></div>
         <div class="faq-list">{questions}</div>
@@ -265,9 +267,6 @@ for page in PAGES:
     name, secs = page['name'], page['sections']
     header, footer, mobile = partials(page['slug'])
     body = [hero(page, CONFIG[name]['hero']), intro(secs[1], page)]
-    if name == 'Shades':
-        horizon = decorative_accent('horizon-divider.svg', 'hub-accent-horizon', 480, 60)
-        body.insert(1, f'<div class="hub-accent-divider" aria-hidden="true">{horizon}</div>')
     if name == 'Motorized Shades':
         body += [powerview(secs[2]), advice(secs[3:5]), advice(secs[5:7], linen=True), faq(secs[7], linen=False), contact(secs[8])]
     else:
@@ -278,7 +277,7 @@ for page in PAGES:
         elif name == 'Drapery':
             body += [advice(secs[3:5]), advice([secs[5]], linen=True), faq(secs[6], linen=False), contact(secs[7])]
         else:
-            body += [advice(secs[3:5]), faq(secs[5], accent=name == 'Shades'), contact(secs[6], accent=name == 'Shades')]
+            body += [advice(secs[3:5]), faq(secs[5]), contact(secs[6], accent=name == 'Shades')]
     html = head(page, CONFIG[name]['hero']) + header + '<main id="main">' + '\n'.join(body) + related(page) + '</main>' + footer + mobile + '</body></html>\n'
     target = DIST / page['slug'].strip('/') / 'index.html'
     target.parent.mkdir(exist_ok=True)
