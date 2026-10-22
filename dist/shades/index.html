@@ -20,9 +20,8 @@
   <link rel="preload" href="/assets/brand-latin-0.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/assets/fonts.css?v=fonts-2">
   <link rel="stylesheet" href="/styles.css?v=hubs-1">
-  <link rel="stylesheet" href="/hubs.css?v=consultation-1">
+  <link rel="stylesheet" href="/hubs.css?v=consultation-2">
   <script src="/app.js?v=hubs-1" defer></script>
-  <script src="/consultation.js?v=consultation-1" defer></script>
   <script type="application/ld+json">[{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://john-crawford-homepage.codytodd.chatgpt.site/"}, {"@type": "ListItem", "position": 2, "name": "Shades", "item": "https://john-crawford-homepage.codytodd.chatgpt.site/shades/"}]}, {"@context": "https://schema.org", "@type": "CollectionPage", "@id": "https://john-crawford-homepage.codytodd.chatgpt.site/shades/#page", "url": "https://john-crawford-homepage.codytodd.chatgpt.site/shades/", "name": "Custom Shades in Los Angeles | John Crawford Company", "description": "Find custom shades in Los Angeles with John Crawford Company. Compare Hunter Douglas fabrics and controls, with measuring and installation from Woodland Hills.", "inLanguage": "en-US", "about": {"@type": "Thing", "name": "Shades"}, "publisher": {"@type": "HomeGoodsStore", "@id": "https://www.johncrawfordcompany.com/#business", "name": "John Crawford Company", "telephone": "+1-818-884-5464", "email": "john@johncrawford.com", "address": {"@type": "PostalAddress", "streetAddress": "22311 Ventura Blvd #101", "addressLocality": "Woodland Hills", "addressRegion": "CA", "postalCode": "91364", "addressCountry": "US"}, "openingHoursSpecification": [{"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], "opens": "09:00", "closes": "17:00"}]}}]</script>
 </head>
 <body class="interior-page accent-review-page">
@@ -78,18 +77,15 @@
       <div class="container hub-intro-grid">
         <div class="hub-prose hub-intro-copy"><h2 id="introduction-heading">Choose the room, choose the fabric</h2><p>We start with how you use the room, when the sunlight is strongest and how much of the view you want to keep. A fabric that works well in the living room may let in too much light for a bedroom. Seeing the options together helps make those differences clear.</p>
 <p>Roller shades, screen shades and honeycomb shades are a large part of our work. We&#x27;ve used solar mesh shades in Valley storefronts to help manage glare while keeping a view outside. At home, the same questions about light, privacy and everyday use help narrow the choices.</p><p>We also carry Alta shades if you'd like to compare another option for your project.</p><img class="hub-accent-floral" src="/assets/accents/floral-corner-complete.png" alt="" aria-hidden="true" width="1254" height="1254" loading="lazy" decoding="async"></div>
-        <form class="hub-consultation-form" name="shade-consultation" method="POST" action="/thank-you/" data-netlify="true" netlify-honeypot="website" data-submission-origin="https://johncrawfordcompany.netlify.app" aria-label="Request a shade consultation" aria-describedby="consultation-required consultation-notice">
-          <input type="hidden" name="form-name" value="shade-consultation">
-          <input type="hidden" name="page" value="Shades">
-          <p hidden><label>Leave this field empty<input name="website" tabindex="-1" autocomplete="off"></label></p>
+        <form class="hub-consultation-form" aria-label="Consultation form preview" aria-describedby="consultation-preview consultation-required consultation-notice">
+          <p class="sr-only" id="consultation-preview">This form is a design preview and does not accept submissions.</p>
           <div class="hub-form-fields">
-            <div class="hub-form-field"><label for="consultation-name">Full name</label><input id="consultation-name" name="name" type="text" autocomplete="name" maxlength="120" required aria-describedby="consultation-name-error"><p class="hub-field-error" id="consultation-name-error" hidden></p></div>
-            <div class="hub-form-field"><label for="consultation-phone">Phone number</label><input id="consultation-phone" name="phone" type="tel" autocomplete="tel" minlength="7" maxlength="30" required aria-describedby="consultation-phone-error"><p class="hub-field-error" id="consultation-phone-error" hidden></p></div>
-            <div class="hub-form-field"><label for="consultation-email">Email</label><input id="consultation-email" name="email" type="email" autocomplete="email" maxlength="254" required aria-describedby="consultation-email-error"><p class="hub-field-error" id="consultation-email-error" hidden></p></div>
+            <div class="hub-form-field"><label for="consultation-name">Full name</label><input id="consultation-name" name="name" type="text" autocomplete="name" maxlength="120" required disabled></div>
+            <div class="hub-form-field"><label for="consultation-phone">Phone number</label><input id="consultation-phone" name="phone" type="tel" autocomplete="tel" minlength="7" maxlength="30" required disabled></div>
+            <div class="hub-form-field"><label for="consultation-email">Email</label><input id="consultation-email" name="email" type="email" autocomplete="email" maxlength="254" required disabled></div>
             <p class="hub-form-required" id="consultation-required">All fields are required.</p>
-            <button class="btn btn-primary" type="submit">Request a consultation</button>
+            <button class="btn btn-primary" type="button" disabled>Request a consultation</button>
           </div>
-          <p class="hub-form-status" id="consultation-status" role="status" tabindex="-1" hidden></p>
           <p class="hub-form-notice" id="consultation-notice">We collect your name, phone number and email to respond to your project inquiry. <a href="/privacy/">Privacy Policy</a>.</p>
         </form>
       </div>

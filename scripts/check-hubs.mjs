@@ -63,6 +63,8 @@ for (const hub of hubs) {
   requireThat(!/\bGallery\b/.test(html), `${hub.slug}: unconfirmed Gallery designation`);
 }
 requireThat(pages.get('/motorized-shades/')?.html.includes('The PowerView® App is required for programmed operation.'), 'Missing PowerView scheduling disclosure');
-requireThat(pages.size === 9, `Expected homepage, five hubs, accessibility, privacy and form confirmation; found ${pages.size}`);
+requireThat(pages.size === 8, `Expected homepage, five hubs, accessibility and privacy; found ${pages.size}`);
+const formPreview = pages.get('/shades/')?.html.match(/<form\b[\s\S]*?<\/form>/)?.[0] || '';
+requireThat((formPreview.match(/\bdisabled\b/g) || []).length === 4 && !/data-netlify|action=|type="submit"/.test(formPreview), 'Design-only form must not accept submissions before GHL setup');
 if (errors.length) { console.error(errors.join('\n')); process.exit(1); }
 console.log(`All ${pages.size} HTML routes passed: headings, metadata, internal links, assets, contact details and public copy separation.`);

@@ -132,16 +132,13 @@
 .hub-form-fields { display: grid; gap: 12px; }
 .hub-form-field label { display: block; margin-bottom: 5px; font-size: 13px; line-height: 1.5; font-weight: 500; }
 .hub-form-field input { display: block; width: 100%; min-height: 44px; padding: 9px 11px; border: 1px solid #9a8676; border-radius: 0; background: var(--white); color: var(--walnut); font: 16px/1.5 var(--body); }
-.hub-form-field input[aria-invalid="true"] { border-color: #a02626; }
-.hub-form-field .hub-field-error { margin-top: 6px; color: #8f2020; font-size: 13px; line-height: 1.5; }
+.hub-form-field input:disabled { opacity: 1; -webkit-text-fill-color: var(--walnut); }
 .hub-consultation-form .hub-form-required { font-size: 12px; line-height: 1.5; }
 .hub-consultation-form .btn { width: 100%; min-height: 50px; padding-inline: 12px; font-size: 11px; letter-spacing: .09em; }
-.hub-consultation-form .btn:disabled { cursor: wait; opacity: .75; }
+.hub-consultation-form .btn:disabled { cursor: default; opacity: 1; }
+.hub-consultation-form .btn:disabled:hover { background: var(--magenta); }
 .hub-consultation-form .hub-form-notice { margin-top: 13px; font-size: 12px; line-height: 1.6; }
 .hub-form-notice a { color: var(--magenta); text-decoration-thickness: 1px; }
-.hub-form-status { margin-block: 8px 16px; font-size: 15px; line-height: 1.6; }
-.hub-form-status[data-state="error"] { color: #8f2020; }
-.hub-form-fields[hidden], .hub-field-error[hidden], .hub-form-status[hidden] { display: none; }
 .accent-review-page .hub-contact-accent { position: relative; isolation: isolate; }
 .accent-review-page .hub-contact-accent-grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1.05fr .95fr; gap: var(--hub-gap); align-items: start; }
 .accent-review-page .hub-contact-message > p { max-width: 600px; margin-top: 19px; }
