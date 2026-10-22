@@ -1,0 +1,121 @@
+.interior-page { --hub-gap: clamp(32px, 5vw, 76px); }
+.interior-page .main-navigation [aria-current="page"], .interior-page .footer-nav [aria-current="page"] { color: var(--magenta); text-decoration: underline; }
+.hub-hero { background: var(--linen); padding-block: 40px 44px; }
+.hub-hero-grid { display: grid; grid-template-columns: minmax(0, .94fr) minmax(0, 1.06fr); gap: var(--hub-gap); align-items: center; }
+.breadcrumbs { display: flex; flex-wrap: wrap; gap: 10px; font-size: 13px; margin-bottom: 23px; }
+.breadcrumbs a { text-decoration-thickness: 1px; }
+.hub-hero h1 { font-size: clamp(36px, 3.25vw, 50px); line-height: 1.08; font-weight: 500; max-width: 620px; }
+.hub-hero-copy > p { margin-top: 23px; font-size: 17px; line-height: 1.7; }
+.hub-hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 23px; margin-top: 25px; }
+.hub-phone { display: inline-flex; align-items: center; min-height: 44px; text-decoration: none; white-space: nowrap; font-weight: 500; font-size: 16px; }
+.hub-phone:hover { color: var(--magenta); text-decoration: underline; }
+.hub-brands { display: flex; align-items: center; gap: 25px; margin-top: 30px; width: fit-content; }
+.hub-brands img { width: 155px; height: auto; }
+.hub-brands > span:first-of-type { height: 26px; width: 1px; background: var(--line); }
+.hub-brands .alta-name { font-size: 27px; }
+.hub-photo { margin: 0; min-width: 0; }
+.hub-photo img { width: 100%; height: auto; }
+.hub-photo figcaption { font-size: 12px; line-height: 1.5; color: var(--text); margin-top: 10px; }
+.hub-intro-grid { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: var(--hub-gap); }
+.hub-introduction h2 { max-width: 450px; font-size: clamp(31px, 2.6vw, 39px); }
+.hub-prose p + p { margin-top: 17px; }
+.hub-prose h2 + p { margin-top: 22px; }
+.hub-section-heading { max-width: 950px; margin-bottom: 27px; }
+.hub-section-heading h2 { font-size: clamp(32px, 2.8vw, 43px); }
+.hub-section-heading p { margin-top: 18px; }
+.collection-jump-links { display: flex; flex-wrap: wrap; gap: 9px 24px; margin-bottom: 38px; padding-block: 15px; border-block: 1px solid var(--line); font-size: 15px; }
+.collection-jump-links a { padding-block: 4px; text-decoration-thickness: 1px; }
+.collection-jump-links a:hover { color: var(--magenta); }
+.collection-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 44px 32px; }
+.collection-grid-two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.collection { scroll-margin-top: 25px; min-width: 0; }
+.collection .hub-photo img { aspect-ratio: 4 / 3; object-fit: contain; background: #f0ece7; }
+.collection h3 { font-size: clamp(24px, 2vw, 29px); margin-top: 21px; line-height: 1.25; }
+.collection p { margin-top: 12px; font-size: 16px; line-height: 1.8; }
+.wide-opening-heading { font-size: 33px; margin-top: 60px; margin-bottom: 28px; }
+.hub-advice-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--hub-gap); }
+.hub-advice:first-child:last-child { grid-column: 1 / -1; max-width: 1000px; }
+.hub-advice h2 { font-size: clamp(31px, 2.6vw, 39px); }
+.hub-advice p { margin-top: 19px; }
+.hub-advice p + p { margin-top: 14px; }
+.hub-advice-section + .hub-advice-section.linen { border-block: 1px solid var(--line); }
+.hub-questions { border-top: 1px solid var(--line); }
+.hub-questions .questions-intro h2 { font-size: clamp(31px, 2.7vw, 40px); }
+.hub-questions .questions-intro .text-link { margin-top: 22px; font-size: 15px; }
+.hub-powerview-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--hub-gap); align-items: center; }
+.hub-powerview h2 { font-size: clamp(32px, 2.7vw, 41px); }
+.powerview-disclosure { font-size: 14px; }
+.hub-customer-quote { margin: 28px 0 0; border-left: 2px solid var(--magenta); padding: 4px 0 4px 24px; }
+.hub-customer-quote blockquote { margin: 13px 0; }
+.hub-customer-quote p { font-size: 18px; margin: 0; max-width: 850px; }
+.hub-customer-quote figcaption { font-size: 14px; color: var(--text); }
+.hub-contact-grid { display: grid; grid-template-columns: minmax(0, .95fr) minmax(0, 1.05fr); gap: var(--hub-gap); align-items: center; }
+.hub-questions:not(.linen) + .hub-contact { background: var(--linen); }
+.hub-showroom-art { min-width: 0; }
+.hub-showroom-art img { width: 100%; height: auto; }
+.hub-contact h2 { font-size: clamp(32px, 2.8vw, 41px); }
+.hub-contact-copy > p { margin-top: 19px; }
+.hub-contact-copy address { margin-top: 23px; color: var(--walnut); font-size: 17px; line-height: 1.7; }
+.hub-contact-copy .hub-hours { margin-top: 10px; font-size: 15px; }
+.hub-contact-actions { display: flex; gap: 14px; margin-top: 25px; }
+.hub-contact-actions .btn { min-width: 0; padding-inline: 22px; }
+.hub-contact-copy > .text-link { margin-top: 12px; }
+.hub-related { border-top: 1px solid var(--line); padding-block: 28px; background: var(--linen); }
+.hub-related > .container { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px 28px; }
+.hub-related p { font-weight: 500; color: var(--walnut); font-size: 15px; }
+.hub-related > .container > div { display: flex; flex-wrap: wrap; gap: 10px 28px; }
+.hub-related a { display: inline-block; padding-block: 7px; font-size: 15px; text-decoration-thickness: 1px; }
+.hub-related a:hover { color: var(--magenta); }
+.hub-readable { max-width: 900px; }
+.hub-readable h1 { font-size: 47px; }
+.hub-readable h2 { margin-top: 35px; font-size: 32px; }
+.hub-readable p { margin-top: 20px; }
+.hub-readable a { overflow-wrap: anywhere; }
+.hub-readable .statement-date { font-size: 14px; margin-top: 35px; }
+@media (max-width: 1100px) {
+  .interior-page { --hub-gap: 34px; }
+  .hub-hero h1 { font-size: 40px; }
+  .hub-hero-copy > p { font-size: 16px; }
+  .hub-contact-actions { flex-wrap: wrap; }
+}
+@media (max-width: 900px) {
+  .hub-hero-grid { grid-template-columns: 1fr 1fr; }
+  .hub-hero h1 { font-size: 37px; }
+  .hub-hero-actions { gap: 9px; }
+  .collection-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .collection-grid:not(.collection-grid-two) > .collection:last-child:nth-child(3) { grid-column: 1 / -1; width: calc(50% - 16px); }
+  .hub-contact-grid { grid-template-columns: .8fr 1.2fr; }
+  .hub-intro-grid { grid-template-columns: .8fr 1.2fr; }
+}
+@media (max-width: 700px) {
+  .hub-hero { padding-block: 24px 32px; }
+  .hub-hero-grid { grid-template-columns: 1fr; gap: 29px; }
+  .breadcrumbs { margin-bottom: 18px; font-size: 12px; }
+  .hub-hero h1 { font-size: clamp(34px, 8.3vw, 41px); line-height: 1.1; }
+  .hub-hero-copy > p { margin-top: 20px; font-size: 16px; line-height: 1.65; }
+  .hub-hero-actions { margin-top: 22px; gap: 9px 20px; }
+  .hub-hero-actions .btn { padding-inline: 22px; font-size: 11px; }
+  .hub-hero-actions .hub-phone { font-size: 15px; }
+  .hub-brands { margin-top: 22px; gap: 24px; }
+  .hub-brands img { width: 145px; }
+  .hub-brands .alta-name { font-size: 26px; }
+  .hub-intro-grid, .hub-advice-grid, .hub-contact-grid, .hub-powerview-grid { grid-template-columns: 1fr; gap: 27px; }
+  .hub-introduction h2, .hub-advice h2 { font-size: 32px; max-width: none; }
+  .hub-introduction .hub-prose { font-size: 16px; }
+  .hub-section-heading { margin-bottom: 24px; }
+  .collection-jump-links { gap: 5px 20px; font-size: 14px; margin-bottom: 29px; }
+  .collection-grid, .collection-grid-two { grid-template-columns: 1fr; gap: 36px; }
+  .collection-grid:not(.collection-grid-two) > .collection:last-child:nth-child(3) { grid-column: auto; width: auto; }
+  .collection h3 { font-size: 28px; margin-top: 19px; }
+  .collection .hub-photo img { aspect-ratio: auto; }
+  .collection p { margin-top: 10px; }
+  .wide-opening-heading { margin-top: 45px; font-size: 31px; }
+  .hub-advice-grid { gap: 33px; }
+  .hub-advice + .hub-advice { border-top: 1px solid var(--line); padding-top: 30px; }
+  .hub-contact-actions { display: grid; grid-template-columns: 1.05fr .95fr; gap: 12px; }
+  .hub-contact-actions .btn { font-size: 10px; letter-spacing: .08em; padding-inline: 12px; }
+  .hub-contact-copy > .text-link { margin-top: 13px; }
+  .hub-related { padding-block: 23px; }
+  .hub-related > .container > div { gap: 7px 24px; }
+  .hub-readable h1 { font-size: 38px; }
+}

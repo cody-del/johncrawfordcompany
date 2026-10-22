@@ -1,0 +1,128 @@
+{
+  "provenance": {
+    "src": "/assets/products/provenance.jpg",
+    "width": 1280,
+    "height": 945,
+    "caption": "Hunter Douglas Provenance® Woven Wood Shades",
+    "alt": "Natural woven shades over tall windows beside a sofa and wood-framed lounge chair."
+  },
+  "designer-roller": {
+    "src": "/assets/products/designer-roller.jpg",
+    "width": 1280,
+    "height": 915,
+    "caption": "Hunter Douglas Designer Roller Shades",
+    "alt": "Gray roller shades partially lowered over three windows in a sitting room."
+  },
+  "designer-screen": {
+    "src": "/assets/products/designer-screen.jpg",
+    "width": 1280,
+    "height": 960,
+    "caption": "Hunter Douglas Designer Screen Shades",
+    "alt": "Dark screen shades over broad windows behind a desk and lounge chair."
+  },
+  "duette": {
+    "src": "/assets/products/duette.jpg",
+    "width": 1280,
+    "height": 929,
+    "caption": "Hunter Douglas Duette® Honeycomb Shades",
+    "alt": "Gray honeycomb shade across a wide bathroom window above a freestanding tub."
+  },
+  "vignette": {
+    "src": "/assets/products/vignette.jpg",
+    "width": 1280,
+    "height": 960,
+    "caption": "Hunter Douglas Vignette® Modern Roman Shades",
+    "alt": "Cream Roman shades with horizontal folds above a curved sofa and garden-facing windows."
+  },
+  "silhouette": {
+    "src": "/assets/products/silhouette.jpg",
+    "width": 1280,
+    "height": 960,
+    "caption": "Hunter Douglas Silhouette® Sheer Shades",
+    "alt": "Horizontal fabric vanes filtering light beside two lounge chairs and a pink sofa."
+  },
+  "luminette": {
+    "src": "/assets/products/luminette.jpg",
+    "width": 800,
+    "height": 397,
+    "caption": "Hunter Douglas Luminette® Sheer Panels",
+    "alt": "Floor-length sheer panels across the windows of a cream-colored bedroom."
+  },
+  "skyline": {
+    "src": "/assets/products/skyline.jpg",
+    "width": 1280,
+    "height": 1127,
+    "caption": "Hunter Douglas Skyline® Gliding Window Panels",
+    "alt": "Overlapping patterned fabric panels beside a glass door in a wood-beamed living room."
+  },
+  "parkland": {
+    "src": "/assets/products/parkland.jpg",
+    "width": 1280,
+    "height": 853,
+    "caption": "Hunter Douglas Parkland® Wood Blinds",
+    "alt": "Dark horizontal wood blinds across a bank of windows behind a white sofa."
+  },
+  "everwood": {
+    "src": "/assets/products/everwood.jpg",
+    "width": 1280,
+    "height": 853,
+    "caption": "Hunter Douglas EverWood® Alternative Wood Blinds",
+    "alt": "Light-colored horizontal blinds between built-in shelves at a dining nook."
+  },
+  "aria": {
+    "src": "/assets/products/aria.jpg",
+    "width": 1280,
+    "height": 674,
+    "caption": "Hunter Douglas Aria™ Soft Blinds",
+    "alt": "Wide gray fabric vanes above a sofa and desk in a wood-paneled room."
+  },
+  "custom-metal": {
+    "src": "/assets/products/custom-metal.jpg",
+    "width": 2400,
+    "height": 1500,
+    "caption": "Hunter Douglas Custom Metal Blinds",
+    "alt": "Horizontal metal blinds across the windows behind a bed, with wood ceiling panels overhead."
+  },
+  "custom-vertical": {
+    "src": "/assets/products/custom-vertical-current.jpg",
+    "width": 1025,
+    "height": 513,
+    "caption": "Hunter Douglas Custom Vertical Blinds",
+    "alt": "White vertical blinds across a sliding door and adjoining window behind a white sofa."
+  },
+  "palm-beach": {
+    "src": "/assets/products/palm-beach.jpg",
+    "width": 1280,
+    "height": 960,
+    "caption": "Hunter Douglas Palm Beach™ Polysatin™ Shutters",
+    "alt": "White shutter panels covering tall windows behind a sofa and two lounge chairs."
+  },
+  "newstyle": {
+    "src": "/assets/products/newstyle.jpg",
+    "width": 1280,
+    "height": 853,
+    "caption": "Hunter Douglas NewStyle® Hybrid Shutters",
+    "alt": "White shutters following the curved tops of two arched windows in a dining room."
+  },
+  "heritance": {
+    "src": "/assets/products/heritance.jpg",
+    "width": 1280,
+    "height": 608,
+    "caption": "Hunter Douglas Heritance® Hardwood Shutters",
+    "alt": "Dark wood shutters across a wide window wall beside a dining table and kitchen."
+  },
+  "powerview": {
+    "src": "/assets/products/powerview-wall-control.png",
+    "width": 1280,
+    "height": 853,
+    "caption": "Hunter Douglas PowerView® Automation wall-mounted control",
+    "alt": "Round PowerView wall control mounted beside a pale fabric window shade."
+  },
+  "carole": {
+    "src": "/assets/products/carole-drapery.jpg",
+    "width": 1025,
+    "height": 513,
+    "caption": "Carole Fabrics® Custom Drapes · Hunter Douglas",
+    "alt": "Pale blue drapery beside a white-framed window, a sofa and a dark blue cabinet."
+  }
+}

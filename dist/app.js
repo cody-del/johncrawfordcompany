@@ -46,10 +46,11 @@ document.addEventListener('keydown', event => {
 window.matchMedia('(min-width: 1024px)').addEventListener('change', () => closeMenus());
 document.querySelector('#year').textContent = new Date().getFullYear();
 
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 const hero = document.querySelector('.hero');
 const heroVideo = document.querySelector('#hero-video');
 const videoToggle = document.querySelector('.hero-video-toggle');
-const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+if (hero && heroVideo && videoToggle) {
 const mobileVideo = window.matchMedia('(max-width: 700px)');
 const connection = navigator.connection;
 let wantsPlayback = !reduceMotion.matches && !connection?.saveData;
@@ -116,6 +117,7 @@ if (heroVideo.canPlayType('video/mp4')) {
     }, { threshold: 0 }).observe(hero);
   }
   syncVideoPlayback();
+}
 }
 
 const reviewsSection = document.querySelector('.reviews');

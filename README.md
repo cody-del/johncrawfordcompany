@@ -1,12 +1,19 @@
-# John Crawford Company homepage
+# John Crawford Company website review
 
-Static HTML homepage for John Crawford Company in Woodland Hills, California.
+Static HTML website for John Crawford Company in Woodland Hills, California.
 
-The current review site is https://john-crawford-homepage.codytodd.chatgpt.site/.
+The public review site is https://john-crawford-homepage.codytodd.chatgpt.site/.
+Netlify serves the same checked files at https://johncrawfordcompany.netlify.app/.
+
+## Pages
+
+- `/`: approved homepage design.
+- `/shades/`, `/blinds/`, `/shutters/`, `/drapery/`, `/motorized-shades/`: first five product hubs, built from the approved copy.
+- `/accessibility/`: website assistance and verified business contact details.
 
 ## Run locally
 
-No dependency installation or build step is required. Use Node.js for checks and Python 3 for the local preview.
+No frontend dependency installation or framework build is required. Checks use Node.js and Python 3's standard library.
 
 ```sh
 npm run check
@@ -15,19 +22,20 @@ npm run preview
 
 Open http://127.0.0.1:4317/.
 
-## Files
+## Source and publishing
 
-- `dist/index.html`: homepage content, metadata, and business structured data.
-- `dist/styles.css`: responsive layout and branding.
-- `dist/app.js`: navigation, review carousel, dialogs, and hero video controls.
-- `dist/assets/`: fonts, branding, product photography, illustrations, and silent hero video.
-- `scripts/check-site.mjs`: homepage checks.
-- `.openai/hosting.json`: existing Sites project and static directory configuration.
+- `dist/`: ready-to-serve HTML, styles, JavaScript and local assets.
+- `content/`: approved public product copy and freshly written image alternatives.
+- `scripts/build-hubs.py`: regenerates hub HTML from the public copy and homepage navigation/footer.
+- `scripts/check-site.mjs`, `scripts/check-hubs.mjs`: metadata, headings, assets, contact and route checks.
+- `scripts/check-customer-copy.py`: blocks recognizable internal writer notes and unfinished copy before publication.
 
-Serve `dist/` as the website root when deploying to a static host. `netlify.toml` sets the Netlify publish directory to `dist` and runs the homepage checks before deployment. The Netlify project is connected to this repository's `main` branch for continuous deployment.
+Run `python3 scripts/build-hubs.py` after changing public hub content, then `npm run check`. Generated HTML is committed so all important content is available without JavaScript.
+
+`netlify.toml` publishes `dist` and runs `npm run check` before upload. The Netlify project is connected to `main` for continuous deployment. Product images are labeled by collection and are not presented as John Crawford installations.
 
 ## Review status
 
-This is the homepage review version. It intentionally retains `noindex, nofollow` and a temporary canonical URL. Interior pages, a gallery, and final launch configuration remain pending approval. The client-requested upholstery photo placeholder is retained.
+All pages retain `noindex, nofollow` and review canonical URLs. The current production domain has not been migrated. Individual collection, service and location pages remain separate future work. The client-requested upholstery photo placeholder remains on the homepage.
 
-Client reference documents, local workflow state, credentials, and QA screenshots are not included in this repository.
+Private intake records, transcripts, dealer policies, local credentials and QA artifacts are excluded from this repository.
