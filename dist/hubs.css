@@ -121,8 +121,27 @@
 }
 
 /* Client-supplied accents: the Shades page is the placement review. */
-.accent-review-page .hub-intro-heading { display: flex; flex-direction: column; align-items: flex-start; }
-.accent-review-page .hub-accent-floral { width: 124px; height: auto; padding: 4px; margin-top: 30px; transform: scaleX(-1); object-fit: contain; pointer-events: none; }
+.accent-review-page .hub-intro-consultation { padding-block: 64px; }
+.accent-review-page .hub-intro-consultation .hub-intro-grid { grid-template-columns: 350px minmax(0, 1fr); grid-template-areas: "form copy"; align-items: start; }
+.accent-review-page .hub-intro-copy { grid-area: copy; font-size: 16px; line-height: 1.7; }
+.accent-review-page .hub-intro-copy h2 { max-width: 720px; font-size: clamp(31px, 2.6vw, 39px); }
+.accent-review-page .hub-intro-copy h2 + p { margin-top: 18px; }
+.accent-review-page .hub-intro-copy p + p { margin-top: 14px; }
+.accent-review-page .hub-accent-floral { width: 76px; height: auto; padding: 2px; margin-top: 12px; transform: scaleX(-1); object-fit: contain; pointer-events: none; }
+.hub-consultation-form { grid-area: form; min-width: 0; padding: 22px; background: var(--linen); border: 1px solid var(--line); border-radius: 0 18px 0 18px; }
+.hub-form-fields { display: grid; gap: 12px; }
+.hub-form-field label { display: block; margin-bottom: 5px; font-size: 13px; line-height: 1.5; font-weight: 500; }
+.hub-form-field input { display: block; width: 100%; min-height: 44px; padding: 9px 11px; border: 1px solid #9a8676; border-radius: 0; background: var(--white); color: var(--walnut); font: 16px/1.5 var(--body); }
+.hub-form-field input[aria-invalid="true"] { border-color: #a02626; }
+.hub-form-field .hub-field-error { margin-top: 6px; color: #8f2020; font-size: 13px; line-height: 1.5; }
+.hub-consultation-form .hub-form-required { font-size: 12px; line-height: 1.5; }
+.hub-consultation-form .btn { width: 100%; min-height: 50px; padding-inline: 12px; font-size: 11px; letter-spacing: .09em; }
+.hub-consultation-form .btn:disabled { cursor: wait; opacity: .75; }
+.hub-consultation-form .hub-form-notice { margin-top: 13px; font-size: 12px; line-height: 1.6; }
+.hub-form-notice a { color: var(--magenta); text-decoration-thickness: 1px; }
+.hub-form-status { margin-block: 8px 16px; font-size: 15px; line-height: 1.6; }
+.hub-form-status[data-state="error"] { color: #8f2020; }
+.hub-form-fields[hidden], .hub-field-error[hidden], .hub-form-status[hidden] { display: none; }
 .accent-review-page .hub-contact-accent { position: relative; isolation: isolate; }
 .accent-review-page .hub-contact-accent-grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1.05fr .95fr; gap: var(--hub-gap); align-items: start; }
 .accent-review-page .hub-contact-message > p { max-width: 600px; margin-top: 19px; }
@@ -131,14 +150,17 @@
 .accent-review-page .hub-contact-details > .text-link { margin-top: 12px; }
 .accent-review-page .hub-accent-palm { position: absolute; z-index: 0; right: 0; bottom: 0; width: 220px; height: auto; pointer-events: none; }
 @media (max-width: 900px) {
+  .accent-review-page .hub-intro-consultation .hub-intro-grid { grid-template-columns: 310px minmax(0, 1fr); gap: 30px; }
+  .hub-consultation-form { padding: 18px; }
   .accent-review-page .hub-contact-accent-grid { grid-template-columns: 1fr; gap: 28px; }
   .accent-review-page .hub-contact-accent { padding-bottom: 130px; }
   .accent-review-page .hub-accent-palm { width: 180px; }
 }
 @media (max-width: 700px) {
-  .accent-review-page .hub-intro-heading { display: contents; }
-  .accent-review-page .hub-introduction .hub-prose { order: 1; }
-  .accent-review-page .hub-accent-floral { order: 2; width: 90px; margin-top: 0; }
+  .accent-review-page .hub-intro-consultation { padding-block: 48px; }
+  .accent-review-page .hub-intro-consultation .hub-intro-grid { grid-template-columns: 1fr; grid-template-areas: "copy" "form"; gap: 26px; }
+  .accent-review-page .hub-intro-consultation .hub-consultation-form { width: 100%; max-width: 430px; }
+  .accent-review-page .hub-accent-floral { width: 60px; }
   .accent-review-page .hub-contact-accent { padding-bottom: 140px; }
   .accent-review-page .hub-accent-palm { width: 138px; }
 }

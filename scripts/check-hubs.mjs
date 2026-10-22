@@ -63,6 +63,6 @@ for (const hub of hubs) {
   requireThat(!/\bGallery\b/.test(html), `${hub.slug}: unconfirmed Gallery designation`);
 }
 requireThat(pages.get('/motorized-shades/')?.html.includes('The PowerView® App is required for programmed operation.'), 'Missing PowerView scheduling disclosure');
-requireThat(pages.size === 7, `Expected homepage, five hubs and accessibility assistance; found ${pages.size}`);
+requireThat(pages.size === 9, `Expected homepage, five hubs, accessibility, privacy and form confirmation; found ${pages.size}`);
 if (errors.length) { console.error(errors.join('\n')); process.exit(1); }
 console.log(`All ${pages.size} HTML routes passed: headings, metadata, internal links, assets, contact details and public copy separation.`);

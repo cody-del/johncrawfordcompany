@@ -58,8 +58,9 @@ def head(page, hero_key=None, accessibility=False):
     title = page['title_tag']
     desc = page['meta_description']
     path = page['slug']
-    hub_css_version = 'accents-3' if page['name'] == 'Shades' else 'hubs-1'
+    hub_css_version = 'consultation-1' if page['name'] == 'Shades' else 'hubs-1'
     body_class = 'interior-page accent-review-page' if page['name'] == 'Shades' else 'interior-page'
+    form_script = '\n  <script src="/consultation.js?v=consultation-1" defer></script>' if page['name'] == 'Shades' else ''
     og = IMAGES[hero_key]['src'] if hero_key else '/assets/showroom-illustration.svg'
     schema = [{
         '@context': 'https://schema.org', '@type': 'BreadcrumbList',
@@ -105,7 +106,7 @@ def head(page, hero_key=None, accessibility=False):
   <link rel="stylesheet" href="/assets/fonts.css?v=fonts-2">
   <link rel="stylesheet" href="/styles.css?v=hubs-1">
   <link rel="stylesheet" href="/hubs.css?v={hub_css_version}">
-  <script src="/app.js?v=hubs-1" defer></script>
+  <script src="/app.js?v=hubs-1" defer></script>{form_script}
   <script type="application/ld+json">{json.dumps(schema, ensure_ascii=False).replace('<', chr(92)+'u003c')}</script>
 </head>
 <body class="{body_class}">
@@ -143,8 +144,24 @@ def intro(section, page):
         body += '<p>We carry Hunter Douglas and Alta blinds and can help you compare the choices for your windows.</p>'
     if page['name'] == 'Shades':
         floral = decorative_accent('floral-corner-complete.png', 'hub-accent-floral', 1254, 1254)
-        return f'''<section class="section hub-introduction" aria-labelledby="introduction-heading">
-      <div class="container hub-intro-grid"><div class="hub-intro-heading"><h2 id="introduction-heading">{e(section['title'])}</h2>{floral}</div><div class="hub-prose">{body}</div></div>
+        return f'''<section class="section hub-introduction hub-intro-consultation" aria-labelledby="introduction-heading">
+      <div class="container hub-intro-grid">
+        <div class="hub-prose hub-intro-copy"><h2 id="introduction-heading">{e(section['title'])}</h2>{body}{floral}</div>
+        <form class="hub-consultation-form" name="shade-consultation" method="POST" action="/thank-you/" data-netlify="true" netlify-honeypot="website" data-submission-origin="https://johncrawfordcompany.netlify.app" aria-label="Request a shade consultation" aria-describedby="consultation-required consultation-notice">
+          <input type="hidden" name="form-name" value="shade-consultation">
+          <input type="hidden" name="page" value="Shades">
+          <p hidden><label>Leave this field empty<input name="website" tabindex="-1" autocomplete="off"></label></p>
+          <div class="hub-form-fields">
+            <div class="hub-form-field"><label for="consultation-name">Full name</label><input id="consultation-name" name="name" type="text" autocomplete="name" maxlength="120" required aria-describedby="consultation-name-error"><p class="hub-field-error" id="consultation-name-error" hidden></p></div>
+            <div class="hub-form-field"><label for="consultation-phone">Phone number</label><input id="consultation-phone" name="phone" type="tel" autocomplete="tel" minlength="7" maxlength="30" required aria-describedby="consultation-phone-error"><p class="hub-field-error" id="consultation-phone-error" hidden></p></div>
+            <div class="hub-form-field"><label for="consultation-email">Email</label><input id="consultation-email" name="email" type="email" autocomplete="email" maxlength="254" required aria-describedby="consultation-email-error"><p class="hub-field-error" id="consultation-email-error" hidden></p></div>
+            <p class="hub-form-required" id="consultation-required">All fields are required.</p>
+            <button class="btn btn-primary" type="submit">Request a consultation</button>
+          </div>
+          <p class="hub-form-status" id="consultation-status" role="status" tabindex="-1" hidden></p>
+          <p class="hub-form-notice" id="consultation-notice">We collect your name, phone number and email to respond to your project inquiry. <a href="/privacy/">Privacy Policy</a>.</p>
+        </form>
+      </div>
     </section>'''
     return f'''<section class="section hub-introduction" aria-labelledby="introduction-heading">
       <div class="container hub-intro-grid"><h2 id="introduction-heading">{e(section['title'])}</h2><div class="hub-prose">{body}</div></div>
@@ -298,3 +315,43 @@ html = head(accessibility, accessibility=True) + header.replace('href="#contact"
   <p class="statement-date">Statement reviewed October 22, 2026.</p>
 </div></main>''' + footer.replace('href="#contact"','href="/#contact"') + mobile.replace('href="#contact"','href="/#contact"') + '</body></html>\n'
 target=DIST/'accessibility/index.html';target.parent.mkdir(exist_ok=True);target.write_text(html)
+
+
+def support_page(name, slug, title, description, body):
+    page = {'name': name, 'slug': slug, 'title_tag': title, 'meta_description': description}
+    header, footer, mobile = partials(slug)
+    html = (head(page, accessibility=True) + header.replace('href="#contact"', 'href="/#contact"')
+            + '<main id="main" class="section"><div class="container hub-readable">' + body
+            + '</div></main>' + footer.replace('href="#contact"', 'href="/#contact"')
+            + mobile.replace('href="#contact"', 'href="/#contact"') + '</body></html>\n')
+    target = DIST / slug.strip('/') / 'index.html'
+    target.parent.mkdir(exist_ok=True)
+    target.write_text(html)
+
+
+support_page('Privacy Policy', '/privacy/', 'Privacy Policy | John Crawford Company',
+    'How John Crawford Company handles website consultation requests, contact information, hosting and embedded services.', '''
+  <h1>Privacy Policy</h1>
+  <p class="statement-date">Effective October 22, 2026.</p>
+  <p>This policy describes information collected through the John Crawford Company website and how to contact us about it.</p>
+  <h2>Information you provide</h2>
+  <p>Our consultation form asks for your full name, phone number and email address. The submission also identifies the page where you made your request. If you email us, we receive the information and any photos or attachments you choose to send.</p>
+  <h2>How your information is used</h2>
+  <p>We use inquiry information to respond, discuss your project and provide the help you request. Our website and form providers also process information to operate the website, protect it and filter spam. Submitting the consultation form does not enroll you in promotional email or text campaigns.</p>
+  <h2>Website and form providers</h2>
+  <p>Netlify processes and stores consultation form submissions for the people authorized to manage this website. If email notifications are enabled, the submission is also delivered to the designated inquiry inbox. The website preview may be served through ChatGPT Sites. Hosting providers may process technical information, such as IP addresses, browser details and request logs, to deliver and secure the website.</p>
+  <h2>Embedded services and tracking</h2>
+  <p>This website includes a Google Maps embed. Loading that map may allow Google to receive device and visit information and use its own cookies or similar technologies. Social profile links take you to separate services when you open them. Those providers' privacy practices apply to their services. See <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google's Privacy Policy<span class="sr-only"> (opens in a new tab)</span></a>.</p>
+  <p>We have not installed advertising pixels or audience-tracking analytics on this website, and we do not add consultation submissions to advertising audiences through this form. The website does not change its behavior in response to browser Do Not Track signals. Embedded third-party services may follow their own tracking practices.</p>
+  <h2>Your inquiry and privacy requests</h2>
+  <p>Form submissions remain in the form system until an authorized administrator deletes them. If you become a customer, project records may be kept separately. To ask about access, correction or deletion of information you submitted, email <a href="mailto:john@johncrawford.com">john@johncrawford.com</a> or call <a href="tel:+18188845464">(818) 884-5464</a>. We may need to verify your request and retain records required for an ongoing project or by law.</p>
+  <p>You can also write to John Crawford Company, 22311 Ventura Blvd #101, Woodland Hills, CA 91364.</p>
+  <h2>Policy updates</h2>
+  <p>We will post changes on this page and update the effective date when this policy changes.</p>''')
+
+support_page('Thank You', '/thank-you/', 'Request Received | John Crawford Company',
+    'Thank you for contacting John Crawford Company about a window treatment consultation.', '''
+  <h1>Thank you for getting in touch.</h1>
+  <p>We've received your consultation request and will contact you about your project.</p>
+  <p>If you'd like to speak with us, call <a href="tel:+18188845464">(818) 884-5464</a>. Our showroom is open Monday-Friday, 9 am-5 pm.</p>
+  <p><a class="text-link" href="/shades/">Back to shades</a></p>''')
