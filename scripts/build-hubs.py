@@ -58,7 +58,7 @@ def head(page, hero_key=None, accessibility=False):
     title = page['title_tag']
     desc = page['meta_description']
     path = page['slug']
-    hub_css_version = 'photo-heroes-1' if hero_key else 'hubs-1'
+    hub_css_version = 'photo-heroes-2' if hero_key else 'hubs-1'
     body_class = 'interior-page accent-review-page' if page['name'] == 'Shades' else 'interior-page'
     og = IMAGES[hero_key]['src'] if hero_key else '/assets/showroom-illustration.svg'
     schema = [{
@@ -114,7 +114,7 @@ def head(page, hero_key=None, accessibility=False):
 
 def brand_line():
     return '''<div class="hub-brands" aria-label="Window treatment brands">
-      <img src="/assets/hunter-douglas-gallery.webp" alt="Hunter Douglas" width="257" height="38">
+      <img src="/assets/hunter-douglas.svg" alt="Hunter Douglas" width="181" height="27">
       <span aria-hidden="true"></span><span class="alta-name">Alta</span>
     </div>'''
 
