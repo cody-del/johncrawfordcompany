@@ -58,7 +58,7 @@ def head(page, hero_key=None, accessibility=False):
     title = page['title_tag']
     desc = page['meta_description']
     path = page['slug']
-    hub_css_version = 'consultation-2' if page['name'] == 'Shades' else 'hubs-1'
+    hub_css_version = 'photo-heroes-1' if hero_key else 'hubs-1'
     body_class = 'interior-page accent-review-page' if page['name'] == 'Shades' else 'interior-page'
     og = IMAGES[hero_key]['src'] if hero_key else '/assets/showroom-illustration.svg'
     schema = [{
@@ -121,7 +121,9 @@ def brand_line():
 
 def hero(page, key):
     section = page['sections'][0]
-    return f'''<section class="hub-hero" aria-labelledby="page-heading">
+    photo = IMAGES[key]
+    return f'''<section class="hub-hero hub-hero--{tag_id(page['name'])}" aria-labelledby="page-heading">
+      <figure class="hub-photo hub-hero-photo"><img src="{e(photo['src'])}" alt="{e(photo['alt'])}" width="{photo['width']}" height="{photo['height']}" fetchpriority="high" decoding="async"><figcaption>{e(photo['caption'])}</figcaption></figure>
       <div class="container hub-hero-grid">
         <div class="hub-hero-copy">
           <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span aria-current="page">{e(page['name'])}</span></nav>
@@ -130,7 +132,6 @@ def hero(page, key):
           <div class="hub-hero-actions"><a class="btn btn-primary" href="#contact">{e(section['cta'])}</a><a class="hub-phone" href="tel:+18188845464">(818) 884-5464</a></div>
           {brand_line()}
         </div>
-        {image(key, hero=True)}
       </div>
     </section>'''
 
