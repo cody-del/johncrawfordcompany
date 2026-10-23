@@ -145,12 +145,12 @@
 }
 
 /* Client-supplied accents: the Shades page is the placement review. */
-.accent-review-page .hub-intro-consultation { padding-block: 64px; }
-.accent-review-page .hub-intro-consultation .hub-intro-grid { grid-template-columns: 350px minmax(0, 1fr); grid-template-areas: "form copy"; align-items: start; }
-.accent-review-page .hub-intro-copy { grid-area: copy; font-size: 16px; line-height: 1.7; }
-.accent-review-page .hub-intro-copy h2 { max-width: 720px; font-size: clamp(31px, 2.6vw, 39px); }
-.accent-review-page .hub-intro-copy h2 + p { margin-top: 18px; }
-.accent-review-page .hub-intro-copy p + p { margin-top: 14px; }
+.hub-intro-consultation { padding-block: 64px; }
+.hub-intro-consultation .hub-intro-grid { grid-template-columns: 350px minmax(0, 1fr); grid-template-areas: "form copy"; align-items: start; }
+.hub-intro-consultation .hub-intro-copy { grid-area: copy; font-size: 16px; line-height: 1.7; }
+.hub-intro-consultation .hub-intro-copy h2 { max-width: 720px; font-size: clamp(31px, 2.6vw, 39px); }
+.hub-intro-consultation .hub-intro-copy h2 + p { margin-top: 18px; }
+.hub-intro-consultation .hub-intro-copy p + p { margin-top: 14px; }
 .accent-review-page .hub-accent-floral { width: 76px; height: auto; padding: 2px; margin-top: 12px; transform: scaleX(-1); object-fit: contain; pointer-events: none; }
 .hub-consultation-form { grid-area: form; min-width: 0; padding: 22px; background: var(--linen); border: 1px solid var(--line); border-radius: 0 18px 0 18px; }
 .hub-form-fields { display: grid; gap: 12px; }
@@ -171,16 +171,16 @@
 .accent-review-page .hub-contact-details > .text-link { margin-top: 12px; }
 .accent-review-page .hub-accent-palm { position: absolute; z-index: 0; right: 0; bottom: 0; width: 220px; height: auto; pointer-events: none; }
 @media (max-width: 900px) {
-  .accent-review-page .hub-intro-consultation .hub-intro-grid { grid-template-columns: 310px minmax(0, 1fr); gap: 30px; }
+  .hub-intro-consultation .hub-intro-grid { grid-template-columns: 310px minmax(0, 1fr); gap: 30px; }
   .hub-consultation-form { padding: 18px; }
   .accent-review-page .hub-contact-accent-grid { grid-template-columns: 1fr; gap: 28px; }
   .accent-review-page .hub-contact-accent { padding-bottom: 130px; }
   .accent-review-page .hub-accent-palm { width: 180px; }
 }
 @media (max-width: 700px) {
-  .accent-review-page .hub-intro-consultation { padding-block: 48px; }
-  .accent-review-page .hub-intro-consultation .hub-intro-grid { grid-template-columns: 1fr; grid-template-areas: "copy" "form"; gap: 26px; }
-  .accent-review-page .hub-intro-consultation .hub-consultation-form { width: 100%; max-width: 430px; }
+  .hub-intro-consultation { padding-block: 48px; }
+  .hub-intro-consultation .hub-intro-grid { grid-template-columns: 1fr; grid-template-areas: "copy" "form"; gap: 26px; }
+  .hub-intro-consultation .hub-consultation-form { width: 100%; max-width: 430px; }
   .accent-review-page .hub-accent-floral { width: 60px; }
   .accent-review-page .hub-contact-accent { padding-bottom: 140px; }
   .accent-review-page .hub-accent-palm { width: 138px; }

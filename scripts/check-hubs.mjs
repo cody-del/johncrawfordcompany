@@ -61,10 +61,12 @@ for (const hub of hubs) {
   requireThat((html.match(/<details><summary>/g) || []).length === 3, `${hub.slug}: missing FAQs`);
   requireThat(html.includes('href="tel:+18188845464"') && html.includes('href="mailto:john@johncrawford.com'), `${hub.slug}: contact links missing`);
   requireThat(!/\bGallery\b/.test(html), `${hub.slug}: unconfirmed Gallery designation`);
+  const introPreview = html.match(/<section class="section hub-introduction hub-intro-consultation"[\s\S]*?<\/section>/)?.[0] || '';
+  const formPreview = introPreview.match(/<form\b[\s\S]*?<\/form>/)?.[0] || '';
+  requireThat((formPreview.match(/\bdisabled\b/g) || []).length === 4 && !/data-netlify|action=|type="submit"/.test(formPreview), `${hub.slug}: design-only form must not accept submissions before GHL setup`);
+  requireThat(/<\/section>\s*<section class="section hub-introduction hub-intro-consultation"/.test(html), `${hub.slug}: consultation section must follow the hero`);
 }
 requireThat(pages.get('/motorized-shades/')?.html.includes('The PowerView® App is required for programmed operation.'), 'Missing PowerView scheduling disclosure');
 requireThat(pages.size === 8, `Expected homepage, five hubs, accessibility and privacy; found ${pages.size}`);
-const formPreview = pages.get('/shades/')?.html.match(/<form\b[\s\S]*?<\/form>/)?.[0] || '';
-requireThat((formPreview.match(/\bdisabled\b/g) || []).length === 4 && !/data-netlify|action=|type="submit"/.test(formPreview), 'Design-only form must not accept submissions before GHL setup');
 if (errors.length) { console.error(errors.join('\n')); process.exit(1); }
 console.log(`All ${pages.size} HTML routes passed: headings, metadata, internal links, assets, contact details and public copy separation.`);

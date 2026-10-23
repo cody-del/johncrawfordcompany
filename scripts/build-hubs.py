@@ -58,7 +58,7 @@ def head(page, hero_key=None, accessibility=False):
     title = page['title_tag']
     desc = page['meta_description']
     path = page['slug']
-    hub_css_version = 'photo-heroes-2' if hero_key else 'hubs-1'
+    hub_css_version = 'hub-forms-1' if hero_key else 'hubs-1'
     body_class = 'interior-page accent-review-page' if page['name'] == 'Shades' else 'interior-page'
     og = IMAGES[hero_key]['src'] if hero_key else '/assets/showroom-illustration.svg'
     schema = [{
@@ -103,7 +103,7 @@ def head(page, hero_key=None, accessibility=False):
   <link rel="preload" href="/assets/brand-latin-1.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/assets/brand-latin-0.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/assets/fonts.css?v=fonts-2">
-  <link rel="stylesheet" href="/styles.css?v=hubs-1">
+  <link rel="stylesheet" href="/styles.css?v=product-cards-1">
   <link rel="stylesheet" href="/hubs.css?v={hub_css_version}">
   <script src="/app.js?v=hubs-1" defer></script>
   <script type="application/ld+json">{json.dumps(schema, ensure_ascii=False).replace('<', chr(92)+'u003c')}</script>
@@ -142,9 +142,8 @@ def intro(section, page):
         body += '<p>We also carry Alta shades if you\'d like to compare another option for your project.</p>'
     if page['name'] == 'Blinds':
         body += '<p>We carry Hunter Douglas and Alta blinds and can help you compare the choices for your windows.</p>'
-    if page['name'] == 'Shades':
-        floral = decorative_accent('floral-corner-complete.png', 'hub-accent-floral', 1254, 1254)
-        return f'''<section class="section hub-introduction hub-intro-consultation" aria-labelledby="introduction-heading">
+    floral = decorative_accent('floral-corner-complete.png', 'hub-accent-floral', 1254, 1254) if page['name'] == 'Shades' else ''
+    return f'''<section class="section hub-introduction hub-intro-consultation" aria-labelledby="introduction-heading">
       <div class="container hub-intro-grid">
         <div class="hub-prose hub-intro-copy"><h2 id="introduction-heading">{e(section['title'])}</h2>{body}{floral}</div>
         <form class="hub-consultation-form" aria-label="Consultation form preview" aria-describedby="consultation-preview consultation-required consultation-notice">
@@ -159,9 +158,6 @@ def intro(section, page):
           <p class="hub-form-notice" id="consultation-notice">We collect your name, phone number and email to respond to your project inquiry. <a href="/privacy/">Privacy Policy</a>.</p>
         </form>
       </div>
-    </section>'''
-    return f'''<section class="section hub-introduction" aria-labelledby="introduction-heading">
-      <div class="container hub-intro-grid"><h2 id="introduction-heading">{e(section['title'])}</h2><div class="hub-prose">{body}</div></div>
     </section>'''
 
 
@@ -284,10 +280,11 @@ for page in PAGES:
     if name == 'Motorized Shades':
         body += [powerview(secs[2]), advice(secs[3:5]), advice(secs[5:7], linen=True), faq(secs[7], linen=False), contact(secs[8])]
     else:
-        body += [catalog(secs[2] if name != 'Shutters' else secs[1], CONFIG[name]['catalog'], name)]
-        # Shutters' material introduction belongs to the catalog, not a repeated section.
+        catalog_section = secs[2] if name != 'Shutters' else {**secs[1], 'title': 'Hunter Douglas shutter collections', 'paragraphs': []}
+        body += [catalog(catalog_section, CONFIG[name]['catalog'], name)]
+        # Keep the material advice with the form, followed by the shutter collections.
         if name == 'Shutters':
-            body = [body[0], body[2], advice(secs[2:4], linen=True), advice([secs[4]]), faq(secs[5]), contact(secs[6])]
+            body += [advice(secs[2:4], linen=True), advice([secs[4]]), faq(secs[5]), contact(secs[6])]
         elif name == 'Drapery':
             body += [advice(secs[3:5]), advice([secs[5]], linen=True), faq(secs[6], linen=False), contact(secs[7])]
         else:
