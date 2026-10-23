@@ -58,7 +58,7 @@ def head(page, hero_key=None, accessibility=False):
     title = page['title_tag']
     desc = page['meta_description']
     path = page['slug']
-    hub_css_version = 'hub-accents-2' if hero_key else 'hubs-1'
+    hub_css_version = 'product-photo-alignment-1' if hero_key else 'hubs-1'
     body_class = 'interior-page accent-review-page' if page['name'] == 'Shades' else 'interior-page'
     og = IMAGES[hero_key]['src'] if hero_key else '/assets/showroom-illustration.svg'
     schema = [{
@@ -142,10 +142,10 @@ def intro(section, page):
         body += '<p>We also carry Alta shades if you\'d like to compare another option for your project.</p>'
     if page['name'] == 'Blinds':
         body += '<p>We carry Hunter Douglas and Alta blinds and can help you compare the choices for your windows.</p>'
-    floral = decorative_accent('floral-corner-complete.png', 'hub-accent-floral', 1254, 1254)
+    palm = decorative_accent('palm-sun-inline.svg', 'hub-accent-palm', 340, 410)
     return f'''<section class="section hub-introduction hub-intro-consultation" aria-labelledby="introduction-heading">
       <div class="container hub-intro-grid">
-        <div class="hub-prose hub-intro-copy"><h2 id="introduction-heading">{e(section['title'])}</h2>{body}{floral}</div>
+        <div class="hub-prose hub-intro-copy"><h2 id="introduction-heading">{e(section['title'])}</h2>{body}{palm}</div>
         <form class="hub-consultation-form" aria-label="Consultation form preview" aria-describedby="consultation-preview consultation-required consultation-notice">
           <p class="sr-only" id="consultation-preview">This form is a design preview and does not accept submissions.</p>
           <div class="hub-form-fields">
@@ -179,15 +179,16 @@ def catalog(section, keys, mode):
           {image(key, caption=show_caption)}
           <h3 id="{title_id}-heading">{e(item['title'])}</h3><p>{e(item['text'])}</p>
         </article>''')
+    floral = decorative_accent('floral-corner-complete.png', 'hub-accent-floral', 1254, 1254)
     if mode == 'Blinds':
-        card_html = ('<div class="collection-grid collection-grid-two">' + ''.join(cards[:4]) + '</div>'
+        card_html = ('<div class="collection-grid">' + ''.join(cards[:4]) + '</div>'
                      '<h3 class="wide-opening-heading">For wide windows and sliding doors</h3>'
                      '<div class="collection-grid">' + ''.join(cards[4:]) + '</div>')
     else:
         card_html = '<div class="collection-grid">' + ''.join(cards) + '</div>'
     return f'''<section class="section {'linen ' if mode != 'Shutters' else ''}hub-collections" id="collections" aria-labelledby="collections-heading">
       <div class="container">
-        <div class="hub-section-heading"><h2 id="collections-heading">{e(section['title'])}</h2>{body}</div>
+        <div class="hub-section-heading"><div class="hub-heading-accent"><h2 id="collections-heading">{e(section['title'])}</h2>{floral}</div>{body}</div>
         <nav class="collection-jump-links" aria-label="Browse collections">{anchors}</nav>
         {card_html}
       </div>
@@ -223,7 +224,6 @@ def faq(section, linen=True):
 
 
 def contact(section):
-    palm = decorative_accent('palm-corner.svg', 'hub-accent-palm', 400, 400)
     return f'''<section class="section hub-contact hub-contact-accent" id="contact" aria-labelledby="contact-heading">
       <div class="container hub-contact-accent-grid">
         <div class="hub-contact-message"><h2 id="contact-heading">{e(section['title'])}</h2>{paragraphs(section)}</div>
@@ -234,7 +234,6 @@ def contact(section):
           <a class="text-link" href="mailto:john@johncrawford.com?subject=Window%20treatment%20consultation">Email us your project</a>
         </div>
       </div>
-      {palm}
     </section>'''
 
 
@@ -244,9 +243,10 @@ def related(page):
 
 
 def powerview(section):
+    floral = decorative_accent('floral-corner-complete.png', 'hub-accent-floral', 1254, 1254)
     return f'''<section class="section linen hub-powerview" aria-labelledby="powerview-heading">
       <div class="container hub-powerview-grid"><div class="hub-prose"><h2 id="powerview-heading">{e(section['title'])}</h2>{paragraphs(section)}
-        <p class="powerview-disclosure">{e(section['disclosure'])}</p></div>{image('powerview')}</div>
+        <p class="powerview-disclosure">{e(section['disclosure'])}</p>{floral}</div>{image('powerview')}</div>
     </section>'''
 
 
