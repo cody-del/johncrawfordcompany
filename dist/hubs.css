@@ -144,14 +144,14 @@
   .hub-brands { margin-top: 20px; }
 }
 
-/* Client-supplied accents: the Shades page is the placement review. */
+/* Shared product-page consultation layout and client-supplied accents. */
 .hub-intro-consultation { padding-block: 64px; }
 .hub-intro-consultation .hub-intro-grid { grid-template-columns: 350px minmax(0, 1fr); grid-template-areas: "form copy"; align-items: start; }
 .hub-intro-consultation .hub-intro-copy { grid-area: copy; font-size: 16px; line-height: 1.7; }
 .hub-intro-consultation .hub-intro-copy h2 { max-width: 720px; font-size: clamp(31px, 2.6vw, 39px); }
 .hub-intro-consultation .hub-intro-copy h2 + p { margin-top: 18px; }
 .hub-intro-consultation .hub-intro-copy p + p { margin-top: 14px; }
-.accent-review-page .hub-accent-floral { width: 76px; height: auto; padding: 2px; margin-top: 12px; transform: scaleX(-1); object-fit: contain; pointer-events: none; }
+.interior-page .hub-accent-floral { width: 76px; height: auto; padding: 2px; margin-top: 12px; transform: scaleX(-1); object-fit: contain; pointer-events: none; }
 .hub-consultation-form { grid-area: form; min-width: 0; padding: 22px; background: var(--linen); border: 1px solid var(--line); border-radius: 0 18px 0 18px; }
 .hub-form-fields { display: grid; gap: 12px; }
 .hub-form-field label { display: block; margin-bottom: 5px; font-size: 13px; line-height: 1.5; font-weight: 500; }
@@ -163,25 +163,25 @@
 .hub-consultation-form .btn:disabled:hover { background: var(--magenta); }
 .hub-consultation-form .hub-form-notice { margin-top: 13px; font-size: 12px; line-height: 1.6; }
 .hub-form-notice a { color: var(--magenta); text-decoration-thickness: 1px; }
-.accent-review-page .hub-contact-accent { position: relative; isolation: isolate; }
-.accent-review-page .hub-contact-accent-grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1.05fr .95fr; gap: var(--hub-gap); align-items: start; }
-.accent-review-page .hub-contact-message > p { max-width: 600px; margin-top: 19px; }
-.accent-review-page .hub-contact-details address { margin: 0; color: var(--walnut); font-size: 17px; line-height: 1.7; }
-.accent-review-page .hub-contact-details .hub-hours { margin-top: 10px; font-size: 15px; }
-.accent-review-page .hub-contact-details > .text-link { margin-top: 12px; }
-.accent-review-page .hub-accent-palm { position: absolute; z-index: 0; right: 0; bottom: 0; width: 220px; height: auto; pointer-events: none; }
+.interior-page .hub-contact-accent { position: relative; isolation: isolate; }
+.interior-page .hub-contact-accent-grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1.05fr .95fr; gap: var(--hub-gap); align-items: start; }
+.interior-page .hub-contact-message > p { max-width: 600px; margin-top: 19px; }
+.interior-page .hub-contact-details address { margin: 0; color: var(--walnut); font-size: 17px; line-height: 1.7; }
+.interior-page .hub-contact-details .hub-hours { margin-top: 10px; font-size: 15px; }
+.interior-page .hub-contact-details > .text-link { margin-top: 12px; }
+.interior-page .hub-accent-palm { position: absolute; z-index: 0; right: 0; bottom: 0; width: 220px; height: auto; pointer-events: none; }
 @media (max-width: 900px) {
   .hub-intro-consultation .hub-intro-grid { grid-template-columns: 310px minmax(0, 1fr); gap: 30px; }
   .hub-consultation-form { padding: 18px; }
-  .accent-review-page .hub-contact-accent-grid { grid-template-columns: 1fr; gap: 28px; }
-  .accent-review-page .hub-contact-accent { padding-bottom: 130px; }
-  .accent-review-page .hub-accent-palm { width: 180px; }
+  .interior-page .hub-contact-accent-grid { grid-template-columns: 1fr; gap: 28px; }
+  .interior-page .hub-contact-accent { padding-bottom: 130px; }
+  .interior-page .hub-accent-palm { width: 180px; }
 }
 @media (max-width: 700px) {
   .hub-intro-consultation { padding-block: 48px; }
   .hub-intro-consultation .hub-intro-grid { grid-template-columns: 1fr; grid-template-areas: "copy" "form"; gap: 26px; }
   .hub-intro-consultation .hub-consultation-form { width: 100%; max-width: 430px; }
-  .accent-review-page .hub-accent-floral { width: 60px; }
-  .accent-review-page .hub-contact-accent { padding-bottom: 140px; }
-  .accent-review-page .hub-accent-palm { width: 138px; }
+  .interior-page .hub-accent-floral { width: 60px; }
+  .interior-page .hub-contact-accent { padding-bottom: 140px; }
+  .interior-page .hub-accent-palm { width: 138px; }
 }

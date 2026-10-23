@@ -58,7 +58,7 @@ def head(page, hero_key=None, accessibility=False):
     title = page['title_tag']
     desc = page['meta_description']
     path = page['slug']
-    hub_css_version = 'hub-forms-1' if hero_key else 'hubs-1'
+    hub_css_version = 'hub-accents-2' if hero_key else 'hubs-1'
     body_class = 'interior-page accent-review-page' if page['name'] == 'Shades' else 'interior-page'
     og = IMAGES[hero_key]['src'] if hero_key else '/assets/showroom-illustration.svg'
     schema = [{
@@ -142,7 +142,7 @@ def intro(section, page):
         body += '<p>We also carry Alta shades if you\'d like to compare another option for your project.</p>'
     if page['name'] == 'Blinds':
         body += '<p>We carry Hunter Douglas and Alta blinds and can help you compare the choices for your windows.</p>'
-    floral = decorative_accent('floral-corner-complete.png', 'hub-accent-floral', 1254, 1254) if page['name'] == 'Shades' else ''
+    floral = decorative_accent('floral-corner-complete.png', 'hub-accent-floral', 1254, 1254)
     return f'''<section class="section hub-introduction hub-intro-consultation" aria-labelledby="introduction-heading">
       <div class="container hub-intro-grid">
         <div class="hub-prose hub-intro-copy"><h2 id="introduction-heading">{e(section['title'])}</h2>{body}{floral}</div>
@@ -222,10 +222,9 @@ def faq(section, linen=True):
     </section>'''
 
 
-def contact(section, accent=False):
-    if accent:
-        palm = decorative_accent('palm-corner.svg', 'hub-accent-palm', 400, 400)
-        return f'''<section class="section hub-contact hub-contact-accent" id="contact" aria-labelledby="contact-heading">
+def contact(section):
+    palm = decorative_accent('palm-corner.svg', 'hub-accent-palm', 400, 400)
+    return f'''<section class="section hub-contact hub-contact-accent" id="contact" aria-labelledby="contact-heading">
       <div class="container hub-contact-accent-grid">
         <div class="hub-contact-message"><h2 id="contact-heading">{e(section['title'])}</h2>{paragraphs(section)}</div>
         <div class="hub-contact-details">
@@ -236,17 +235,6 @@ def contact(section, accent=False):
         </div>
       </div>
       {palm}
-    </section>'''
-    return f'''<section class="section hub-contact" id="contact" aria-labelledby="contact-heading">
-      <div class="container hub-contact-grid">
-        <div class="hub-showroom-art"><img src="/assets/showroom-illustration.svg?v=trees-2" alt="The John Crawford Company storefront, illustrated with its tile roof and palm trees." width="2394" height="1030" loading="lazy" decoding="async"></div>
-        <div class="hub-contact-copy"><h2 id="contact-heading">{e(section['title'])}</h2>{paragraphs(section)}
-          <address>22311 Ventura Blvd #101<br>Woodland Hills, CA 91364</address><p class="hub-hours">Monday-Friday, 9 am-5 pm</p>
-          <div class="hub-contact-actions"><a class="btn btn-primary" href="tel:+18188845464">Call (818) 884-5464</a>
-            <a class="btn btn-showroom-contact" href="{e(DIRECTIONS)}" target="_blank" rel="noopener noreferrer">Get directions<span class="sr-only"> (opens in a new tab)</span></a></div>
-          <a class="text-link" href="mailto:john@johncrawford.com?subject=Window%20treatment%20consultation">Email us your project</a>
-        </div>
-      </div>
     </section>'''
 
 
@@ -288,7 +276,7 @@ for page in PAGES:
         elif name == 'Drapery':
             body += [advice(secs[3:5]), advice([secs[5]], linen=True), faq(secs[6], linen=False), contact(secs[7])]
         else:
-            body += [advice(secs[3:5]), faq(secs[5]), contact(secs[6], accent=name == 'Shades')]
+            body += [advice(secs[3:5]), faq(secs[5]), contact(secs[6])]
     html = head(page, CONFIG[name]['hero']) + header + '<main id="main">' + '\n'.join(body) + related(page) + '</main>' + footer + mobile + '</body></html>\n'
     target = DIST / page['slug'].strip('/') / 'index.html'
     target.parent.mkdir(exist_ok=True)
