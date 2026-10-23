@@ -34,9 +34,6 @@
 .hub-section-heading { max-width: 950px; margin-bottom: 27px; }
 .hub-section-heading h2 { font-size: clamp(32px, 2.8vw, 43px); }
 .hub-section-heading p { margin-top: 18px; }
-.hub-heading-accent { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
-.hub-heading-accent h2 { min-width: 0; }
-.hub-heading-accent .hub-accent-floral { flex: 0 0 auto; }
 .collection-jump-links { display: flex; flex-wrap: wrap; gap: 9px 24px; margin-bottom: 38px; padding-block: 15px; border-block: 1px solid var(--line); font-size: 15px; }
 .collection-jump-links a { padding-block: 4px; text-decoration-thickness: 1px; }
 .collection-jump-links a:hover { color: var(--magenta); }
@@ -170,16 +167,19 @@
 .interior-page .hub-contact-details address { margin: 0; color: var(--walnut); font-size: 17px; line-height: 1.7; }
 .interior-page .hub-contact-details .hub-hours { margin-top: 10px; font-size: 15px; }
 .interior-page .hub-contact-details > .text-link { margin-top: 12px; }
-.interior-page .hub-accent-palm { display: block; width: 160px; height: auto; margin-top: 14px; object-fit: contain; pointer-events: none; }
+.interior-page .hub-accent-palm { position: absolute; z-index: 0; right: 0; bottom: 0; width: 220px; height: auto; pointer-events: none; }
 @media (max-width: 900px) {
   .hub-intro-consultation .hub-intro-grid { grid-template-columns: 310px minmax(0, 1fr); gap: 30px; }
   .hub-consultation-form { padding: 18px; }
   .interior-page .hub-contact-accent-grid { grid-template-columns: 1fr; gap: 28px; }
+  .interior-page .hub-contact-accent { padding-bottom: 130px; }
+  .interior-page .hub-accent-palm { width: 180px; }
 }
 @media (max-width: 700px) {
   .hub-intro-consultation { padding-block: 48px; }
   .hub-intro-consultation .hub-intro-grid { grid-template-columns: 1fr; grid-template-areas: "copy" "form"; gap: 26px; }
   .hub-intro-consultation .hub-consultation-form { width: 100%; max-width: 430px; }
   .interior-page .hub-accent-floral { width: 60px; }
+  .interior-page .hub-contact-accent { padding-bottom: 140px; }
   .interior-page .hub-accent-palm { width: 138px; }
 }
