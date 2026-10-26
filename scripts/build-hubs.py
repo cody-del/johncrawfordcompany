@@ -80,7 +80,7 @@ def head(page, hero_key=None, accessibility=False):
     path = page['slug']
     hub_css_version = 'accent-placement-corrected-1' if hero_key else 'hubs-1'
     if hero_key:
-        hub_css_version = 'approved-copy-1'
+        hub_css_version = 'shutters-centered-1' if page['name'] == 'Shutters' else 'approved-copy-1'
     body_class = 'interior-page accent-review-page' if page['name'] == 'Shades' else 'interior-page'
     og = IMAGES[hero_key]['src'] if hero_key else '/assets/showroom-illustration.svg'
     schema = [{
