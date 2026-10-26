@@ -189,10 +189,6 @@ def catalog(section, keys, mode):
         return ''
     anchors = ''.join(f'<a href="#{item.get("id", tag_id(item["title"]))}">{e(item["title"])}</a>' for item in items)
     body = paragraphs(section)
-    if mode == 'Shades':
-        body = '<p>As a Hunter Douglas dealer, we can help you compare the collections by fabric, construction and control options.</p>'
-    if mode == 'Blinds':
-        body = '<p>See how the materials look with the slats or vanes open and closed.</p>'
     cards = []
     for i, (item, key) in enumerate(zip(items, keys)):
         title_id = item.get('id', tag_id(item['title']))
