@@ -59,6 +59,8 @@ def head(page, hero_key=None, accessibility=False):
     desc = page['meta_description']
     path = page['slug']
     hub_css_version = 'accent-placement-corrected-1' if hero_key else 'hubs-1'
+    if page['name'] == 'Drapery':
+        hub_css_version = 'drapery-details-1'
     body_class = 'interior-page accent-review-page' if page['name'] == 'Shades' else 'interior-page'
     og = IMAGES[hero_key]['src'] if hero_key else '/assets/showroom-illustration.svg'
     schema = [{
@@ -212,6 +214,26 @@ def advice(sections, linen=False):
     return '<div class="section hub-advice-section' + (' linen' if linen else '') + '"><div class="container hub-advice-grid">' + ''.join(blocks) + '</div></div>'
 
 
+def drapery_details(sections):
+    photo = IMAGES['carole']
+    topics = []
+    for title, section in zip(['Choosing the rod or track', 'Pairing drapery with shades'], sections):
+        sid = tag_id(section['title'])
+        topics.append(f'<article class="hub-drapery-topic" aria-labelledby="{sid}"><h3 id="{sid}">{e(title)}</h3>{paragraphs(section)}</article>')
+    return f'''<section class="section hub-drapery-details" id="drapery-details" aria-labelledby="drapery-details-heading">
+      <div class="container hub-drapery-panel">
+        <figure class="hub-drapery-photo">
+          <img src="{e(photo['src'])}" alt="{e(photo['alt'])}" width="{photo['width']}" height="{photo['height']}" loading="lazy" decoding="async">
+          <figcaption>{e(photo['caption'])}</figcaption>
+        </figure>
+        <div class="hub-drapery-copy">
+          <h2 id="drapery-details-heading">Drapery hardware and layering</h2>
+          {''.join(topics)}
+        </div>
+      </div>
+    </section>'''
+
+
 def faq(section, linen=True):
     questions = ''.join(f'<details><summary>{e(q["question"])}</summary><p>{e(q["answer"])}</p></details>' for q in section['faqs'])
     return f'''<section class="section {'linen ' if linen else ''}hub-questions" aria-labelledby="questions-heading">
@@ -274,7 +296,7 @@ for page in PAGES:
         if name == 'Shutters':
             body += [advice(secs[2:4], linen=True), advice([secs[4]]), faq(secs[5]), contact(secs[6])]
         elif name == 'Drapery':
-            body += [advice(secs[3:5]), advice([secs[5]], linen=True), faq(secs[6], linen=False), contact(secs[7])]
+            body += [drapery_details(secs[3:5]), advice([secs[5]], linen=True), faq(secs[6], linen=False), contact(secs[7])]
         else:
             body += [advice(secs[3:5]), faq(secs[5]), contact(secs[6])]
     html = head(page, CONFIG[name]['hero']) + header + '<main id="main">' + '\n'.join(body) + related(page) + '</main>' + footer + mobile + '</body></html>\n'

@@ -49,6 +49,32 @@
 .hub-advice p { margin-top: 19px; }
 .hub-advice p + p { margin-top: 14px; }
 .hub-advice-section + .hub-advice-section.linen { border-block: 1px solid var(--line); }
+.hub-drapery-details { padding-block: 72px; }
+.hub-drapery-panel { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); overflow: hidden; border-radius: 0 24px 0 24px; background: #f2e9de; }
+.hub-drapery-photo { position: relative; min-width: 0; margin: 0; background: #d4dedf; }
+.hub-drapery-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 48% center; }
+.hub-drapery-photo figcaption { position: absolute; right: 18px; bottom: 18px; left: 18px; width: fit-content; max-width: calc(100% - 36px); padding: 6px 10px; background: rgba(16, 13, 10, .74); color: #fff; font-size: 11px; line-height: 1.5; }
+.hub-drapery-copy { min-width: 0; padding: clamp(30px, 3.1vw, 46px); }
+.hub-drapery-copy > h2 { font-size: clamp(32px, 2.7vw, 39px); line-height: 1.18; }
+.hub-drapery-topic { margin-top: 26px; }
+.hub-drapery-topic + .hub-drapery-topic { margin-top: 25px; padding-top: 24px; border-top: 1px solid #d8c8b8; }
+.hub-drapery-topic h3 { font-size: clamp(23px, 1.9vw, 27px); line-height: 1.25; }
+.hub-drapery-topic p { margin-top: 12px; color: var(--text); font-size: 16px; line-height: 1.7; }
+.hub-drapery-topic p + p { margin-top: 12px; }
+@media (max-width: 900px) {
+  .hub-drapery-panel { grid-template-columns: minmax(0, .7fr) minmax(0, 1.3fr); }
+  .hub-drapery-copy { padding: 30px; }
+}
+@media (max-width: 700px) {
+  .hub-drapery-details { padding-block: 48px; }
+  .hub-drapery-panel { grid-template-columns: 1fr; }
+  .hub-drapery-photo { aspect-ratio: 3 / 2; }
+  .hub-drapery-photo img { object-position: 48% 42%; }
+  .hub-drapery-photo figcaption { right: 14px; bottom: 14px; left: 14px; max-width: calc(100% - 28px); font-size: 10px; }
+  .hub-drapery-copy { padding: 28px 24px 30px; }
+  .hub-drapery-copy > h2 { font-size: 32px; }
+  .hub-drapery-topic h3 { font-size: 24px; }
+}
 .hub-questions { border-top: 1px solid var(--line); }
 .hub-questions .questions-intro h2 { font-size: clamp(31px, 2.7vw, 40px); }
 .hub-questions .questions-intro .text-link { margin-top: 22px; font-size: 15px; }
