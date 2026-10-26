@@ -61,6 +61,8 @@ def head(page, hero_key=None, accessibility=False):
     hub_css_version = 'accent-placement-corrected-1' if hero_key else 'hubs-1'
     if page['name'] == 'Drapery':
         hub_css_version = 'drapery-details-1'
+    elif hero_key:
+        hub_css_version = 'product-details-1'
     body_class = 'interior-page accent-review-page' if page['name'] == 'Shades' else 'interior-page'
     og = IMAGES[hero_key]['src'] if hero_key else '/assets/showroom-illustration.svg'
     schema = [{
@@ -214,24 +216,29 @@ def advice(sections, linen=False):
     return '<div class="section hub-advice-section' + (' linen' if linen else '') + '"><div class="container hub-advice-grid">' + ''.join(blocks) + '</div></div>'
 
 
-def drapery_details(sections):
-    photo = IMAGES['carole']
+def detail_panel(sections, photo_key, title, panel_id, topic_titles=None, prefix='hub-detail', modifiers=''):
+    photo = IMAGES[photo_key]
     topics = []
-    for title, section in zip(['Choosing the rod or track', 'Pairing drapery with shades'], sections):
+    for topic_title, section in zip(topic_titles or [s['title'] for s in sections], sections):
         sid = tag_id(section['title'])
-        topics.append(f'<article class="hub-drapery-topic" aria-labelledby="{sid}"><h3 id="{sid}">{e(title)}</h3>{paragraphs(section)}</article>')
-    return f'''<section class="section hub-drapery-details" id="drapery-details" aria-labelledby="drapery-details-heading">
-      <div class="container hub-drapery-panel">
-        <figure class="hub-drapery-photo">
+        topics.append(f'<article class="{prefix}-topic" aria-labelledby="{sid}"><h3 id="{sid}">{e(topic_title)}</h3>{paragraphs(section)}{quote(section)}</article>')
+    return f'''<section class="section {prefix}-details{modifiers}" id="{panel_id}" aria-labelledby="{panel_id}-heading">
+      <div class="container {prefix}-panel">
+        <figure class="{prefix}-photo">
           <img src="{e(photo['src'])}" alt="{e(photo['alt'])}" width="{photo['width']}" height="{photo['height']}" loading="lazy" decoding="async">
           <figcaption>{e(photo['caption'])}</figcaption>
         </figure>
-        <div class="hub-drapery-copy">
-          <h2 id="drapery-details-heading">Drapery hardware and layering</h2>
+        <div class="{prefix}-copy">
+          <h2 id="{panel_id}-heading">{e(title)}</h2>
           {''.join(topics)}
         </div>
       </div>
     </section>'''
+
+
+def drapery_details(sections):
+    return detail_panel(sections, 'carole', 'Drapery hardware and layering', 'drapery-details',
+                        ['Choosing the rod or track', 'Pairing drapery with shades'], prefix='hub-drapery')
 
 
 def faq(section, linen=True):
@@ -282,23 +289,31 @@ CONFIG = {
 IMAGES['powerview-blue'] = {'src':'/assets/powerview-wall-remote.jpg', 'width':1440, 'height':1080,
     'caption':'Hunter Douglas PowerView® Automation wall-mounted control',
     'alt':'A round white wall control beside blue fabric shades and a dark window frame.'}
+IMAGES['somfy-situo'] = {'src':'/assets/products/somfy-situo-5-rts.jpg', 'width':768, 'height':768,
+    'caption':'Somfy Situo® 5 RTS remote',
+    'alt':'A white Somfy handheld remote with up, stop and down buttons and a channel selector.'}
 
 for page in PAGES:
     name, secs = page['name'], page['sections']
     header, footer, mobile = partials(page['slug'])
     body = [hero(page, CONFIG[name]['hero']), intro(secs[1], page)]
     if name == 'Motorized Shades':
-        body += [powerview(secs[2]), advice(secs[3:5]), advice(secs[5:7], linen=True), faq(secs[7], linen=False), contact(secs[8])]
+        body += [powerview(secs[2]),
+                 detail_panel(secs[3:5], 'somfy-situo', 'Motorization and power planning', 'motorization-power', modifiers=' hub-detail--somfy'),
+                 detail_panel(secs[5:7], 'powerview', 'Motorized shade installation and support', 'motorization-support', modifiers=' hub-detail--controls hub-detail--reverse'),
+                 faq(secs[7], linen=False), contact(secs[8])]
     else:
         catalog_section = secs[2] if name != 'Shutters' else {**secs[1], 'title': 'Hunter Douglas shutter collections', 'paragraphs': []}
         body += [catalog(catalog_section, CONFIG[name]['catalog'], name)]
         # Keep the material advice with the form, followed by the shutter collections.
         if name == 'Shutters':
-            body += [advice(secs[2:4], linen=True), advice([secs[4]]), faq(secs[5]), contact(secs[6])]
+            body += [detail_panel(secs[2:4], 'newstyle', 'Shutter panels, louvers and light', 'shutter-details', modifiers=' hub-detail--shutters'), advice([secs[4]]), faq(secs[5]), contact(secs[6])]
         elif name == 'Drapery':
             body += [drapery_details(secs[3:5]), advice([secs[5]], linen=True), faq(secs[6], linen=False), contact(secs[7])]
         else:
-            body += [advice(secs[3:5]), faq(secs[5]), contact(secs[6])]
+            details = (detail_panel(secs[3:5], 'designer-screen', 'Shade fabrics, privacy and fit', 'shade-details', modifiers=' hub-detail--shades')
+                       if name == 'Shades' else detail_panel(secs[3:5], 'aria', 'Blind fit and installation', 'blind-details', modifiers=' hub-detail--blinds'))
+            body += [details, faq(secs[5]), contact(secs[6])]
     html = head(page, CONFIG[name]['hero']) + header + '<main id="main">' + '\n'.join(body) + related(page) + '</main>' + footer + mobile + '</body></html>\n'
     target = DIST / page['slug'].strip('/') / 'index.html'
     target.parent.mkdir(exist_ok=True)
