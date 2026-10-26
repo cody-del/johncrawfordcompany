@@ -237,12 +237,15 @@ def advice(sections, linen=False, section_id=None):
     return '<div' + anchor + ' class="section hub-advice-section' + (' linen' if linen else '') + '"><div class="container hub-advice-grid">' + ''.join(blocks) + '</div></div>'
 
 
-def detail_panel(sections, photo_key, title, panel_id, topic_titles=None, prefix='hub-detail', modifiers=''):
+def detail_panel(sections, photo_key, title, panel_id, topic_titles=None, prefix='hub-detail', modifiers='', quotes_below=False):
     photo = IMAGES[photo_key]
     topics = []
     for topic_title, section in zip(topic_titles or [s['title'] for s in sections], sections):
         sid = tag_id(section['title'])
-        topics.append(f'<article class="{prefix}-topic" aria-labelledby="{sid}"><h3 id="{sid}">{e(topic_title)}</h3>{paragraphs(section)}{quote(section)}</article>')
+        inline_quote = '' if quotes_below else quote(section)
+        topics.append(f'<article class="{prefix}-topic" aria-labelledby="{sid}"><h3 id="{sid}">{e(topic_title)}</h3>{paragraphs(section)}{inline_quote}</article>')
+    below = ''.join(quote(section) for section in sections) if quotes_below else ''
+    below = f'\n      <div class="container">{below}</div>' if below else ''
     return f'''<section class="section {prefix}-details{modifiers}" id="{panel_id}" aria-labelledby="{panel_id}-heading">
       <div class="container {prefix}-panel">
         <figure class="{prefix}-photo">
@@ -253,7 +256,7 @@ def detail_panel(sections, photo_key, title, panel_id, topic_titles=None, prefix
           <h2 id="{panel_id}-heading">{e(title)}</h2>
           {''.join(topics)}
         </div>
-      </div>
+      </div>{below}
     </section>'''
 
 
@@ -320,7 +323,7 @@ for page in PAGES:
     if name == 'Motorized Shades':
         body += [powerview(secs[2]),
                  advice([secs[4]], section_id='motorization-power'),
-                 detail_panel(secs[5:7], 'powerview', 'Motorized shade installation and support', 'motorization-support', modifiers=' hub-detail--controls hub-detail--reverse'),
+                 detail_panel(secs[5:7], 'powerview', 'Motorized shade installation and support', 'motorization-support', modifiers=' hub-detail--controls hub-detail--reverse', quotes_below=True),
                  faq(secs[7], linen=False), contact(secs[8], secondary_note=secs[3])]
     else:
         catalog_section = secs[2] if name != 'Shutters' else {**secs[1], 'title': 'Hunter Douglas shutter collections', 'paragraphs': []}

@@ -1,0 +1,32 @@
+{
+  "reviews": [
+    {
+      "id": "mary-yingling",
+      "author": "Mary Yingling",
+      "rating": 5,
+      "text": "Great service throughout entire process. From 1st consult to installation every step was performed professionally & with quality craftsmanship. Our shades & shutters are more beautiful than expected! John & Max were there to answer all questions throughout the entire process & true professionals.",
+      "source": "Client-supplied Google review screenshot, October 26, 2026",
+      "assigned_page": "/shutters/",
+      "status": "assigned"
+    },
+    {
+      "id": "carol-larimer",
+      "author": "Carol Larimer",
+      "rating": 5,
+      "text": "Wonderful and smooth experience. Service from Max is five star. The results are really just jaw dropping. Could not be better. Definitely spring for the Electric shades.",
+      "source": "Client-supplied Google review screenshot, October 26, 2026",
+      "assigned_page": "/motorized-shades/",
+      "status": "assigned"
+    },
+    {
+      "id": "kamran-jahangard",
+      "author": "Kamran Jahangard",
+      "rating": 5,
+      "text": "John is Amazing! He is so kind and honest. Overall great guy to work with and helped me source blind brackets we had installed from Costco over 20 years ago! On his own time! Never would have expected that. Hoping good karma comes his way 10 fold! If you need blinds, John Crawford is your guy! Kindness goes a long way. Pay it Forward! Thank you John!",
+      "source": "Client-supplied Google review screenshot, October 26, 2026",
+      "review_date": "2021-02-10",
+      "assigned_page": null,
+      "status": "reserved_for_future_repairs_page"
+    }
+  ]
+}
