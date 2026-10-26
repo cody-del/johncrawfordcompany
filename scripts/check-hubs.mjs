@@ -56,7 +56,8 @@ for (const [route, { html, ids }] of pages) {
 const hubs = JSON.parse(await readFile(resolve(root, 'content/product-hubs.json'), 'utf8'));
 for (const hub of hubs) {
   const html = pages.get(hub.slug)?.html || '';
-  requireThat(html.includes(hub.title_tag), `${hub.slug}: wrong title`);
+  const escapedTitle = hub.title_tag.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;').replaceAll("'", '&#x27;');
+  requireThat(html.includes(`<title>${escapedTitle}</title>`), `${hub.slug}: wrong title`);
   requireThat((html.match(/<img\b/g) || []).length >= 5, `${hub.slug}: product photography missing`);
   requireThat((html.match(/<details><summary>/g) || []).length === 3, `${hub.slug}: missing FAQs`);
   requireThat(html.includes('href="tel:+18188845464"') && html.includes('href="mailto:john@johncrawford.com'), `${hub.slug}: contact links missing`);

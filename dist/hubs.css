@@ -42,6 +42,9 @@
 .collection .hub-photo img { display: block; aspect-ratio: 4 / 3; object-fit: cover; object-position: center; background: #f0ece7; }
 .collection h3 { font-size: clamp(24px, 2vw, 29px); margin-top: 21px; line-height: 1.25; }
 .collection p { margin-top: 12px; font-size: 16px; line-height: 1.8; }
+.collection .collection-list-label { margin-top: 16px; font-size: 14px; line-height: 1.6; font-weight: 500; }
+.collection-options { margin: 7px 0 0; padding-left: 19px; color: var(--text); font-size: 15px; line-height: 1.7; }
+.collection-options li + li { margin-top: 6px; }
 .wide-opening-heading { font-size: 33px; margin-top: 60px; margin-bottom: 28px; }
 .hub-advice-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--hub-gap); }
 .hub-advice:first-child:last-child { grid-column: 1 / -1; max-width: 1000px; }

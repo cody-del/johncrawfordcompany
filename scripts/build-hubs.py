@@ -21,8 +21,28 @@ def tag_id(value):
     return re.sub(r'[^a-z0-9]+', '-', value.lower()).strip('-')
 
 
+def linked_text(text, links=()):
+    spans = []
+    for link in links:
+        if link['href'] not in {page['slug'] for page in PAGES}:
+            raise ValueError(f'Unknown product link: {link["href"]}')
+        match = re.search(r'(?<!\w)' + re.escape(link['text']) + r'(?!\w)', text)
+        if not match:
+            raise ValueError(f'Link text not found: {link["text"]}')
+        spans.append((match.start(), match.end(), link))
+    result, offset = [], 0
+    for start, end, link in sorted(spans, key=lambda span: span[0]):
+        if start < offset:
+            raise ValueError('Overlapping product links')
+        result += [e(text[offset:start]), f'<a href="{e(link["href"])}">{e(text[start:end])}</a>']
+        offset = end
+    return ''.join(result) + e(text[offset:])
+
+
 def paragraphs(section):
-    return '\n'.join('<p>' + e(t) + '</p>' for t in section.get('paragraphs', []))
+    return '\n'.join('<p>' + linked_text(t, [link for link in section.get('links', [])
+                                            if link.get('paragraph', 0) == i]) + '</p>'
+                     for i, t in enumerate(section.get('paragraphs', [])))
 
 
 def image(key, hero=False, caption=True):
@@ -59,10 +79,8 @@ def head(page, hero_key=None, accessibility=False):
     desc = page['meta_description']
     path = page['slug']
     hub_css_version = 'accent-placement-corrected-1' if hero_key else 'hubs-1'
-    if page['name'] == 'Drapery':
-        hub_css_version = 'drapery-details-1'
-    elif hero_key:
-        hub_css_version = 'product-details-1'
+    if hero_key:
+        hub_css_version = 'approved-copy-1'
     body_class = 'interior-page accent-review-page' if page['name'] == 'Shades' else 'interior-page'
     og = IMAGES[hero_key]['src'] if hero_key else '/assets/showroom-illustration.svg'
     schema = [{
@@ -169,7 +187,7 @@ def catalog(section, keys, mode):
     items = section.get('items', [])
     if not items:
         return ''
-    anchors = ''.join(f'<a href="#{tag_id(item["title"])}">{e(item["title"])}</a>' for item in items)
+    anchors = ''.join(f'<a href="#{item.get("id", tag_id(item["title"]))}">{e(item["title"])}</a>' for item in items)
     body = paragraphs(section)
     if mode == 'Shades':
         body = '<p>As a Hunter Douglas dealer, we can help you compare the collections by fabric, construction and control options.</p>'
@@ -177,15 +195,18 @@ def catalog(section, keys, mode):
         body = '<p>See how the materials look with the slats or vanes open and closed.</p>'
     cards = []
     for i, (item, key) in enumerate(zip(items, keys)):
-        title_id = tag_id(item['title'])
+        title_id = item.get('id', tag_id(item['title']))
         show_caption = mode == 'Shades'
+        collections = item.get('collections', [])
+        collection_list = ('<p class="collection-list-label">Collections</p><ul class="collection-options">'
+                           + ''.join(f'<li>{e(collection)}</li>' for collection in collections) + '</ul>') if collections else ''
         cards.append(f'''<article class="collection" id="{title_id}" aria-labelledby="{title_id}-heading">
           {image(key, caption=show_caption)}
-          <h3 id="{title_id}-heading">{e(item['title'])}</h3><p>{e(item['text'])}</p>
+          <h3 id="{title_id}-heading">{e(item['title'])}</h3><p>{e(item['text'])}</p>{collection_list}
         </article>''')
     if mode == 'Blinds':
         card_html = ('<div class="collection-grid">' + ''.join(cards[:4]) + '</div>'
-                     '<h3 class="wide-opening-heading">For wide windows and sliding doors</h3>'
+                     '<h2 class="wide-opening-heading">For wide windows and sliding doors</h2>'
                      '<div class="collection-grid">' + ''.join(cards[4:]) + '</div>')
     else:
         card_html = '<div class="collection-grid">' + ''.join(cards) + '</div>'
@@ -211,7 +232,7 @@ def quote(section):
 def advice(sections, linen=False):
     blocks = []
     for sec in sections:
-        sid = tag_id(sec['title'])
+        sid = sec.get('id', tag_id(sec['title']))
         blocks.append(f'<article class="hub-advice" aria-labelledby="{sid}"><h2 id="{sid}">{e(sec["title"])}</h2>{paragraphs(sec)}{quote(sec)}</article>')
     return '<div class="section hub-advice-section' + (' linen' if linen else '') + '"><div class="container hub-advice-grid">' + ''.join(blocks) + '</div></div>'
 
@@ -242,7 +263,7 @@ def drapery_details(sections):
 
 
 def faq(section, linen=True):
-    questions = ''.join(f'<details><summary>{e(q["question"])}</summary><p>{e(q["answer"])}</p></details>' for q in section['faqs'])
+    questions = ''.join(f'<details><summary>{e(q["question"])}</summary><p>{linked_text(q["answer"], q.get("links", []))}</p></details>' for q in section['faqs'])
     return f'''<section class="section {'linen ' if linen else ''}hub-questions" aria-labelledby="questions-heading">
       <div class="container questions-grid"><div class="questions-intro"><h2 id="questions-heading">{e(section['title'])}</h2>
         <a class="text-link" href="tel:+18188845464">Ask John and Max: (818) 884-5464</a></div>

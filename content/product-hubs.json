@@ -15,7 +15,7 @@
       {
         "title": "Choose the room, choose the fabric",
         "paragraphs": [
-          "We start with how you use the room, when the sunlight is strongest and how much of the view you want to keep. A fabric that works well in the living room may let in too much light for a bedroom. Seeing the options together helps make those differences clear.",
+          "We start with how you use the room, when the sunlight is strongest and how much of the view you want to keep. A fabric that works well in the living room may let in too much light for a bedroom.",
           "Roller shades, screen shades and honeycomb shades are a large part of our work. We've used solar mesh shades in Valley storefronts to help manage glare while keeping a view outside. At home, the same questions about light, privacy and everyday use help narrow the choices."
         ]
       },
@@ -27,27 +27,56 @@
         "items": [
           {
             "title": "Roller and solar shades",
-            "text": "Designer Roller Shades use a single fabric panel that rolls up at the top of the window. Designer Screen Shades help manage sun and glare while preserving a view out. Designer Banded Shades alternate sheer and solid bands. Alustra® Woven Textures® Roller Shades and Alustra® Architectural Roller Shades offer additional fabric textures and constructions to compare."
+            "text": "These collections offer different approaches to light and privacy. Screen fabrics can preserve a daytime view, but a lit room may be visible from outside after dark.",
+            "collections": [
+              "Designer Roller Shades: a single fabric panel that rolls up at the top",
+              "Designer Screen Shades: glare control with a view outside",
+              "Designer Banded Shades: alternating sheer and solid bands",
+              "Alustra® Woven Textures® Roller Shades: woven-fabric textures",
+              "Alustra® Architectural Roller Shades: additional fabric textures and construction choices"
+            ]
           },
           {
             "title": "Cellular and honeycomb shades",
-            "text": "Duette® Honeycomb Shades and Applause® Cellular Shades use cellular fabrics that add insulation at the window. Sonnette® Cellular Roller Shades combine cellular construction with a roller-style design. Each has its own fabric and operating choices to consider."
+            "text": "Cellular fabrics add insulation at the window. These collections differ in fabric, construction and how the shade raises.",
+            "collections": [
+              "Duette® Honeycomb Shades",
+              "Applause® Cellular Shades",
+              "Sonnette® Cellular Roller Shades: cellular construction with a roller-style design"
+            ]
           },
           {
             "title": "Sheer shades",
-            "text": "Silhouette® Sheer Shades, Pirouette® Sheer Shades and Nantucket™ Sheer Shades use adjustable fabric vanes to change the light and view. Their fabrics and construction differ, so it helps to see how each one looks open and closed."
+            "text": "Fabric vanes let you adjust daylight, privacy and the view. Look at each collection open and closed to see the difference.",
+            "collections": [
+              "Silhouette® Sheer Shades",
+              "Pirouette® Sheer Shades",
+              "Nantucket™ Sheer Shades"
+            ]
           },
           {
             "title": "Roman shades",
-            "text": "Vignette® Modern Roman Shades, Carole Fabrics® Roman Shades and Alustra® Woven Textures® Roman Shades give you a fabric treatment with folds. Compare the fold styles, fabrics and lining options, including how much of the window each treatment covers when raised."
+            "text": "Fabric folds give Roman shades their shape. The fold style and lining affect the look, light control and how much of the window is covered when the shade is raised.",
+            "collections": [
+              "Vignette® Modern Roman Shades",
+              "Carole Fabrics® Roman Shades",
+              "Alustra® Woven Textures® Roman Shades"
+            ]
           },
           {
             "title": "Woven wood shades",
-            "text": "Provenance® Woven Wood Shades bring natural woven materials to the window. The weave and lining affect how much you can see through, so we'll discuss privacy as well as texture. Alustra® Woven Textures® collections provide other woven-fabric choices in roller and Roman styles."
+            "text": "Natural woven materials bring texture to a room. The weave and lining affect how much light comes through and how much privacy you have.",
+            "collections": [
+              "Provenance® Woven Wood Shades"
+            ]
           },
           {
             "title": "Vertical shades and panels",
-            "text": "For wide windows and sliding doors, compare Luminette® Sheer Panels and Skyline® Gliding Window Panels. The opening direction, space for the panels to stack and clearance around door handles all matter."
+            "text": "For sliding doors and wide windows, allow room for the panels to stack and clear the handles. The opening direction should suit the way you use the doorway.",
+            "collections": [
+              "Luminette® Sheer Panels",
+              "Skyline® Panel-Track Blinds"
+            ]
           }
         ]
       },
@@ -70,7 +99,13 @@
         "faqs": [
           {
             "question": "Can I motorize the shades I choose?",
-            "answer": "Many collections offer motorized options. We'll confirm what's available for the specific product, window size and controls you want before you order."
+            "answer": "Many collections offer motorized options. We'll confirm what's available for the specific product, window size and controls you want before you order.",
+            "links": [
+              {
+                "text": "motorized options",
+                "href": "/motorized-shades/"
+              }
+            ]
           },
           {
             "question": "Can I coordinate shades in different rooms?",
@@ -109,43 +144,50 @@
       {
         "title": "Start with the material and how you'll use it",
         "paragraphs": [
-          "The room helps narrow the choices. You might want the grain of real wood in a living room, a moisture-resistant material in a bathroom or a vertical treatment that opens easily beside a sliding door.",
-          "Think about privacy, how often you open the windows and whether you prefer tilting the slats or raising the blind out of the way. From there, we can compare colors and finishes that work with the rest of the room."
+          "Real wood brings grain and stained finishes. For a bathroom, moisture resistance may matter more. At a sliding door, the treatment needs to open easily and stay clear of the handle.",
+          "Think about how you want to use the window: tilt the slats for light and privacy, raise the blind for an open view, or slide a vertical treatment to the side."
         ]
       },
       {
-        "title": "Hunter Douglas blinds to compare",
+        "title": "Hunter Douglas blind collections",
         "paragraphs": [
           "See how the materials look with the slats or vanes open and closed. We carry Hunter Douglas and Alta blinds and can help you compare the choices for your windows."
         ],
         "items": [
           {
             "title": "Parkland® Wood Blinds",
-            "text": "Real-wood slats with painted and stained finish choices. We can help you compare the wood tones with your trim, flooring and furniture."
+            "text": "Real-wood slats in painted and stained finishes. Choose a wood tone that works with your trim, flooring and furniture.",
+            "id": "parkland-wood-blinds"
           },
           {
-            "title": "EverWood® Alternative Wood Blinds",
-            "text": "A faux wood option designed to resist warping and fading. For a bathroom or sunroom, we can help you compare its moisture and sunlight resistance with real wood."
+            "title": "EverWood® Faux Wood Blinds",
+            "text": "A faux wood option designed to resist warping and fading. Consider it for bathrooms, sunrooms and other spaces where moisture or strong sunlight affects the material.",
+            "id": "everwood-alternative-wood-blinds"
           },
           {
             "title": "Custom Metal Blinds",
-            "text": "A metal-slat option with a wide selection of colors. Compare the available slat sizes and finishes, with attention to the space needed for mounting and operation."
+            "text": "Metal slats in a range of colors and sizes. The slat size and mounting space affect how the blind fits and operates.",
+            "id": "custom-metal-blinds"
           },
           {
             "title": "Aria™ Soft Blinds",
-            "text": "Fabric vanes give horizontal blinds a softer appearance and diffuse incoming light. Compare them with wood or metal if you'd like adjustable vanes with a fabric finish."
+            "text": "Soft fabric vanes diffuse daylight and give horizontal blinds a fabric finish. An option when you want adjustable light control with a softer look.",
+            "id": "aria-soft-blinds"
           },
           {
             "title": "Custom Vertical Blinds",
-            "text": "Vertical vanes provide adjustable light control for wide windows and sliding doors. We'll help you choose the material and decide which opening direction suits the way you use the room."
+            "text": "Vertical vanes tilt for light control and draw to the side. We plan the opening direction around the way you use the window or sliding door.",
+            "id": "custom-vertical-blinds"
           },
           {
-            "title": "Skyline® Gliding Window Panels",
-            "text": "Wide fabric panels travel along a track and stack to the side. Allowing space for the open panels is especially important at a doorway you use often."
+            "title": "Skyline® Panel-Track Blinds",
+            "text": "Wide fabric panels run along a track and stack to the side. We allow space for the open panels at doors you use often.",
+            "id": "skyline-gliding-window-panels"
           },
           {
             "title": "Luminette® Sheer Panels",
-            "text": "Vertical fabric vanes within sheer panels give you another way to manage light across large windows and doors. They also appear among the Hunter Douglas sheer-shade and drapery options."
+            "text": "Sheer panels with adjustable vertical fabric vanes soften daylight across wide windows and doors. Tilt the vanes to change the view and privacy.",
+            "id": "luminette-sheer-panels"
           }
         ]
       },
@@ -172,7 +214,17 @@
           },
           {
             "question": "Can blinds make a bedroom completely dark?",
-            "answer": "Closed slats reduce incoming light, but light can still pass through gaps and around the edges. If a darker bedroom is your main goal, we'll discuss suitable shade or drapery options as well."
+            "answer": "Closed slats reduce incoming light, but light can still pass through gaps and around the edges. If a darker bedroom is your main goal, we'll discuss suitable shade or drapery options as well.",
+            "links": [
+              {
+                "text": "shade",
+                "href": "/shades/"
+              },
+              {
+                "text": "drapery options",
+                "href": "/drapery/"
+              }
+            ]
           },
           {
             "question": "Can you repair a blind I already own?",
@@ -181,7 +233,7 @@
         ]
       },
       {
-        "title": "Talk through your windows with us",
+        "title": "See custom blinds in Woodland Hills",
         "paragraphs": [
           "Visit our Woodland Hills showroom to compare blind materials and finishes. We'll help you narrow the choices and arrange measuring and installation for your Los Angeles home."
         ],
@@ -194,8 +246,8 @@
   {
     "name": "Shutters",
     "slug": "/shutters/",
-    "title_tag": "Interior Shutters in Los Angeles | John Crawford Company",
-    "meta_description": "Explore custom interior shutters in Los Angeles with John Crawford Company. Compare Hunter Douglas wood, composite and vinyl collections in Woodland Hills.",
+    "title_tag": "Plantation Shutters in Los Angeles | John Crawford Company",
+    "meta_description": "Compare plantation shutters in Los Angeles with John Crawford Company. See Hunter Douglas wood, composite and vinyl options in our Woodland Hills showroom.",
     "sections": [
       {
         "title": "Custom Interior Shutters in Los Angeles, California",
@@ -205,22 +257,26 @@
         "cta": "Request a consultation"
       },
       {
-        "title": "Compare wood, composite and vinyl shutters",
+        "title": "Choose a material for your plantation shutters",
         "paragraphs": [
-          "People often call this style plantation shutters. The material is one of the first choices to make. We'll consider sunlight, moisture and the finish you want, along with the window itself."
+          "Wood, composite and vinyl shutters each have a different finish and feel. The right material depends on the room, especially how much sun or moisture reaches the window.",
+          "Material, finish, window size and panel layout all affect the price. We take measurements before preparing your quote."
         ],
         "items": [
           {
-            "title": "Hunter Douglas Heritance® Hardwood Shutters",
-            "text": "Made from genuine hardwood, with painted and stained finishes. This is an option to explore when the character of real wood is part of what you want for the room."
+            "title": "Hunter Douglas Heritance® Wood Shutters",
+            "text": "Real hardwood with painted and stained finishes, including wood tones that show the natural grain.",
+            "id": "hunter-douglas-heritance-hardwood-shutters"
           },
           {
-            "title": "Hunter Douglas NewStyle® Hybrid Shutters",
-            "text": "A composite construction with the appearance of painted wood. We'll help you compare the finish and available panel configurations with the other shutter materials."
+            "title": "Hunter Douglas NewStyle® Composite Shutters",
+            "text": "Composite shutters with the look of painted wood. The panel layout and frame are chosen around the size and shape of the window.",
+            "id": "hunter-douglas-newstyle-hybrid-shutters"
           },
           {
-            "title": "Hunter Douglas Palm Beach™ Polysatin™ Shutters",
-            "text": "A water-resistant material designed for strong sunlight and moisture. It's an option to discuss for bathrooms and other rooms where exposure affects the material choice."
+            "title": "Hunter Douglas Palm Beach™ Polysatin™ Vinyl Shutters",
+            "text": "Vinyl shutters designed for strong sunlight and moisture. Consider them for bathrooms and sunny rooms where exposure matters to the material choice.",
+            "id": "hunter-douglas-palm-beach-polysatin-shutters"
           }
         ]
       },
@@ -276,11 +332,11 @@
   {
     "name": "Drapery",
     "slug": "/drapery/",
-    "title_tag": "Custom Drapery in Los Angeles | John Crawford Company",
+    "title_tag": "Custom Drapery & Curtains in Los Angeles | John Crawford Company",
     "meta_description": "Plan custom drapery and curtains in Los Angeles with John Crawford Company. Explore fabrics, lining and hardware, with professional measuring and installation.",
     "sections": [
       {
-        "title": "Custom Drapery in Los Angeles, California",
+        "title": "Custom Drapery and Curtains in Los Angeles, California",
         "paragraphs": [
           "Choose drapery for the way you want the room to look and the way you need it to work. We'll help with fabric, lining, hardware and installation, whether you want curtains that close each evening or side panels to finish the window. Visit John Crawford Company in Woodland Hills to talk through your ideas."
         ],
@@ -320,12 +376,24 @@
       {
         "title": "Layer drapery with a shade or blind",
         "paragraphs": [
-          "You can use a shade for everyday light control and add drapery for fabric, privacy or room darkening. We'll look at how the layers fit together so the rod, fabric and window treatment have room to operate.",
+          "You can use a shade or blind for everyday light control and add drapery for fabric, privacy or room darkening. We'll look at how the layers fit together so the rod, fabric and window treatment have room to operate.",
           "If several windows share a room, it helps to consider how the treatments look together when open and closed. You can coordinate fabrics without putting the same treatment on every opening."
+        ],
+        "links": [
+          {
+            "paragraph": 0,
+            "text": "shade",
+            "href": "/shades/"
+          },
+          {
+            "paragraph": 0,
+            "text": "blind",
+            "href": "/blinds/"
+          }
         ]
       },
       {
-        "title": "Measuring and installation for the whole arrangement",
+        "title": "Professional drapery measuring and installation",
         "paragraphs": [
           "We take the measurements and confirm the fabric, hardware and mounting arrangement before the order is placed. At installation, we check the hang and operation and walk you through using the treatment.",
           "One customer described the hardware side of a drapery project this way:"
@@ -333,7 +401,8 @@
         "quote": {
           "text": "Quick response by John to organize materials fabrication and excellent installation service by Max to replace damaged curtain rods in a 22 foot run of drapery. Highly recommended!",
           "author": "Jan Edling, Google review"
-        }
+        },
+        "id": "measuring-and-installation-for-the-whole-arrangement"
       },
       {
         "title": "Questions about custom drapery",
@@ -353,7 +422,7 @@
         ]
       },
       {
-        "title": "Start with the fabric and the room",
+        "title": "See drapery fabrics in Woodland Hills",
         "paragraphs": [
           "Visit our Woodland Hills showroom to look at fabrics and discuss the windows you have in mind. We'll help you work through the style, lining and hardware choices, then arrange professional measuring."
         ],
@@ -377,25 +446,32 @@
         "cta": "Discuss motorization"
       },
       {
-        "title": "Choose controls you'll want to use",
+        "title": "Choose shades and controls that suit your room",
         "paragraphs": [
-          "Some customers like using an app. Others want a handheld remote or a control on the wall. We'll ask how you want to operate the shades and show you the options for the system you're considering.",
-          "You may want to adjust one shade at a time, operate several together or connect them to a smart-home system. The product and equipment determine which features are available, so we check those details before recommending a system."
+          "Some customers prefer a handheld remote. Others like the app or a control on the wall. We start with the way you want to use the shades, whether that's one window at a time or several together.",
+          "Motorized options are available for selected roller, screen, cellular, Roman, sheer and woven wood shades. Start with the shade style that suits the room; we'll check the controls available for it."
+        ],
+        "links": [
+          {
+            "paragraph": 1,
+            "text": "shade style",
+            "href": "/shades/"
+          }
         ]
       },
       {
         "title": "Hunter Douglas PowerView® Automation",
         "paragraphs": [
-          "PowerView® Automation operates compatible Hunter Douglas window treatments. We can help you compare the available products, remotes and app controls, along with any hub or gateway needed for the features you want.",
-          "If you'd like the shades to move at set times, we can discuss schedules in the PowerView® App. We'll show you how the selected system works and help you set up the controls at installation."
+          "PowerView® Automation lets you operate selected Hunter Douglas window treatments with a remote or the PowerView® App. We'll confirm whether you need a gateway for the controls and connections you want.",
+          "You can also set schedules in the app. At installation, we set up the controls and show you how to use the system."
         ],
         "disclosure": "The PowerView® App is required for programmed operation."
       },
       {
         "title": "Somfy motorization",
         "paragraphs": [
-          "We also work with Somfy motorization on compatible window treatments. Depending on the motor and controls, options can include a handheld remote, a wall control and app access through compatible equipment.",
-          "If you're adding to motorized treatments you already own, let us know what equipment you have. We check the motor, controls and connected equipment together before recommending an addition."
+          "We also install and set up Somfy motorization for compatible window treatments. Controls may include a handheld remote, a wall control or an app, depending on the system.",
+          "If you already have a Somfy system, send us the motor or control model and a photo. We'll check what can work with it before recommending an addition."
         ]
       },
       {
@@ -415,8 +491,8 @@
       {
         "title": "Help after the shades are installed",
         "paragraphs": [
-          "We'll show you how to use the controls before we finish. If something stops responding later, contact us and describe what's happening. Some questions can be worked through over the phone; others need a closer look.",
-          "John has helped customers recalibrate a shade through the app without needing a visit. What we can do depends on the system and the problem, so we'll work through that with you."
+          "We show you how to use the controls at installation. If a shade stops responding later, call and tell us what's happening.",
+          "John has walked customers through recalibrating a shade in the app over the phone. When that solves the problem, there's no need for a service visit. Some problems need an in-person check."
         ]
       },
       {
@@ -428,7 +504,7 @@
           },
           {
             "question": "Will it work with my existing smart-home system?",
-            "answer": "Compatibility depends on the motor, controls, generation and connected equipment. Tell us which system you use and we'll check the requirements. We don't assume every motorized product works with every platform."
+            "answer": "Tell us which smart-home system you use. We'll check the shade motor, controls and any gateway or accessories needed to connect them."
           },
           {
             "question": "Can I keep a remote as well as an app?",

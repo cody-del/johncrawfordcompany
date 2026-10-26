@@ -52,7 +52,7 @@
     "src": "/assets/products/skyline.jpg",
     "width": 1280,
     "height": 1127,
-    "caption": "Hunter Douglas Skyline® Gliding Window Panels",
+    "caption": "Hunter Douglas Skyline® Panel-Track Blinds",
     "alt": "Overlapping patterned fabric panels beside a glass door in a wood-beamed living room."
   },
   "parkland": {
@@ -66,7 +66,7 @@
     "src": "/assets/products/everwood.jpg",
     "width": 1280,
     "height": 853,
-    "caption": "Hunter Douglas EverWood® Alternative Wood Blinds",
+    "caption": "Hunter Douglas EverWood® Faux Wood Blinds",
     "alt": "Light-colored horizontal blinds between built-in shelves at a dining nook."
   },
   "aria": {
@@ -94,21 +94,21 @@
     "src": "/assets/products/palm-beach.jpg",
     "width": 1280,
     "height": 960,
-    "caption": "Hunter Douglas Palm Beach™ Polysatin™ Shutters",
+    "caption": "Hunter Douglas Palm Beach™ Polysatin™ Vinyl Shutters",
     "alt": "White shutter panels covering tall windows behind a sofa and two lounge chairs."
   },
   "newstyle": {
     "src": "/assets/products/newstyle.jpg",
     "width": 1280,
     "height": 853,
-    "caption": "Hunter Douglas NewStyle® Hybrid Shutters",
+    "caption": "Hunter Douglas NewStyle® Composite Shutters",
     "alt": "White shutters following the curved tops of two arched windows in a dining room."
   },
   "heritance": {
     "src": "/assets/products/heritance.jpg",
     "width": 1280,
     "height": 608,
-    "caption": "Hunter Douglas Heritance® Hardwood Shutters",
+    "caption": "Hunter Douglas Heritance® Wood Shutters",
     "alt": "Dark wood shutters across a wide window wall beside a dining table and kitchen."
   },
   "powerview": {
