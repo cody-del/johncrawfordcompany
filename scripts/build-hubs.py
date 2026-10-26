@@ -80,7 +80,7 @@ def head(page, hero_key=None, accessibility=False):
     path = page['slug']
     hub_css_version = 'accent-placement-corrected-1' if hero_key else 'hubs-1'
     if hero_key:
-        hub_css_version = 'aligned-product-cards-1'
+        hub_css_version = 'motorization-focus-1' if page['name'] == 'Motorized Shades' else 'aligned-product-cards-1'
     body_class = 'interior-page accent-review-page' if page['name'] == 'Shades' else 'interior-page'
     og = IMAGES[hero_key]['src'] if hero_key else '/assets/showroom-illustration.svg'
     schema = [{
@@ -228,12 +228,13 @@ def quote(section):
     </figure>'''
 
 
-def advice(sections, linen=False):
+def advice(sections, linen=False, section_id=None):
     blocks = []
     for sec in sections:
         sid = sec.get('id', tag_id(sec['title']))
         blocks.append(f'<article class="hub-advice" aria-labelledby="{sid}"><h2 id="{sid}">{e(sec["title"])}</h2>{paragraphs(sec)}{quote(sec)}</article>')
-    return '<div class="section hub-advice-section' + (' linen' if linen else '') + '"><div class="container hub-advice-grid">' + ''.join(blocks) + '</div></div>'
+    anchor = f' id="{e(section_id)}"' if section_id else ''
+    return '<div' + anchor + ' class="section hub-advice-section' + (' linen' if linen else '') + '"><div class="container hub-advice-grid">' + ''.join(blocks) + '</div></div>'
 
 
 def detail_panel(sections, photo_key, title, panel_id, topic_titles=None, prefix='hub-detail', modifiers=''):
@@ -271,11 +272,13 @@ def faq(section, linen=True):
     </section>'''
 
 
-def contact(section):
+def contact(section, secondary_note=None):
     palm = decorative_accent('palm-corner.svg', 'hub-accent-palm', 400, 400)
+    note = (f'<p class="hub-secondary-note" id="{tag_id(secondary_note["title"])}">'
+            + ' '.join(e(text) for text in secondary_note['paragraphs']) + '</p>') if secondary_note else ''
     return f'''<section class="section hub-contact hub-contact-accent" id="contact" aria-labelledby="contact-heading">
       <div class="container hub-contact-accent-grid">
-        <div class="hub-contact-message"><h2 id="contact-heading">{e(section['title'])}</h2>{paragraphs(section)}</div>
+        <div class="hub-contact-message"><h2 id="contact-heading">{e(section['title'])}</h2>{paragraphs(section)}{note}</div>
         <div class="hub-contact-details">
           <address>22311 Ventura Blvd #101<br>Woodland Hills, CA 91364</address><p class="hub-hours">Monday-Friday, 9 am-5 pm</p>
           <div class="hub-contact-actions"><a class="btn btn-primary" href="tel:+18188845464">Call (818) 884-5464</a>
@@ -309,9 +312,6 @@ CONFIG = {
 IMAGES['powerview-blue'] = {'src':'/assets/powerview-wall-remote.jpg', 'width':1440, 'height':1080,
     'caption':'Hunter Douglas PowerView® Automation wall-mounted control',
     'alt':'A round white wall control beside blue fabric shades and a dark window frame.'}
-IMAGES['somfy-situo'] = {'src':'/assets/products/somfy-situo-5-rts.jpg', 'width':768, 'height':768,
-    'caption':'Somfy Situo® 5 RTS remote',
-    'alt':'A white Somfy handheld remote with up, stop and down buttons and a channel selector.'}
 
 for page in PAGES:
     name, secs = page['name'], page['sections']
@@ -319,9 +319,9 @@ for page in PAGES:
     body = [hero(page, CONFIG[name]['hero']), intro(secs[1], page)]
     if name == 'Motorized Shades':
         body += [powerview(secs[2]),
-                 detail_panel(secs[3:5], 'somfy-situo', 'Motorization and power planning', 'motorization-power', modifiers=' hub-detail--somfy'),
+                 advice([secs[4]], section_id='motorization-power'),
                  detail_panel(secs[5:7], 'powerview', 'Motorized shade installation and support', 'motorization-support', modifiers=' hub-detail--controls hub-detail--reverse'),
-                 faq(secs[7], linen=False), contact(secs[8])]
+                 faq(secs[7], linen=False), contact(secs[8], secondary_note=secs[3])]
     else:
         catalog_section = secs[2] if name != 'Shutters' else {**secs[1], 'title': 'Hunter Douglas shutter collections', 'paragraphs': []}
         body += [catalog(catalog_section, CONFIG[name]['catalog'], name)]

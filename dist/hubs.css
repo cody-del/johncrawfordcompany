@@ -203,6 +203,7 @@
 .interior-page .hub-contact-accent { position: relative; isolation: isolate; }
 .interior-page .hub-contact-accent-grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1.05fr .95fr; gap: var(--hub-gap); align-items: start; }
 .interior-page .hub-contact-message > p { max-width: 600px; margin-top: 19px; }
+.interior-page .hub-contact-message > .hub-secondary-note { margin-top: 18px; font-size: 14px; line-height: 1.65; }
 .interior-page .hub-contact-details address { margin: 0; color: var(--walnut); font-size: 17px; line-height: 1.7; }
 .interior-page .hub-contact-details .hub-hours { margin-top: 10px; font-size: 15px; }
 .interior-page .hub-contact-details > .text-link { margin-top: 12px; }
@@ -227,8 +228,6 @@
 .hub-detail--blinds .hub-detail-photo img { object-position: 24% center; }
 .hub-detail--shutters .hub-detail-photo img { object-position: 15% center; }
 .hub-detail--controls .hub-detail-photo img { object-position: 81% center; }
-.hub-detail--somfy .hub-detail-photo { background: #fff; }
-.hub-detail--somfy .hub-detail-photo img { object-position: center; }
 .hub-detail--reverse .hub-detail-panel { grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); }
 .hub-detail--reverse .hub-detail-photo { order: 2; }
 .hub-detail--reverse .hub-detail-copy { order: 1; }
