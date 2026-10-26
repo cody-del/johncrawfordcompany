@@ -80,7 +80,7 @@ def head(page, hero_key=None, accessibility=False):
     path = page['slug']
     hub_css_version = 'accent-placement-corrected-1' if hero_key else 'hubs-1'
     if hero_key:
-        hub_css_version = 'shutters-centered-1' if page['name'] == 'Shutters' else 'approved-copy-1'
+        hub_css_version = 'aligned-product-cards-1'
     body_class = 'interior-page accent-review-page' if page['name'] == 'Shades' else 'interior-page'
     og = IMAGES[hero_key]['src'] if hero_key else '/assets/showroom-illustration.svg'
     schema = [{
@@ -194,18 +194,21 @@ def catalog(section, keys, mode):
         title_id = item.get('id', tag_id(item['title']))
         show_caption = mode == 'Shades'
         collections = item.get('collections', [])
-        collection_list = ('<p class="collection-list-label">Collections</p><ul class="collection-options">'
-                           + ''.join(f'<li>{e(collection)}</li>' for collection in collections) + '</ul>') if collections else ''
+        collection_list = ('<div class="collection-details"><p class="collection-list-label">Collections</p><ul class="collection-options">'
+                           + ''.join(f'<li>{e(collection)}</li>' for collection in collections) + '</ul></div>') if collections else ''
         cards.append(f'''<article class="collection" id="{title_id}" aria-labelledby="{title_id}-heading">
           {image(key, caption=show_caption)}
           <h3 id="{title_id}-heading">{e(item['title'])}</h3><p>{e(item['text'])}</p>{collection_list}
         </article>''')
+    grid_class = 'collection-grid' if mode == 'Shutters' else 'collection-grid collection-grid--aligned'
+    if mode == 'Shades':
+        grid_class += ' collection-grid--with-details'
     if mode == 'Blinds':
-        card_html = ('<div class="collection-grid">' + ''.join(cards[:4]) + '</div>'
+        card_html = (f'<div class="{grid_class}">' + ''.join(cards[:4]) + '</div>'
                      '<h2 class="wide-opening-heading">For wide windows and sliding doors</h2>'
-                     '<div class="collection-grid">' + ''.join(cards[4:]) + '</div>')
+                     f'<div class="{grid_class}">' + ''.join(cards[4:]) + '</div>')
     else:
-        card_html = '<div class="collection-grid">' + ''.join(cards) + '</div>'
+        card_html = f'<div class="{grid_class}">' + ''.join(cards) + '</div>'
     return f'''<section class="section {'linen ' if mode != 'Shutters' else ''}hub-collections" id="collections" aria-labelledby="collections-heading">
       <div class="container">
         <div class="hub-section-heading"><h2 id="collections-heading">{e(section['title'])}</h2>{body}</div>
