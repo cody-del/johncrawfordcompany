@@ -16,7 +16,16 @@
         "Sometimes a small part is all that stands between a blind that works and one that doesn’t. John has collected components over the years and can help with selected brands, including some products we didn’t originally supply.",
         "The product’s construction, condition and available parts determine what’s possible. If a repair is unlikely to last or replacement looks like the better use of your budget, we’ll talk that through with you."
       ],
-      "links": [{"text": "Compare new blinds", "href": "/blinds/"}, {"text": "Explore shade options", "href": "/shades/"}]
+      "links": [
+        {
+          "text": "Compare new blinds",
+          "href": "/blinds/"
+        },
+        {
+          "text": "Explore shade options",
+          "href": "/shades/"
+        }
+      ]
     },
     "feature": {
       "heading": "Tell us about the problem.",
@@ -25,7 +34,10 @@
         "For photos, show the whole blind or shade and the area giving you trouble. A picture of the product label is helpful if you can find it."
       ],
       "note": "For a motorized shade, include the system name if you know it and tell us whether the problem affects one shade or several.",
-      "link": {"text": "You can also email your photos", "email": true}
+      "link": {
+        "text": "You can also email your photos",
+        "email": true
+      }
     },
     "quote": {
       "text": "John is Amazing! He is so kind and honest. Overall great guy to work with and helped me source blind brackets we had installed from Costco over 20 years ago! …",
@@ -34,43 +46,85 @@
     },
     "questions_heading": "Questions about blind and shade repairs",
     "faqs": [
-      {"question": "Can you repair blinds you didn’t sell?", "answer": "Sometimes. We can work on selected outside brands when suitable parts are available. Share photos and a description of the problem so we can see whether it’s something we can help with."},
-      {"question": "Is a repair always less expensive than replacement?", "answer": "Not always. Parts, labor and the condition of the treatment all matter. We’ll help you weigh the repair against replacement rather than assume an older blind is worth fixing."},
-      {"question": "Can you help with a motorized shade that isn’t responding?", "answer": "Tell us which system you have and what happens when you use the control. Some problems can be addressed with phone guidance; others need inspection or parts. We’ll help you work out the next step."}
+      {
+        "question": "Can you repair blinds you didn’t sell?",
+        "answer": "Sometimes. We can work on selected outside brands when suitable parts are available. Share photos and a description of the problem so we can see whether it’s something we can help with."
+      },
+      {
+        "question": "Is a repair always less expensive than replacement?",
+        "answer": "Not always. Parts, labor and the condition of the treatment all matter. We’ll help you weigh the repair against replacement rather than assume an older blind is worth fixing."
+      },
+      {
+        "question": "Can you help with a motorized shade that isn’t responding?",
+        "answer": "Tell us which system you have and what happens when you use the control. Some problems can be addressed with phone guidance; others need inspection or parts. We’ll help you work out the next step."
+      }
     ],
     "contact_heading": "Tell us what’s happening.",
     "contact_text": "Share a few details using the repair inquiry form, or call us to talk about the problem. From our Woodland Hills showroom, we help customers across Los Angeles and nearby Valley communities with repair inquiries.",
-    "related": [{"text": "Repair inquiry form", "href": "#repair-inquiry"}, {"text": "Motorized shades and controls", "href": "/motorized-shades/"}, {"text": "Measuring and installation", "href": "/services/window-treatment-installation/"}]
+    "related": [
+      {
+        "text": "Repair inquiry form",
+        "href": "#repair-inquiry"
+      },
+      {
+        "text": "Motorized shades and controls",
+        "href": "/motorized-shades/"
+      },
+      {
+        "text": "Consultation and measuring",
+        "href": "/services/consultation-measuring/"
+      },
+      {
+        "text": "Window treatment installation",
+        "href": "/services/window-treatment-installation/"
+      }
+    ]
   },
   {
-    "id": "installation",
-    "name": "Measuring & installation",
-    "slug": "/services/window-treatment-installation/",
-    "title": "Window Treatment Installation Los Angeles | John Crawford",
-    "description": "Professional measuring and installation for blinds, shades, shutters and drapery in Los Angeles. Talk with John Crawford Company about your windows.",
-    "heading": "Window treatment measuring and installation in Los Angeles",
-    "intro": "The right treatment should fit the window and feel easy to use. We help you compare the options, take the measurements and handle installation, from where a shade sits to how a drapery panel moves.",
-    "hero_image": "carole",
-    "cta": "Talk about your windows",
-    "email_subject": "Window treatment measuring and installation",
+    "id": "consultation",
+    "name": "Consultation & measuring",
+    "slug": "/services/consultation-measuring/",
+    "title": "Free In-Home Consultation & Measuring | John Crawford Co.",
+    "description": "Free in-home window treatment consultations in Los Angeles. We bring samples to your home, help you compare options and take measurements for your project.",
+    "heading": "Free in-home consultation & measuring",
+    "intro": "We bring window treatment samples to your home and take measurements there. Compare fabrics and finishes against your own windows, furniture and light, with advice shaped around your rooms.",
+    "hero_image": "silhouette",
+    "cta": "Request a free in-home visit",
+    "cta_href": "/contact/#appointment-form",
+    "email_subject": "Free in-home window treatment consultation",
     "overview": {
-      "id": "measuring",
-      "heading": "A closer look at your windows",
+      "heading": "See the samples in your own home.",
       "paragraphs": [
-        "A measuring visit is about more than width and height. The depth of a window, its trim, nearby handles and the space around it can all affect how a blind, shade or shutter fits.",
-        "Drapery brings a different set of choices: where the rod or track sits, how far the fabric extends and where the panels rest when they’re open. We can explain those differences while you’re exploring the look you want."
+        "A fabric can look different beside your paint, flooring and furniture. We bring samples so you can compare colors, textures and light filtering in the room where they’ll be used.",
+        "Tell us which windows you’re considering, how you use the room and what you want to spend. We’ll help you narrow the options for privacy, daylight and the look you want."
       ],
-      "links": [{"text": "Explore shades", "href": "/shades/"}, {"text": "Compare shutters", "href": "/shutters/"}, {"text": "See drapery options", "href": "/drapery/"}]
+      "links": [
+        {
+          "text": "Explore shades",
+          "href": "/shades/"
+        },
+        {
+          "text": "Compare shutters",
+          "href": "/shutters/"
+        },
+        {
+          "text": "See drapery options",
+          "href": "/drapery/"
+        }
+      ]
     },
     "feature": {
-      "id": "installation",
-      "heading": "Installation includes a walkthrough",
-      "image": "powerview-blue",
+      "id": "measuring",
+      "heading": "Measurements taken for your windows.",
+      "image": "carole",
       "paragraphs": [
-        "We install the treatment, check its movement and show you how the controls work. You should feel comfortable opening a shade, adjusting a blind or moving a drapery panel when the job is finished.",
-        "If you’re considering motorization, we can help with compatible controls and hub setup. For a hardwired system, we can discuss coordination with your electrician. And if a question comes up afterward, you can still call us."
+        "We measure your windows and check the depth, trim, handles and nearby space that can affect the fit of a blind, shade or shutter.",
+        "For drapery, we also look at where the rod or track will sit, how far the fabric extends and where the panels will rest when open. These details help us plan the treatment and prepare your quote."
       ],
-      "link": {"text": "Learn about motorized shades", "href": "/motorized-shades/"}
+      "link": {
+        "text": "See our installation service",
+        "href": "/services/window-treatment-installation/"
+      }
     },
     "story": {
       "heading": "One window is welcome.",
@@ -79,15 +133,117 @@
         "He’s kept that approach. Whether you’re thinking about one window, a room of drapery or several rooms of shades, we’re happy to talk through it with you."
       ]
     },
-    "questions_heading": "Questions about measuring and installation",
+    "questions_heading": "Questions about your in-home consultation",
     "faqs": [
-      {"question": "Do I need measurements before I contact you?", "answer": "No. A few photos and a description of what you’d like to change are a useful place to start. We take the measurements needed for the treatment as part of planning your project."},
-      {"question": "Can you help with curtain rods and drapery tracks?", "answer": "Yes. We can look at the span, mounting points, brackets and room for the fabric to move. If you already have drapery and the hardware is causing trouble, tell us what’s happening so we can discuss repair or replacement."},
-      {"question": "Can I compare products at the showroom first?", "answer": "Yes. Schedule a visit to our Woodland Hills showroom to see materials and finishes and ask questions. You don’t need to have a particular product picked out."}
+      {
+        "question": "Is the in-home consultation free?",
+        "answer": "Yes. We come to your home for a free consultation, bring window treatment samples and take measurements for your project."
+      },
+      {
+        "question": "Do I need to measure my windows first?",
+        "answer": "No. Tell us which rooms you’re considering and what you’d like to change. We take the measurements during the home visit."
+      },
+      {
+        "question": "Can I visit the showroom instead?",
+        "answer": "Yes. Schedule an appointment at our Woodland Hills showroom to compare materials and finishes in person. You don’t need to have a product picked out before we meet."
+      }
     ],
-    "contact_heading": "Let’s look at the options for your windows.",
-    "contact_text": "Tell us which rooms you’re thinking about and what you’d like to change. We work with customers throughout Los Angeles from our appointment-only Woodland Hills showroom.",
-    "related": [{"text": "Custom blinds", "href": "/blinds/"}, {"text": "Blind and shade repair", "href": "/services/blind-shade-repair/"}]
+    "contact_heading": "Let’s look at your windows at home.",
+    "contact_text": "Request a free in-home consultation in Los Angeles or the surrounding area. We’ll bring samples and measure your windows. You can also arrange a visit to our appointment-only Woodland Hills showroom.",
+    "related": [
+      {
+        "text": "Request your free in-home consultation",
+        "href": "/contact/#appointment-form"
+      },
+      {
+        "text": "Window treatment installation",
+        "href": "/services/window-treatment-installation/"
+      }
+    ]
+  },
+  {
+    "id": "installation",
+    "name": "Installation",
+    "slug": "/services/window-treatment-installation/",
+    "title": "Window Treatment Installation Los Angeles | John Crawford",
+    "description": "Professional installation for blinds, shades, shutters and drapery in Los Angeles. Start with a free in-home consultation, samples and measuring.",
+    "heading": "Window treatment installation in Los Angeles",
+    "intro": "We fit blinds, shades, shutters and drapery for a finished look and smooth everyday use. Start with a free in-home consultation: we bring samples to your home and take measurements for your project.",
+    "hero_image": "carole",
+    "cta": "Request a free in-home visit",
+    "cta_href": "/contact/#appointment-form",
+    "email_subject": "Window treatment installation inquiry",
+    "overview": {
+      "id": "installation",
+      "heading": "A clean fit. Smooth operation.",
+      "paragraphs": [
+        "For blinds, shades and shutters, mounting depth, brackets and alignment all affect the finished result. We fit each treatment to the space planned for it and check that it opens, closes and sits as intended.",
+        "For drapery, we install rods or tracks and check the way the fabric hangs and moves, including the space the panels need when open."
+      ],
+      "links": [
+        {
+          "text": "Custom blinds",
+          "href": "/blinds/"
+        },
+        {
+          "text": "Custom shades",
+          "href": "/shades/"
+        },
+        {
+          "text": "Drapery and hardware",
+          "href": "/drapery/"
+        }
+      ]
+    },
+    "feature": {
+      "id": "controls",
+      "heading": "Motorized shades, ready to use.",
+      "image": "powerview-blue",
+      "paragraphs": [
+        "We set up compatible motorized controls and help with the hub setup your system needs. For a hardwired system, we can discuss coordination with your electrician.",
+        "We show you how to use the controls, and you can call us if questions come up after installation."
+      ],
+      "link": {
+        "text": "Explore motorized shades",
+        "href": "/motorized-shades/"
+      }
+    },
+    "quote": {
+      "text": "Great service throughout entire process. From 1st consult to installation every step was performed professionally & with quality craftsmanship. Our shades & shutters are more beautiful than expected! …",
+      "author": "Mary Yingling",
+      "source": "Google review"
+    },
+    "questions_heading": "Questions about window treatment installation",
+    "faqs": [
+      {
+        "question": "How do I get started with installation?",
+        "answer": "Start with a free in-home consultation. We bring samples to your home, take measurements and help you choose the treatments. We then plan installation around your selections."
+      },
+      {
+        "question": "Can you install curtain rods and drapery tracks?",
+        "answer": "Yes. We look at the span, mounting points, brackets and room for the fabric to move, then fit the hardware and drapery for the planned arrangement."
+      },
+      {
+        "question": "Can you help set up motorized shades?",
+        "answer": "Yes, for compatible products and controls. We can help with control and hub setup, and discuss coordination with your electrician if you choose a hardwired system."
+      }
+    ],
+    "contact_heading": "Start with a free in-home consultation.",
+    "contact_text": "We come to your home with samples and take measurements for your windows. From product selection to the finished installation, our team helps you plan the details for your rooms.",
+    "related": [
+      {
+        "text": "Request your free in-home consultation",
+        "href": "/contact/#appointment-form"
+      },
+      {
+        "text": "Consultation and measuring",
+        "href": "/services/consultation-measuring/"
+      },
+      {
+        "text": "Blind and shade repair",
+        "href": "/services/blind-shade-repair/"
+      }
+    ]
   },
   {
     "id": "commercial",
@@ -107,9 +263,18 @@
         "Your space may need something different. We’ll talk about when the sun is a problem, what people need to see and how much privacy you want. That helps narrow the choice of fabric and treatment."
       ],
       "topics": [
-        {"title": "Offices", "text": "Consider desk positions, screen glare and privacy in meeting rooms alongside the look of the windows."},
-        {"title": "Restaurants and cafés", "text": "Think about the tables nearest the glass, changing daylight and the view customers enjoy from inside."},
-        {"title": "Street-facing spaces", "text": "Balance visibility from the sidewalk with the privacy and light control you want for the people inside."}
+        {
+          "title": "Offices",
+          "text": "Consider desk positions, screen glare and privacy in meeting rooms alongside the look of the windows."
+        },
+        {
+          "title": "Restaurants and cafés",
+          "text": "Think about the tables nearest the glass, changing daylight and the view customers enjoy from inside."
+        },
+        {
+          "title": "Street-facing spaces",
+          "text": "Balance visibility from the sidewalk with the privacy and light control you want for the people inside."
+        }
       ]
     },
     "feature": {
@@ -119,17 +284,52 @@
         "Screen shades are one option. Depending on the room, a roller shade with more coverage or a blind with adjustable slats may suit you better. We can compare materials and explain how they change the light and privacy.",
         "We also help with measuring, installation and compatible motorized controls. Schedule a showroom visit or tell us about your space by phone or email, and we’ll discuss a useful next step."
       ],
-      "links": [{"text": "Explore shades", "href": "/shades/"}, {"text": "Compare blinds", "href": "/blinds/"}, {"text": "Motorized shade options", "href": "/motorized-shades/"}]
+      "links": [
+        {
+          "text": "Explore shades",
+          "href": "/shades/"
+        },
+        {
+          "text": "Compare blinds",
+          "href": "/blinds/"
+        },
+        {
+          "text": "Motorized shade options",
+          "href": "/motorized-shades/"
+        }
+      ]
     },
     "questions_heading": "Questions about commercial blinds and shades",
     "faqs": [
-      {"question": "Can you help with a small office or just a few windows?", "answer": "Yes. Tell us about the windows and the problem you’re trying to solve. You don’t need a whole-building project to start a conversation."},
-      {"question": "Can commercial shades be motorized?", "answer": "Motorization is available with compatible products. We can discuss controls for individual shades or groups of shades, along with installation and setup. The options depend on the products and system you choose."},
-      {"question": "What should I send for a commercial inquiry?", "answer": "Photos of the windows, the business location and a short description of the space are helpful. Tell us whether glare, privacy or another concern is the main reason you’re looking at window treatments."}
+      {
+        "question": "Can you help with a small office or just a few windows?",
+        "answer": "Yes. Tell us about the windows and the problem you’re trying to solve. You don’t need a whole-building project to start a conversation."
+      },
+      {
+        "question": "Can commercial shades be motorized?",
+        "answer": "Motorization is available with compatible products. We can discuss controls for individual shades or groups of shades, along with installation and setup. The options depend on the products and system you choose."
+      },
+      {
+        "question": "What should I send for a commercial inquiry?",
+        "answer": "Photos of the windows, the business location and a short description of the space are helpful. Tell us whether glare, privacy or another concern is the main reason you’re looking at window treatments."
+      }
     ],
     "contact_heading": "Tell us how your space needs to work.",
     "contact_text": "We’ll help you compare interior window coverings for the people who use the room every day. Call John Crawford Company or email a few photos to begin.",
-    "related": [{"text": "Measuring and installation", "href": "/services/window-treatment-installation/"}, {"text": "Blind and shade repair", "href": "/services/blind-shade-repair/"}]
+    "related": [
+      {
+        "text": "Consultation and measuring",
+        "href": "/services/consultation-measuring/"
+      },
+      {
+        "text": "Window treatment installation",
+        "href": "/services/window-treatment-installation/"
+      },
+      {
+        "text": "Blind and shade repair",
+        "href": "/services/blind-shade-repair/"
+      }
+    ]
   },
   {
     "id": "upholstery",
@@ -149,9 +349,18 @@
         "John is straightforward about the cost: reupholstering can cost as much as new furniture, or more. It makes sense to compare both options, especially if you’re not attached to the piece."
       ],
       "topics": [
-        {"title": "A frame you value", "text": "Tell us what you like about the piece, whether it’s the construction, comfort or a connection to your family."},
-        {"title": "A size that works", "text": "A custom-sized sofa or sectional may fit a particular corner or room in a way a new piece doesn’t."},
-        {"title": "A different look", "text": "We can compare fabrics and ask our upholstery specialist about changes you have in mind for the shape of the piece."}
+        {
+          "title": "A frame you value",
+          "text": "Tell us what you like about the piece, whether it’s the construction, comfort or a connection to your family."
+        },
+        {
+          "title": "A size that works",
+          "text": "A custom-sized sofa or sectional may fit a particular corner or room in a way a new piece doesn’t."
+        },
+        {
+          "title": "A different look",
+          "text": "We can compare fabrics and ask our upholstery specialist about changes you have in mind for the shape of the piece."
+        }
       ]
     },
     "feature": {
@@ -160,17 +369,43 @@
         "We start by talking about the furniture and your budget. From there, we can bring fabric samples, take photos and measurements, and review the work with an upholstery specialist.",
         "Once we have the specialist’s assessment, we prepare your quote so you can decide whether to go ahead. The conversation is about what’s right for your furniture, rather than assuming every piece needs to be saved."
       ],
-      "checklist": ["Photos showing the whole piece and any worn areas", "What you like about it and what you’d change", "Your ideas for fabric, color or pattern", "The location of the furniture and your general budget"],
-      "link": {"text": "Email us about your furniture", "email": true}
+      "checklist": [
+        "Photos showing the whole piece and any worn areas",
+        "What you like about it and what you’d change",
+        "Your ideas for fabric, color or pattern",
+        "The location of the furniture and your general budget"
+      ],
+      "link": {
+        "text": "Email us about your furniture",
+        "email": true
+      }
     },
     "questions_heading": "Questions about furniture reupholstery",
     "faqs": [
-      {"question": "Is reupholstery less expensive than buying new furniture?", "answer": "Not necessarily. It can cost as much as a new piece or more. The reasons to consider it often include the frame, comfort, custom size or sentimental value. We’ll help you compare the cost with what the piece means to you."},
-      {"question": "Can I choose a different fabric?", "answer": "Yes. We can bring samples and talk about the color, pattern and feel you’re looking for. Tell us how the furniture is used so we can help narrow the choices."},
-      {"question": "Can the shape of a sofa or chair be changed?", "answer": "Some changes may be possible. John has worked with an upholstery specialist on adjustments such as reshaping an arm or changing the look of a back. Share photos and your ideas so we can find out what’s appropriate for your piece."}
+      {
+        "question": "Is reupholstery less expensive than buying new furniture?",
+        "answer": "Not necessarily. It can cost as much as a new piece or more. The reasons to consider it often include the frame, comfort, custom size or sentimental value. We’ll help you compare the cost with what the piece means to you."
+      },
+      {
+        "question": "Can I choose a different fabric?",
+        "answer": "Yes. We can bring samples and talk about the color, pattern and feel you’re looking for. Tell us how the furniture is used so we can help narrow the choices."
+      },
+      {
+        "question": "Can the shape of a sofa or chair be changed?",
+        "answer": "Some changes may be possible. John has worked with an upholstery specialist on adjustments such as reshaping an arm or changing the look of a back. Share photos and your ideas so we can find out what’s appropriate for your piece."
+      }
     ],
     "contact_heading": "Tell us about the piece you have in mind.",
     "contact_text": "Email a few photos or call John to talk about your furniture. Our Woodland Hills showroom serves Los Angeles and nearby Valley communities; showroom visits are by appointment.",
-    "related": [{"text": "Drapery and fabric options for your windows", "href": "/drapery/"}, {"text": "About John Crawford Company", "href": "/about/"}]
+    "related": [
+      {
+        "text": "Drapery and fabric options for your windows",
+        "href": "/drapery/"
+      },
+      {
+        "text": "About John Crawford Company",
+        "href": "/about/"
+      }
+    ]
   }
 ]

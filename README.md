@@ -10,7 +10,7 @@ Netlify serves the same checked files at https://johncrawfordcompany.netlify.app
 - `/`: approved homepage design.
 - `/shades/`, `/blinds/`, `/shutters/`, `/drapery/`, `/motorized-shades/`: first five product hubs, built from the approved copy.
 - `/about/`, `/contact/`: company story and contact form design.
-- `/services/blind-shade-repair/`, `/services/window-treatment-installation/`, `/services/commercial-window-treatments/`, `/upholstery/`: service pages based on the call and intake.
+- `/services/blind-shade-repair/`, `/services/consultation-measuring/`, `/services/window-treatment-installation/`, `/services/commercial-window-treatments/`, `/upholstery/`: service pages based on the call and intake.
 - `/accessibility/`, `/privacy/`: website assistance, contact and privacy information.
 - `/lp/custom-window-treatments/`: campaign landing page for blinds, shades, shutters, drapery and motorization.
 - `/lp/motorized-shades/`: campaign landing page for motorized and automated shade searches.
@@ -42,6 +42,6 @@ Run `python3 scripts/build-landings.py` to rebuild the campaign pages with the a
 
 ## Review status
 
-All pages retain `noindex, nofollow` and review canonical URLs. The current production domain has not been migrated. Individual collection and location pages remain separate future work. The four service pages are linked through the shared Services navigation. The client-requested upholstery photo placeholder remains on the homepage and upholstery preview page.
+All pages retain `noindex, nofollow` and review canonical URLs. The current production domain has not been migrated. Individual collection and location pages remain separate future work. The five service pages are linked through the shared Services navigation. Consultation & Measuring and Installation have separate URLs and headings. Both emphasize a free in-home consultation with samples brought to the home and measurements taken there; their primary actions lead to the central contact form. The old installation-page #measuring link forwards to the consultation page. The client-requested upholstery photo placeholder remains on the homepage and upholstery preview page.
 
 Private intake records, transcripts, dealer policies, local credentials and QA artifacts are excluded from this repository.

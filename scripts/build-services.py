@@ -1,4 +1,4 @@
-"""Build the four service pages from reviewed public copy and existing assets."""
+"""Build the service pages from reviewed public copy and existing assets."""
 from pathlib import Path
 from html import escape
 from urllib.parse import quote
@@ -55,7 +55,7 @@ def photo(key, hero=False):
 def head(page):
     html = company.head(page, 'WebPage')
     html = html.replace(f'company-page--{page["name"].lower()}', f'service-page service-page--{page["id"]}')
-    html = html.replace('</head>', '<link rel="stylesheet" href="/services.css?v=services-2">\n</head>')
+    html = html.replace('</head>', '<link rel="stylesheet" href="/services.css?v=services-3">\n</head>')
     def service_schema(match):
         graph = json.loads(match.group(1))
         service_id = BASE + page['slug'] + '#service'
@@ -71,6 +71,8 @@ def head(page):
         im = IMAGES[page['hero_image']]
         html = html.replace(BASE + '/assets/john-crawford-logo.png', BASE + im['src'])
         html = html.replace('content="John Crawford Company — Window Treatments"', f'content="{e(im["alt"])}"')
+    if page['id'] == 'installation':
+        html = html.replace('</head>', '<script>(() => { const routeMeasuring = () => { if (window.location.hash === "#measuring") window.location.replace("/services/consultation-measuring/#measuring"); }; window.addEventListener("hashchange", routeMeasuring); routeMeasuring(); })();</script>\n</head>')
     return html
 
 
@@ -147,7 +149,7 @@ def proof(page):
 
 
 def body(page):
-    cta_href = '#repair-inquiry' if page['id'] == 'repair' else email_url(page)
+    cta_href = page.get('cta_href') or ('#repair-inquiry' if page['id'] == 'repair' else email_url(page))
     hero = (f'<section class="section service-hero" aria-labelledby="page-heading"><div class="container service-hero-grid">'
             f'<div class="service-hero-copy">{company.breadcrumbs(page)}<h1 id="page-heading">{e(page["heading"])}</h1>'
             f'<p>{e(page["intro"])}</p><div class="service-hero-actions"><a class="btn btn-primary" href="{e(cta_href)}">{e(page["cta"])}</a>'

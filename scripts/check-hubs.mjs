@@ -73,10 +73,10 @@ for (const hub of hubs) {
 requireThat(pages.get('/motorized-shades/')?.html.includes('The PowerView® App is required for programmed operation.'), 'Missing PowerView scheduling disclosure');
 const services = JSON.parse(await readFile(resolve(root, 'content/service-pages.json'), 'utf8'));
 const expectedRoutes = ['/', ...hubs.map(hub => hub.slug), ...services.map(service => service.slug), '/accessibility/', '/privacy/', '/about/', '/contact/', '/lp/custom-window-treatments/', '/lp/motorized-shades/'];
-requireThat(pages.size === expectedRoutes.length && expectedRoutes.every(route => pages.has(route)), `Expected fourteen website routes and two campaign landing pages; found ${[...pages.keys()].join(', ')}`);
+requireThat(pages.size === expectedRoutes.length && expectedRoutes.every(route => pages.has(route)), `Expected ${expectedRoutes.length} routes including both campaign landing pages; found ${[...pages.keys()].join(', ')}`);
 for (const service of services) {
   const html = pages.get(service.slug)?.html || '';
-  requireThat(html.includes('/services.css?v=services-2') && html.includes('"@type": "Service"'), `${service.slug}: service template or structured data missing`);
+  requireThat(html.includes('/services.css?v=services-3') && html.includes('"@type": "Service"'), `${service.slug}: service template or structured data missing`);
   requireThat((html.match(/<details><summary>/g) || []).length === 3, `${service.slug}: missing service questions`);
   requireThat(html.includes('mailto:john@johncrawford.com') && html.includes('href="/contact/#appointment-form"'), `${service.slug}: preserve the email, telephone and central appointment inquiry journey`);
   if (service.id === 'repair') {
@@ -86,8 +86,18 @@ for (const service of services) {
     requireThat(/type="file" accept="image\/\*" multiple/.test(form), 'Repair photo control must support multiple images');
   } else requireThat(!/<form\b/.test(html), `${service.slug}: keep the central contact inquiry destination`);
 }
+const consultationHtml = pages.get('/services/consultation-measuring/')?.html || '';
+const installationHtml = pages.get('/services/window-treatment-installation/')?.html || '';
+requireThat(consultationHtml.includes('<h1 id="page-heading">Free in-home consultation &amp; measuring</h1>') && consultationHtml.includes('id="measuring"'), 'Consultation and measuring need their own service page and heading');
+requireThat(installationHtml.includes('<h1 id="page-heading">Window treatment installation in Los Angeles</h1>') && !installationHtml.includes('Installation includes a walkthrough'), 'Installation needs its own heading and outcome-focused copy');
+for (const html of [consultationHtml, installationHtml]) {
+  const hero = html.match(/<section class="section service-hero"[\s\S]*?<\/section>/)?.[0] || '';
+  requireThat(/free in-home consultation/i.test(hero) && /samples[\s\S]*home|home[\s\S]*samples/i.test(hero) && /measurements/i.test(hero), 'Both service heroes must explain the free home visit with samples and measuring');
+  requireThat(hero.includes('href="/contact/#appointment-form"'), 'Both service hero actions must lead to the central appointment form');
+}
 for (const [route, { html }] of pages) {
   if (route.startsWith('/lp/')) continue;
+  requireThat(html.includes('href="/services/consultation-measuring/"') && html.includes('href="/services/window-treatment-installation/"') && !/href="\/services\/window-treatment-installation\/#(?:measuring|installation)"/.test(html), `${route}: Consultation & Measuring and Installation need separate navigation destinations`);
   requireThat(/href="\/about\/"(?: aria-current="page")?>About<\/a>/.test(html), `${route}: About navigation missing`);
   requireThat(/href="\/contact\/"(?: aria-current="page")?>Contact<\/a>/.test(html), `${route}: Contact navigation missing`);
 }

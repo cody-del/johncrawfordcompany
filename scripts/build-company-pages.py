@@ -27,14 +27,19 @@ def update_navigation():
     text = text.replace('<a href="#about">About</a>', '<a href="/about/">About</a>')
     text = text.replace('<a href="#contact">Contact</a>', '<a href="/contact/">Contact</a>')
     service_destinations = {
-        'consultation': '/services/window-treatment-installation/#measuring',
-        'installation': '/services/window-treatment-installation/#installation',
+        'consultation': '/services/consultation-measuring/',
+        'installation': '/services/window-treatment-installation/',
         'repairs': '/services/blind-shade-repair/',
         'upholstery': '/upholstery/',
         'commercial': '/services/commercial-window-treatments/'
     }
     for anchor, destination in service_destinations.items():
         text = text.replace(f'href="#{anchor}"', f'href="{destination}"')
+    for legacy, destination in {
+        '/services/window-treatment-installation/#measuring': service_destinations['consultation'],
+        '/services/window-treatment-installation/#installation': service_destinations['installation']
+    }.items():
+        text = text.replace(f'href="{legacy}"', f'href="{destination}"')
     path.write_text(text)
 
 
