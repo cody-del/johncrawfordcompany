@@ -1,0 +1,40 @@
+{
+  "about": {
+    "name": "About",
+    "slug": "/about/",
+    "title": "About John Crawford Company | Woodland Hills, CA",
+    "description": "Meet John Crawford Company in Woodland Hills. Learn how John's installation background shapes the way John and Max help with window treatments, from selection to support.",
+    "heading": "About John Crawford Company",
+    "intro": "John and Max help you choose window treatments with the fit, the light and the way you'll use them in mind. Visit our Woodland Hills showroom to compare options and talk through your ideas.",
+    "story_heading": "John started with installation.",
+    "story": [
+      "John came into window coverings by helping with an installation in the mid-1980s. He went on to work in vertical-blind production, where he wrote software for work orders and cutting labels.",
+      "He later moved to California, started his own business and opened a retail store in 1995. That hands-on background still shapes the advice we give, from how a shade will sit in the window to how drapery will move on its track."
+    ],
+    "approach_heading": "Talk it through with John and Max.",
+    "approach": [
+      "You might have a particular shade in mind, or you might just want less afternoon glare. We can help you compare fabrics, finishes, light control and operating options, including Hunter Douglas and Alta window treatments.",
+      "Our work includes measuring, installation and showing you how the controls operate. If a product is delayed or goes on backorder, we keep you informed. And when you have a question after installation, you can still call us."
+    ],
+    "single_heading": "One window is a good place to start.",
+    "single": [
+      "Early in his career in upstate New York, John drove about an hour to help a customer who needed one mini blind for her bathroom. That small job led to a referral for a whole house of blinds.",
+      "John still welcomes one-window jobs. Whether you're thinking about one room or several, we're happy to talk."
+    ],
+    "visit_heading": "Come in with your ideas.",
+    "visit": "You don't need to have a product picked out. See fabrics and finishes in person at our Woodland Hills showroom, and talk with us about what you'd like to change."
+  },
+  "contact": {
+    "name": "Contact",
+    "slug": "/contact/",
+    "title": "Contact John Crawford Company | Woodland Hills Showroom",
+    "description": "Call John Crawford Company at (818) 884-5464 or visit 22311 Ventura Blvd #101 in Woodland Hills. Open Monday–Friday, 9 am–5 pm. Email us about your window treatments.",
+    "heading": "Let's talk about your windows.",
+    "intro": "John and Max can help you compare window treatments, talk through motorization or review an existing treatment that needs attention. One window is welcome, too.",
+    "showroom_heading": "Visit our Woodland Hills showroom.",
+    "showroom": "See materials and finishes in person and bring your questions. We can talk through the light, privacy and style you're looking for.",
+    "areas": "From our Woodland Hills showroom, we work with customers across Los Angeles and nearby Valley communities, including Calabasas, Hidden Hills, West Hills, Tarzana and Encino.",
+    "repair_heading": "Need help with an existing treatment?",
+    "repair": "Email a photo and a short description of what's happening. We'll review the product and available parts to see whether we can help with a repair. If you're considering a replacement, we can talk through those options, too."
+  }
+}

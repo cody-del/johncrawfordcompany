@@ -68,8 +68,21 @@ for (const hub of hubs) {
   requireThat(/<\/section>\s*<section class="section hub-introduction hub-intro-consultation"/.test(html), `${hub.slug}: consultation section must follow the hero`);
 }
 requireThat(pages.get('/motorized-shades/')?.html.includes('The PowerView® App is required for programmed operation.'), 'Missing PowerView scheduling disclosure');
-const expectedRoutes = ['/', ...hubs.map(hub => hub.slug), '/accessibility/', '/privacy/', '/lp/custom-window-treatments/', '/lp/motorized-shades/'];
-requireThat(pages.size === expectedRoutes.length && expectedRoutes.every(route => pages.has(route)), `Expected the eight website routes and two campaign landing pages; found ${[...pages.keys()].join(', ')}`);
+const expectedRoutes = ['/', ...hubs.map(hub => hub.slug), '/accessibility/', '/privacy/', '/about/', '/contact/', '/lp/custom-window-treatments/', '/lp/motorized-shades/'];
+requireThat(pages.size === expectedRoutes.length && expectedRoutes.every(route => pages.has(route)), `Expected ten website routes and two campaign landing pages; found ${[...pages.keys()].join(', ')}`);
+for (const [route, { html }] of pages) {
+  if (route.startsWith('/lp/')) continue;
+  requireThat(/href="\/about\/"(?: aria-current="page")?>About<\/a>/.test(html), `${route}: About navigation missing`);
+  requireThat(/href="\/contact\/"(?: aria-current="page")?>Contact<\/a>/.test(html), `${route}: Contact navigation missing`);
+}
+for (const [route, type] of [['/about/', 'AboutPage'], ['/contact/', 'ContactPage']]) {
+  const html = pages.get(route)?.html || '';
+  requireThat(html.includes(`"@type": "${type}"`), `${route}: page schema missing`);
+  requireThat(html.includes('href="tel:+18188845464"') && html.includes('href="mailto:john@johncrawford.com'), `${route}: direct contact destinations missing`);
+  requireThat(html.includes('/company-pages.css?v=company-pages-1'), `${route}: scoped styles missing`);
+}
+const contactForm = pages.get('/contact/')?.html.match(/<form class="hub-consultation-form"[\s\S]*?<\/form>/)?.[0] || '';
+requireThat((contactForm.match(/\bdisabled\b/g) || []).length === 4 && !/action=|data-netlify|type="submit"/.test(contactForm), 'Contact form must remain a design preview until GHL is configured');
 const showroomContent = html => html.match(/<section class="section about"[\s\S]*?<\/section>/)?.[0].replaceAll('src="assets/', 'src="/assets/').replace(/<div class="showroom-actions">[\s\S]*?<\/div>/, '');
 const homeShowroom = showroomContent(pages.get('/')?.html || '');
 for (const route of ['/lp/custom-window-treatments/', '/lp/motorized-shades/']) {
