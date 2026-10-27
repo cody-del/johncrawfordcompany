@@ -85,7 +85,7 @@ def head(page, kind):
 <link rel="preload" href="/assets/brand-latin-1.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/brand-latin-0.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/fonts.css?v=fonts-2"><link rel="stylesheet" href="/styles.css?v=appointments-1">
-<link rel="stylesheet" href="/hubs.css?v=contact-centered-1"><link rel="stylesheet" href="/company-pages.css?v=company-pages-3">
+<link rel="stylesheet" href="/hubs.css?v=contact-centered-1"><link rel="stylesheet" href="/company-pages.css?v=company-pages-4">
 <script src="/app.js?v=company-pages-1" defer></script>
 <script type="application/ld+json">{json.dumps(schema, ensure_ascii=False).replace('<', chr(92)+'u003c')}</script>
 </head><body class="interior-page company-page company-page--{page['name'].lower()}">
@@ -126,7 +126,12 @@ def consultation_form():
         <div class="hub-form-field"><label for="company-zip">ZIP code</label><input id="company-zip" name="postal-code" type="text" inputmode="numeric" autocomplete="postal-code" pattern="[0-9]{5}" maxlength="5" required disabled></div>
       </div>
       <div class="hub-form-field"><label for="company-message">Message</label><textarea id="company-message" name="message" rows="3" maxlength="3000" required disabled></textarea></div>
-      <p class="hub-form-required">All fields are required.</p>
+      <p class="hub-form-required">All fields above are required.</p>
+      <fieldset class="company-appointment-options">
+        <legend class="sr-only">Appointment preferences (optional)</legend>
+        <label for="company-showroom-appointment"><input id="company-showroom-appointment" name="showroom-appointment" type="checkbox" disabled><span>I’d like to schedule a showroom appointment</span></label>
+        <label for="company-home-consultation"><input id="company-home-consultation" name="home-consultation" type="checkbox" disabled><span>I’d like to schedule a free in-home consultation</span></label>
+      </fieldset>
       <button class="btn btn-primary" type="button" disabled>Request a consultation</button>
       </div>
       <p class="hub-form-notice" id="company-form-notice">We use the information you provide to respond to your project inquiry. <a href="/privacy/">Privacy Policy</a>.</p>
