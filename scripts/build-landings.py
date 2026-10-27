@@ -1,6 +1,7 @@
 """Build focused campaign pages with the approved website's brand assets."""
 from pathlib import Path
 from html import escape
+import json
 import re
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -81,6 +82,23 @@ def reviews(motorized):
     return re.sub(r'[ \t]+\n', '\n', html)
 
 
+def products(motorized):
+    if motorized:
+        images = json.loads((ROOT / 'content/product-images.json').read_text())
+        options = [('designer-roller', 'Roller Shades'), ('designer-screen', 'Solar Shades'),
+                   ('duette', 'Cellular Shades'), ('provenance', 'Woven Wood Shades')]
+        cards = []
+        for key, label in options:
+            photo = images[key]
+            cards.append(f'''<article class="product"><img src="{e(photo['src'])}" alt="{e(photo['alt'])}" width="{photo['width']}" height="{photo['height']}" loading="lazy" decoding="async"><div class="product-copy"><h3>{e(label)}</h3></div></article>''')
+    else:
+        cards = re.findall(r'<article class="product"[\s\S]*?</article>', section('window-treatments'))
+        cards = [re.sub(r'\s*<(p|a)\b[\s\S]*?</\1>', '', card) for card in cards]
+    heading = 'Shade styles' if motorized else 'Window treatment styles'
+    return f'''<section class="section landing-products" id="product-options" aria-labelledby="products-heading"><div class="container">
+      <h2 class="sr-only" id="products-heading">{heading}</h2><div class="product-grid">''' + '\n'.join(cards) + '</div></div></section>'
+
+
 def quote_form():
     return '''<section class="section linen landing-quote" aria-labelledby="quote-heading"><div class="container">
       <form class="landing-form" id="contact" aria-labelledby="quote-heading" aria-describedby="form-preview form-required">
@@ -98,19 +116,21 @@ def quote_form():
 
 
 def hero(motorized):
-    headline = ('Motorized Shades' if motorized else 'Custom Window Treatments') + ' <span>in Los Angeles &amp; Surrounding Areas</span>'
+    service = 'Motorized Shades' if motorized else 'Custom Window Treatments'
+    headline = f'<span class="landing-hero-title">{service}</span> <span class="landing-hero-location">in Los Angeles &amp; Surrounding Areas</span>'
     promise = ('Open a room to daylight with a touch. We handle measuring, installation and control setup.' if motorized else
                'Get help choosing blinds, shades, shutters or drapery, including motorization. We handle measuring and installation.')
     media = re.search(r'<div class="hero-media"[\s\S]*</div>\s*</section>', section('top')).group()
     media = media.rsplit('</section>', 1)[0]
     if motorized:
         media = re.sub(r'<picture>[\s\S]*?</picture>\s*<video[\s\S]*?</video>', '<img src="/assets/powerview-wall-remote.jpg" alt="" width="1440" height="1080" fetchpriority="high">', media)
+    video_control = '' if motorized else re.search(r'<button class="hero-video-toggle"[\s\S]*?</button>', HOME).group()
     return f'''<section class="hero landing-hero" id="top" aria-labelledby="hero-heading">
       <div class="container landing-hero-inner"><div class="hero-content">
       <h1 id="hero-heading">{headline}</h1>
       <p class="landing-promise">{e(promise)}</p>
       <div class="hero-actions">{cta()}<a class="btn btn-showroom-contact" href="tel:+18188845464">Call Us</a></div>
-      </div></div>{media}</section>'''
+      </div></div>{media}{video_control}</section>'''
 
 
 def build(motorized=False):
@@ -127,19 +147,16 @@ def build(motorized=False):
     head = head.replace('app.js?v=hubs-1', 'app.js?v=landing-conversion-1')
     # Campaign pages route showroom visits through appointments, without an address or walk-in hours.
     head = re.sub(r'\s*<script type="application/ld\+json">[\s\S]*?</script>', '', head)
-    head = head.replace('</head>', '<link rel="stylesheet" href="/landings.css?v=appointments-1">\n</head>')
+    head = head.replace('</head>', '<link rel="stylesheet" href="/landings.css?v=product-cards-2">\n</head>')
     if motorized:
         head = re.sub(r'  <link rel="preload" href="assets/hero-room-poster-[^\n]+\n', '', head)
         head = head.replace(BASE+'/assets/hero-room-poster-desktop.webp', BASE+'/assets/powerview-wall-remote.jpg')
-        head = head.replace('A finished shade installation from John Crawford Company project footage', 'Hunter Douglas PowerView wall-mounted remote beside blue window shades')
+        head = head.replace('A finished shade installation from John Crawford Company project footage', 'Wall-mounted shade remote beside blue window shades')
         head = head.replace('</head>', '<link rel="preload" as="image" href="/assets/powerview-wall-remote.jpg">\n</head>')
-    brandbar = re.search(r'<div class="brand-bar"[\s\S]*?(?=<section class="reviews")', HOME).group().strip()
-    if motorized:
-        brandbar = re.sub(r'<button class="hero-video-toggle"[\s\S]*?</button>', '', brandbar)
     mobile = re.search(r'<div class="mobile-contact"[\s\S]*?</div>', HOME).group()
     mobile = mobile.replace('Call the showroom', 'Call Us').replace('Request a consultation', 'Get Free Quote')
-    body = '\n'.join([header(motorized), '<main id="main">', hero(motorized), brandbar, reviews(motorized),
-                      quote_form(), showroom(), '</main>', footer(motorized), mobile, information_dialogs()])
+    body = '\n'.join([header(motorized), '<main id="main">', hero(motorized), reviews(motorized),
+                      quote_form(), products(motorized), showroom(), '</main>', footer(motorized), mobile, information_dialogs()])
     html = '<!doctype html>\n<html lang="en">\n'+absolute_assets(head)+'\n<body class="landing-page'+(' landing-motorized' if motorized else '')+'">\n<a class="skip-link" href="#main">Skip to content</a>\n'+absolute_assets(body)+'\n</body>\n</html>\n'
     path = DIST / route.strip('/') / 'index.html'
     path.parent.mkdir(parents=True, exist_ok=True)

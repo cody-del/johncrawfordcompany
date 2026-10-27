@@ -96,7 +96,7 @@ for (const route of ['/lp/custom-window-treatments/', '/lp/motorized-shades/']) 
   requireThat(!/<address\b|91364|Monday–Friday|openingHoursSpecification|streetAddress/.test(html), `${route}: omit the showroom address and walk-in hours from landing pages`);
   requireThat(html.includes('<strong>Appointment Only</strong>') && html.includes('Fill the form to schedule a showroom appointment.'), `${route}: direct showroom visits through an appointment request`);
   requireThat(!html.includes('John got his start') && !html.includes('Come in to see fabrics and finishes'), `${route}: use concise landing-page copy instead of the website story`);
-  requireThat(html.includes('href="/landings.css?v=appointments-1"'), `${route}: scoped landing-page styles missing`);
+  requireThat(html.includes('href="/landings.css?v=product-cards-2"'), `${route}: scoped landing-page styles missing`);
   const form = html.match(/<form class="landing-form"[\s\S]*?<\/form>/)?.[0] || '';
   requireThat((form.match(/\bdisabled\b/g) || []).length === 5 && !/action=|data-netlify|type="submit"/.test(form), `${route}: do not accept leads before the form destination is confirmed`);
   requireThat(form.includes('name="showroom-appointment" type="checkbox"') && form.includes('I’d like a showroom appointment.'), `${route}: allow an explicit showroom appointment request`);
@@ -104,8 +104,13 @@ for (const route of ['/lp/custom-window-treatments/', '/lp/motorized-shades/']) 
   const openingSection = html.match(/<main[^>]*>\s*(<section\b[\s\S]*?<\/section>)/)?.[1] || '';
   requireThat(!openingSection.includes(form) && /<section class="reviews"[\s\S]*?<\/section>\s*<section class="section linen landing-quote"/.test(html) && !!form, `${route}: put the form directly beneath the reviews`);
   const expectedService = route.includes('motorized-shades') ? 'Motorized Shades' : 'Custom Window Treatments';
-  requireThat(openingSection.includes(`<h1 id="hero-heading">${expectedService} <span>in Los Angeles &amp; Surrounding Areas</span></h1>`), `${route}: identify the service and target area in the hero`);
-  requireThat((html.match(/<section\b/g) || []).length === 4 && !/id="(?:services|window-treatments|motorization)"/.test(html), `${route}: retain the concise hero, reviews, quote form and illustrated appointment section`);
+  requireThat(openingSection.includes(`<span class="landing-hero-title">${expectedService}</span> <span class="landing-hero-location">in Los Angeles &amp; Surrounding Areas</span>`), `${route}: identify the service and target area in the hero`);
+  requireThat(!/class="brand-bar"|class="brand-names"|class="alta-name"|hunter-douglas-gallery/.test(html), `${route}: omit the Hunter Douglas and Alta brand row`);
+  if (!route.includes('motorized-shades')) requireThat(openingSection.includes('class="hero-video-toggle"'), `${route}: preserve video pause access after removing the brand row`);
+  const productOptions = html.match(/<section class="section landing-products"[\s\S]*?<\/section>/)?.[0] || '';
+  requireThat((productOptions.match(/<article class="product"/g) || []).length === 4 && !/<p\b|<a\b/.test(productOptions), `${route}: show four product images and names without descriptions or browsing links`);
+  requireThat(html.includes(productOptions + '\n<section class="section about"') && !!productOptions, `${route}: put product cards directly above Woodland Hills`);
+  requireThat((html.match(/<section\b/g) || []).length === 5 && !/id="(?:services|window-treatments|motorization)"/.test(html), `${route}: retain the concise hero, reviews, quote form, image cards and illustrated appointment section`);
   requireThat(!/class="main-navigation"|class="menu-toggle"|class="footer-nav"/.test(html), `${route}: browsing menus are outside the conversion-only brief`);
   requireThat(!/<iframe\b/.test(html), `${route}: embedded maps must not provide an off-page exit`);
   requireThat(!/class="[^"]*(?:faq-list|questions-grid)|id="questions"|href="#questions"/.test(html), `${route}: landing-page FAQs must be removed`);

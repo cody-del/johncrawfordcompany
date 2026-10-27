@@ -4,13 +4,16 @@
 .landing-call-cta { min-height: 44px; padding: 13px 20px; font-size: 11px; letter-spacing: .08em; }
 .landing-page .landing-hero { min-height: 480px; padding: 48px 0 56px; }
 .landing-hero-inner { position: relative; z-index: 2; }
-.landing-page .landing-hero .hero-content { width: min(700px, 100%); padding: 40px; background: #faf7f3f2; }
-.landing-page .landing-hero h1 { font-size: clamp(38px, 3.8vw, 50px); line-height: 1.12; }
-.landing-page .landing-hero h1 span { margin-top: 14px; font-size: .61em; font-weight: 500; line-height: 1.35; }
+.landing-page .landing-hero .hero-content { width: min(700px, 100%); padding: 40px; background: rgb(250 247 243 / 88%); }
+.landing-page .landing-hero h1 { font-size: clamp(36px, 3.5vw, 46px); line-height: 1.12; }
+.landing-page .landing-hero h1 .landing-hero-title { margin: 0; font: inherit; white-space: nowrap; }
+.landing-page .landing-hero h1 .landing-hero-location { margin-top: 14px; font-size: .61em; font-weight: 500; line-height: 1.35; }
 .landing-page .hero-content > .landing-promise { margin-top: 22px; font-size: 17px; line-height: 1.65; }
 .landing-page .hero-actions { gap: 12px; margin-top: 26px; }
 .landing-motorized .hero-media img { object-position: 76% center; }
-.landing-page .brand-bar-inner { min-height: 76px; }
+.landing-page .landing-hero > .hero-video-toggle { position: absolute; z-index: 3; right: 24px; bottom: 24px; border-radius: 50%; background: var(--linen); color: var(--walnut); }
+.landing-products { padding-block: 52px 24px; }
+.landing-products .product-copy { padding-top: 14px; }
 .landing-page .about { padding-block: 52px; }
 .landing-page .about-grid { align-items: center; }
 .landing-page .about-copy p { max-width: 390px; }
@@ -63,10 +66,16 @@
   .landing-page .landing-hero { min-height: 0; padding-block: 24px 38px; }
   .landing-page .landing-hero .hero-content { padding: 28px 24px; }
   .landing-page .landing-hero h1 { font-size: clamp(30px, 8vw, 40px); }
-  .landing-page .landing-hero h1 span { margin-top: 12px; font-size: 22px; }
+  .landing-page .landing-hero h1 .landing-hero-title { white-space: normal; }
+  .landing-page .landing-hero h1 .landing-hero-location { margin-top: 12px; font-size: 22px; }
   .landing-page .hero-content > .landing-promise { margin-top: 18px; font-size: 16px; }
   .landing-page .hero-actions { display: grid; grid-template-columns: 1.3fr 1fr; }
   .landing-page .hero-actions > .btn { min-width: 0; padding-inline: 10px; font-size: 10px; letter-spacing: .08em; }
+  .landing-page .landing-hero > .hero-video-toggle { right: 20px; bottom: 4px; }
+  .landing-products { padding-block: 36px 12px; }
+  .landing-products .product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 16px; }
+  .landing-products .product > img { height: auto; aspect-ratio: 1.35; }
+  .landing-products .product h3 { font-size: 24px; }
   .landing-page .footer-main { grid-template-columns: 1fr; }
   .landing-footer-actions { flex-wrap: wrap; }
   .landing-footer-actions > .btn { min-width: 0; flex: 1; padding-inline: 12px; font-size: 11px; letter-spacing: .08em; }
