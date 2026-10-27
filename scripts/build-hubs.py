@@ -78,9 +78,7 @@ def head(page, hero_key=None, accessibility=False):
     title = page['title_tag']
     desc = page['meta_description']
     path = page['slug']
-    hub_css_version = 'accent-placement-corrected-1' if hero_key else 'hubs-1'
-    if hero_key:
-        hub_css_version = 'motorization-focus-1' if page['name'] == 'Motorized Shades' else 'aligned-product-cards-1'
+    hub_css_version = 'contact-layout-1' if hero_key else 'hubs-1'
     body_class = 'interior-page accent-review-page' if page['name'] == 'Shades' else 'interior-page'
     og = IMAGES[hero_key]['src'] if hero_key else '/assets/showroom-illustration.svg'
     schema = [{
