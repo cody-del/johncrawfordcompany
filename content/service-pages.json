@@ -1,0 +1,176 @@
+[
+  {
+    "id": "repair",
+    "name": "Blind & shade repair",
+    "slug": "/services/blind-shade-repair/",
+    "title": "Blind & Shade Repair in Los Angeles | John Crawford Co.",
+    "description": "Ask John Crawford Company about blind and shade repair in Los Angeles. Email photos for help assessing the problem, available parts and repair options.",
+    "heading": "Blind and shade repair in Los Angeles",
+    "intro": "A blind that won’t tilt or a shade that stops halfway doesn’t always need replacing. Tell us what’s happening, and we’ll help you find out whether a repair makes sense.",
+    "hero_image": "parkland",
+    "cta": "Ask about a repair",
+    "email_subject": "Blind and shade repair inquiry",
+    "overview": {
+      "heading": "Let’s see what can be fixed.",
+      "paragraphs": [
+        "Sometimes a small part is all that stands between a blind that works and one that doesn’t. John has collected components over the years and can help with selected brands, including some products we didn’t originally supply.",
+        "The product’s construction, condition and available parts determine what’s possible. If a repair is unlikely to last or replacement looks like the better use of your budget, we’ll talk that through with you."
+      ],
+      "links": [{"text": "Compare new blinds", "href": "/blinds/"}, {"text": "Explore shade options", "href": "/shades/"}]
+    },
+    "feature": {
+      "heading": "Start with a photo.",
+      "paragraphs": [
+        "You don’t need to know the name of the broken part. Email a few clear photos and describe what the treatment does when you try to use it. That gives us a better starting point than a brand name alone."
+      ],
+      "checklist": ["The whole blind or shade in its window", "A close view of the part or area causing trouble", "The product label, if you can find one", "A short description of what has changed"],
+      "note": "For a motorized shade, include the system name if you know it and tell us whether the problem affects one shade or several.",
+      "link": {"text": "Email your repair photos", "email": true}
+    },
+    "quote": {
+      "text": "John is Amazing! He is so kind and honest. Overall great guy to work with and helped me source blind brackets we had installed from Costco over 20 years ago! …",
+      "author": "Kamran Jahangard",
+      "source": "Google review"
+    },
+    "questions_heading": "Questions about blind and shade repairs",
+    "faqs": [
+      {"question": "Can you repair blinds you didn’t sell?", "answer": "Sometimes. We can work on selected outside brands when suitable parts are available. Email photos of the treatment and the problem so we can see whether it’s something we can help with."},
+      {"question": "Is a repair always less expensive than replacement?", "answer": "Not always. Parts, labor and the condition of the treatment all matter. We’ll help you weigh the repair against replacement rather than assume an older blind is worth fixing."},
+      {"question": "Can you help with a motorized shade that isn’t responding?", "answer": "Tell us which system you have and what happens when you use the control. Some problems can be addressed with phone guidance; others need inspection or parts. We’ll help you work out the next step."}
+    ],
+    "contact_heading": "Tell us what’s happening.",
+    "contact_text": "Email your photos or call us to talk about the problem. From our Woodland Hills showroom, we help customers across Los Angeles and nearby Valley communities with repair inquiries.",
+    "related": [{"text": "Motorized shades and controls", "href": "/motorized-shades/"}, {"text": "Measuring and installation", "href": "/services/window-treatment-installation/"}]
+  },
+  {
+    "id": "installation",
+    "name": "Measuring & installation",
+    "slug": "/services/window-treatment-installation/",
+    "title": "Window Treatment Installation Los Angeles | John Crawford",
+    "description": "Professional measuring and installation for blinds, shades, shutters and drapery in Los Angeles. Talk with John Crawford Company about your windows.",
+    "heading": "Window treatment measuring and installation in Los Angeles",
+    "intro": "The right treatment should fit the window and feel easy to use. We help you compare the options, take the measurements and handle installation, from where a shade sits to how a drapery panel moves.",
+    "hero_image": "carole",
+    "cta": "Talk about your windows",
+    "email_subject": "Window treatment measuring and installation",
+    "overview": {
+      "id": "measuring",
+      "heading": "A closer look at your windows",
+      "paragraphs": [
+        "A measuring visit is about more than width and height. The depth of a window, its trim, nearby handles and the space around it can all affect how a blind, shade or shutter fits.",
+        "Drapery brings a different set of choices: where the rod or track sits, how far the fabric extends and where the panels rest when they’re open. We can explain those differences while you’re exploring the look you want."
+      ],
+      "links": [{"text": "Explore shades", "href": "/shades/"}, {"text": "Compare shutters", "href": "/shutters/"}, {"text": "See drapery options", "href": "/drapery/"}]
+    },
+    "feature": {
+      "id": "installation",
+      "heading": "Installation includes a walkthrough",
+      "image": "powerview-blue",
+      "paragraphs": [
+        "We install the treatment, check its movement and show you how the controls work. You should feel comfortable opening a shade, adjusting a blind or moving a drapery panel when the job is finished.",
+        "If you’re considering motorization, we can help with compatible controls and hub setup. For a hardwired system, we can discuss coordination with your electrician. And if a question comes up afterward, you can still call us."
+      ],
+      "link": {"text": "Learn about motorized shades", "href": "/motorized-shades/"}
+    },
+    "story": {
+      "heading": "One window is welcome.",
+      "paragraphs": [
+        "John still remembers driving to help someone who needed just one mini blind for a bathroom. That visit led to a referral for a whole house of blinds.",
+        "He’s kept that approach. Whether you’re thinking about one window, a room of drapery or several rooms of shades, we’re happy to talk through it with you."
+      ]
+    },
+    "questions_heading": "Questions about measuring and installation",
+    "faqs": [
+      {"question": "Do I need measurements before I contact you?", "answer": "No. A few photos and a description of what you’d like to change are a useful place to start. We take the measurements needed for the treatment as part of planning your project."},
+      {"question": "Can you help with curtain rods and drapery tracks?", "answer": "Yes. We can look at the span, mounting points, brackets and room for the fabric to move. If you already have drapery and the hardware is causing trouble, tell us what’s happening so we can discuss repair or replacement."},
+      {"question": "Can I compare products at the showroom first?", "answer": "Yes. Schedule a visit to our Woodland Hills showroom to see materials and finishes and ask questions. You don’t need to have a particular product picked out."}
+    ],
+    "contact_heading": "Let’s look at the options for your windows.",
+    "contact_text": "Tell us which rooms you’re thinking about and what you’d like to change. We work with customers throughout Los Angeles from our appointment-only Woodland Hills showroom.",
+    "related": [{"text": "Custom blinds", "href": "/blinds/"}, {"text": "Blind and shade repair", "href": "/services/blind-shade-repair/"}]
+  },
+  {
+    "id": "commercial",
+    "name": "Commercial window treatments",
+    "slug": "/services/commercial-window-treatments/",
+    "title": "Commercial Window Treatments Los Angeles | John Crawford",
+    "description": "Interior blinds and shades for Los Angeles offices, restaurants and businesses. Get help with glare, privacy, product selection, measuring and installation.",
+    "heading": "Commercial window treatments in Los Angeles",
+    "intro": "Afternoon sun at a café table and glare on an office screen call for different solutions. We help Los Angeles businesses choose interior blinds and shades around the way people use the space.",
+    "hero_image": "designer-screen",
+    "cta": "Discuss your space",
+    "email_subject": "Commercial window treatment project",
+    "overview": {
+      "heading": "Keep the view. Soften the glare.",
+      "paragraphs": [
+        "John’s commercial work has included mesh solar shades for Valley food-service businesses. Those shades let people see outside while reducing glare from the windows.",
+        "Your space may need something different. We’ll talk about when the sun is a problem, what people need to see and how much privacy you want. That helps narrow the choice of fabric and treatment."
+      ],
+      "topics": [
+        {"title": "Offices", "text": "Consider desk positions, screen glare and privacy in meeting rooms alongside the look of the windows."},
+        {"title": "Restaurants and cafés", "text": "Think about the tables nearest the glass, changing daylight and the view customers enjoy from inside."},
+        {"title": "Street-facing spaces", "text": "Balance visibility from the sidewalk with the privacy and light control you want for the people inside."}
+      ]
+    },
+    "feature": {
+      "heading": "Compare fabrics and controls in person",
+      "image": "designer-roller",
+      "paragraphs": [
+        "Screen shades are one option. Depending on the room, a roller shade with more coverage or a blind with adjustable slats may suit you better. We can compare materials and explain how they change the light and privacy.",
+        "We also help with measuring, installation and compatible motorized controls. Schedule a showroom visit or tell us about your space by phone or email, and we’ll discuss a useful next step."
+      ],
+      "links": [{"text": "Explore shades", "href": "/shades/"}, {"text": "Compare blinds", "href": "/blinds/"}, {"text": "Motorized shade options", "href": "/motorized-shades/"}]
+    },
+    "questions_heading": "Questions about commercial blinds and shades",
+    "faqs": [
+      {"question": "Can you help with a small office or just a few windows?", "answer": "Yes. Tell us about the windows and the problem you’re trying to solve. You don’t need a whole-building project to start a conversation."},
+      {"question": "Can commercial shades be motorized?", "answer": "Motorization is available with compatible products. We can discuss controls for individual shades or groups of shades, along with installation and setup. The options depend on the products and system you choose."},
+      {"question": "What should I send for a commercial inquiry?", "answer": "Photos of the windows, the business location and a short description of the space are helpful. Tell us whether glare, privacy or another concern is the main reason you’re looking at window treatments."}
+    ],
+    "contact_heading": "Tell us how your space needs to work.",
+    "contact_text": "We’ll help you compare interior window coverings for the people who use the room every day. Call John Crawford Company or email a few photos to begin.",
+    "related": [{"text": "Measuring and installation", "href": "/services/window-treatment-installation/"}, {"text": "Blind and shade repair", "href": "/services/blind-shade-repair/"}]
+  },
+  {
+    "id": "upholstery",
+    "name": "Upholstery",
+    "slug": "/upholstery/",
+    "title": "Furniture Upholstery in Woodland Hills | John Crawford",
+    "description": "Explore furniture upholstery with John Crawford Company in Woodland Hills. Discuss your sofa or chair, compare fabric samples and weigh reupholstery costs.",
+    "heading": "Furniture upholstery in Woodland Hills",
+    "intro": "If you like the way your sofa sits or the way a favorite chair fits the room, new fabric may be worth a look. We help you explore reupholstery, starting with the piece you already own.",
+    "hero_image": null,
+    "cta": "Discuss your furniture",
+    "email_subject": "Furniture upholstery inquiry",
+    "overview": {
+      "heading": "A piece worth keeping",
+      "paragraphs": [
+        "A good frame, a family connection or a size that fits just right can make furniture hard to replace. Reupholstery gives you a way to consider a different fabric while keeping the piece you like.",
+        "John is straightforward about the cost: reupholstering can cost as much as new furniture, or more. It makes sense to compare both options, especially if you’re not attached to the piece."
+      ],
+      "topics": [
+        {"title": "A frame you value", "text": "Tell us what you like about the piece, whether it’s the construction, comfort or a connection to your family."},
+        {"title": "A size that works", "text": "A custom-sized sofa or sectional may fit a particular corner or room in a way a new piece doesn’t."},
+        {"title": "A different look", "text": "We can compare fabrics and ask our upholstery specialist about changes you have in mind for the shape of the piece."}
+      ]
+    },
+    "feature": {
+      "heading": "What goes into your upholstery quote",
+      "paragraphs": [
+        "We start by talking about the furniture and your budget. From there, we can bring fabric samples, take photos and measurements, and review the work with an upholstery specialist.",
+        "Once we have the specialist’s assessment, we prepare your quote so you can decide whether to go ahead. The conversation is about what’s right for your furniture, rather than assuming every piece needs to be saved."
+      ],
+      "checklist": ["Photos showing the whole piece and any worn areas", "What you like about it and what you’d change", "Your ideas for fabric, color or pattern", "The location of the furniture and your general budget"],
+      "link": {"text": "Email us about your furniture", "email": true}
+    },
+    "questions_heading": "Questions about furniture reupholstery",
+    "faqs": [
+      {"question": "Is reupholstery less expensive than buying new furniture?", "answer": "Not necessarily. It can cost as much as a new piece or more. The reasons to consider it often include the frame, comfort, custom size or sentimental value. We’ll help you compare the cost with what the piece means to you."},
+      {"question": "Can I choose a different fabric?", "answer": "Yes. We can bring samples and talk about the color, pattern and feel you’re looking for. Tell us how the furniture is used so we can help narrow the choices."},
+      {"question": "Can the shape of a sofa or chair be changed?", "answer": "Some changes may be possible. John has worked with an upholstery specialist on adjustments such as reshaping an arm or changing the look of a back. Share photos and your ideas so we can find out what’s appropriate for your piece."}
+    ],
+    "contact_heading": "Tell us about the piece you have in mind.",
+    "contact_text": "Email a few photos or call John to talk about your furniture. Our Woodland Hills showroom serves Los Angeles and nearby Valley communities; showroom visits are by appointment.",
+    "related": [{"text": "Drapery and fabric options for your windows", "href": "/drapery/"}, {"text": "About John Crawford Company", "href": "/about/"}]
+  }
+]

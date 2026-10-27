@@ -71,8 +71,15 @@ for (const hub of hubs) {
   requireThat(/<\/section>\s*<section class="section hub-introduction hub-intro-consultation"/.test(html), `${hub.slug}: consultation section must follow the hero`);
 }
 requireThat(pages.get('/motorized-shades/')?.html.includes('The PowerView® App is required for programmed operation.'), 'Missing PowerView scheduling disclosure');
-const expectedRoutes = ['/', ...hubs.map(hub => hub.slug), '/accessibility/', '/privacy/', '/about/', '/contact/', '/lp/custom-window-treatments/', '/lp/motorized-shades/'];
-requireThat(pages.size === expectedRoutes.length && expectedRoutes.every(route => pages.has(route)), `Expected ten website routes and two campaign landing pages; found ${[...pages.keys()].join(', ')}`);
+const services = JSON.parse(await readFile(resolve(root, 'content/service-pages.json'), 'utf8'));
+const expectedRoutes = ['/', ...hubs.map(hub => hub.slug), ...services.map(service => service.slug), '/accessibility/', '/privacy/', '/about/', '/contact/', '/lp/custom-window-treatments/', '/lp/motorized-shades/'];
+requireThat(pages.size === expectedRoutes.length && expectedRoutes.every(route => pages.has(route)), `Expected fourteen website routes and two campaign landing pages; found ${[...pages.keys()].join(', ')}`);
+for (const service of services) {
+  const html = pages.get(service.slug)?.html || '';
+  requireThat(html.includes('/services.css?v=services-1') && html.includes('"@type": "Service"'), `${service.slug}: service template or structured data missing`);
+  requireThat((html.match(/<details><summary>/g) || []).length === 3, `${service.slug}: missing service questions`);
+  requireThat(!/<form\b/.test(html) && html.includes('mailto:john@johncrawford.com') && html.includes('href="/contact/#appointment-form"'), `${service.slug}: preserve the email, telephone and central appointment inquiry journey`);
+}
 for (const [route, { html }] of pages) {
   if (route.startsWith('/lp/')) continue;
   requireThat(/href="\/about\/"(?: aria-current="page")?>About<\/a>/.test(html), `${route}: About navigation missing`);

@@ -9,7 +9,9 @@ Netlify serves the same checked files at https://johncrawfordcompany.netlify.app
 
 - `/`: approved homepage design.
 - `/shades/`, `/blinds/`, `/shutters/`, `/drapery/`, `/motorized-shades/`: first five product hubs, built from the approved copy.
-- `/accessibility/`: website assistance and verified business contact details.
+- `/about/`, `/contact/`: company story and contact form design.
+- `/services/blind-shade-repair/`, `/services/window-treatment-installation/`, `/services/commercial-window-treatments/`, `/upholstery/`: service pages based on the call and intake.
+- `/accessibility/`, `/privacy/`: website assistance, contact and privacy information.
 - `/lp/custom-window-treatments/`: campaign landing page for blinds, shades, shutters, drapery and motorization.
 - `/lp/motorized-shades/`: campaign landing page for motorized and automated shade searches.
 
@@ -32,7 +34,7 @@ Open http://127.0.0.1:4317/.
 - `scripts/check-site.mjs`, `scripts/check-hubs.mjs`: metadata, headings, assets, contact and route checks.
 - `scripts/check-customer-copy.py`: blocks recognizable internal writer notes and unfinished copy before publication.
 
-Run `python3 scripts/build-hubs.py` after changing public hub content, then `npm run check`. Generated HTML is committed so all important content is available without JavaScript.
+Run `npm run build:company` after changing public website content to regenerate hubs, company pages and services, then `npm run check`. Generated HTML is committed so all important content is available without JavaScript.
 
 Run `python3 scripts/build-landings.py` to rebuild the campaign pages with the approved branding. Both use taller responsive video heroes, customer reviews, four product image/name cards directly below the reviews, three concise benefits in a contained linen panel with a subtle magenta accent, an introduction to John beside the quote form, and the illustrated Woodland Hills appointment section. The desktop form is on the right: a full-width name field followed by phone/email together; all fields stack on phones. The verified paragraph about John's installation background and his California store opening in 1995 is restored beneath the Woodland Hills heading. Visits remain appointment only; landing pages omit the address and walk-in hours. There are no browsing menus, FAQs, vendor brand rows or off-page links. Privacy and accessibility help open in same-page dialogs. Forms remain disabled previews pending GHL configuration and tested delivery.
 
@@ -40,6 +42,6 @@ Run `python3 scripts/build-landings.py` to rebuild the campaign pages with the a
 
 ## Review status
 
-All pages retain `noindex, nofollow` and review canonical URLs. The current production domain has not been migrated. Individual collection, service and location pages remain separate future work. The client-requested upholstery photo placeholder remains on the homepage.
+All pages retain `noindex, nofollow` and review canonical URLs. The current production domain has not been migrated. Individual collection and location pages remain separate future work. The four service pages are linked through the shared Services navigation. The client-requested upholstery photo placeholder remains on the homepage and upholstery preview page.
 
 Private intake records, transcripts, dealer policies, local credentials and QA artifacts are excluded from this repository.

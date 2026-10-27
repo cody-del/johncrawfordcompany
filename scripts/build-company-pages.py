@@ -26,6 +26,15 @@ def update_navigation():
     text = path.read_text()
     text = text.replace('<a href="#about">About</a>', '<a href="/about/">About</a>')
     text = text.replace('<a href="#contact">Contact</a>', '<a href="/contact/">Contact</a>')
+    service_destinations = {
+        'consultation': '/services/window-treatment-installation/#measuring',
+        'installation': '/services/window-treatment-installation/#installation',
+        'repairs': '/services/blind-shade-repair/',
+        'upholstery': '/upholstery/',
+        'commercial': '/services/commercial-window-treatments/'
+    }
+    for anchor, destination in service_destinations.items():
+        text = text.replace(f'href="#{anchor}"', f'href="{destination}"')
     path.write_text(text)
 
 
@@ -194,3 +203,4 @@ if __name__ == '__main__':
         target.parent.mkdir(parents=True, exist_ok=True)
         target.write_text(html)
         print(page['slug'])
+    subprocess.run([sys.executable, str(ROOT / 'scripts/build-services.py')], check=True)
