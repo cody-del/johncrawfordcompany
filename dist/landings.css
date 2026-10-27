@@ -13,8 +13,8 @@
 .landing-page .landing-hero > .hero-video-toggle { position: absolute; z-index: 3; right: 24px; bottom: 24px; border-radius: 50%; background: var(--linen); color: var(--walnut); }
 .landing-page .reviews { padding-block: 64px; }
 .landing-benefits { padding-block: 56px 64px; }
-.landing-benefits > .container { padding: 44px; border: 1px solid var(--line); border-radius: 0 32px 0 32px; background: var(--linen); }
-.landing-benefits > .container::before { content: ""; display: block; width: 44px; height: 3px; margin-bottom: 20px; background: var(--magenta); }
+.landing-benefits > .container { padding: 44px; border: 1px solid var(--line); border-radius: 0 32px 0 32px; background: var(--linen); text-align: center; }
+.landing-benefits > .container::before { content: ""; display: block; width: 44px; height: 3px; margin: 0 auto 20px; background: var(--magenta); }
 .landing-benefits h2 { font-size: 38px; }
 .landing-benefits-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px; margin-top: 36px; }
 .landing-benefit { min-width: 0; padding-top: 22px; border-top: 1px solid var(--line); }
