@@ -34,7 +34,7 @@ Open http://127.0.0.1:4317/.
 
 Run `python3 scripts/build-hubs.py` after changing public hub content, then `npm run check`. Generated HTML is committed so all important content is available without JavaScript.
 
-Run `python3 scripts/build-landings.py` to rebuild the two campaign pages from the approved homepage sections. Both inherit `styles.css`; additions in `landings.css` are scoped to the landing pages. The Woodland Hills artwork, story, address, hours and layout are verified against the homepage; its directions button is replaced with a phone call. Landing pages have no off-page links or browsing menus. Privacy and accessibility assistance open in dialogs on the same page. Consultation forms remain design previews pending lead routing; phone and email links are active.
+Run `python3 scripts/build-landings.py` to rebuild the two campaign pages from the approved homepage sections. Both inherit `styles.css`; additions in `landings.css` are scoped to the landing pages. The Woodland Hills artwork, story, address, hours and layout are verified against the homepage; its directions button is replaced with a phone call. Landing pages have no off-page links or browsing menus. Privacy and accessibility assistance open in dialogs on the same page. FAQs are omitted from both landing pages. Every conversion action says Call Us or Get Free Quote. Quote forms remain design previews pending the configured GHL integration; landing-page telephone links are active.
 
 `netlify.toml` publishes `dist` and runs `npm run check` before upload. The Netlify project is connected to `main` for continuous deployment. Product images are labeled by collection and are not presented as John Crawford installations.
 

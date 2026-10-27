@@ -24,15 +24,15 @@ def absolute_assets(text):
     return text.replace('href="styles.css', 'href="/styles.css').replace('src="app.js', 'src="/app.js')
 
 
-def cta(text='Request a consultation'):
-    return f'<a class="btn btn-primary" href="#contact">{e(text)}</a>'
+def cta():
+    return '<a class="btn btn-primary" href="#contact">Get Free Quote</a>'
 
 
 def header(motorized):
     return '''<header class="site-header"><div class="header-inner">
       <div class="brand"><img src="/assets/john-crawford-logo.webp" alt="John Crawford Company — Window Treatments" width="1672" height="941" fetchpriority="high"></div>
-      <div class="landing-header-actions"><a class="hero-phone" href="tel:+18188845464"><span class="landing-desktop-phone">Call (818) 884-5464</span><span class="landing-mobile-call">Call the showroom</span></a>
-      <a class="btn btn-primary header-cta" href="#contact">Request a consultation</a></div>
+      <div class="landing-header-actions"><span class="landing-header-number">(818) 884-5464</span><a class="btn btn-showroom-contact landing-call-cta" href="tel:+18188845464">Call Us</a>
+      <a class="btn btn-primary header-cta" href="#contact">Get Free Quote</a></div>
       </div></header>'''
 
 
@@ -42,10 +42,10 @@ def footer(motorized):
       <div class="container footer-main">
       <div class="footer-business"><div class="footer-brand"><img src="/assets/john-crawford-logo.webp" alt="John Crawford Company — Window Treatments" width="1672" height="941" loading="lazy" decoding="async"></div>
       <p>Custom window treatments in Los Angeles.<br>Personal service from Woodland Hills.</p></div>
-      <div class="landing-footer-actions"><h2>Talk about your project</h2>''' + cta() + '''<a class="footer-phone" href="tel:+18188845464">Call (818) 884-5464</a></div>
+      <div class="landing-footer-actions"><h2>Talk about your project</h2>''' + cta() + '''<a class="btn btn-showroom-contact" href="tel:+18188845464">Call Us</a></div>
       <section class="footer-contact" aria-labelledby="footer-contact-heading"><div class="footer-contact-details"><h2 id="footer-contact-heading">Our Woodland Hills showroom</h2>
       <address>22311 Ventura Blvd #101<br>Woodland Hills, CA 91364</address><p class="footer-hours">Monday–Friday, 9am–5pm<br>Saturday–Sunday closed</p>
-      <a class="footer-phone" href="tel:+18188845464">(818) 884-5464</a></div></section></div>
+      <p class="landing-public-phone">(818) 884-5464</p></div></section></div>
       <div class="container footer-bottom"><p>© <span id="year">2026</span> John Crawford Company. All rights reserved.</p><div class="landing-footer-information">
       <button class="landing-info-button" type="button" data-landing-dialog="landing-accessibility-dialog" aria-haspopup="dialog" aria-controls="landing-accessibility-dialog">Accessibility</button>
       <button class="landing-info-button" type="button" data-landing-dialog="landing-privacy-dialog" aria-haspopup="dialog" aria-controls="landing-privacy-dialog">Privacy Policy</button></div></div></footer>'''
@@ -53,20 +53,21 @@ def footer(motorized):
 
 def showroom():
     html = section('about')
-    return re.sub(r'<a class="btn btn-primary" href="https://www.google.com/maps/[^<]+[\s\S]*?</a>',
-                  '<a class="btn btn-primary" href="tel:+18188845464">Call us</a>', html)
+    html = re.sub(r'<a class="btn btn-primary" href="https://www.google.com/maps/[^<]+[\s\S]*?</a>',
+                  '<a class="btn btn-showroom-contact" href="tel:+18188845464">Call Us</a>', html)
+    return html.replace('class="btn btn-showroom-contact" href="#contact">Contact Us', 'class="btn btn-primary" href="#contact">Get Free Quote')
 
 
 def information_dialogs():
     return '''<dialog class="landing-info-dialog" id="landing-privacy-dialog" aria-labelledby="landing-privacy-heading">
       <div class="landing-dialog-heading"><h2 id="landing-privacy-heading">Privacy Policy</h2><form method="dialog"><button class="landing-info-button" type="submit" autofocus>Close</button></form></div>
-      <p>The consultation form on this review page does not accept submissions. If you call us, we use the information you provide to respond and discuss your project.</p>
+      <p>The quote form on this review page does not accept submissions. If you call us, we use the information you provide to respond and discuss your project.</p>
       <p>These pages are hosted through Netlify and ChatGPT Sites. Hosting providers may process technical information, such as IP addresses, browser details and request logs, to deliver and secure the pages. Advertising pixels and audience-tracking analytics have not been installed on these pages.</p>
       <p>For questions about information you provide, call John Crawford Company at <a href="tel:+18188845464">(818) 884-5464</a>. You can also write to 22311 Ventura Blvd #101, Woodland Hills, CA 91364.</p></dialog>
       <dialog class="landing-info-dialog" id="landing-accessibility-dialog" aria-labelledby="landing-accessibility-heading">
       <div class="landing-dialog-heading"><h2 id="landing-accessibility-heading">Accessibility assistance</h2><form method="dialog"><button class="landing-info-button" type="submit" autofocus>Close</button></form></div>
-      <p>If you have difficulty reading this page or requesting a consultation, call <a href="tel:+18188845464">(818) 884-5464</a>. Tell us which feature caused the problem and how you would like us to contact you.</p>
-      <p>We can discuss products and consultation requests by phone. Showroom hours are Monday–Friday, 9 am–5 pm.</p></dialog>'''
+      <p>If you have difficulty reading this page or requesting a quote, call <a href="tel:+18188845464">(818) 884-5464</a>. Tell us which feature caused the problem and how you would like us to contact you.</p>
+      <p>We can discuss products and quote requests by phone. Showroom hours are Monday–Friday, 9 am–5 pm.</p></dialog>'''
 
 
 def reviews(motorized):
@@ -87,7 +88,7 @@ def product_card(key, title, anchor, copy):
     return f'''<article class="product" id="{anchor}">
       <img src="{image['src']}" alt="{e(image['alt'])}" width="{image['width']}" height="{image['height']}" loading="lazy" decoding="async">
       <div class="product-copy"><h3>{e(title)}</h3><p>{e(copy)}</p>
-      <a class="text-link" href="#contact">Discuss {e(title.lower())}</a></div>
+      <a class="text-link" href="#contact" aria-label="Get Free Quote for {e(title.lower())}">Get Free Quote</a></div>
       <p class="landing-photo-caption">{e(image['caption'])}</p></article>'''
 
 
@@ -95,7 +96,7 @@ def products(motorized):
     if not motorized:
         html = section('window-treatments')
         for name in ['blinds', 'shades', 'shutters', 'drapery']:
-            html = html.replace(f'href="/{name}/">Explore {name}', f'href="#contact">Discuss {name}')
+            html = html.replace(f'href="/{name}/">Explore {name}', f'href="#contact" aria-label="Get Free Quote for {name}">Get Free Quote')
         return html
     cards = [
         ('designer-roller', 'Roller shades', 'roller-shades', 'A clean look with fabrics for soft daylight or more room darkening. We’ll compare opacity and compatible motorized controls for your windows.'),
@@ -114,7 +115,7 @@ def motorization(motorized):
         html = section('motorization')
         html = html.replace('We offer Hunter Douglas PowerView and Somfy motorization, including compatible hub setup. We’ll help you choose the right controls and show you how to use them.',
                             'We offer Hunter Douglas PowerView® Automation, including compatible hub setup. We’ll help you choose the right controls and show you how to use them.')
-        html = html.replace('href="/motorized-shades/">Explore motorized shades', 'href="#contact">Discuss motorized shades')
+        html = html.replace('href="/motorized-shades/">Explore motorized shades', 'href="#contact">Get Free Quote')
         html = html.replace('</ul>', '</ul><p class="landing-disclosure">The PowerView® App is required for programmed operation.</p>')
         return html
     return '''<section class="section linen motorization" id="motorization" aria-labelledby="motor-heading">
@@ -123,7 +124,7 @@ def motorization(motorized):
       <p>Lower several shades together when the afternoon sun arrives, or adjust a tall window from your seat. PowerView® Automation operates selected Hunter Douglas window treatments with a remote or the PowerView® App.</p>
       <ul class="simple-list"><li>Handheld and wall-mounted controls</li><li>Group compatible shades by room</li><li>Set schedules in the PowerView® App</li></ul>
       <p>John and Max help you choose the controls, confirm any gateway requirements and set up the system at installation.</p>
-      <p class="landing-disclosure">The PowerView® App is required for programmed operation.</p>''' + cta('Discuss your motorized shades') + '</div></div></section>'
+      <p class="landing-disclosure">The PowerView® App is required for programmed operation.</p>''' + cta() + '</div></div></section>'
 
 
 def services(motorized):
@@ -144,42 +145,22 @@ def services(motorized):
     ) + '</div><div class="landing-section-action">' + cta() + '</div></div></section>'
 
 
-def questions(motorized):
-    general = [
-        ('How do I choose between blinds, shades, shutters and drapery?', 'Start with how you use the room, the amount of light and privacy you need, and the look you like. We’ll help you compare materials, fabrics and controls with your windows and budget in mind.'),
-        ('Can you help with privacy and room darkening?', 'Yes. We can compare fabrics, opacity, linings and layering. Daytime and nighttime privacy can differ, especially with solar and sheer fabrics. The product, fit and light around the edges all affect how dark a room feels.'),
-        ('Can I include motorization?', 'Motorization is available with compatible window treatments. Tell us which windows you want to control, and whether you prefer a remote, wall control or app. We’ll confirm the options for the product you choose.'),
-        ('What affects the price?', 'Window dimensions, product style, material, fabric, lining, controls and installation requirements affect your quote. Share your priorities and budget so we can help you compare suitable choices.'),
-        ('Which areas do you serve?', 'We’re based in Woodland Hills and serve the San Fernando Valley and parts of greater Los Angeles, including Calabasas, Beverly Hills, Malibu and Santa Monica. Contact us with your ZIP code to discuss your project.')
-    ]
-    motor = [
-        ('Can I use a remote instead of an app?', 'Many systems offer a handheld remote or wall control as well as an app. We’ll confirm the options available for your shades. The PowerView® App is required for programmed operation.'),
-        ('Can the shades open and close on a schedule?', 'Selected systems support scheduled operation. With Hunter Douglas PowerView® Automation, you set schedules in the PowerView® App. We’ll confirm the controls and any gateway needed for your setup.'),
-        ('Will motorized shades work with my smart-home system?', 'Tell us which system you use. We’ll check the shade motor, controls and any gateway or accessories needed to connect them.'),
-        ('Can you motorize shades I already have?', 'Sometimes. The product, age, condition and available components determine what’s possible. Send the brand and model if you know them, along with photos, so we can review the options.'),
-        ('How are motorized shades powered?', 'Power choices depend on the product and may include replaceable batteries, rechargeable power or a wired connection. We’ll discuss access for charging or battery changes. If electrical work is needed, we can discuss the shade requirements with your electrician.'),
-        general[-1]
-    ]
-    title = 'Questions about motorized shades' if motorized else 'Before you choose your window treatments'
-    return f'''<section class="section questions" id="questions" aria-labelledby="questions-heading"><div class="container questions-grid">
-      <div class="questions-intro"><h2 id="questions-heading">{title}</h2><p>Talk through your windows with John and Max. Call <a href="tel:+18188845464">(818) 884-5464</a>.</p></div>
-      <div class="faq-list">''' + ''.join(f'<details><summary>{e(q)}</summary><p>{e(a)}</p></details>' for q,a in (motor if motorized else general)) + '</div></div></section>'
 
 
 def contact(motorized):
-    heading = 'Let’s talk about your motorized shades.' if motorized else 'Let’s talk about your windows.'
+    heading = 'Get a free quote for motorized shades.' if motorized else 'Get a free quote for your windows.'
     copy = 'Tell us which windows you’d like to operate more easily. We’ll help you consider the shade style, controls and installation.' if motorized else 'Tell us about your rooms and what you’d like to change. We’ll help you compare blinds, shades, shutters, drapery and motorization.'
     return f'''<section class="section linen contact landing-contact" id="contact" aria-labelledby="contact-heading">
       <div class="container landing-contact-grid"><div class="landing-contact-copy"><h2 id="contact-heading">{heading}</h2><p>{copy}</p>
-      <div class="contact-actions"><a class="btn btn-primary" href="tel:+18188845464">Call (818) 884-5464</a></div>
+      <div class="contact-actions"><a class="btn btn-showroom-contact" href="tel:+18188845464">Call Us</a><p class="landing-public-phone">(818) 884-5464</p></div>
       <div class="landing-contact-location"><address>22311 Ventura Blvd #101, Woodland Hills, CA 91364</address><p>Monday–Friday, 9 am–5 pm</p></div></div>
-      <form class="landing-form" aria-label="Consultation form preview" aria-describedby="form-preview form-required">
-      <h3>Request a consultation</h3><p class="landing-preview-note" id="form-preview">This form is a design preview. Please call us about your project.</p>
+      <form class="landing-form" aria-label="Free quote form preview" aria-describedby="form-preview form-required">
+      <h3>Get your free quote</h3><p class="landing-preview-note" id="form-preview">This form is a design preview. Please call us about your project.</p>
       <div class="landing-form-fields">
       <div class="landing-form-field"><label for="lead-name">Full name</label><input id="lead-name" name="name" autocomplete="name" type="text" maxlength="120" required disabled></div>
       <div class="landing-form-field"><label for="lead-phone">Phone number</label><input id="lead-phone" name="phone" autocomplete="tel" type="tel" maxlength="30" required disabled></div>
       <div class="landing-form-field"><label for="lead-email">Email</label><input id="lead-email" name="email" autocomplete="email" type="email" maxlength="254" required disabled></div>
-      </div><p class="landing-required" id="form-required">All fields are required.</p><button class="btn btn-primary" type="button" disabled>Request a consultation</button>
+      </div><p class="landing-required" id="form-required">All fields are required.</p><button class="btn btn-primary" type="button" disabled>Get Free Quote</button>
       <p class="landing-privacy">We use your contact details to respond to your project inquiry. <button class="landing-info-button" type="button" data-landing-dialog="landing-privacy-dialog" aria-haspopup="dialog" aria-controls="landing-privacy-dialog">Privacy Policy</button>.</p></form></div></section>'''
 
 
@@ -195,13 +176,15 @@ def build(motorized=False):
     head = re.sub(r'(<meta property="og:title" content=")[^"]*', lambda m:m[1]+e(title), head)
     head = head.replace(f'href="{BASE}/"', f'href="{BASE}{route}"').replace(f'content="{BASE}/"', f'content="{BASE}{route}"')
     head = head.replace('app.js?v=hubs-1', 'app.js?v=landing-conversion-1')
-    head = head.replace('</head>', '<link rel="stylesheet" href="/landings.css?v=conversion-only-1">\n</head>')
+    head = head.replace('</head>', '<link rel="stylesheet" href="/landings.css?v=quote-cta-1">\n</head>')
     if motorized:
         head = re.sub(r'  <link rel="preload" href="assets/hero-room-poster-[^\n]+\n', '', head)
         head = head.replace(BASE+'/assets/hero-room-poster-desktop.webp', BASE+'/assets/powerview-wall-remote.jpg')
         head = head.replace('A finished shade installation from John Crawford Company project footage', 'Hunter Douglas PowerView wall-mounted remote beside blue window shades')
         head = head.replace('</head>', '<link rel="preload" as="image" href="/assets/powerview-wall-remote.jpg">\n</head>')
     hero = section('top')
+    hero = hero.replace('Request a consultation', 'Get Free Quote')
+    hero = re.sub(r'<a class="hero-phone" href="tel:[^"]+">[\s\S]*?</a>', '<a class="btn btn-showroom-contact" href="tel:+18188845464">Call Us</a>', hero)
     if motorized:
         hero = hero.replace('Custom Window Treatments <span>in Los Angeles, California</span>', 'Motorized Shades <span>in Los Angeles, California</span>')
         hero = hero.replace('Blinds, shades, shutters and drapery, chosen for your rooms and professionally installed.<span class="hero-detail"> Get personal help with the details, from the first fabric sample to the final fit.</span>', 'Adjust one shade or a whole room with compatible remote, wall or app controls.<span class="hero-detail"> John and Max help you choose, measure, install and set up your automated shades.</span>')
@@ -212,8 +195,9 @@ def build(motorized=False):
     if motorized:
         brandbar = re.sub(r'<button class="hero-video-toggle"[\s\S]*?</button>', '', brandbar)
     mobile = re.search(r'<div class="mobile-contact"[\s\S]*?</div>', HOME).group()
+    mobile = mobile.replace('Call the showroom', 'Call Us').replace('Request a consultation', 'Get Free Quote')
     body = '\n'.join([header(motorized), '<main id="main">', hero, brandbar, reviews(motorized), products(motorized),
-                      showroom(), motorization(motorized), services(motorized), questions(motorized), contact(motorized), '</main>', footer(motorized), mobile, information_dialogs()])
+                      showroom(), motorization(motorized), services(motorized), contact(motorized), '</main>', footer(motorized), mobile, information_dialogs()])
     html = '<!doctype html>\n<html lang="en">\n'+absolute_assets(head)+'\n<body class="landing-page'+(' landing-motorized' if motorized else '')+'">\n<a class="skip-link" href="#main">Skip to content</a>\n'+absolute_assets(body)+'\n</body>\n</html>\n'
     path = DIST / route.strip('/') / 'index.html'
     path.parent.mkdir(parents=True, exist_ok=True)

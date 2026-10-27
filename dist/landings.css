@@ -1,13 +1,20 @@
 /* Landing pages inherit the approved homepage design; additions are scoped here. */
 .landing-section-action { margin-top: 34px; }
-.landing-header-actions { display: flex; align-items: center; gap: 28px; }
-.landing-mobile-call { display: none; }
+.landing-header-actions { display: flex; align-items: center; gap: 16px; }
+.landing-header-number { font-size: 16px; white-space: nowrap; }
+.landing-call-cta { min-height: 44px; padding: 13px 20px; font-size: 11px; letter-spacing: .08em; }
+.landing-page .hero-actions { gap: 12px; }
+.landing-page .btn-primary:is(:hover, :focus-visible, :active) { color: white; background: var(--magenta-hover); }
+.landing-page .btn-showroom-contact:is(:hover, :focus-visible, :active) { color: white; background: #202020; }
+.landing-page a.btn:is(:hover, :focus-visible, :active) { text-decoration: none; }
 .landing-page .footer-main { grid-template-columns: 1fr 1fr 1.1fr; }
 .landing-page .footer-contact { display: block; grid-column: auto; border: 0; padding-top: 0; }
 .landing-page .footer-contact-details { display: flex; }
 .landing-footer-actions { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; }
 .landing-footer-actions h2 { margin-bottom: 0; }
-.landing-footer-actions .footer-phone { padding-block: 6px; font-weight: 500; }
+.landing-footer-actions > .btn { min-width: 180px; }
+.landing-public-phone { font-size: 16px; margin-top: 14px; }
+.landing-contact-copy .contact-actions .landing-public-phone { margin-top: 0; text-align: center; }
 .landing-footer-information { display: flex; flex-wrap: wrap; gap: 24px; }
 .landing-info-button { display: inline; padding: 4px 0; border: 0; background: none; color: var(--magenta); font: inherit; line-height: inherit; text-decoration: underline; text-underline-offset: 4px; cursor: pointer; }
 .landing-info-button:hover { color: var(--walnut); }
@@ -50,9 +57,9 @@
   .landing-contact-grid { grid-template-columns: 1fr; gap: 32px; }
 }
 @media (max-width: 700px) {
-  .landing-desktop-phone { display: none; }
-  .landing-mobile-call { display: inline; }
-  .landing-header-actions .hero-phone { font-size: 13px; }
+  .landing-header-number { display: none; }
+  .landing-header-actions { margin-left: auto; }
+  .landing-call-cta { padding-inline: 15px; }
   .landing-page .footer-main { grid-template-columns: 1fr; }
   .landing-info-dialog { padding: 24px; }
   .landing-form { padding: 26px 22px; }

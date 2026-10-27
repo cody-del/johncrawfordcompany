@@ -75,12 +75,19 @@ const homeShowroom = showroomContent(pages.get('/')?.html || '');
 for (const route of ['/lp/custom-window-treatments/', '/lp/motorized-shades/']) {
   const html = pages.get(route)?.html || '';
   requireThat(showroomContent(html) === homeShowroom, `${route}: preserve the approved Woodland Hills artwork, story, address and hours`);
-  requireThat(html.includes('href="/landings.css?v=conversion-only-1"'), `${route}: scoped landing-page styles missing`);
+  requireThat(html.includes('href="/landings.css?v=quote-cta-1"'), `${route}: scoped landing-page styles missing`);
   const form = html.match(/<form class="landing-form"[\s\S]*?<\/form>/)?.[0] || '';
   requireThat((form.match(/\bdisabled\b/g) || []).length === 4 && !/action=|data-netlify|type="submit"/.test(form), `${route}: do not accept leads before the form destination is confirmed`);
   requireThat(html.includes('The PowerView® App is required for programmed operation.'), `${route}: missing PowerView disclosure`);
   requireThat(!/class="main-navigation"|class="menu-toggle"|class="footer-nav"/.test(html), `${route}: browsing menus are outside the conversion-only brief`);
   requireThat(!/<iframe\b/.test(html), `${route}: embedded maps must not provide an off-page exit`);
+  requireThat(!/class="[^"]*(?:faq-list|questions-grid)|id="questions"|href="#questions"/.test(html), `${route}: landing-page FAQs must be removed`);
+  const conversionContent = html.split('<dialog class="landing-info-dialog"')[0];
+  for (const match of conversionContent.matchAll(/<a\b[^>]*href="(#contact|tel:[^"]+)"[^>]*>([\s\S]*?)<\/a>/g)) {
+    const label = match[2].replace(/<[^>]*>/g, '').trim();
+    requireThat(label === (match[1] === '#contact' ? 'Get Free Quote' : 'Call Us'), `${route}: inconsistent conversion action ${label}`);
+  }
+  requireThat(/<button class="btn btn-primary" type="button" disabled>Get Free Quote<\/button>/.test(html), `${route}: form button must match Get Free Quote actions`);
   for (const anchor of html.matchAll(/<a\b[^>]*href="([^"]+)"[^>]*>/g)) {
     requireThat(['#main', '#contact', 'tel:+18188845464'].includes(anchor[1]), `${route}: non-conversion link ${anchor[1]}`);
   }
