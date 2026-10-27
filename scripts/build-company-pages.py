@@ -85,7 +85,7 @@ def head(page, kind):
 <link rel="preload" href="/assets/brand-latin-1.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/brand-latin-0.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/fonts.css?v=fonts-2"><link rel="stylesheet" href="/styles.css?v=product-cards-1">
-<link rel="stylesheet" href="/hubs.css?v=contact-centered-1"><link rel="stylesheet" href="/company-pages.css?v=company-pages-2">
+<link rel="stylesheet" href="/hubs.css?v=contact-centered-1"><link rel="stylesheet" href="/company-pages.css?v=company-pages-3">
 <script src="/app.js?v=company-pages-1" defer></script>
 <script type="application/ld+json">{json.dumps(schema, ensure_ascii=False).replace('<', chr(92)+'u003c')}</script>
 </head><body class="interior-page company-page company-page--{page['name'].lower()}">
@@ -166,8 +166,8 @@ def contact_body(page):
     </div></section>
     <section class="section company-showroom linen" id="showroom" aria-labelledby="showroom-heading"><div class="container company-showroom-grid">
       {showroom_art('company-showroom-art')}
-      <div class="company-showroom-info"><h2 id="showroom-heading">{e(page['showroom_heading'])}</h2><p>{e(page['showroom'])}</p>{contact_details()}<p class="company-service-area">{e(page['areas'])}</p></div>
-    </div></section>
+      <div class="company-showroom-info"><h2 id="showroom-heading">{e(page['showroom_heading'])}</h2><p>{e(page['showroom'])}</p>{contact_details()}</div>
+    </div><div class="container company-showroom-areas"><p>{e(page['areas'])}</p></div></section>
     <section class="section company-help" aria-labelledby="repair-heading"><div class="container company-help-grid">
       <h2 id="repair-heading">{e(page['repair_heading'])}</h2><div class="company-prose"><p>{e(page['repair'])}</p>
       <a class="text-link" href="mailto:john@johncrawford.com?subject=Window%20treatment%20repair">Email us about a repair</a>

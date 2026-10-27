@@ -80,7 +80,7 @@ for (const [route, type] of [['/about/', 'AboutPage'], ['/contact/', 'ContactPag
   const html = pages.get(route)?.html || '';
   requireThat(html.includes(`"@type": "${type}"`), `${route}: page schema missing`);
   requireThat(html.includes('href="tel:+18188845464"') && html.includes('href="mailto:john@johncrawford.com'), `${route}: direct contact destinations missing`);
-  requireThat(html.includes('/company-pages.css?v=company-pages-2'), `${route}: scoped styles missing`);
+  requireThat(html.includes('/company-pages.css?v=company-pages-3'), `${route}: scoped styles missing`);
 }
 const contactForm = pages.get('/contact/')?.html.match(/<form class="hub-consultation-form"[\s\S]*?<\/form>/)?.[0] || '';
 requireThat((contactForm.match(/\bdisabled\b/g) || []).length === 7 && !/action=|data-netlify|type="submit"/.test(contactForm), 'Contact form must remain a design preview until GHL is configured');
