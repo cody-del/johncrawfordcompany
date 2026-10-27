@@ -18,7 +18,7 @@
 .landing-benefit { min-width: 0; padding-top: 22px; border-top: 1px solid var(--line); }
 .landing-benefit h3 { font-size: 26px; }
 .landing-benefit p { margin-top: 12px; font-size: 16px; line-height: 1.7; }
-.landing-products { padding-block: 72px 24px; }
+.landing-products { padding-block: 0; }
 .landing-products .product-copy { padding-top: 14px; }
 .landing-page .about { padding-block: 72px; }
 .landing-page .about-grid { align-items: center; }
@@ -99,7 +99,6 @@
   .landing-benefits-grid { grid-template-columns: minmax(0, 1fr); gap: 28px; margin-top: 28px; }
   .landing-benefit h3 { font-size: 24px; }
   .landing-benefit { padding-top: 20px; }
-  .landing-products { padding-block: 48px 12px; }
   .landing-products .product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 16px; }
   .landing-products .product > img { height: auto; aspect-ratio: 1.35; }
   .landing-products .product h3 { font-size: 24px; }

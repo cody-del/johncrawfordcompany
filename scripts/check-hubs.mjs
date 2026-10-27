@@ -99,13 +99,13 @@ for (const route of ['/lp/custom-window-treatments/', '/lp/motorized-shades/']) 
   requireThat(html.includes('<strong>Appointment Only</strong>') && html.includes('Fill the form to schedule a showroom appointment.'), `${route}: direct showroom visits through an appointment request`);
   requireThat(/<p class="landing-john-story">[^<]*installing window treatments[^<]*1995\.[^<]*<\/p>/.test(html), `${route}: restore the concise, verified story about John's installation experience and California store`);
   requireThat(!html.includes('Come in to see fabrics and finishes'), `${route}: keep the restored showroom story concise`);
-  requireThat(html.includes('href="/landings.css?v=benefits-layout-1"'), `${route}: scoped landing-page styles missing`);
+  requireThat(html.includes('href="/landings.css?v=products-after-reviews-1"'), `${route}: scoped landing-page styles missing`);
   const form = html.match(/<form class="landing-form"[\s\S]*?<\/form>/)?.[0] || '';
   requireThat((form.match(/\bdisabled\b/g) || []).length === 5 && !/action=|data-netlify|type="submit"/.test(form), `${route}: do not accept leads before the form destination is confirmed`);
   requireThat(form.includes('name="showroom-appointment" type="checkbox"') && form.includes('I’d like a showroom appointment.'), `${route}: allow an explicit showroom appointment request`);
   if (/programmed operation|schedule (?:compatible )?shades/i.test(html)) requireThat(html.includes('The PowerView® App is required for programmed operation.'), `${route}: missing PowerView disclosure for programmed shade operation`);
   const openingSection = html.match(/<main[^>]*>\s*(<section\b[\s\S]*?<\/section>)/)?.[1] || '';
-  requireThat(!openingSection.includes(form) && /<section class="reviews"[\s\S]*?<\/section>\s*<section class="section landing-benefits"[\s\S]*?<\/section>\s*<section class="section linen landing-quote"/.test(html) && !!form, `${route}: put outcomes and the quote form after the reviews`);
+  requireThat(!openingSection.includes(form) && /<section class="reviews"[\s\S]*?<\/section>\s*<section class="section landing-products"[\s\S]*?<\/section>\s*<section class="section landing-benefits"[\s\S]*?<\/section>\s*<section class="section linen landing-quote"/.test(html) && !!form, `${route}: follow reviews with product images, outcomes and the quote form`);
   requireThat(html.includes('class="container landing-quote-grid"') && /<div class="landing-company-summary">[\s\S]*?<h2 id="company-summary-heading">Work with John Crawford\.<\/h2>[\s\S]*?<\/div>\s*<form class="landing-form"/.test(html), `${route}: place the John introduction beside the right-side form`);
   requireThat((html.match(/<article class="landing-benefit">/g) || []).length === 3, `${route}: include three concise customer outcomes`);
   const expectedService = route.includes('motorized-shades') ? 'Motorized Shades' : 'Custom Window Treatments';
@@ -114,7 +114,8 @@ for (const route of ['/lp/custom-window-treatments/', '/lp/motorized-shades/']) 
   requireThat(openingSection.includes('id="hero-video"') && openingSection.includes('class="hero-video-toggle"'), `${route}: restore the website video with a pause control on both landing pages`);
   const productOptions = html.match(/<section class="section landing-products"[\s\S]*?<\/section>/)?.[0] || '';
   requireThat((productOptions.match(/<article class="product"/g) || []).length === 4 && !/<p\b|<a\b/.test(productOptions), `${route}: show four product images and names without descriptions or browsing links`);
-  requireThat(html.includes(productOptions + '\n<section class="section about"') && !!productOptions, `${route}: put product cards directly above Woodland Hills`);
+  const reviewSection = html.match(/<section class="reviews"[\s\S]*?<\/section>/)?.[0] || '';
+  requireThat(html.includes(reviewSection + '\n' + productOptions) && !!reviewSection && !!productOptions, `${route}: put product cards directly below Google reviews`);
   requireThat((html.match(/<section\b/g) || []).length === 6 && !/id="(?:services|window-treatments|motorization)"/.test(html), `${route}: retain the focused hero, reviews, outcomes, John/form, image cards and illustrated appointment section`);
   requireThat(!/class="main-navigation"|class="menu-toggle"|class="footer-nav"/.test(html), `${route}: browsing menus are outside the conversion-only brief`);
   requireThat(!/<iframe\b/.test(html), `${route}: embedded maps must not provide an off-page exit`);
