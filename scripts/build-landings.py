@@ -1,4 +1,4 @@
-"""Build form-first campaign pages with the approved website's brand assets."""
+"""Build focused campaign pages with the approved website's brand assets."""
 from pathlib import Path
 from html import escape
 import re
@@ -46,14 +46,14 @@ def footer(motorized):
 
 
 def showroom():
-    html = section('about')
-    html = re.sub(r'<div class="about-copy">[\s\S]*?</div>', '''<div class="about-copy">
+    return '''<section class="section about" id="about" aria-labelledby="about-heading">
+      <div class="container about-grid"><div class="about-copy">
       <h2 class="showroom-title" id="about-heading"><img src="/assets/showroom-visit-headline.png" alt="Visit us in Woodland Hills" width="2514" height="840" loading="lazy" decoding="async"></h2>
-      <p>See your options in person, with John to guide you.</p>
-      </div>''', html)
-    html = re.sub(r'<a class="btn btn-primary" href="https://www.google.com/maps/[^<]+[\s\S]*?</a>',
-                  '<a class="btn btn-showroom-contact" href="tel:+18188845464">Call Us</a>', html)
-    return html.replace('class="btn btn-showroom-contact" href="#contact">Contact Us', 'class="btn btn-primary" href="#contact">Get Free Quote')
+      <p class="landing-appointment-label">By appointment only</p>
+      <p>Fill the form to schedule a showroom appointment.</p>''' + cta() + '''
+      </div><div class="showroom-card"><figure class="showroom-figure">
+      <img src="/assets/showroom-illustration.svg?v=trees-2" alt="Illustration of John Crawford Company’s showroom with its red tile roof and palm trees" width="2394" height="1030" loading="lazy" decoding="async">
+      </figure></div></div></section>'''
 
 
 def information_dialogs():
@@ -61,11 +61,11 @@ def information_dialogs():
       <div class="landing-dialog-heading"><h2 id="landing-privacy-heading">Privacy Policy</h2><form method="dialog"><button class="landing-info-button" type="submit" autofocus>Close</button></form></div>
       <p>The quote form on this review page does not accept submissions. If you call us, we use the information you provide to respond and discuss your project.</p>
       <p>These pages are hosted through Netlify and ChatGPT Sites. Hosting providers may process technical information, such as IP addresses, browser details and request logs, to deliver and secure the pages. Advertising pixels and audience-tracking analytics have not been installed on these pages.</p>
-      <p>For questions about information you provide, call John Crawford Company at <a href="tel:+18188845464">(818) 884-5464</a>. You can also write to 22311 Ventura Blvd #101, Woodland Hills, CA 91364.</p></dialog>
+      <p>For questions about information you provide, call John Crawford Company at <a href="tel:+18188845464">(818) 884-5464</a>.</p></dialog>
       <dialog class="landing-info-dialog" id="landing-accessibility-dialog" aria-labelledby="landing-accessibility-heading">
       <div class="landing-dialog-heading"><h2 id="landing-accessibility-heading">Accessibility assistance</h2><form method="dialog"><button class="landing-info-button" type="submit" autofocus>Close</button></form></div>
       <p>If you have difficulty reading this page or requesting a quote, call <a href="tel:+18188845464">(818) 884-5464</a>. Tell us which feature caused the problem and how you would like us to contact you.</p>
-      <p>We can discuss products and quote requests by phone. Showroom hours are Monday–Friday, 9 am–5 pm.</p></dialog>'''
+      <p>We can discuss products, quote requests and accessibility assistance by phone. Showroom visits are by appointment only.</p></dialog>'''
 
 
 def reviews(motorized):
@@ -82,32 +82,35 @@ def reviews(motorized):
 
 
 def quote_form():
-    return '''<form class="landing-form" id="contact" aria-labelledby="quote-heading" aria-describedby="form-preview form-required">
+    return '''<section class="section linen landing-quote" aria-labelledby="quote-heading"><div class="container">
+      <form class="landing-form" id="contact" aria-labelledby="quote-heading" aria-describedby="form-preview form-required">
       <h2 id="quote-heading">Get your free quote</h2>
-      <p class="landing-follow-up">We’ll follow up about your windows.</p>
+      <p class="landing-follow-up">We’ll follow up about your quote or appointment request.</p>
       <p class="landing-preview-note" id="form-preview">Form preview. Please call us until online quotes are available.</p>
       <div class="landing-form-fields">
       <div class="landing-form-field"><label for="lead-name">Full name</label><input id="lead-name" name="name" autocomplete="name" type="text" maxlength="120" required disabled></div>
       <div class="landing-form-field"><label for="lead-phone">Phone number</label><input id="lead-phone" name="phone" autocomplete="tel" type="tel" maxlength="30" required disabled></div>
       <div class="landing-form-field"><label for="lead-email">Email</label><input id="lead-email" name="email" autocomplete="email" type="email" maxlength="254" required disabled></div>
-      </div><p class="landing-required" id="form-required">All fields are required.</p><button class="btn btn-primary" type="button" disabled>Get Free Quote</button>
-      <p class="landing-privacy">Your details are used to respond to your inquiry. <button class="landing-info-button" type="button" data-landing-dialog="landing-privacy-dialog" aria-haspopup="dialog" aria-controls="landing-privacy-dialog">Privacy Policy</button>.</p></form>'''
+      </div><p class="landing-required" id="form-required">Contact fields are required.</p>
+      <label class="landing-appointment-choice" for="lead-showroom"><input id="lead-showroom" name="showroom-appointment" type="checkbox" value="requested" disabled><span>I’d like a showroom appointment.</span></label>
+      <button class="btn btn-primary" type="button" disabled>Get Free Quote</button>
+      <p class="landing-privacy">Your details are used to respond to your inquiry. <button class="landing-info-button" type="button" data-landing-dialog="landing-privacy-dialog" aria-haspopup="dialog" aria-controls="landing-privacy-dialog">Privacy Policy</button>.</p></form></div></section>'''
 
 
 def hero(motorized):
-    category = 'Motorized shades · Los Angeles' if motorized else 'Custom window treatments · Los Angeles'
-    headline = 'Your shades.<span>One simple touch.</span>' if motorized else 'Better light.<span>More privacy.</span>'
-    promise = ('Control a room without reaching for every shade. We measure, install and set up your controls.' if motorized else
-               'Blinds, shades, shutters, drapery and motorization. We handle measuring and installation.')
+    headline = ('Motorized Shades' if motorized else 'Custom Window Treatments') + ' <span>in Los Angeles &amp; Surrounding Areas</span>'
+    promise = ('Open a room to daylight with a touch. We handle measuring, installation and control setup.' if motorized else
+               'Get help choosing blinds, shades, shutters or drapery, including motorization. We handle measuring and installation.')
     media = re.search(r'<div class="hero-media"[\s\S]*</div>\s*</section>', section('top')).group()
     media = media.rsplit('</section>', 1)[0]
     if motorized:
         media = re.sub(r'<picture>[\s\S]*?</picture>\s*<video[\s\S]*?</video>', '<img src="/assets/powerview-wall-remote.jpg" alt="" width="1440" height="1080" fetchpriority="high">', media)
     return f'''<section class="hero landing-hero" id="top" aria-labelledby="hero-heading">
-      <div class="container landing-hero-grid"><div class="hero-content">
-      <p class="landing-eyebrow">{e(category)}</p><h1 id="hero-heading">{headline}</h1>
+      <div class="container landing-hero-inner"><div class="hero-content">
+      <h1 id="hero-heading">{headline}</h1>
       <p class="landing-promise">{e(promise)}</p>
-      </div>{quote_form()}</div>{media}</section>'''
+      <div class="hero-actions">{cta()}<a class="btn btn-showroom-contact" href="tel:+18188845464">Call Us</a></div>
+      </div></div>{media}</section>'''
 
 
 def build(motorized=False):
@@ -122,7 +125,9 @@ def build(motorized=False):
     head = re.sub(r'(<meta property="og:title" content=")[^"]*', lambda m:m[1]+e(title), head)
     head = head.replace(f'href="{BASE}/"', f'href="{BASE}{route}"').replace(f'content="{BASE}/"', f'content="{BASE}{route}"')
     head = head.replace('app.js?v=hubs-1', 'app.js?v=landing-conversion-1')
-    head = head.replace('</head>', '<link rel="stylesheet" href="/landings.css?v=form-first-1">\n</head>')
+    # Campaign pages route showroom visits through appointments, without an address or walk-in hours.
+    head = re.sub(r'\s*<script type="application/ld\+json">[\s\S]*?</script>', '', head)
+    head = head.replace('</head>', '<link rel="stylesheet" href="/landings.css?v=appointments-1">\n</head>')
     if motorized:
         head = re.sub(r'  <link rel="preload" href="assets/hero-room-poster-[^\n]+\n', '', head)
         head = head.replace(BASE+'/assets/hero-room-poster-desktop.webp', BASE+'/assets/powerview-wall-remote.jpg')
@@ -134,7 +139,7 @@ def build(motorized=False):
     mobile = re.search(r'<div class="mobile-contact"[\s\S]*?</div>', HOME).group()
     mobile = mobile.replace('Call the showroom', 'Call Us').replace('Request a consultation', 'Get Free Quote')
     body = '\n'.join([header(motorized), '<main id="main">', hero(motorized), brandbar, reviews(motorized),
-                      showroom(), '</main>', footer(motorized), mobile, information_dialogs()])
+                      quote_form(), showroom(), '</main>', footer(motorized), mobile, information_dialogs()])
     html = '<!doctype html>\n<html lang="en">\n'+absolute_assets(head)+'\n<body class="landing-page'+(' landing-motorized' if motorized else '')+'">\n<a class="skip-link" href="#main">Skip to content</a>\n'+absolute_assets(body)+'\n</body>\n</html>\n'
     path = DIST / route.strip('/') / 'index.html'
     path.parent.mkdir(parents=True, exist_ok=True)

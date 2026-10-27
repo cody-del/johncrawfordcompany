@@ -1,18 +1,22 @@
-/* Form-first campaign layout using the approved website's branding. */
+/* Campaign pages use the approved branding with reviews before the quote form. */
 .landing-header-actions { display: flex; align-items: center; gap: 16px; }
 .landing-header-number { font-size: 16px; white-space: nowrap; }
 .landing-call-cta { min-height: 44px; padding: 13px 20px; font-size: 11px; letter-spacing: .08em; }
-.landing-page .landing-hero { min-height: 0; padding: 36px 0 48px; }
-.landing-hero-grid { position: relative; z-index: 2; display: grid; grid-template-columns: minmax(0, 1fr) minmax(350px, 430px); align-items: center; gap: 48px; }
-.landing-page .landing-hero .hero-content { width: 100%; padding: 34px; background: #faf7f3f2; }
-.landing-page .hero-content > .landing-eyebrow { margin: 0 0 18px; font-size: 12px; line-height: 1.6; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; }
-.landing-page .landing-hero h1 { font-size: clamp(36px, 4.1vw, 54px); line-height: 1.12; }
+.landing-page .landing-hero { min-height: 480px; padding: 48px 0 56px; }
+.landing-hero-inner { position: relative; z-index: 2; }
+.landing-page .landing-hero .hero-content { width: min(700px, 100%); padding: 40px; background: #faf7f3f2; }
+.landing-page .landing-hero h1 { font-size: clamp(38px, 3.8vw, 50px); line-height: 1.12; }
+.landing-page .landing-hero h1 span { margin-top: 14px; font-size: .61em; font-weight: 500; line-height: 1.35; }
 .landing-page .hero-content > .landing-promise { margin-top: 22px; font-size: 17px; line-height: 1.65; }
+.landing-page .hero-actions { gap: 12px; margin-top: 26px; }
 .landing-motorized .hero-media img { object-position: 76% center; }
 .landing-page .brand-bar-inner { min-height: 76px; }
 .landing-page .about { padding-block: 52px; }
 .landing-page .about-grid { align-items: center; }
 .landing-page .about-copy p { max-width: 390px; }
+.landing-page .about-copy .landing-appointment-label { width: fit-content; margin-top: 20px; padding: 5px 12px; border: 1px solid var(--line); background: var(--linen); font-size: 13px; font-weight: 500; letter-spacing: .03em; }
+.landing-page .about-copy .landing-appointment-label + p { margin-top: 14px; }
+.landing-page .about-copy > .btn { margin-top: 22px; }
 .landing-page .btn-primary:is(:hover, :focus-visible, :active) { color: white; background: var(--magenta-hover); }
 .landing-page .btn-showroom-contact:is(:hover, :focus-visible, :active) { color: white; background: #202020; }
 .landing-page a.btn:is(:hover, :focus-visible, :active) { text-decoration: none; }
@@ -29,41 +33,46 @@
 .landing-dialog-heading form { margin: 0; }
 .landing-dialog-heading button { min-height: 44px; }
 .landing-info-dialog p { margin-top: 20px; font-size: 16px; }
-.landing-form { min-width: 0; padding: 28px; background: #fff; border: 1px solid var(--line); border-radius: 0 24px 0 24px; scroll-margin-top: 20px; }
-.landing-form h2 { font-size: 30px; }
+.landing-quote { padding-block: 46px; }
+.landing-quote > .container { max-width: 960px; }
+.landing-form { min-width: 0; padding: 32px 36px; background: #fff; border: 1px solid var(--line); border-radius: 0 24px 0 24px; scroll-margin-top: 20px; }
+.landing-form h2 { font-size: 34px; text-align: center; }
+.landing-form > p { text-align: center; }
 .landing-form .landing-follow-up { margin-top: 8px; font-size: 14px; line-height: 1.5; }
 .landing-form .landing-preview-note { margin-top: 10px; padding: 9px 12px; background: var(--linen); font-size: 12px; line-height: 1.5; }
-.landing-form-fields { display: grid; gap: 12px; margin-top: 18px; }
+.landing-form-fields { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 22px; }
 .landing-form-field { min-width: 0; }
 .landing-form label { display: block; margin-bottom: 5px; color: var(--walnut); font-size: 14px; font-weight: 500; }
-.landing-form input { width: 100%; min-height: 48px; padding: 11px 13px; border: 1px solid #9a8575; border-radius: 0; background: #fff; color: var(--walnut); font: inherit; line-height: 1.5; }
+.landing-form .landing-form-field input { width: 100%; min-height: 48px; padding: 11px 13px; border: 1px solid #9a8575; border-radius: 0; background: #fff; color: var(--walnut); font: inherit; line-height: 1.5; }
 .landing-form input:disabled { background: var(--linen); opacity: 1; cursor: not-allowed; }
 .landing-form .landing-required { margin-top: 12px; font-size: 12px; }
-.landing-page .landing-form > .btn { width: 100%; margin-top: 14px; }
+.landing-form label.landing-appointment-choice { display: flex; align-items: center; justify-content: center; gap: 10px; min-height: 44px; margin: 12px 0 0; font-size: 14px; font-weight: 400; }
+.landing-appointment-choice input { flex-shrink: 0; width: 20px; height: 20px; accent-color: var(--magenta); }
+.landing-page .landing-form > .btn { display: flex; width: min(280px, 100%); margin: 14px auto 0; }
 .landing-form button:disabled { cursor: not-allowed; }
 .landing-form .landing-privacy { margin-top: 12px; font-size: 12px; line-height: 1.6; }
 @media (max-width: 1023px) {
   .landing-header-actions { margin-left: auto; }
-  .landing-hero-grid { grid-template-columns: minmax(0, 1fr) minmax(320px, 360px); gap: 24px; }
-  .landing-page .landing-hero .hero-content { padding: 26px; }
+  .landing-page .landing-hero .hero-content { width: min(650px, 100%); padding: 34px; }
   .landing-form { padding: 24px; }
-}
-@media (max-width: 760px) {
-  .landing-hero-grid { grid-template-columns: minmax(0, 1fr); gap: 16px; max-width: 560px; }
-  .landing-page .landing-hero { padding-block: 20px 32px; }
-  .landing-page .hero-content > .landing-eyebrow { margin-bottom: 12px; font-size: 11px; }
-  .landing-page .landing-hero h1 { font-size: clamp(30px, 8vw, 40px); }
-  .landing-page .hero-content > .landing-promise { margin-top: 16px; font-size: 16px; }
 }
 @media (max-width: 700px) {
   .landing-header-number { display: none; }
   .landing-header-actions { margin-left: auto; }
   .landing-call-cta { padding-inline: 15px; }
+  .landing-page .landing-hero { min-height: 0; padding-block: 24px 38px; }
+  .landing-page .landing-hero .hero-content { padding: 28px 24px; }
+  .landing-page .landing-hero h1 { font-size: clamp(30px, 8vw, 40px); }
+  .landing-page .landing-hero h1 span { margin-top: 12px; font-size: 22px; }
+  .landing-page .hero-content > .landing-promise { margin-top: 18px; font-size: 16px; }
+  .landing-page .hero-actions { display: grid; grid-template-columns: 1.3fr 1fr; }
+  .landing-page .hero-actions > .btn { min-width: 0; padding-inline: 10px; font-size: 10px; letter-spacing: .08em; }
   .landing-page .footer-main { grid-template-columns: 1fr; }
   .landing-footer-actions { flex-wrap: wrap; }
   .landing-footer-actions > .btn { min-width: 0; flex: 1; padding-inline: 12px; font-size: 11px; letter-spacing: .08em; }
   .landing-info-dialog { padding: 24px; }
   .landing-form { padding: 24px 22px; }
+  .landing-form-fields { grid-template-columns: minmax(0, 1fr); gap: 12px; }
   .landing-form h2 { font-size: 28px; }
   .landing-page .about { padding-block: 36px; }
   .landing-page .about-grid { gap: 24px; }
