@@ -49,7 +49,7 @@ def showroom():
     html = section('about')
     html = re.sub(r'<div class="about-copy">[\s\S]*?</div>', '''<div class="about-copy">
       <h2 class="showroom-title" id="about-heading"><img src="/assets/showroom-visit-headline.png" alt="Visit us in Woodland Hills" width="2514" height="840" loading="lazy" decoding="async"></h2>
-      <p>See your options in person, with John and Max to guide you.</p>
+      <p>See your options in person, with John to guide you.</p>
       </div>''', html)
     html = re.sub(r'<a class="btn btn-primary" href="https://www.google.com/maps/[^<]+[\s\S]*?</a>',
                   '<a class="btn btn-showroom-contact" href="tel:+18188845464">Call Us</a>', html)
@@ -72,7 +72,7 @@ def reviews(motorized):
     html = section('reviews')
     html = re.sub(r'<a class="reviews-source"[\s\S]*?</a>', '<span class="reviews-source">Review source: Google Maps</span>', html)
     cards = re.findall(r'<article class="review-card"[\s\S]*?</article>', html)
-    selected_ids = ['carol', 'perry', 'mary', 'monica'] if motorized else ['mary', 'lily', 'monica', 'carol']
+    selected_ids = ['carol', 'harley', 'mary', 'monica'] if motorized else ['mary', 'lily', 'monica', 'carol']
     selected = [next(card for card in cards if f'review-{id}-name' in card) for id in selected_ids]
     html = html.replace(cards[0], '__SELECTED_REVIEWS__')
     for card in cards[1:]:
@@ -84,7 +84,7 @@ def reviews(motorized):
 def quote_form():
     return '''<form class="landing-form" id="contact" aria-labelledby="quote-heading" aria-describedby="form-preview form-required">
       <h2 id="quote-heading">Get your free quote</h2>
-      <p class="landing-follow-up">John or Max will follow up about your windows.</p>
+      <p class="landing-follow-up">We’ll follow up about your windows.</p>
       <p class="landing-preview-note" id="form-preview">Form preview. Please call us until online quotes are available.</p>
       <div class="landing-form-fields">
       <div class="landing-form-field"><label for="lead-name">Full name</label><input id="lead-name" name="name" autocomplete="name" type="text" maxlength="120" required disabled></div>
@@ -98,7 +98,7 @@ def hero(motorized):
     category = 'Motorized shades · Los Angeles' if motorized else 'Custom window treatments · Los Angeles'
     headline = 'Your shades.<span>One simple touch.</span>' if motorized else 'Better light.<span>More privacy.</span>'
     promise = ('Control a room without reaching for every shade. We measure, install and set up your controls.' if motorized else
-               'Blinds, shades, shutters, drapery and motorization. Personally measured and installed by John and Max.')
+               'Blinds, shades, shutters, drapery and motorization. We handle measuring and installation.')
     media = re.search(r'<div class="hero-media"[\s\S]*</div>\s*</section>', section('top')).group()
     media = media.rsplit('</section>', 1)[0]
     if motorized:

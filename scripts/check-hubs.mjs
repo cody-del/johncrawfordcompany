@@ -35,6 +35,7 @@ for (const [route, { html, ids }] of pages) {
   requireThat(route.startsWith('/lp/') ? html.includes('aria-controls="landing-accessibility-dialog"') : html.includes('href="/accessibility/"'), `${route}: missing accessibility assistance`);
   requireThat(html.includes('22311 Ventura Blvd #101'), `${route}: wrong suite`);
   requireThat(!/Confirm before publishing|local shutter supplier|review_note|source_file|\/Users\//i.test(html), `${route}: private note exposed`);
+  requireThat(!/\bMax\b/.test(html), `${route}: employee name must stay out of public copy`);
   requireThat(!/href="#"/.test(html), `${route}: empty link`);
   for (const m of html.matchAll(/<img\b[^>]*>/g)) requireThat(/\balt="[^"]*"/.test(m[0]), `${route}: image without alt attribute`);
   for (const match of html.matchAll(/(?:href|src)="([^"]+)"/g)) {
@@ -79,10 +80,11 @@ for (const [route, type] of [['/about/', 'AboutPage'], ['/contact/', 'ContactPag
   const html = pages.get(route)?.html || '';
   requireThat(html.includes(`"@type": "${type}"`), `${route}: page schema missing`);
   requireThat(html.includes('href="tel:+18188845464"') && html.includes('href="mailto:john@johncrawford.com'), `${route}: direct contact destinations missing`);
-  requireThat(html.includes('/company-pages.css?v=company-pages-1'), `${route}: scoped styles missing`);
+  requireThat(html.includes('/company-pages.css?v=company-pages-2'), `${route}: scoped styles missing`);
 }
 const contactForm = pages.get('/contact/')?.html.match(/<form class="hub-consultation-form"[\s\S]*?<\/form>/)?.[0] || '';
-requireThat((contactForm.match(/\bdisabled\b/g) || []).length === 4 && !/action=|data-netlify|type="submit"/.test(contactForm), 'Contact form must remain a design preview until GHL is configured');
+requireThat((contactForm.match(/\bdisabled\b/g) || []).length === 7 && !/action=|data-netlify|type="submit"/.test(contactForm), 'Contact form must remain a design preview until GHL is configured');
+requireThat(contactForm.includes('autocomplete="postal-code"') && contactForm.includes('<select id="company-product"') && contactForm.includes('<textarea id="company-message"'), 'Contact form must include ZIP code, product interest and message');
 const showroomArtwork = html => [...(html.match(/<section class="section about"[\s\S]*?<\/section>/)?.[0] || '').matchAll(/<img\b[^>]+src="\/?assets\/([^\"]+)"/g)].map(m => m[1]);
 const homeShowroomArtwork = showroomArtwork(pages.get('/')?.html || '');
 for (const route of ['/lp/custom-window-treatments/', '/lp/motorized-shades/']) {
