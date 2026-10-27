@@ -36,6 +36,8 @@ for (const [route, { html, ids }] of pages) {
   requireThat(route.startsWith('/lp/') ? !html.includes('22311 Ventura') : html.includes('22311 Ventura Blvd #101'), `${route}: respect landing-page appointment-only addressing or the verified website suite`);
   requireThat(!/Confirm before publishing|local shutter supplier|review_note|source_file|\/Users\//i.test(html), `${route}: private note exposed`);
   requireThat(!/\bMax\b/.test(html), `${route}: employee name must stay out of public copy`);
+  requireThat(/<strong(?: class="appointment-only")?>Appointment Only<\/strong>/.test(html), `${route}: bold showroom appointment notice missing`);
+  requireThat(!/>Get directions</i.test(html), `${route}: replace old showroom directions labels`);
   requireThat(!/href="#"/.test(html), `${route}: empty link`);
   for (const m of html.matchAll(/<img\b[^>]*>/g)) requireThat(/\balt="[^"]*"/.test(m[0]), `${route}: image without alt attribute`);
   for (const match of html.matchAll(/(?:href|src)="([^"]+)"/g)) {
@@ -83,6 +85,7 @@ for (const [route, type] of [['/about/', 'AboutPage'], ['/contact/', 'ContactPag
   requireThat(html.includes('/company-pages.css?v=company-pages-3'), `${route}: scoped styles missing`);
 }
 const contactForm = pages.get('/contact/')?.html.match(/<form class="hub-consultation-form"[\s\S]*?<\/form>/)?.[0] || '';
+requireThat(contactForm.includes('id="appointment-form"'), 'Contact appointment destination missing');
 requireThat((contactForm.match(/\bdisabled\b/g) || []).length === 7 && !/action=|data-netlify|type="submit"/.test(contactForm), 'Contact form must remain a design preview until GHL is configured');
 requireThat(contactForm.includes('autocomplete="postal-code"') && contactForm.includes('<select id="company-product"') && contactForm.includes('<textarea id="company-message"'), 'Contact form must include ZIP code, product interest and message');
 const showroomArtwork = html => [...(html.match(/<section class="section about"[\s\S]*?<\/section>/)?.[0] || '').matchAll(/<img\b[^>]+src="\/?assets\/([^\"]+)"/g)].map(m => m[1]);
@@ -91,7 +94,7 @@ for (const route of ['/lp/custom-window-treatments/', '/lp/motorized-shades/']) 
   const html = pages.get(route)?.html || '';
   requireThat(JSON.stringify(showroomArtwork(html)) === JSON.stringify(homeShowroomArtwork), `${route}: preserve the approved Woodland Hills artwork`);
   requireThat(!/<address\b|91364|Monday–Friday|openingHoursSpecification|streetAddress/.test(html), `${route}: omit the showroom address and walk-in hours from landing pages`);
-  requireThat(html.includes('By appointment only') && html.includes('Fill the form to schedule a showroom appointment.'), `${route}: direct showroom visits through an appointment request`);
+  requireThat(html.includes('<strong>Appointment Only</strong>') && html.includes('Fill the form to schedule a showroom appointment.'), `${route}: direct showroom visits through an appointment request`);
   requireThat(!html.includes('John got his start') && !html.includes('Come in to see fabrics and finishes'), `${route}: use concise landing-page copy instead of the website story`);
   requireThat(html.includes('href="/landings.css?v=appointments-1"'), `${route}: scoped landing-page styles missing`);
   const form = html.match(/<form class="landing-form"[\s\S]*?<\/form>/)?.[0] || '';
@@ -109,7 +112,9 @@ for (const route of ['/lp/custom-window-treatments/', '/lp/motorized-shades/']) 
   const conversionContent = html.split('<dialog class="landing-info-dialog"')[0];
   for (const match of conversionContent.matchAll(/<a\b[^>]*href="(#contact|tel:[^"]+)"[^>]*>([\s\S]*?)<\/a>/g)) {
     const label = match[2].replace(/<[^>]*>/g, '').trim();
-    requireThat(label === (match[1] === '#contact' ? 'Get Free Quote' : 'Call Us'), `${route}: inconsistent conversion action ${label}`);
+    const showroomSection = html.match(/<section class="section about"[\s\S]*?<\/section>/)?.[0] || '';
+    const isAppointmentAction = match[1] === '#contact' && label === 'Schedule Appointment' && showroomSection.includes(match[0]);
+    requireThat(isAppointmentAction || label === (match[1] === '#contact' ? 'Get Free Quote' : 'Call Us'), `${route}: inconsistent conversion action ${label}`);
   }
   requireThat(/<button class="btn btn-primary" type="button" disabled>Get Free Quote<\/button>/.test(html), `${route}: form button must match Get Free Quote actions`);
   for (const anchor of html.matchAll(/<a\b[^>]*href="([^"]+)"[^>]*>/g)) {

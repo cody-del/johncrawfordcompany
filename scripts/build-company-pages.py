@@ -84,7 +84,7 @@ def head(page, kind):
 <meta name="twitter:card" content="summary_large_image"><link rel="icon" href="data:,">
 <link rel="preload" href="/assets/brand-latin-1.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/brand-latin-0.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/assets/fonts.css?v=fonts-2"><link rel="stylesheet" href="/styles.css?v=product-cards-1">
+<link rel="stylesheet" href="/assets/fonts.css?v=fonts-2"><link rel="stylesheet" href="/styles.css?v=appointments-1">
 <link rel="stylesheet" href="/hubs.css?v=contact-centered-1"><link rel="stylesheet" href="/company-pages.css?v=company-pages-3">
 <script src="/app.js?v=company-pages-1" defer></script>
 <script type="application/ld+json">{json.dumps(schema, ensure_ascii=False).replace('<', chr(92)+'u003c')}</script>
@@ -106,15 +106,15 @@ def showroom_art(css_class, priority=False):
 def contact_details():
     return f'''<div class="hub-contact-details">
       <address>22311 Ventura Blvd #101, Woodland Hills, CA 91364</address>
-      <p class="hub-hours">Monday–Friday, 9 am–5 pm</p>
+      <p class="hub-hours appointment-hours"><span>Monday–Friday, 9 am–5 pm</span><strong class="appointment-only">Appointment Only</strong></p>
       <div class="hub-contact-actions"><a class="btn btn-primary" href="tel:+18188845464">Call (818) 884-5464</a>
-      <a class="btn btn-showroom-contact" href="{e(DIRECTIONS)}" target="_blank" rel="noopener noreferrer">Get directions<span class="sr-only"> (opens in a new tab)</span></a></div>
+      <a class="btn btn-showroom-contact" href="/contact/#appointment-form">Schedule Appointment</a></div>
       <a class="text-link" href="mailto:john@johncrawford.com?subject=Window%20treatment%20consultation">Email us your project</a>
     </div>'''
 
 
 def consultation_form():
-    return '''<form class="hub-consultation-form" aria-labelledby="company-form-heading" aria-describedby="company-form-preview company-form-notice">
+    return '''<form class="hub-consultation-form" id="appointment-form" aria-labelledby="company-form-heading" aria-describedby="company-form-preview company-form-notice">
       <h2 id="company-form-heading">Tell us about your project</h2>
       <p id="company-form-preview" class="sr-only">This form is a design preview and does not accept submissions.</p>
       <div class="hub-form-fields">

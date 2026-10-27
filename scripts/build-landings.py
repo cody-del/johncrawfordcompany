@@ -49,8 +49,8 @@ def showroom():
     return '''<section class="section about" id="about" aria-labelledby="about-heading">
       <div class="container about-grid"><div class="about-copy">
       <h2 class="showroom-title" id="about-heading"><img src="/assets/showroom-visit-headline.png" alt="Visit us in Woodland Hills" width="2514" height="840" loading="lazy" decoding="async"></h2>
-      <p class="landing-appointment-label">By appointment only</p>
-      <p>Fill the form to schedule a showroom appointment.</p>''' + cta() + '''
+      <p class="landing-appointment-label"><strong>Appointment Only</strong></p>
+      <p>Fill the form to schedule a showroom appointment.</p><a class="btn btn-primary" href="#contact">Schedule Appointment</a>
       </div><div class="showroom-card"><figure class="showroom-figure">
       <img src="/assets/showroom-illustration.svg?v=trees-2" alt="Illustration of John Crawford Company’s showroom with its red tile roof and palm trees" width="2394" height="1030" loading="lazy" decoding="async">
       </figure></div></div></section>'''

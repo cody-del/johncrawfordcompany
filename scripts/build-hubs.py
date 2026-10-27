@@ -123,7 +123,7 @@ def head(page, hero_key=None, accessibility=False):
   <link rel="preload" href="/assets/brand-latin-1.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/assets/brand-latin-0.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/assets/fonts.css?v=fonts-2">
-  <link rel="stylesheet" href="/styles.css?v=product-cards-1">
+  <link rel="stylesheet" href="/styles.css?v=appointments-1">
   <link rel="stylesheet" href="/hubs.css?v={hub_css_version}">
   <script src="/app.js?v=hubs-1" defer></script>
   <script type="application/ld+json">{json.dumps(schema, ensure_ascii=False).replace('<', chr(92)+'u003c')}</script>
@@ -281,9 +281,9 @@ def contact(section, secondary_note=None):
       <div class="container hub-contact-accent-grid">
         <div class="hub-contact-message"><h2 id="contact-heading">{e(section['title'])}</h2>{paragraphs(section)}{note}</div>
         <div class="hub-contact-details">
-          <address>22311 Ventura Blvd #101, Woodland Hills, CA 91364</address><p class="hub-hours">Monday-Friday, 9 am-5 pm</p>
+          <address>22311 Ventura Blvd #101, Woodland Hills, CA 91364</address><p class="hub-hours appointment-hours"><span>Monday–Friday, 9 am–5 pm</span><strong class="appointment-only">Appointment Only</strong></p>
           <div class="hub-contact-actions"><a class="btn btn-primary" href="tel:+18188845464">Call (818) 884-5464</a>
-            <a class="btn btn-showroom-contact" href="{e(DIRECTIONS)}" target="_blank" rel="noopener noreferrer">Get directions<span class="sr-only"> (opens in a new tab)</span></a></div>
+            <a class="btn btn-showroom-contact" href="/contact/#appointment-form">Schedule Appointment</a></div>
           <a class="text-link" href="mailto:john@johncrawford.com?subject=Window%20treatment%20consultation">Email us your project</a>
         </div>
       </div>
@@ -351,7 +351,7 @@ html = head(accessibility, accessibility=True) + header.replace('href="#contact"
   <h2>Need help using the website?</h2>
   <p>If you have difficulty reading a page, browsing window treatments or contacting us through the website, call <a href="tel:+18188845464">(818) 884-5464</a> or email <a href="mailto:john@johncrawford.com">john@johncrawford.com</a>.</p>
   <p>Tell us which page or feature caused the problem and how you would like us to contact you. We can also discuss products and consultation requests by phone.</p>
-  <p>Showroom hours: Monday-Friday, 9 am-5 pm.</p>
+  <p>Showroom hours: Monday–Friday, 9 am–5 pm. <strong class="appointment-only">Appointment Only</strong>.</p>
   <p class="statement-date">Statement reviewed October 22, 2026.</p>
 </div></main>''' + footer.replace('href="#contact"','href="/#contact"') + mobile.replace('href="#contact"','href="/#contact"') + '</body></html>\n'
 target=DIST/'accessibility/index.html';target.parent.mkdir(exist_ok=True);target.write_text(html)
