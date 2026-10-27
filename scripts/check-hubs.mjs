@@ -109,7 +109,7 @@ for (const route of ['/lp/custom-window-treatments/', '/lp/motorized-shades/']) 
   const html = pages.get(route)?.html || '';
   requireThat(JSON.stringify(showroomArtwork(html)) === JSON.stringify(homeShowroomArtwork), `${route}: preserve the approved Woodland Hills artwork`);
   requireThat(!/<address\b|91364|Monday–Friday|openingHoursSpecification|streetAddress/.test(html), `${route}: omit the showroom address and walk-in hours from landing pages`);
-  requireThat(html.includes('<strong>Appointment Only</strong>') && html.includes('Fill the form to schedule a showroom appointment.'), `${route}: direct showroom visits through an appointment request`);
+  requireThat(html.includes('<strong>Appointment Only</strong>') && html.includes('Fill the form to schedule a showroom appointment or free in-home consultation.'), `${route}: offer a showroom appointment or free in-home consultation through the form`);
   requireThat(/<p class="landing-john-story">[^<]*installing window treatments[^<]*1995\.[^<]*<\/p>/.test(html), `${route}: restore the concise, verified story about John's installation experience and California store`);
   requireThat(!html.includes('Come in to see fabrics and finishes'), `${route}: keep the restored showroom story concise`);
   requireThat(html.includes('href="/landings.css?v=benefit-panel-centered-1"'), `${route}: scoped landing-page styles missing`);
@@ -118,7 +118,7 @@ for (const route of ['/lp/custom-window-treatments/', '/lp/motorized-shades/']) 
   requireThat(form.includes('name="showroom-appointment" type="checkbox"') && form.includes('I’d like a showroom appointment.'), `${route}: allow an explicit showroom appointment request`);
   if (/programmed operation|schedule (?:compatible )?shades/i.test(html)) requireThat(html.includes('The PowerView® App is required for programmed operation.'), `${route}: missing PowerView disclosure for programmed shade operation`);
   const openingSection = html.match(/<main[^>]*>\s*(<section\b[\s\S]*?<\/section>)/)?.[1] || '';
-  requireThat(!openingSection.includes(form) && /<section class="reviews"[\s\S]*?<\/section>\s*<section class="section landing-products"[\s\S]*?<\/section>\s*<section class="section landing-benefits"[\s\S]*?<\/section>\s*<section class="section linen landing-quote"/.test(html) && !!form, `${route}: follow reviews with product images, outcomes and the quote form`);
+  requireThat(!openingSection.includes(form) && /<section class="reviews"[\s\S]*?<\/section>\s*<section class="section landing-products"[\s\S]*?<\/section>\s*<section class="section landing-benefits"[\s\S]*?<\/section>\s*<section class="section about"[\s\S]*?<\/section>\s*<section class="section linen landing-quote"[\s\S]*?<\/section>\s*<\/main>/.test(html) && !!form, `${route}: follow reviews with product images, outcomes, Woodland Hills and the final quote form`);
   requireThat(html.includes('class="container landing-quote-grid"') && /<div class="landing-company-summary">[\s\S]*?<h2 id="company-summary-heading">Work with John Crawford\.<\/h2>[\s\S]*?<\/div>\s*<form class="landing-form"/.test(html), `${route}: place the John introduction beside the right-side form`);
   requireThat((html.match(/<article class="landing-benefit">/g) || []).length === 3, `${route}: include three concise customer outcomes`);
   const expectedService = route.includes('motorized-shades') ? 'Motorized Shades' : 'Custom Window Treatments';

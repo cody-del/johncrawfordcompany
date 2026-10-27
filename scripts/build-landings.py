@@ -52,7 +52,7 @@ def showroom():
       <h2 class="showroom-title" id="about-heading"><img src="/assets/showroom-visit-headline.png" alt="Visit us in Woodland Hills" width="2514" height="840" loading="lazy" decoding="async"></h2>
       <p class="landing-john-story">John got his start installing window treatments before opening his California store in 1995. That experience still shapes the advice we give in our Woodland Hills showroom.</p>
       <p class="landing-appointment-label"><strong>Appointment Only</strong></p>
-      <p>Fill the form to schedule a showroom appointment.</p><a class="btn btn-primary" href="#contact">Schedule Appointment</a>
+      <p>Fill the form to schedule a showroom appointment or free in-home consultation.</p><a class="btn btn-primary" href="#contact">Schedule Appointment</a>
       </div><div class="showroom-card"><figure class="showroom-figure">
       <img src="/assets/showroom-illustration.svg?v=trees-2" alt="Illustration of John Crawford Company’s showroom with its red tile roof and palm trees" width="2394" height="1030" loading="lazy" decoding="async">
       </figure></div></div></section>'''
@@ -175,7 +175,7 @@ def build(motorized=False):
     mobile = re.search(r'<div class="mobile-contact"[\s\S]*?</div>', HOME).group()
     mobile = mobile.replace('Call the showroom', 'Call Us').replace('Request a consultation', 'Get Free Quote')
     body = '\n'.join([header(motorized), '<main id="main">', hero(motorized), reviews(motorized), products(motorized),
-                      benefits(motorized), quote_form(motorized), showroom(), '</main>', footer(motorized), mobile, information_dialogs()])
+                      benefits(motorized), showroom(), quote_form(motorized), '</main>', footer(motorized), mobile, information_dialogs()])
     html = '<!doctype html>\n<html lang="en">\n'+absolute_assets(head)+'\n<body class="landing-page'+(' landing-motorized' if motorized else '')+'">\n<a class="skip-link" href="#main">Skip to content</a>\n'+absolute_assets(body)+'\n</body>\n</html>\n'
     path = DIST / route.strip('/') / 'index.html'
     path.parent.mkdir(parents=True, exist_ok=True)
