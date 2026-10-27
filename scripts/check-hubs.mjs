@@ -82,14 +82,14 @@ for (const [route, type] of [['/about/', 'AboutPage'], ['/contact/', 'ContactPag
   const html = pages.get(route)?.html || '';
   requireThat(html.includes(`"@type": "${type}"`), `${route}: page schema missing`);
   requireThat(html.includes('href="tel:+18188845464"') && html.includes('href="mailto:john@johncrawford.com'), `${route}: direct contact destinations missing`);
-  requireThat(html.includes('/company-pages.css?v=company-pages-4'), `${route}: scoped styles missing`);
+  requireThat(html.includes('/company-pages.css?v=company-pages-5'), `${route}: scoped styles missing`);
 }
 const contactForm = pages.get('/contact/')?.html.match(/<form class="hub-consultation-form"[\s\S]*?<\/form>/)?.[0] || '';
 requireThat(contactForm.includes('id="appointment-form"'), 'Contact appointment destination missing');
 requireThat((contactForm.match(/\bdisabled\b/g) || []).length === 9 && !/action=|data-netlify|type="submit"/.test(contactForm), 'Contact form must remain a design preview until GHL is configured');
 requireThat(contactForm.includes('autocomplete="postal-code"') && contactForm.includes('<select id="company-product"') && contactForm.includes('<textarea id="company-message"'), 'Contact form must include ZIP code, product interest and message');
 const appointmentOptions = contactForm.match(/<fieldset class="company-appointment-options">[\s\S]*?<\/fieldset>/)?.[0] || '';
-requireThat(appointmentOptions.includes('Appointment preferences (optional)') && (appointmentOptions.match(/type="checkbox" disabled/g) || []).length === 2 && !/\brequired\b|\bchecked\b/.test(appointmentOptions), 'Contact appointment preferences must be optional, unchecked design-only controls');
+requireThat((appointmentOptions.match(/name="appointment-type"/g) || []).length === 2 && (appointmentOptions.match(/type="radio" disabled/g) || []).length === 2 && !/\brequired\b|\bchecked\b|type="checkbox"/.test(appointmentOptions), 'Contact appointment choices must be one optional, unchecked design-only radio group');
 const showroomArtwork = html => [...(html.match(/<section class="section about"[\s\S]*?<\/section>/)?.[0] || '').matchAll(/<img\b[^>]+src="\/?assets\/([^\"]+)"/g)].map(m => m[1]);
 const homeShowroomArtwork = showroomArtwork(pages.get('/')?.html || '');
 for (const route of ['/lp/custom-window-treatments/', '/lp/motorized-shades/']) {
