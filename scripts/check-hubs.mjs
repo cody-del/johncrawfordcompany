@@ -68,6 +68,19 @@ for (const hub of hubs) {
   requireThat(/<\/section>\s*<section class="section hub-introduction hub-intro-consultation"/.test(html), `${hub.slug}: consultation section must follow the hero`);
 }
 requireThat(pages.get('/motorized-shades/')?.html.includes('The PowerView® App is required for programmed operation.'), 'Missing PowerView scheduling disclosure');
-requireThat(pages.size === 8, `Expected homepage, five hubs, accessibility and privacy; found ${pages.size}`);
+const expectedRoutes = ['/', ...hubs.map(hub => hub.slug), '/accessibility/', '/privacy/', '/lp/custom-window-treatments/', '/lp/motorized-shades/'];
+requireThat(pages.size === expectedRoutes.length && expectedRoutes.every(route => pages.has(route)), `Expected the eight website routes and two campaign landing pages; found ${[...pages.keys()].join(', ')}`);
+const homeShowroom = pages.get('/')?.html.match(/<section class="section about"[\s\S]*?<\/section>/)?.[0].replaceAll('src="assets/', 'src="/assets/');
+for (const route of ['/lp/custom-window-treatments/', '/lp/motorized-shades/']) {
+  const html = pages.get(route)?.html || '';
+  const showroom = html.match(/<section class="section about"[\s\S]*?<\/section>/)?.[0];
+  requireThat(showroom === homeShowroom, `${route}: preserve the complete approved Woodland Hills section`);
+  requireThat(html.includes('href="/landings.css?v=landing-1"'), `${route}: scoped landing-page styles missing`);
+  const form = html.match(/<form class="landing-form"[\s\S]*?<\/form>/)?.[0] || '';
+  requireThat((form.match(/\bdisabled\b/g) || []).length === 4 && !/action=|data-netlify|type="submit"/.test(form), `${route}: do not accept leads before the form destination is confirmed`);
+  requireThat(html.includes('The PowerView® App is required for programmed operation.'), `${route}: missing PowerView disclosure`);
+  const nav = html.match(/<nav class="main-navigation"[\s\S]*?<\/nav>/)?.[0] || '';
+  requireThat(!/href="(?!#)/.test(nav), `${route}: main navigation must stay on the landing page`);
+}
 if (errors.length) { console.error(errors.join('\n')); process.exit(1); }
 console.log(`All ${pages.size} HTML routes passed: headings, metadata, internal links, assets, contact details and public copy separation.`);

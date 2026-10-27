@@ -10,6 +10,8 @@ Netlify serves the same checked files at https://johncrawfordcompany.netlify.app
 - `/`: approved homepage design.
 - `/shades/`, `/blinds/`, `/shutters/`, `/drapery/`, `/motorized-shades/`: first five product hubs, built from the approved copy.
 - `/accessibility/`: website assistance and verified business contact details.
+- `/lp/custom-window-treatments/`: campaign landing page for blinds, shades, shutters, drapery and motorization.
+- `/lp/motorized-shades/`: campaign landing page for motorized and automated shade searches.
 
 ## Run locally
 
@@ -31,6 +33,8 @@ Open http://127.0.0.1:4317/.
 - `scripts/check-customer-copy.py`: blocks recognizable internal writer notes and unfinished copy before publication.
 
 Run `python3 scripts/build-hubs.py` after changing public hub content, then `npm run check`. Generated HTML is committed so all important content is available without JavaScript.
+
+Run `python3 scripts/build-landings.py` to rebuild the two campaign pages from the approved homepage sections. Both inherit `styles.css`; additions in `landings.css` are scoped to the landing pages. The Woodland Hills section is copied intact and verified against the homepage. Consultation forms remain design previews pending lead routing; phone and email links are active.
 
 `netlify.toml` publishes `dist` and runs `npm run check` before upload. The Netlify project is connected to `main` for continuous deployment. Product images are labeled by collection and are not presented as John Crawford installations.
 
