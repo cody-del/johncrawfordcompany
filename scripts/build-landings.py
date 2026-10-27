@@ -1,4 +1,4 @@
-"""Build campaign pages using the approved homepage's actual sections and styles."""
+"""Build form-first campaign pages with the approved website's brand assets."""
 from pathlib import Path
 from html import escape
 import re
@@ -47,6 +47,10 @@ def footer(motorized):
 
 def showroom():
     html = section('about')
+    html = re.sub(r'<div class="about-copy">[\s\S]*?</div>', '''<div class="about-copy">
+      <h2 class="showroom-title" id="about-heading"><img src="/assets/showroom-visit-headline.png" alt="Visit us in Woodland Hills" width="2514" height="840" loading="lazy" decoding="async"></h2>
+      <p>See your options in person, with John and Max to guide you.</p>
+      </div>''', html)
     html = re.sub(r'<a class="btn btn-primary" href="https://www.google.com/maps/[^<]+[\s\S]*?</a>',
                   '<a class="btn btn-showroom-contact" href="tel:+18188845464">Call Us</a>', html)
     return html.replace('class="btn btn-showroom-contact" href="#contact">Contact Us', 'class="btn btn-primary" href="#contact">Get Free Quote')
@@ -77,53 +81,33 @@ def reviews(motorized):
     return re.sub(r'[ \t]+\n', '\n', html)
 
 
-def products():
-    html = section('window-treatments')
-    html = re.sub(r'<div class="section-intro">[\s\S]*?</div>', '<div class="section-intro"><h2 id="products-heading">Choose the look you love.</h2></div>', html)
-    copy = {
-        'blinds': 'Tilt the slats for daylight and everyday privacy.',
-        'shades': 'Soften bright light or choose more room darkening.',
-        'shutters': 'Adjust light and privacy with a finished, architectural look.',
-        'drapery': 'Bring softness, texture and a fabric you love.'
-    }
-    for name, text in copy.items():
-        card = re.search(r'<article class="product" id="' + name + r'"[\s\S]*?</article>', html).group()
-        short = re.sub(r'<p>[\s\S]*?</p>', f'<p>{e(text)}</p>', card)
-        short = re.sub(r'\s*<a\b[\s\S]*?</a>', '', short)
-        html = html.replace(card, short)
-    closing = '<div class="landing-product-close"><p>Motorization makes hard-to-reach windows easier to use.</p>' + cta() + '</div>'
-    before, after = html.rsplit('</div>', 1)
-    return before + closing + '</div>' + after
-
-
-def motorization():
-    return '''<section class="section linen motorization" id="motorization" aria-labelledby="motor-heading">
-      <div class="container feature-grid"><div class="feature-image"><img src="/assets/products/powerview-wall-control.png" alt="Round PowerView wall control mounted beside a pale fabric window shade." width="1280" height="853" loading="lazy" decoding="async"></div>
-      <div class="feature-copy"><h2 id="motor-heading">Less reaching. More control.</h2>
-      <ul class="simple-list"><li>Adjust tall windows with a remote.</li><li>Open or close several shades together.</li><li>Schedule compatible shades in the PowerView® App.</li></ul>
-      <p>Roller, screen, honeycomb and woven wood options. We install the shades and set up your controls.</p>
-      <p class="landing-disclosure">The PowerView® App is required for programmed operation.</p>''' + cta() + '</div></div></section>'
-
-
-
-
-
-
-def contact(motorized):
-    heading = 'Get a free quote for motorized shades.' if motorized else 'Get a free quote for your windows.'
-    copy = 'Share your details. John or Max will contact you to discuss your windows and the next steps for your quote.'
-    return f'''<section class="section linen contact landing-contact" id="contact" aria-labelledby="contact-heading">
-      <div class="container landing-contact-grid"><div class="landing-contact-copy"><h2 id="contact-heading">{heading}</h2><p>{copy}</p>
-      <div class="contact-actions"><a class="btn btn-showroom-contact" href="tel:+18188845464">Call Us</a><p class="landing-public-phone">(818) 884-5464</p></div>
-      </div>
-      <form class="landing-form" aria-label="Free quote form preview" aria-describedby="form-preview form-required">
-      <h3>Get your free quote</h3><p class="landing-preview-note" id="form-preview">This form is a design preview. Please call us about your project.</p>
+def quote_form():
+    return '''<form class="landing-form" id="contact" aria-labelledby="quote-heading" aria-describedby="form-preview form-required">
+      <h2 id="quote-heading">Get your free quote</h2>
+      <p class="landing-follow-up">John or Max will follow up about your windows.</p>
+      <p class="landing-preview-note" id="form-preview">Form preview. Please call us until online quotes are available.</p>
       <div class="landing-form-fields">
       <div class="landing-form-field"><label for="lead-name">Full name</label><input id="lead-name" name="name" autocomplete="name" type="text" maxlength="120" required disabled></div>
       <div class="landing-form-field"><label for="lead-phone">Phone number</label><input id="lead-phone" name="phone" autocomplete="tel" type="tel" maxlength="30" required disabled></div>
       <div class="landing-form-field"><label for="lead-email">Email</label><input id="lead-email" name="email" autocomplete="email" type="email" maxlength="254" required disabled></div>
       </div><p class="landing-required" id="form-required">All fields are required.</p><button class="btn btn-primary" type="button" disabled>Get Free Quote</button>
-      <p class="landing-privacy">We use your contact details to respond to your project inquiry. <button class="landing-info-button" type="button" data-landing-dialog="landing-privacy-dialog" aria-haspopup="dialog" aria-controls="landing-privacy-dialog">Privacy Policy</button>.</p></form></div></section>'''
+      <p class="landing-privacy">Your details are used to respond to your inquiry. <button class="landing-info-button" type="button" data-landing-dialog="landing-privacy-dialog" aria-haspopup="dialog" aria-controls="landing-privacy-dialog">Privacy Policy</button>.</p></form>'''
+
+
+def hero(motorized):
+    category = 'Motorized shades · Los Angeles' if motorized else 'Custom window treatments · Los Angeles'
+    headline = 'Your shades.<span>One simple touch.</span>' if motorized else 'Better light.<span>More privacy.</span>'
+    promise = ('Control a room without reaching for every shade. We measure, install and set up your controls.' if motorized else
+               'Blinds, shades, shutters, drapery and motorization. Personally measured and installed by John and Max.')
+    media = re.search(r'<div class="hero-media"[\s\S]*</div>\s*</section>', section('top')).group()
+    media = media.rsplit('</section>', 1)[0]
+    if motorized:
+        media = re.sub(r'<picture>[\s\S]*?</picture>\s*<video[\s\S]*?</video>', '<img src="/assets/powerview-wall-remote.jpg" alt="" width="1440" height="1080" fetchpriority="high">', media)
+    return f'''<section class="hero landing-hero" id="top" aria-labelledby="hero-heading">
+      <div class="container landing-hero-grid"><div class="hero-content">
+      <p class="landing-eyebrow">{e(category)}</p><h1 id="hero-heading">{headline}</h1>
+      <p class="landing-promise">{e(promise)}</p>
+      </div>{quote_form()}</div>{media}</section>'''
 
 
 def build(motorized=False):
@@ -138,29 +122,19 @@ def build(motorized=False):
     head = re.sub(r'(<meta property="og:title" content=")[^"]*', lambda m:m[1]+e(title), head)
     head = head.replace(f'href="{BASE}/"', f'href="{BASE}{route}"').replace(f'content="{BASE}/"', f'content="{BASE}{route}"')
     head = head.replace('app.js?v=hubs-1', 'app.js?v=landing-conversion-1')
-    head = head.replace('</head>', '<link rel="stylesheet" href="/landings.css?v=outcomes-1">\n</head>')
+    head = head.replace('</head>', '<link rel="stylesheet" href="/landings.css?v=form-first-1">\n</head>')
     if motorized:
         head = re.sub(r'  <link rel="preload" href="assets/hero-room-poster-[^\n]+\n', '', head)
         head = head.replace(BASE+'/assets/hero-room-poster-desktop.webp', BASE+'/assets/powerview-wall-remote.jpg')
         head = head.replace('A finished shade installation from John Crawford Company project footage', 'Hunter Douglas PowerView wall-mounted remote beside blue window shades')
         head = head.replace('</head>', '<link rel="preload" as="image" href="/assets/powerview-wall-remote.jpg">\n</head>')
-    hero = section('top')
-    hero = hero.replace('Request a consultation', 'Get Free Quote')
-    hero = re.sub(r'<a class="hero-phone" href="tel:[^"]+">[\s\S]*?</a>', '<a class="btn btn-showroom-contact" href="tel:+18188845464">Call Us</a>', hero)
-    headline = 'Motorized shades.<span>Control light from your seat.</span>' if motorized else 'The light you want.<span>The privacy you need.</span>'
-    promise = 'Adjust one window or a whole room. We install your shades and set up the controls.' if motorized else 'Custom blinds, shades, shutters and drapery, with motorization options. John and Max handle the measuring and installation.'
-    hero = re.sub(r'(<h1 id="hero-heading">)[\s\S]*?</h1>', lambda m: m[1] + headline + '</h1>', hero)
-    hero = re.sub(r'<p>[\s\S]*?</p>', '<p>' + e(promise) + '</p>', hero, count=1)
-    hero = re.sub(r'<p class="hero-location">[\s\S]*?</p>', '<p class="hero-location">Serving Los Angeles from our Woodland Hills showroom.</p>', hero)
-    if motorized:
-        hero = re.sub(r'<picture>[\s\S]*?</picture>\s*<video[\s\S]*?</video>', '<img src="/assets/powerview-wall-remote.jpg" alt="" width="1440" height="1080" fetchpriority="high">', hero)
     brandbar = re.search(r'<div class="brand-bar"[\s\S]*?(?=<section class="reviews")', HOME).group().strip()
     if motorized:
         brandbar = re.sub(r'<button class="hero-video-toggle"[\s\S]*?</button>', '', brandbar)
     mobile = re.search(r'<div class="mobile-contact"[\s\S]*?</div>', HOME).group()
     mobile = mobile.replace('Call the showroom', 'Call Us').replace('Request a consultation', 'Get Free Quote')
-    body = '\n'.join([header(motorized), '<main id="main">', hero, brandbar, reviews(motorized), motorization() if motorized else products(),
-                      showroom(), contact(motorized), '</main>', footer(motorized), mobile, information_dialogs()])
+    body = '\n'.join([header(motorized), '<main id="main">', hero(motorized), brandbar, reviews(motorized),
+                      showroom(), '</main>', footer(motorized), mobile, information_dialogs()])
     html = '<!doctype html>\n<html lang="en">\n'+absolute_assets(head)+'\n<body class="landing-page'+(' landing-motorized' if motorized else '')+'">\n<a class="skip-link" href="#main">Skip to content</a>\n'+absolute_assets(body)+'\n</body>\n</html>\n'
     path = DIST / route.strip('/') / 'index.html'
     path.parent.mkdir(parents=True, exist_ok=True)

@@ -47,7 +47,7 @@
     "sameAs": ["https://www.instagram.com/johncrawfordcompany/", "https://www.facebook.com/JohnCrawford.Co/"]
   }
   </script>
-<link rel="stylesheet" href="/landings.css?v=outcomes-1">
+<link rel="stylesheet" href="/landings.css?v=form-first-1">
 </head>
 <body class="landing-page">
 <a class="skip-link" href="#main">Skip to content</a>
@@ -57,17 +57,20 @@
       <a class="btn btn-primary header-cta" href="#contact">Get Free Quote</a></div>
       </div></header>
 <main id="main">
-<section class="hero" id="top" aria-labelledby="hero-heading">
-      <div class="hero-content">
-        <h1 id="hero-heading">The light you want.<span>The privacy you need.</span></h1>
-        <p>Custom blinds, shades, shutters and drapery, with motorization options. John and Max handle the measuring and installation.</p>
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="#contact">Get Free Quote</a>
-          <a class="btn btn-showroom-contact" href="tel:+18188845464">Call Us</a>
-        </div>
-        <p class="hero-location">Serving Los Angeles from our Woodland Hills showroom.</p>
-      </div>
-      <div class="hero-media" aria-hidden="true">
+<section class="hero landing-hero" id="top" aria-labelledby="hero-heading">
+      <div class="container landing-hero-grid"><div class="hero-content">
+      <p class="landing-eyebrow">Custom window treatments · Los Angeles</p><h1 id="hero-heading">Better light.<span>More privacy.</span></h1>
+      <p class="landing-promise">Blinds, shades, shutters, drapery and motorization. Personally measured and installed by John and Max.</p>
+      </div><form class="landing-form" id="contact" aria-labelledby="quote-heading" aria-describedby="form-preview form-required">
+      <h2 id="quote-heading">Get your free quote</h2>
+      <p class="landing-follow-up">John or Max will follow up about your windows.</p>
+      <p class="landing-preview-note" id="form-preview">Form preview. Please call us until online quotes are available.</p>
+      <div class="landing-form-fields">
+      <div class="landing-form-field"><label for="lead-name">Full name</label><input id="lead-name" name="name" autocomplete="name" type="text" maxlength="120" required disabled></div>
+      <div class="landing-form-field"><label for="lead-phone">Phone number</label><input id="lead-phone" name="phone" autocomplete="tel" type="tel" maxlength="30" required disabled></div>
+      <div class="landing-form-field"><label for="lead-email">Email</label><input id="lead-email" name="email" autocomplete="email" type="email" maxlength="254" required disabled></div>
+      </div><p class="landing-required" id="form-required">All fields are required.</p><button class="btn btn-primary" type="button" disabled>Get Free Quote</button>
+      <p class="landing-privacy">Your details are used to respond to your inquiry. <button class="landing-info-button" type="button" data-landing-dialog="landing-privacy-dialog" aria-haspopup="dialog" aria-controls="landing-privacy-dialog">Privacy Policy</button>.</p></form></div><div class="hero-media" aria-hidden="true">
         <picture>
           <source srcset="/assets/hero-room-poster-mobile.webp" media="(max-width: 700px)">
           <img src="/assets/hero-room-poster-desktop.webp" alt="" width="1600" height="900" fetchpriority="high">
@@ -177,48 +180,12 @@
         <p class="review-dialog-source">Review from <span translate="no">Google Maps</span></p>
       </dialog>
     </section>
-<section class="section linen products" id="window-treatments" aria-labelledby="products-heading">
-      <div class="container">
-        <div class="section-intro"><h2 id="products-heading">Choose the look you love.</h2></div>
-        <div class="product-grid">
-          <article class="product" id="blinds">
-            <img src="/assets/blinds.webp" alt="Wood blinds with rich brown slats and a matching valance" width="900" height="450" loading="lazy">
-            <div class="product-copy">
-              <h3>Blinds</h3>
-              <p>Tilt the slats for daylight and everyday privacy.</p>
-            </div>
-          </article>
-          <article class="product" id="shades">
-            <img src="/assets/shades.webp" alt="Sheer shades filtering daylight around a living room seating area" width="900" height="450" loading="lazy">
-            <div class="product-copy">
-              <h3>Shades</h3>
-              <p>Soften bright light or choose more room darkening.</p>
-            </div>
-          </article>
-          <article class="product" id="shutters">
-            <img src="/assets/shutters.webp" alt="Wood shutters with adjustable louvers across tall living room windows" width="900" height="450" loading="lazy">
-            <div class="product-copy">
-              <h3>Shutters</h3>
-              <p>Adjust light and privacy with a finished, architectural look.</p>
-            </div>
-          </article>
-          <article class="product" id="drapery">
-            <img src="/assets/drapery.webp" alt="Full-length blue drapery framing tall windows behind a sofa" width="900" height="450" loading="lazy">
-            <div class="product-copy">
-              <h3>Drapery</h3>
-              <p>Bring softness, texture and a fabric you love.</p>
-            </div>
-          </article>
-        </div>
-      <div class="landing-product-close"><p>Motorization makes hard-to-reach windows easier to use.</p><a class="btn btn-primary" href="#contact">Get Free Quote</a></div></div>
-    </section>
 <section class="section about" id="about" aria-labelledby="about-heading">
       <div class="container about-grid">
         <div class="about-copy">
-          <h2 class="showroom-title" id="about-heading"><img src="/assets/showroom-visit-headline.png" alt="Visit us in Woodland Hills" width="2514" height="840" loading="lazy" decoding="async"></h2>
-          <p>John got his start installing window treatments before opening his California store in 1995. That experience still shapes the advice we give in our Woodland Hills showroom.</p>
-          <p>Come in to see fabrics and finishes, compare window treatments and talk through your rooms. We’ll help you narrow down the options for light, privacy and the way you want your home to feel.</p>
-        </div>
+      <h2 class="showroom-title" id="about-heading"><img src="/assets/showroom-visit-headline.png" alt="Visit us in Woodland Hills" width="2514" height="840" loading="lazy" decoding="async"></h2>
+      <p>See your options in person, with John and Max to guide you.</p>
+      </div>
         <div class="showroom-card">
           <figure class="showroom-figure">
             <img src="/assets/showroom-illustration.svg?v=trees-2" alt="Illustration of John Crawford Company’s showroom with its red tile roof and palm trees" width="2394" height="1030" loading="lazy" decoding="async">
@@ -236,18 +203,6 @@
         </div>
       </div>
     </section>
-<section class="section linen contact landing-contact" id="contact" aria-labelledby="contact-heading">
-      <div class="container landing-contact-grid"><div class="landing-contact-copy"><h2 id="contact-heading">Get a free quote for your windows.</h2><p>Share your details. John or Max will contact you to discuss your windows and the next steps for your quote.</p>
-      <div class="contact-actions"><a class="btn btn-showroom-contact" href="tel:+18188845464">Call Us</a><p class="landing-public-phone">(818) 884-5464</p></div>
-      </div>
-      <form class="landing-form" aria-label="Free quote form preview" aria-describedby="form-preview form-required">
-      <h3>Get your free quote</h3><p class="landing-preview-note" id="form-preview">This form is a design preview. Please call us about your project.</p>
-      <div class="landing-form-fields">
-      <div class="landing-form-field"><label for="lead-name">Full name</label><input id="lead-name" name="name" autocomplete="name" type="text" maxlength="120" required disabled></div>
-      <div class="landing-form-field"><label for="lead-phone">Phone number</label><input id="lead-phone" name="phone" autocomplete="tel" type="tel" maxlength="30" required disabled></div>
-      <div class="landing-form-field"><label for="lead-email">Email</label><input id="lead-email" name="email" autocomplete="email" type="email" maxlength="254" required disabled></div>
-      </div><p class="landing-required" id="form-required">All fields are required.</p><button class="btn btn-primary" type="button" disabled>Get Free Quote</button>
-      <p class="landing-privacy">We use your contact details to respond to your project inquiry. <button class="landing-info-button" type="button" data-landing-dialog="landing-privacy-dialog" aria-haspopup="dialog" aria-controls="landing-privacy-dialog">Privacy Policy</button>.</p></form></div></section>
 </main>
 <footer class="site-footer" id="footer">
       <img class="footer-color-rule" src="/assets/brand-color-rule.png" alt="" width="3000" height="12" loading="lazy" aria-hidden="true">

@@ -267,7 +267,7 @@ def faq(section, linen=True):
     questions = ''.join(f'<details><summary>{e(q["question"])}</summary><p>{linked_text(q["answer"], q.get("links", []))}</p></details>' for q in section['faqs'])
     return f'''<section class="section {'linen ' if linen else ''}hub-questions" aria-labelledby="questions-heading">
       <div class="container questions-grid"><div class="questions-intro"><h2 id="questions-heading">{e(section['title'])}</h2>
-        <a class="text-link" href="tel:+18188845464">Ask John and Max: (818) 884-5464</a></div>
+        <a class="text-link" href="tel:+18188845464">Ask John: (818) 884-5464</a></div>
         <div class="faq-list">{questions}</div>
       </div>
     </section>'''

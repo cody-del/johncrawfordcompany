@@ -83,16 +83,20 @@ for (const [route, type] of [['/about/', 'AboutPage'], ['/contact/', 'ContactPag
 }
 const contactForm = pages.get('/contact/')?.html.match(/<form class="hub-consultation-form"[\s\S]*?<\/form>/)?.[0] || '';
 requireThat((contactForm.match(/\bdisabled\b/g) || []).length === 4 && !/action=|data-netlify|type="submit"/.test(contactForm), 'Contact form must remain a design preview until GHL is configured');
-const showroomContent = html => html.match(/<section class="section about"[\s\S]*?<\/section>/)?.[0].replaceAll('src="assets/', 'src="/assets/').replace(/<div class="showroom-actions">[\s\S]*?<\/div>/, '');
-const homeShowroom = showroomContent(pages.get('/')?.html || '');
+const showroomArtwork = html => [...(html.match(/<section class="section about"[\s\S]*?<\/section>/)?.[0] || '').matchAll(/<img\b[^>]+src="\/?assets\/([^\"]+)"/g)].map(m => m[1]);
+const homeShowroomArtwork = showroomArtwork(pages.get('/')?.html || '');
 for (const route of ['/lp/custom-window-treatments/', '/lp/motorized-shades/']) {
   const html = pages.get(route)?.html || '';
-  requireThat(showroomContent(html) === homeShowroom, `${route}: preserve the approved Woodland Hills artwork, story, address and hours`);
-  requireThat(html.includes('href="/landings.css?v=outcomes-1"'), `${route}: scoped landing-page styles missing`);
+  requireThat(JSON.stringify(showroomArtwork(html)) === JSON.stringify(homeShowroomArtwork), `${route}: preserve the approved Woodland Hills artwork`);
+  requireThat(html.includes('Woodland Hills, CA 91364') && html.includes('Monday–Friday, 9 am–5 pm'), `${route}: preserve the verified showroom address and hours`);
+  requireThat(!html.includes('John got his start') && !html.includes('Come in to see fabrics and finishes'), `${route}: use concise landing-page copy instead of the website story`);
+  requireThat(html.includes('href="/landings.css?v=form-first-1"'), `${route}: scoped landing-page styles missing`);
   const form = html.match(/<form class="landing-form"[\s\S]*?<\/form>/)?.[0] || '';
   requireThat((form.match(/\bdisabled\b/g) || []).length === 4 && !/action=|data-netlify|type="submit"/.test(form), `${route}: do not accept leads before the form destination is confirmed`);
-  if (route === '/lp/motorized-shades/') requireThat(html.includes('The PowerView® App is required for programmed operation.'), `${route}: missing PowerView disclosure`);
-  requireThat((html.match(/<section\b/g) || []).length === 5 && !html.includes('id="services"'), `${route}: retain the concise five-section landing-page flow`);
+  if (/schedule|programmed operation/i.test(html)) requireThat(html.includes('The PowerView® App is required for programmed operation.'), `${route}: missing PowerView disclosure for programmed operation`);
+  const openingSection = html.match(/<main[^>]*>\s*(<section\b[\s\S]*?<\/section>)/)?.[1] || '';
+  requireThat(openingSection.includes(form) && !!form, `${route}: put the quote form in the opening section`);
+  requireThat((html.match(/<section\b/g) || []).length === 3 && !/id="(?:services|window-treatments|motorization)"/.test(html), `${route}: retain only the opening offer/form, reviews and illustrated local trust section`);
   requireThat(!/class="main-navigation"|class="menu-toggle"|class="footer-nav"/.test(html), `${route}: browsing menus are outside the conversion-only brief`);
   requireThat(!/<iframe\b/.test(html), `${route}: embedded maps must not provide an off-page exit`);
   requireThat(!/class="[^"]*(?:faq-list|questions-grid)|id="questions"|href="#questions"/.test(html), `${route}: landing-page FAQs must be removed`);

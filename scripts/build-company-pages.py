@@ -85,7 +85,7 @@ def head(page, kind):
 <link rel="preload" href="/assets/brand-latin-1.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/brand-latin-0.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/fonts.css?v=fonts-2"><link rel="stylesheet" href="/styles.css?v=product-cards-1">
-<link rel="stylesheet" href="/hubs.css?v=contact-centered-1"><link rel="stylesheet" href="/company-pages.css?v=company-pages-1">
+<link rel="stylesheet" href="/hubs.css?v=contact-centered-1"><link rel="stylesheet" href="/company-pages.css?v=company-pages-2">
 <script src="/app.js?v=company-pages-1" defer></script>
 <script type="application/ld+json">{json.dumps(schema, ensure_ascii=False).replace('<', chr(92)+'u003c')}</script>
 </head><body class="interior-page company-page company-page--{page['name'].lower()}">
@@ -121,10 +121,15 @@ def consultation_form():
       <div class="hub-form-field"><label for="company-name">Full name</label><input id="company-name" name="name" type="text" autocomplete="name" required disabled></div>
       <div class="hub-form-field"><label for="company-phone">Phone number</label><input id="company-phone" name="phone" type="tel" autocomplete="tel" required disabled></div>
       <div class="hub-form-field"><label for="company-email">Email</label><input id="company-email" name="email" type="email" autocomplete="email" required disabled></div>
+      <div class="company-form-extra">
+        <div class="hub-form-field"><label for="company-product">Product interest</label><select id="company-product" name="product" required disabled><option value="" selected>Select product</option><option value="shades">Shades</option><option value="blinds">Blinds</option><option value="shutters">Shutters</option><option value="drapery">Drapery</option><option value="motorized-shades">Motorized shades</option><option value="not-sure">Not sure yet</option></select></div>
+        <div class="hub-form-field"><label for="company-zip">ZIP code</label><input id="company-zip" name="postal-code" type="text" inputmode="numeric" autocomplete="postal-code" pattern="[0-9]{5}" maxlength="5" required disabled></div>
+      </div>
+      <div class="hub-form-field"><label for="company-message">Message</label><textarea id="company-message" name="message" rows="3" maxlength="3000" required disabled></textarea></div>
       <p class="hub-form-required">All fields are required.</p>
       <button class="btn btn-primary" type="button" disabled>Request a consultation</button>
       </div>
-      <p class="hub-form-notice" id="company-form-notice">We use your name, phone number and email to respond to your project inquiry. <a href="/privacy/">Privacy Policy</a>.</p>
+      <p class="hub-form-notice" id="company-form-notice">We use the information you provide to respond to your project inquiry. <a href="/privacy/">Privacy Policy</a>.</p>
     </form>'''
 
 
@@ -132,7 +137,7 @@ def about_body(page):
     return f'''<main id="main">
     <section class="section company-hero linen" aria-labelledby="page-heading"><div class="container company-hero-grid">
       <div class="company-hero-copy">{breadcrumbs(page)}<h1 id="page-heading">{e(page['heading'])}</h1><p>{e(page['intro'])}</p>
-        <div class="company-actions"><a class="btn btn-primary" href="/contact/">Talk with John and Max</a><a class="text-link" href="/contact/#showroom">Visit the showroom</a></div></div>
+        <div class="company-actions"><a class="btn btn-primary" href="/contact/">Talk with John</a><a class="text-link" href="/contact/#showroom">Visit the showroom</a></div></div>
       {showroom_art('company-hero-art', priority=True)}
     </div></section>
     <section class="section company-story" aria-labelledby="story-heading"><div class="container company-story-grid">
@@ -146,7 +151,7 @@ def about_body(page):
       <h2 id="single-window-heading">{e(page['single_heading'])}</h2><div class="company-prose">{paragraphs(page['single'])}</div>
     </div></section>
     <section class="section company-visit linen" id="contact" aria-labelledby="visit-heading"><div class="container company-visit-grid">
-      <div class="company-feature-copy"><h2 id="visit-heading">{e(page['visit_heading'])}</h2><p>{e(page['visit'])}</p><a class="text-link" href="/contact/">Contact John and Max</a></div>
+      <div class="company-feature-copy"><h2 id="visit-heading">{e(page['visit_heading'])}</h2><p>{e(page['visit'])}</p><a class="text-link" href="/contact/">Contact John</a></div>
       {contact_details()}
     </div></section>
     </main>'''

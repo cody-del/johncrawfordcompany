@@ -46,7 +46,13 @@
 .company-page .company-contact-channels a:hover { color: var(--walnut); }
 .company-page .company-contact-grid > .hub-consultation-form { grid-area: auto; justify-self: end; width: 100%; max-width: 450px; padding: 28px; }
 .company-page .hub-consultation-form h2 { margin-bottom: 20px; font-size: 28px; line-height: 1.25; }
+.company-page .hub-form-field textarea { display: block; width: 100%; min-height: 100px; padding: 9px 11px; border: 1px solid #9a8676; border-radius: 0; background: var(--white); color: var(--walnut); font: 16px/1.5 var(--body); resize: vertical; }
+.company-page .hub-form-field textarea:disabled { opacity: 1; -webkit-text-fill-color: var(--walnut); }
 .company-page .hub-consultation-form .hub-form-fields { gap: 13px; }
+.company-page .company-form-extra { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .65fr); gap: 13px; align-items: start; }
+.company-page .company-form-extra > .hub-form-field { min-width: 0; }
+.company-page .hub-form-field select { display: block; width: 100%; min-width: 0; min-height: 44px; padding: 9px 11px; border: 1px solid #9a8676; border-radius: 0; background: var(--white); color: var(--walnut); font: 16px/1.5 var(--body); }
+.company-page .hub-form-field select:disabled { opacity: 1; -webkit-text-fill-color: var(--walnut); }
 .company-page .company-showroom-grid { gap: clamp(36px, 5vw, 76px); }
 .company-page .company-showroom-art { padding-block: 12px; }
 .company-page .company-showroom-info > p { max-width: 520px; }
@@ -104,6 +110,7 @@
   .company-page .company-contact-channels a { font-size: 17px; }
   .company-page .company-contact-grid > .hub-consultation-form { padding: 22px 20px; }
   .company-page .hub-consultation-form h2 { font-size: 26px; margin-bottom: 18px; }
+  .company-page .company-form-extra { grid-template-columns: minmax(0, 1fr); }
   .company-page .company-product-links { gap: 2px 22px; margin-top: 16px; }
   .company-page .company-accent { width: 72px; margin-top: 20px; }
 }
