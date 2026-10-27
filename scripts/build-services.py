@@ -55,7 +55,7 @@ def photo(key, hero=False):
 def head(page):
     html = company.head(page, 'WebPage')
     html = html.replace(f'company-page--{page["name"].lower()}', f'service-page service-page--{page["id"]}')
-    html = html.replace('</head>', '<link rel="stylesheet" href="/services.css?v=services-1">\n</head>')
+    html = html.replace('</head>', '<link rel="stylesheet" href="/services.css?v=services-2">\n</head>')
     def service_schema(match):
         graph = json.loads(match.group(1))
         service_id = BASE + page['slug'] + '#service'
@@ -83,6 +83,28 @@ def overview(section, page):
             + (f'<div class="service-topic-grid">{topics}</div>' if topics else '') + '</div></section>')
 
 
+def repair_form():
+    return '''<form class="hub-consultation-form service-repair-form" id="repair-inquiry" aria-labelledby="feature-heading" aria-describedby="repair-form-preview repair-form-notice">
+      <p id="repair-form-preview" class="sr-only">This form is a design preview and does not accept submissions or photo uploads.</p>
+      <div class="hub-form-fields">
+        <div class="repair-form-row">
+          <div class="hub-form-field"><label for="repair-purchased-when">When did you buy the product?</label><input id="repair-purchased-when" name="purchased-when" type="text" autocomplete="off" maxlength="80" placeholder="Approximate date" disabled></div>
+          <div class="hub-form-field"><label for="repair-purchased-from">Where did you buy it?</label><input id="repair-purchased-from" name="purchased-from" type="text" autocomplete="off" maxlength="160" placeholder="Store or company" disabled></div>
+        </div>
+        <div class="hub-form-field"><label for="repair-problem">What’s broken?</label><textarea id="repair-problem" name="problem" rows="3" maxlength="3000" required disabled></textarea></div>
+        <div class="hub-form-field"><label for="repair-name">Full name</label><input id="repair-name" name="name" type="text" autocomplete="name" maxlength="120" required disabled></div>
+        <div class="repair-form-row">
+          <div class="hub-form-field"><label for="repair-phone">Phone number</label><input id="repair-phone" name="phone" type="tel" autocomplete="tel" maxlength="30" required disabled></div>
+          <div class="hub-form-field"><label for="repair-email">Email</label><input id="repair-email" name="email" type="email" autocomplete="email" maxlength="254" required disabled></div>
+        </div>
+        <div class="hub-form-field repair-upload-field"><label for="repair-photos">Upload photos</label><input id="repair-photos" name="photos" type="file" accept="image/*" multiple aria-describedby="repair-photo-help" disabled><p id="repair-photo-help">You can include more than one photo.</p></div>
+        <p class="hub-form-required">Your name, phone, email and a description of the problem are required.</p>
+        <button class="btn btn-primary" type="button" disabled>Request repair help</button>
+      </div>
+      <p class="hub-form-notice" id="repair-form-notice">We use your details and photos to review your repair inquiry. <a href="/privacy/">Privacy Policy</a>.</p>
+    </form>'''
+
+
 def feature(section, page):
     anchor = f' id="{e(section["id"])}"' if section.get('id') else ''
     checklist = '<ul class="service-checklist">' + ''.join(f'<li>{e(item)}</li>' for item in section.get('checklist', [])) + '</ul>' if section.get('checklist') else ''
@@ -92,7 +114,14 @@ def feature(section, page):
         checklist += f'<p>{e(section["note"])}</p>'
     if section.get('link'):
         checklist += links([section['link']], page)
-    if section.get('image'):
+    if page['id'] == 'repair':
+        if section.get('note'):
+            text += f'<p>{e(section["note"])}</p>'
+        if section.get('link'):
+            text += links([section['link']], page)
+        inner = text + '</div>' + repair_form()
+        css_class = 'service-feature-grid service-feature-grid--repair'
+    elif section.get('image'):
         if section.get('link'):
             text += links([section['link']], page)
         inner = photo(section['image']) + text + '</div>'
@@ -118,9 +147,10 @@ def proof(page):
 
 
 def body(page):
+    cta_href = '#repair-inquiry' if page['id'] == 'repair' else email_url(page)
     hero = (f'<section class="section service-hero" aria-labelledby="page-heading"><div class="container service-hero-grid">'
             f'<div class="service-hero-copy">{company.breadcrumbs(page)}<h1 id="page-heading">{e(page["heading"])}</h1>'
-            f'<p>{e(page["intro"])}</p><div class="service-hero-actions"><a class="btn btn-primary" href="{e(email_url(page))}">{e(page["cta"])}</a>'
+            f'<p>{e(page["intro"])}</p><div class="service-hero-actions"><a class="btn btn-primary" href="{e(cta_href)}">{e(page["cta"])}</a>'
             f'<a class="text-link" href="tel:+18188845464">(818) 884-5464</a></div></div>{photo(page["hero_image"], True)}</div></section>')
     faq_items = ''.join(f'<details><summary>{e(item["question"])}</summary><p>{e(item["answer"])}</p></details>' for item in page['faqs'])
     faq_background = '' if page.get('quote') or page.get('story') else ' linen'

@@ -76,9 +76,15 @@ const expectedRoutes = ['/', ...hubs.map(hub => hub.slug), ...services.map(servi
 requireThat(pages.size === expectedRoutes.length && expectedRoutes.every(route => pages.has(route)), `Expected fourteen website routes and two campaign landing pages; found ${[...pages.keys()].join(', ')}`);
 for (const service of services) {
   const html = pages.get(service.slug)?.html || '';
-  requireThat(html.includes('/services.css?v=services-1') && html.includes('"@type": "Service"'), `${service.slug}: service template or structured data missing`);
+  requireThat(html.includes('/services.css?v=services-2') && html.includes('"@type": "Service"'), `${service.slug}: service template or structured data missing`);
   requireThat((html.match(/<details><summary>/g) || []).length === 3, `${service.slug}: missing service questions`);
-  requireThat(!/<form\b/.test(html) && html.includes('mailto:john@johncrawford.com') && html.includes('href="/contact/#appointment-form"'), `${service.slug}: preserve the email, telephone and central appointment inquiry journey`);
+  requireThat(html.includes('mailto:john@johncrawford.com') && html.includes('href="/contact/#appointment-form"'), `${service.slug}: preserve the email, telephone and central appointment inquiry journey`);
+  if (service.id === 'repair') {
+    const form = html.match(/<form class="hub-consultation-form service-repair-form"[\s\S]*?<\/form>/)?.[0] || '';
+    requireThat(form.includes('id="repair-inquiry"') && html.includes('href="#repair-inquiry"') && (form.match(/\bdisabled\b/g) || []).length === 8 && !/action=|data-netlify|type="submit"/.test(form), 'Repair form must remain a disabled design preview pending GHL');
+    for (const name of ['purchased-when', 'purchased-from', 'problem', 'name', 'phone', 'email', 'photos']) requireThat(form.includes(`name="${name}"`), `Repair inquiry field missing: ${name}`);
+    requireThat(/type="file" accept="image\/\*" multiple/.test(form), 'Repair photo control must support multiple images');
+  } else requireThat(!/<form\b/.test(html), `${service.slug}: keep the central contact inquiry destination`);
 }
 for (const [route, { html }] of pages) {
   if (route.startsWith('/lp/')) continue;

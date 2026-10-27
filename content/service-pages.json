@@ -4,7 +4,7 @@
     "name": "Blind & shade repair",
     "slug": "/services/blind-shade-repair/",
     "title": "Blind & Shade Repair in Los Angeles | John Crawford Co.",
-    "description": "Ask John Crawford Company about blind and shade repair in Los Angeles. Email photos for help assessing the problem, available parts and repair options.",
+    "description": "Blind and shade repair inquiries in Los Angeles. Tell John Crawford Company about your product, the problem and what you’d like help with.",
     "heading": "Blind and shade repair in Los Angeles",
     "intro": "A blind that won’t tilt or a shade that stops halfway doesn’t always need replacing. Tell us what’s happening, and we’ll help you find out whether a repair makes sense.",
     "hero_image": "parkland",
@@ -19,13 +19,13 @@
       "links": [{"text": "Compare new blinds", "href": "/blinds/"}, {"text": "Explore shade options", "href": "/shades/"}]
     },
     "feature": {
-      "heading": "Start with a photo.",
+      "heading": "Tell us about the problem.",
       "paragraphs": [
-        "You don’t need to know the name of the broken part. Email a few clear photos and describe what the treatment does when you try to use it. That gives us a better starting point than a brand name alone."
+        "A few details about the product and how it’s behaving help us work out what to look at. You don’t need to know the name of the broken part.",
+        "For photos, show the whole blind or shade and the area giving you trouble. A picture of the product label is helpful if you can find it."
       ],
-      "checklist": ["The whole blind or shade in its window", "A close view of the part or area causing trouble", "The product label, if you can find one", "A short description of what has changed"],
       "note": "For a motorized shade, include the system name if you know it and tell us whether the problem affects one shade or several.",
-      "link": {"text": "Email your repair photos", "email": true}
+      "link": {"text": "You can also email your photos", "email": true}
     },
     "quote": {
       "text": "John is Amazing! He is so kind and honest. Overall great guy to work with and helped me source blind brackets we had installed from Costco over 20 years ago! …",
@@ -34,13 +34,13 @@
     },
     "questions_heading": "Questions about blind and shade repairs",
     "faqs": [
-      {"question": "Can you repair blinds you didn’t sell?", "answer": "Sometimes. We can work on selected outside brands when suitable parts are available. Email photos of the treatment and the problem so we can see whether it’s something we can help with."},
+      {"question": "Can you repair blinds you didn’t sell?", "answer": "Sometimes. We can work on selected outside brands when suitable parts are available. Share photos and a description of the problem so we can see whether it’s something we can help with."},
       {"question": "Is a repair always less expensive than replacement?", "answer": "Not always. Parts, labor and the condition of the treatment all matter. We’ll help you weigh the repair against replacement rather than assume an older blind is worth fixing."},
       {"question": "Can you help with a motorized shade that isn’t responding?", "answer": "Tell us which system you have and what happens when you use the control. Some problems can be addressed with phone guidance; others need inspection or parts. We’ll help you work out the next step."}
     ],
     "contact_heading": "Tell us what’s happening.",
-    "contact_text": "Email your photos or call us to talk about the problem. From our Woodland Hills showroom, we help customers across Los Angeles and nearby Valley communities with repair inquiries.",
-    "related": [{"text": "Motorized shades and controls", "href": "/motorized-shades/"}, {"text": "Measuring and installation", "href": "/services/window-treatment-installation/"}]
+    "contact_text": "Share a few details using the repair inquiry form, or call us to talk about the problem. From our Woodland Hills showroom, we help customers across Los Angeles and nearby Valley communities with repair inquiries.",
+    "related": [{"text": "Repair inquiry form", "href": "#repair-inquiry"}, {"text": "Motorized shades and controls", "href": "/motorized-shades/"}, {"text": "Measuring and installation", "href": "/services/window-treatment-installation/"}]
   },
   {
     "id": "installation",
@@ -103,7 +103,7 @@
     "overview": {
       "heading": "Keep the view. Soften the glare.",
       "paragraphs": [
-        "John’s commercial work has included mesh solar shades for Valley food-service businesses. Those shades let people see outside while reducing glare from the windows.",
+        "John’s commercial work has included mesh solar shades for Western Bagel stores in the Valley. Those shades let people see outside while reducing glare from the windows.",
         "Your space may need something different. We’ll talk about when the sun is a problem, what people need to see and how much privacy you want. That helps narrow the choice of fabric and treatment."
       ],
       "topics": [

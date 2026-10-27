@@ -375,7 +375,7 @@ support_page('Privacy Policy', '/privacy/', 'Privacy Policy | John Crawford Comp
   <p class="statement-date">Effective October 22, 2026.</p>
   <p>This policy describes information collected through the John Crawford Company website and how to contact us about it.</p>
   <h2>Information you provide</h2>
-  <p>The consultation form displayed on this preview does not accept submissions. If you email us, we receive the contact information, project details and any photos or attachments you choose to send.</p>
+  <p>The forms displayed on this preview do not accept submissions or file uploads. If you email us, we receive the contact information, project details and any photos or attachments you choose to send.</p>
   <h2>How your information is used</h2>
   <p>We use inquiry information to respond, discuss your project and provide the help you request. Our website providers also process information to operate and protect the website.</p>
   <h2>Website providers</h2>

@@ -34,6 +34,12 @@
 .service-page .service-customer-quote figcaption { margin-top: 20px; color: var(--text); font-size: 14px; }
 .service-page .service-contact-grid { grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); }
 .service-page .service-contact-grid > .hub-contact-details { width: 100%; justify-self: end; }
+.service-page .service-repair-form { grid-area: auto; min-width: 0; width: 100%; max-width: 520px; justify-self: end; padding: 24px; }
+.service-page .repair-form-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; align-items: end; }
+.service-page .repair-form-row .hub-form-field { min-width: 0; }
+.service-page .repair-upload-field input[type="file"] { min-width: 0; padding: 0; color: var(--text); font-size: 14px; }
+.service-page .repair-upload-field input::file-selector-button { min-height: 44px; margin-right: 12px; padding: 9px 12px; border: 0; border-right: 1px solid #9a8676; background: var(--white); color: var(--walnut); font: 14px/1.5 var(--body); }
+.service-page .repair-upload-field > p { margin-top: 5px; font-size: 12px; line-height: 1.5; }
 
 @media (max-width: 1000px) {
   .service-page .service-hero h1 { font-size: 40px; }
@@ -51,6 +57,10 @@
   .service-page .service-photo-placeholder { max-width: 660px; justify-self: center; aspect-ratio: 16 / 10; }
   .service-page .service-topic-grid { grid-template-columns: minmax(0, 1fr); gap: 24px; margin-top: 28px; }
   .service-page .service-feature-grid > .service-photo { order: 2; }
+  .service-page .service-repair-form { justify-self: start; }
+}
+@media (max-width: 600px) {
+  .service-page .repair-form-row { grid-template-columns: minmax(0, 1fr); }
 }
 @media (max-width: 500px) {
   .service-page .section { padding-block: 48px; }
@@ -62,4 +72,5 @@
   .service-page .service-photo-guide { padding: 22px; }
   .service-page .service-proof { padding-block: 44px; }
   .service-page .service-links { gap: 2px 18px; }
+  .service-page .service-repair-form { padding: 20px; }
 }
