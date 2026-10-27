@@ -76,8 +76,8 @@ const expectedRoutes = ['/', ...hubs.map(hub => hub.slug), ...services.map(servi
 requireThat(pages.size === expectedRoutes.length && expectedRoutes.every(route => pages.has(route)), `Expected ${expectedRoutes.length} routes including both campaign landing pages; found ${[...pages.keys()].join(', ')}`);
 for (const service of services) {
   const html = pages.get(service.slug)?.html || '';
-  requireThat(html.includes('/services.css?v=services-3') && html.includes('"@type": "Service"'), `${service.slug}: service template or structured data missing`);
-  requireThat((html.match(/<details><summary>/g) || []).length === 3, `${service.slug}: missing service questions`);
+  requireThat(html.includes('/services.css?v=service-editorial-1') && html.includes('"@type": "Service"'), `${service.slug}: service template or structured data missing`);
+  requireThat((html.match(/<details><summary>/g) || []).length === service.faqs.length, `${service.slug}: missing service questions`);
   requireThat(html.includes('mailto:john@johncrawford.com') && html.includes('href="/contact/#appointment-form"'), `${service.slug}: preserve the email, telephone and central appointment inquiry journey`);
   if (service.id === 'repair') {
     const form = html.match(/<form class="hub-consultation-form service-repair-form"[\s\S]*?<\/form>/)?.[0] || '';

@@ -42,7 +42,8 @@
     "quote": {
       "text": "John is Amazing! He is so kind and honest. Overall great guy to work with and helped me source blind brackets we had installed from Costco over 20 years ago! …",
       "author": "Kamran Jahangard",
-      "source": "Google review"
+      "source": "Google review",
+      "rating": 5
     },
     "questions_heading": "Questions about blind and shade repairs",
     "faqs": [
@@ -87,16 +88,16 @@
     "title": "Free In-Home Consultation & Measuring | John Crawford Co.",
     "description": "Free in-home window treatment consultations in Los Angeles. We bring samples to your home, help you compare options and take measurements for your project.",
     "heading": "Free in-home consultation & measuring",
-    "intro": "We bring window treatment samples to your home and take measurements there. Compare fabrics and finishes against your own windows, furniture and light, with advice shaped around your rooms.",
+    "intro": "We come to your home with window treatment samples, take measurements and help you work through the choices in the rooms you’re furnishing. The consultation is free, whether you’re starting with one window or planning several rooms.",
     "hero_image": "silhouette",
     "cta": "Request a free in-home visit",
     "cta_href": "/contact/#appointment-form",
     "email_subject": "Free in-home window treatment consultation",
     "overview": {
-      "heading": "See the samples in your own home.",
+      "heading": "Compare the samples beside your own windows.",
       "paragraphs": [
-        "A fabric can look different beside your paint, flooring and furniture. We bring samples so you can compare colors, textures and light filtering in the room where they’ll be used.",
-        "Tell us which windows you’re considering, how you use the room and what you want to spend. We’ll help you narrow the options for privacy, daylight and the look you want."
+        "A fabric can look quite different beside your own windows. During the visit, you can compare it with the wall color, hold a finish next to existing woodwork and see how the material looks in the room’s daylight.",
+        "The visit also gives us a chance to understand what you want to change. Afternoon sun may be catching a television screen, a front room may need more privacy, or the windows may feel unfinished. We start with the way you use the room and work through the treatments that suit it."
       ],
       "links": [
         {
@@ -111,15 +112,30 @@
           "text": "See drapery options",
           "href": "/drapery/"
         }
+      ],
+      "topics": [
+        {
+          "title": "Light and privacy",
+          "text": "We’ll ask when the room is used and how much daylight you want to keep. A bedroom, home office and street-facing living room can call for different fabrics, linings or levels of coverage."
+        },
+        {
+          "title": "Style and materials",
+          "text": "A woven texture, a tailored roller shade and soft drapery each change the room in a different way. Compare color, texture and finish with the furnishings you already have."
+        },
+        {
+          "title": "Everyday control",
+          "text": "Consider the windows you adjust each day and the ones that are hard to reach. We can explain manual and compatible motorized options while you’re comparing styles, so you can choose how you’d like to operate them."
+        }
       ]
     },
     "feature": {
       "id": "measuring",
-      "heading": "Measurements taken for your windows.",
+      "heading": "Measuring is included in the home visit.",
       "image": "carole",
       "paragraphs": [
-        "We measure your windows and check the depth, trim, handles and nearby space that can affect the fit of a blind, shade or shutter.",
-        "For drapery, we also look at where the rod or track will sit, how far the fabric extends and where the panels will rest when open. These details help us plan the treatment and prepare your quote."
+        "We take the measurements for your project and look at the details around the opening: its depth, the trim, handles and nearby space. Those details help determine where a blind, shade or shutter can sit and how it will operate.",
+        "For drapery, the arrangement extends beyond the glass. We look at the position and span of the rod or track, how far the fabric will extend and where the panels will rest when open.",
+        "When you’re considering several windows together, we also look at how the treatments will relate to one another. You get help with the overall arrangement as well as the measurements for each opening."
       ],
       "link": {
         "text": "See our installation service",
@@ -129,27 +145,35 @@
     "story": {
       "heading": "One window is welcome.",
       "paragraphs": [
-        "John still remembers driving to help someone who needed just one mini blind for a bathroom. That visit led to a referral for a whole house of blinds.",
-        "He’s kept that approach. Whether you’re thinking about one window, a room of drapery or several rooms of shades, we’re happy to talk through it with you."
+        "Early in his career in upstate New York, John drove about an hour to a customer who needed a single mini blind for her bathroom. That small job led to a referral for a whole house of blinds.",
+        "He still welcomes the smaller projects. A bathroom window, one room of shades or a set of drapery is enough reason to get in touch."
       ]
     },
     "questions_heading": "Questions about your in-home consultation",
     "faqs": [
       {
         "question": "Is the in-home consultation free?",
-        "answer": "Yes. We come to your home for a free consultation, bring window treatment samples and take measurements for your project."
+        "answer": "Yes. The free visit includes bringing samples to your home, discussing your windows and taking measurements for your project. Contact us to arrange a time."
       },
       {
-        "question": "Do I need to measure my windows first?",
-        "answer": "No. Tell us which rooms you’re considering and what you’d like to change. We take the measurements during the home visit."
+        "question": "Do I need to choose a product before we meet?",
+        "answer": "You can start with an idea, a few inspiration photos or something you want to change about the room. We’ll help you compare suitable treatments, materials and controls during the visit."
+      },
+      {
+        "question": "Should I measure the windows myself?",
+        "answer": "We take the measurements needed for your project. Photos and a description of the windows can help start the conversation, but you don’t need a set of measurements to request a consultation."
+      },
+      {
+        "question": "Can we discuss motorized shades during the visit?",
+        "answer": "Yes. Tell us which windows are difficult to reach and how you’d like to control the shades. We’ll review compatible products and controls, including any power or connection requirements that apply."
       },
       {
         "question": "Can I visit the showroom instead?",
-        "answer": "Yes. Schedule an appointment at our Woodland Hills showroom to compare materials and finishes in person. You don’t need to have a product picked out before we meet."
+        "answer": "Yes. Our Woodland Hills showroom is available by appointment for comparing materials and finishes in person. You can call or use the appointment inquiry form to request a visit."
       }
     ],
-    "contact_heading": "Let’s look at your windows at home.",
-    "contact_text": "Request a free in-home consultation in Los Angeles or the surrounding area. We’ll bring samples and measure your windows. You can also arrange a visit to our appointment-only Woodland Hills showroom.",
+    "contact_heading": "Let’s see the windows you have in mind.",
+    "contact_text": "Tell us which rooms you’re considering and what you’d like to change. We’ll arrange a free in-home consultation, bring samples and take measurements. We serve Los Angeles and nearby Valley communities from our appointment-only Woodland Hills showroom.",
     "related": [
       {
         "text": "Request your free in-home consultation",
@@ -159,7 +183,36 @@
         "text": "Window treatment installation",
         "href": "/services/window-treatment-installation/"
       }
-    ]
+    ],
+    "details": {
+      "heading": "From the samples to your quote.",
+      "items": [
+        {
+          "heading": "Talk through the budget.",
+          "paragraphs": [
+            "Your budget is part of the conversation. We compare treatment styles, materials and operating options, and explain how those choices affect the quote. If you’re considering one room now and others later, we can discuss the rooms you want to focus on."
+          ]
+        },
+        {
+          "heading": "Plan the complete treatment.",
+          "paragraphs": [
+            "A treatment is more than a fabric or finish. Dimensions, hardware and controls also affect the result and the price. We work through those choices together so you can understand the differences between options and what your quote includes."
+          ]
+        },
+        {
+          "heading": "Understand the next step.",
+          "paragraphs": [
+            "With the measurements and selections in place, we can prepare your quote and discuss product availability and installation. If an item is delayed or goes on backorder, we keep you informed about what has changed."
+          ]
+        }
+      ]
+    },
+    "quote": {
+      "text": "It was a pleasure working with John Crawford Co. from ordering through installation. The process was seamless.",
+      "author": "monica fitzhugh",
+      "source": "Google review",
+      "rating": 5
+    }
   },
   {
     "id": "installation",
@@ -177,6 +230,7 @@
       "id": "installation",
       "heading": "A good fit takes more than width and height.",
       "paragraphs": [
+        "John began installing window treatments in the mid-1980s, before opening his California store in 1995.",
         "We measure the width at several points up the window and the height at several points across it. We also check whether the opening is square and level. One width and one height don’t tell the whole story.",
         "Mounting depth, trim, handles and room for the treatment to move all matter too. Without the right fit, a treatment can look uneven or fail to open and close smoothly.",
         "At installation, we check the mounting brackets, alignment and operation, as well as how the finished treatment looks in the window. With drapery, we also check how the fabric hangs and where the panels sit when open."
@@ -194,15 +248,30 @@
           "text": "Drapery and hardware",
           "href": "/drapery/"
         }
+      ],
+      "topics": [
+        {
+          "title": "Blinds and shades",
+          "text": "Mounting depth and the space around the window affect where a treatment sits. We check positioning and movement, including clearances around handles or trim that could interfere with everyday use."
+        },
+        {
+          "title": "Shutters",
+          "text": "The fit involves both the frame and the panels. We check how the panels open and the louvers operate, with attention to nearby trim, handles and the space needed for access."
+        },
+        {
+          "title": "Drapery and hardware",
+          "text": "The height and span of a rod or track shape the way drapery frames the window. We fit the hardware and check how the panels hang, travel and sit when open."
+        }
       ]
     },
     "feature": {
       "id": "controls",
-      "heading": "Motorized shades, ready to use.",
+      "heading": "Motorized control that fits your routine.",
       "image": "powerview-blue",
       "paragraphs": [
-        "We set up compatible motorized controls and help with the hub setup your system needs. For a hardwired system, we can discuss coordination with your electrician.",
-        "We show you how to use the controls, and you can call us if questions come up after installation."
+        "Some customers prefer a handheld remote; others want a wall control or an app. We help confirm which options work with the treatment and system you’ve chosen, including whether the controls will operate individual shades or compatible groups.",
+        "For compatible systems, we help with control and hub setup and check how the shades respond. Where electrical work is needed for a hardwired arrangement, we discuss coordination with your electrician.",
+        "We explain the controls you’ve chosen and answer questions about using them. If you have a particular way you want to operate the shades, bring it up during the consultation so we can check the requirements before you order."
       ],
       "link": {
         "text": "Explore motorized shades",
@@ -212,25 +281,38 @@
     "quote": {
       "text": "Great service throughout entire process. From 1st consult to installation every step was performed professionally & with quality craftsmanship. Our shades & shutters are more beautiful than expected! …",
       "author": "Mary Yingling",
-      "source": "Google review"
+      "source": "Google review",
+      "rating": 5
     },
     "questions_heading": "Questions about window treatment installation",
     "faqs": [
       {
-        "question": "How do I get started with installation?",
-        "answer": "Start with a free in-home consultation. We bring samples to your home, take measurements and help you choose the treatments. We then plan installation around your selections."
+        "question": "How do I get started?",
+        "answer": "Request a free in-home consultation. We bring samples, measure your windows and help you work through the product and control choices. From there, we can prepare a quote and discuss installation."
       },
       {
-        "question": "Can you install curtain rods and drapery tracks?",
-        "answer": "Yes. We look at the span, mounting points, brackets and room for the fabric to move, then fit the hardware and drapery for the planned arrangement."
+        "question": "Can you help with just one window?",
+        "answer": "Yes. John welcomes one-window projects as well as work across several rooms. Tell us what you’re considering, and we’ll talk through the options."
       },
       {
-        "question": "Can you help set up motorized shades?",
-        "answer": "Yes, for compatible products and controls. We can help with control and hub setup, and discuss coordination with your electrician if you choose a hardwired system."
+        "question": "Do you install drapery rods and tracks?",
+        "answer": "Yes. We review the span, mounting points, brackets and space for the fabric to move. We then fit the hardware and drapery for the arrangement planned for your windows."
+      },
+      {
+        "question": "Can you help with motorized and hardwired shades?",
+        "answer": "We install compatible motorized treatments and help with control and hub setup. If the arrangement requires electrical work, we can discuss coordination with your electrician."
+      },
+      {
+        "question": "How long will installation take?",
+        "answer": "The time depends on the number of windows, treatment types and mounting details. Once we know your selections and the layout, we can discuss the work involved and the installation arrangements."
+      },
+      {
+        "question": "What if I have a question after installation?",
+        "answer": "Call us and describe what is happening. We’ll help work out whether guidance by phone is appropriate or an in-person check is needed. Parts or repairs depend on the product and the problem."
       }
     ],
     "contact_heading": "Start with a free in-home consultation.",
-    "contact_text": "We come to your home with samples and take measurements for your windows. From product selection to the finished installation, our team helps you plan the details for your rooms.",
+    "contact_text": "We come to your home with samples and take measurements for your windows. Tell us what you want the room to look like and how you’d like the treatments to work. We’ll help you plan the choices that carry through to installation.",
     "related": [
       {
         "text": "Request your free in-home consultation",
@@ -244,7 +326,30 @@
         "text": "Blind and shade repair",
         "href": "/services/blind-shade-repair/"
       }
-    ]
+    ],
+    "details": {
+      "heading": "From the measuring visit to installation.",
+      "items": [
+        {
+          "heading": "Confirm the project details.",
+          "paragraphs": [
+            "The measurements, product selections, hardware and controls need to work together. We review those details as part of the quote, including any mounting or power requirements that affect the installation. You can ask about the proposed arrangement before moving ahead."
+          ]
+        },
+        {
+          "heading": "Discuss availability and timing.",
+          "paragraphs": [
+            "Installation arrangements depend on the products and the work involved. A single blind and several rooms of motorized shades call for different planning. We discuss what applies to your project and keep you informed if an item is delayed or backordered."
+          ]
+        },
+        {
+          "heading": "Stay in touch afterward.",
+          "paragraphs": [
+            "John has talked customers through an app adjustment by phone when a shade stopped working as expected. Some questions can be resolved with guidance; others need an in-person check. Tell us what is happening, and we’ll discuss the next step."
+          ]
+        }
+      ]
+    }
   },
   {
     "id": "commercial",

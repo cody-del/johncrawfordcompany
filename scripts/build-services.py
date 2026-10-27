@@ -55,7 +55,7 @@ def photo(key, hero=False):
 def head(page):
     html = company.head(page, 'WebPage')
     html = html.replace(f'company-page--{page["name"].lower()}', f'service-page service-page--{page["id"]}')
-    html = html.replace('</head>', '<link rel="stylesheet" href="/services.css?v=services-3">\n</head>')
+    html = html.replace('</head>', '<link rel="stylesheet" href="/services.css?v=service-editorial-1">\n</head>')
     def service_schema(match):
         graph = json.loads(match.group(1))
         service_id = BASE + page['slug'] + '#service'
@@ -135,17 +135,38 @@ def feature(section, page):
             f'<div class="container {css_class}">{inner}</div></section>')
 
 
+def customer_review(q):
+    initials = ''.join(part[0] for part in q['author'].split()[:2]).upper()
+    return (f'<figure class="service-customer-quote" aria-label="{e(q["source"])} by {e(q["author"])}">'
+            f'<div class="service-review-header"><span class="service-review-mark" aria-hidden="true">“</span>'
+            f'<div class="service-review-attribution"><span class="service-review-source"><img src="/assets/google-g.png" alt="" width="22" height="22" loading="lazy" decoding="async">{e(q["source"])}</span>'
+            f'<span class="service-review-stars" role="img" aria-label="{q["rating"]} out of 5 stars"><span aria-hidden="true">{"★" * q["rating"]}</span></span></div></div>'
+            f'<blockquote><p>{e(q["text"])}</p></blockquote>'
+            f'<figcaption><span class="service-review-avatar" aria-hidden="true">{e(initials)}</span><strong>{e(q["author"])}</strong></figcaption></figure>')
+
+
 def proof(page):
-    if page.get('quote'):
-        q = page['quote']
-        return (f'<section class="service-proof linen" aria-label="Customer review"><div class="container">'
-                f'<figure class="service-customer-quote"><blockquote><p>{e(q["text"])}</p></blockquote>'
-                f'<figcaption>{e(q["author"])} <span aria-hidden="true">·</span> {e(q["source"])}</figcaption></figure></div></section>')
     if page.get('story'):
         s = page['story']
+        if page.get('quote'):
+            return (f'<section class="section service-story service-story--review linen" id="customer-review" aria-labelledby="story-heading">'
+                    f'<div class="container service-overview-grid"><div class="service-prose"><h2 id="story-heading">{e(s["heading"])}</h2>{paragraphs(s["paragraphs"])}</div>'
+                    f'{customer_review(page["quote"])}</div></section>')
         return (f'<section class="section service-story linen" aria-labelledby="story-heading"><div class="container service-overview-grid">'
                 f'<h2 id="story-heading">{e(s["heading"])}</h2><div class="service-prose">{paragraphs(s["paragraphs"])}</div></div></section>')
+    if page.get('quote'):
+        return (f'<section class="service-proof linen" id="customer-review" aria-label="Customer review"><div class="container">'
+                f'{customer_review(page["quote"])}</div></section>')
     return ''
+
+
+def project_details(page):
+    details = page.get('details')
+    if not details:
+        return ''
+    items = ''.join(f'<article><h3>{e(item["heading"])}</h3>{paragraphs(item["paragraphs"])}</article>' for item in details['items'])
+    return (f'<section class="section service-details" aria-labelledby="details-heading"><div class="container service-details-panel">'
+            f'<h2 id="details-heading">{e(details["heading"])}</h2><div class="service-details-grid">{items}</div></div></section>')
 
 
 def body(page):
@@ -164,7 +185,7 @@ def body(page):
     contact = (f'<section class="section service-contact{contact_background}" id="contact" aria-labelledby="contact-heading"><div class="container service-contact-grid">'
                f'<div class="service-prose"><h2 id="contact-heading">{e(page["contact_heading"])}</h2><p>{e(page["contact_text"])}</p>'
                f'{links(page["related"], page)}</div>{contact_details}</div></section>')
-    return '<main id="main">' + hero + overview(page['overview'], page) + feature(page['feature'], page) + proof(page) + faq + contact + '</main>'
+    return '<main id="main">' + hero + overview(page['overview'], page) + feature(page['feature'], page) + project_details(page) + proof(page) + faq + contact + '</main>'
 
 
 if __name__ == '__main__':
