@@ -51,8 +51,8 @@ def showroom():
       <div class="container about-grid"><div class="about-copy">
       <h2 class="showroom-title" id="about-heading"><img src="/assets/showroom-visit-headline.png" alt="Visit us in Woodland Hills" width="2514" height="840" loading="lazy" decoding="async"></h2>
       <p class="landing-john-story">John got his start installing window treatments before opening his California store in 1995. That experience still shapes the advice we give in our Woodland Hills showroom.</p>
-      <p class="landing-appointment-label"><strong>Appointment Only</strong></p>
-      <p>Fill the form to schedule a showroom appointment or free in-home consultation.</p><a class="btn btn-primary" href="#contact">Schedule Appointment</a>
+      <div class="landing-showroom-booking"><p class="landing-appointment-label"><span class="landing-appointment-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="16" height="16" rx="2"></rect><path d="M8 3v4M16 3v4M4 11h16M8 15h3"></path></svg></span><strong>Appointment Only</strong></p>
+      <p class="landing-booking-copy">Fill the form to schedule a showroom appointment or free in-home consultation.</p><a class="btn btn-primary" href="#contact">Schedule Appointment</a></div>
       </div><div class="showroom-card"><figure class="showroom-figure">
       <img src="/assets/showroom-illustration.svg?v=trees-2" alt="Illustration of John Crawford Company’s showroom with its red tile roof and palm trees" width="2394" height="1030" loading="lazy" decoding="async">
       </figure></div></div></section>'''
@@ -136,7 +136,9 @@ def quote_form(motorized):
       <div class="landing-form-field"><label for="lead-phone">Phone number</label><input id="lead-phone" name="phone" autocomplete="tel" type="tel" maxlength="30" required disabled></div>
       <div class="landing-form-field"><label for="lead-email">Email</label><input id="lead-email" name="email" autocomplete="email" type="email" maxlength="254" required disabled></div>
       </div><p class="landing-required" id="form-required">Contact fields are required.</p>
-      <label class="landing-appointment-choice" for="lead-showroom"><input id="lead-showroom" name="showroom-appointment" type="checkbox" value="requested" disabled><span>I’d like a showroom appointment.</span></label>
+      <fieldset class="landing-appointment-options"><legend>I’d like to schedule<span class="sr-only"> (optional)</span></legend>
+      <label for="lead-home-consultation"><input id="lead-home-consultation" name="appointment-type" value="in-home" type="radio" disabled><span>Free in-home consultation</span></label>
+      <label for="lead-showroom"><input id="lead-showroom" name="appointment-type" value="showroom" type="radio" disabled><span>Showroom appointment</span></label></fieldset>
       <button class="btn btn-primary" type="button" disabled>Get Free Quote</button>
       <p class="landing-privacy">Your details are used to respond to your inquiry. <button class="landing-info-button" type="button" data-landing-dialog="landing-privacy-dialog" aria-haspopup="dialog" aria-controls="landing-privacy-dialog">Privacy Policy</button>.</p></form></div></section>'''
 
@@ -171,7 +173,7 @@ def build(motorized=False):
     head = head.replace('app.js?v=hubs-1', 'app.js?v=landing-conversion-1')
     # Campaign pages route showroom visits through appointments, without an address or walk-in hours.
     head = re.sub(r'\s*<script type="application/ld\+json">[\s\S]*?</script>', '', head)
-    head = head.replace('</head>', '<link rel="stylesheet" href="/landings.css?v=benefit-panel-centered-1">\n</head>')
+    head = head.replace('</head>', '<link rel="stylesheet" href="/landings.css?v=appointment-options-1">\n</head>')
     mobile = re.search(r'<div class="mobile-contact"[\s\S]*?</div>', HOME).group()
     mobile = mobile.replace('Call the showroom', 'Call Us').replace('Request a consultation', 'Get Free Quote')
     body = '\n'.join([header(motorized), '<main id="main">', hero(motorized), reviews(motorized), products(motorized),
