@@ -11,7 +11,7 @@
 <link rel="preload" href="/assets/brand-latin-1.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/brand-latin-0.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/fonts.css?v=fonts-2"><link rel="stylesheet" href="/styles.css?v=appointments-1">
-<link rel="stylesheet" href="/hubs.css?v=contact-centered-1"><link rel="stylesheet" href="/company-pages.css?v=company-pages-3">
+<link rel="stylesheet" href="/hubs.css?v=contact-centered-1"><link rel="stylesheet" href="/company-pages.css?v=company-pages-4">
 <script src="/app.js?v=company-pages-1" defer></script>
 <script type="application/ld+json">[{"@context": "https://schema.org", "@type": "ContactPage", "@id": "https://john-crawford-homepage.codytodd.chatgpt.site/contact/#page", "url": "https://john-crawford-homepage.codytodd.chatgpt.site/contact/", "name": "Contact John Crawford Company | Woodland Hills Showroom", "description": "Visit John Crawford Company in Woodland Hills by appointment. Call (818) 884-5464. Monday–Friday, 9 am–5 pm, at 22311 Ventura Blvd #101.", "inLanguage": "en-US", "about": {"@type": "HomeGoodsStore", "@id": "https://www.johncrawfordcompany.com/#business", "name": "John Crawford Company", "telephone": "+1-818-884-5464", "email": "john@johncrawford.com", "address": {"@type": "PostalAddress", "streetAddress": "22311 Ventura Blvd #101", "addressLocality": "Woodland Hills", "addressRegion": "CA", "postalCode": "91364", "addressCountry": "US"}, "openingHoursSpecification": [{"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], "opens": "09:00", "closes": "17:00"}]}, "publisher": {"@type": "HomeGoodsStore", "@id": "https://www.johncrawfordcompany.com/#business", "name": "John Crawford Company", "telephone": "+1-818-884-5464", "email": "john@johncrawford.com", "address": {"@type": "PostalAddress", "streetAddress": "22311 Ventura Blvd #101", "addressLocality": "Woodland Hills", "addressRegion": "CA", "postalCode": "91364", "addressCountry": "US"}, "openingHoursSpecification": [{"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], "opens": "09:00", "closes": "17:00"}]}}, {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://john-crawford-homepage.codytodd.chatgpt.site/"}, {"@type": "ListItem", "position": 2, "name": "Contact", "item": "https://john-crawford-homepage.codytodd.chatgpt.site/contact/"}]}]</script>
 </head><body class="interior-page company-page company-page--contact">
@@ -64,7 +64,12 @@
         <div class="hub-form-field"><label for="company-zip">ZIP code</label><input id="company-zip" name="postal-code" type="text" inputmode="numeric" autocomplete="postal-code" pattern="[0-9]{5}" maxlength="5" required disabled></div>
       </div>
       <div class="hub-form-field"><label for="company-message">Message</label><textarea id="company-message" name="message" rows="3" maxlength="3000" required disabled></textarea></div>
-      <p class="hub-form-required">All fields are required.</p>
+      <p class="hub-form-required">All fields above are required.</p>
+      <fieldset class="company-appointment-options">
+        <legend class="sr-only">Appointment preferences (optional)</legend>
+        <label for="company-showroom-appointment"><input id="company-showroom-appointment" name="showroom-appointment" type="checkbox" disabled><span>I’d like to schedule a showroom appointment</span></label>
+        <label for="company-home-consultation"><input id="company-home-consultation" name="home-consultation" type="checkbox" disabled><span>I’d like to schedule a free in-home consultation</span></label>
+      </fieldset>
       <button class="btn btn-primary" type="button" disabled>Request a consultation</button>
       </div>
       <p class="hub-form-notice" id="company-form-notice">We use the information you provide to respond to your project inquiry. <a href="/privacy/">Privacy Policy</a>.</p>
