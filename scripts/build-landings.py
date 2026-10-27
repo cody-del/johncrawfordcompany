@@ -29,37 +29,49 @@ def cta(text='Request a consultation'):
 
 
 def header(motorized):
-    html = re.search(r'<header class="site-header">[\s\S]*?</header>', HOME).group()
-    nav = ('<nav class="main-navigation" id="main-navigation" aria-label="Main navigation">'
-           f'<a href="#window-treatments">{"Shade styles" if motorized else "Window Treatments"}</a>'
-           '<a href="#reviews">Reviews</a><a href="#about">Visit the Showroom</a>'
-           '<a href="#contact">Contact</a></nav>')
-    return re.sub(r'<nav class="main-navigation"[\s\S]*?</nav>', nav, html)
+    return '''<header class="site-header"><div class="header-inner">
+      <div class="brand"><img src="/assets/john-crawford-logo.webp" alt="John Crawford Company — Window Treatments" width="1672" height="941" fetchpriority="high"></div>
+      <div class="landing-header-actions"><a class="hero-phone" href="tel:+18188845464"><span class="landing-desktop-phone">Call (818) 884-5464</span><span class="landing-mobile-call">Call the showroom</span></a>
+      <a class="btn btn-primary header-cta" href="#contact">Request a consultation</a></div>
+      </div></header>'''
 
 
 def footer(motorized):
-    html = re.search(r'<footer class="site-footer"[\s\S]*?</footer>', HOME).group()
-    html = re.sub(r'<nav class="footer-social"[\s\S]*?</nav>', '', html)
-    if motorized:
-        products = [('Roller shades', 'roller-shades'), ('Screen shades', 'screen-shades'),
-                    ('Honeycomb shades', 'honeycomb-shades'), ('Woven wood shades', 'woven-wood-shades')]
-    else:
-        products = [('Blinds', 'blinds'), ('Shades', 'shades'), ('Shutters', 'shutters'),
-                    ('Drapery', 'drapery'), ('Motorized shades', 'motorization')]
-    links = '<div class="footer-links"><nav class="footer-nav" aria-labelledby="footer-products-heading">'
-    links += '<h2 id="footer-products-heading">Window treatments</h2>'
-    links += ''.join(f'<a href="#{anchor}">{name}</a>' for name, anchor in products)
-    links += '</nav><nav class="footer-nav" aria-labelledby="footer-services-heading">'
-    links += '<h2 id="footer-services-heading">Your project</h2>'
-    links += '<a href="#services">Measuring &amp; installation</a><a href="#about">Visit the showroom</a>'
-    links += '<a href="#questions">Common questions</a><a href="#contact">Request a consultation</a></nav></div>'
-    html = re.sub(r'<div class="footer-links">[\s\S]*?</nav>\s*</div>', links, html)
-    html = re.sub(r'\s*<a href="https://www.instagram.com/[\s\S]*?</a>', '', html)
-    return html
+    return '''<footer class="site-footer" id="footer">
+      <img class="footer-color-rule" src="/assets/brand-color-rule.png" alt="" width="3000" height="12" loading="lazy" aria-hidden="true">
+      <div class="container footer-main">
+      <div class="footer-business"><div class="footer-brand"><img src="/assets/john-crawford-logo.webp" alt="John Crawford Company — Window Treatments" width="1672" height="941" loading="lazy" decoding="async"></div>
+      <p>Custom window treatments in Los Angeles.<br>Personal service from Woodland Hills.</p></div>
+      <div class="landing-footer-actions"><h2>Talk about your project</h2>''' + cta() + '''<a class="footer-phone" href="tel:+18188845464">Call (818) 884-5464</a></div>
+      <section class="footer-contact" aria-labelledby="footer-contact-heading"><div class="footer-contact-details"><h2 id="footer-contact-heading">Our Woodland Hills showroom</h2>
+      <address>22311 Ventura Blvd #101<br>Woodland Hills, CA 91364</address><p class="footer-hours">Monday–Friday, 9am–5pm<br>Saturday–Sunday closed</p>
+      <a class="footer-phone" href="tel:+18188845464">(818) 884-5464</a></div></section></div>
+      <div class="container footer-bottom"><p>© <span id="year">2026</span> John Crawford Company. All rights reserved.</p><div class="landing-footer-information">
+      <button class="landing-info-button" type="button" data-landing-dialog="landing-accessibility-dialog" aria-haspopup="dialog" aria-controls="landing-accessibility-dialog">Accessibility</button>
+      <button class="landing-info-button" type="button" data-landing-dialog="landing-privacy-dialog" aria-haspopup="dialog" aria-controls="landing-privacy-dialog">Privacy Policy</button></div></div></footer>'''
+
+
+def showroom():
+    html = section('about')
+    return re.sub(r'<a class="btn btn-primary" href="https://www.google.com/maps/[^<]+[\s\S]*?</a>',
+                  '<a class="btn btn-primary" href="tel:+18188845464">Call us</a>', html)
+
+
+def information_dialogs():
+    return '''<dialog class="landing-info-dialog" id="landing-privacy-dialog" aria-labelledby="landing-privacy-heading">
+      <div class="landing-dialog-heading"><h2 id="landing-privacy-heading">Privacy Policy</h2><form method="dialog"><button class="landing-info-button" type="submit" autofocus>Close</button></form></div>
+      <p>The consultation form on this review page does not accept submissions. If you call us, we use the information you provide to respond and discuss your project.</p>
+      <p>These pages are hosted through Netlify and ChatGPT Sites. Hosting providers may process technical information, such as IP addresses, browser details and request logs, to deliver and secure the pages. Advertising pixels and audience-tracking analytics have not been installed on these pages.</p>
+      <p>For questions about information you provide, call John Crawford Company at <a href="tel:+18188845464">(818) 884-5464</a>. You can also write to 22311 Ventura Blvd #101, Woodland Hills, CA 91364.</p></dialog>
+      <dialog class="landing-info-dialog" id="landing-accessibility-dialog" aria-labelledby="landing-accessibility-heading">
+      <div class="landing-dialog-heading"><h2 id="landing-accessibility-heading">Accessibility assistance</h2><form method="dialog"><button class="landing-info-button" type="submit" autofocus>Close</button></form></div>
+      <p>If you have difficulty reading this page or requesting a consultation, call <a href="tel:+18188845464">(818) 884-5464</a>. Tell us which feature caused the problem and how you would like us to contact you.</p>
+      <p>We can discuss products and consultation requests by phone. Showroom hours are Monday–Friday, 9 am–5 pm.</p></dialog>'''
 
 
 def reviews(motorized):
     html = section('reviews')
+    html = re.sub(r'<a class="reviews-source"[\s\S]*?</a>', '<span class="reviews-source">Review source: Google Maps</span>', html)
     if motorized:
         cards = re.findall(r'<article class="review-card"[\s\S]*?</article>', html)
         ordered = sorted(cards, key=lambda card: 0 if 'review-carol-name' in card else 1 if 'review-perry-name' in card else 2)
@@ -159,16 +171,16 @@ def contact(motorized):
     copy = 'Tell us which windows you’d like to operate more easily. We’ll help you consider the shade style, controls and installation.' if motorized else 'Tell us about your rooms and what you’d like to change. We’ll help you compare blinds, shades, shutters, drapery and motorization.'
     return f'''<section class="section linen contact landing-contact" id="contact" aria-labelledby="contact-heading">
       <div class="container landing-contact-grid"><div class="landing-contact-copy"><h2 id="contact-heading">{heading}</h2><p>{copy}</p>
-      <div class="contact-actions"><a class="btn btn-primary" href="tel:+18188845464">Call (818) 884-5464</a><a class="text-link" href="mailto:john@johncrawford.com?subject={'Motorized%20shades' if motorized else 'Window%20treatment'}%20consultation">Email us your project</a></div>
+      <div class="contact-actions"><a class="btn btn-primary" href="tel:+18188845464">Call (818) 884-5464</a></div>
       <div class="landing-contact-location"><address>22311 Ventura Blvd #101, Woodland Hills, CA 91364</address><p>Monday–Friday, 9 am–5 pm</p></div></div>
       <form class="landing-form" aria-label="Consultation form preview" aria-describedby="form-preview form-required">
-      <h3>Request a consultation</h3><p class="landing-preview-note" id="form-preview">This form is a design preview. Please call or email us about your project.</p>
+      <h3>Request a consultation</h3><p class="landing-preview-note" id="form-preview">This form is a design preview. Please call us about your project.</p>
       <div class="landing-form-fields">
       <div class="landing-form-field"><label for="lead-name">Full name</label><input id="lead-name" name="name" autocomplete="name" type="text" maxlength="120" required disabled></div>
       <div class="landing-form-field"><label for="lead-phone">Phone number</label><input id="lead-phone" name="phone" autocomplete="tel" type="tel" maxlength="30" required disabled></div>
       <div class="landing-form-field"><label for="lead-email">Email</label><input id="lead-email" name="email" autocomplete="email" type="email" maxlength="254" required disabled></div>
       </div><p class="landing-required" id="form-required">All fields are required.</p><button class="btn btn-primary" type="button" disabled>Request a consultation</button>
-      <p class="landing-privacy">We use your contact details to respond to your project inquiry. <a href="/privacy/">Privacy Policy</a>.</p></form></div></section>'''
+      <p class="landing-privacy">We use your contact details to respond to your project inquiry. <button class="landing-info-button" type="button" data-landing-dialog="landing-privacy-dialog" aria-haspopup="dialog" aria-controls="landing-privacy-dialog">Privacy Policy</button>.</p></form></div></section>'''
 
 
 def build(motorized=False):
@@ -182,7 +194,8 @@ def build(motorized=False):
     head = re.sub(r'(<meta (?:name="description"|property="og:description") content=")[^"]*', lambda m:m[1]+e(description), head)
     head = re.sub(r'(<meta property="og:title" content=")[^"]*', lambda m:m[1]+e(title), head)
     head = head.replace(f'href="{BASE}/"', f'href="{BASE}{route}"').replace(f'content="{BASE}/"', f'content="{BASE}{route}"')
-    head = head.replace('</head>', '<link rel="stylesheet" href="/landings.css?v=landing-1">\n</head>')
+    head = head.replace('app.js?v=hubs-1', 'app.js?v=landing-conversion-1')
+    head = head.replace('</head>', '<link rel="stylesheet" href="/landings.css?v=conversion-only-1">\n</head>')
     if motorized:
         head = re.sub(r'  <link rel="preload" href="assets/hero-room-poster-[^\n]+\n', '', head)
         head = head.replace(BASE+'/assets/hero-room-poster-desktop.webp', BASE+'/assets/powerview-wall-remote.jpg')
@@ -200,7 +213,7 @@ def build(motorized=False):
         brandbar = re.sub(r'<button class="hero-video-toggle"[\s\S]*?</button>', '', brandbar)
     mobile = re.search(r'<div class="mobile-contact"[\s\S]*?</div>', HOME).group()
     body = '\n'.join([header(motorized), '<main id="main">', hero, brandbar, reviews(motorized), products(motorized),
-                      section('about'), motorization(motorized), services(motorized), questions(motorized), contact(motorized), '</main>', footer(motorized), mobile])
+                      showroom(), motorization(motorized), services(motorized), questions(motorized), contact(motorized), '</main>', footer(motorized), mobile, information_dialogs()])
     html = '<!doctype html>\n<html lang="en">\n'+absolute_assets(head)+'\n<body class="landing-page'+(' landing-motorized' if motorized else '')+'">\n<a class="skip-link" href="#main">Skip to content</a>\n'+absolute_assets(body)+'\n</body>\n</html>\n'
     path = DIST / route.strip('/') / 'index.html'
     path.parent.mkdir(parents=True, exist_ok=True)

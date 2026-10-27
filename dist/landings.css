@@ -1,5 +1,23 @@
 /* Landing pages inherit the approved homepage design; additions are scoped here. */
 .landing-section-action { margin-top: 34px; }
+.landing-header-actions { display: flex; align-items: center; gap: 28px; }
+.landing-mobile-call { display: none; }
+.landing-page .footer-main { grid-template-columns: 1fr 1fr 1.1fr; }
+.landing-page .footer-contact { display: block; grid-column: auto; border: 0; padding-top: 0; }
+.landing-page .footer-contact-details { display: flex; }
+.landing-footer-actions { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; }
+.landing-footer-actions h2 { margin-bottom: 0; }
+.landing-footer-actions .footer-phone { padding-block: 6px; font-weight: 500; }
+.landing-footer-information { display: flex; flex-wrap: wrap; gap: 24px; }
+.landing-info-button { display: inline; padding: 4px 0; border: 0; background: none; color: var(--magenta); font: inherit; line-height: inherit; text-decoration: underline; text-underline-offset: 4px; cursor: pointer; }
+.landing-info-button:hover { color: var(--walnut); }
+.landing-info-dialog { width: min(620px, calc(100% - 40px)); max-height: calc(100svh - 80px); overflow-y: auto; padding: 32px; border: 1px solid var(--line); border-radius: 0 24px 0 24px; color: var(--walnut); background: white; }
+.landing-info-dialog::backdrop { background: #20170f66; }
+.landing-dialog-heading { display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; }
+.landing-dialog-heading h2 { font-size: 30px; }
+.landing-dialog-heading form { margin: 0; }
+.landing-dialog-heading button { min-height: 44px; }
+.landing-info-dialog p { margin-top: 20px; font-size: 16px; }
 .landing-disclosure { font-size: 14px; line-height: 1.6; }
 .landing-page .feature-copy > .btn { margin-top: 24px; }
 .landing-photo-caption { margin-top: 12px; font-size: 12px; line-height: 1.5; }
@@ -20,15 +38,23 @@
 .landing-form > .btn { width: 100%; margin-top: 20px; }
 .landing-form button:disabled { cursor: not-allowed; }
 .landing-form .landing-privacy { margin-top: 16px; font-size: 12px; line-height: 1.7; }
-.landing-form .landing-privacy a { color: var(--magenta); }
 @media (max-width: 1023px) {
   .landing-contact-grid { gap: 36px; }
   .landing-form { padding: 28px; }
+}
+@media (max-width: 900px) {
+  .landing-page .footer-main { grid-template-columns: 1fr 1fr; }
+  .landing-page .footer-contact { grid-column: 1 / -1; border-top: 1px solid var(--line); padding-top: 24px; }
 }
 @media (max-width: 800px) {
   .landing-contact-grid { grid-template-columns: 1fr; gap: 32px; }
 }
 @media (max-width: 700px) {
+  .landing-desktop-phone { display: none; }
+  .landing-mobile-call { display: inline; }
+  .landing-header-actions .hero-phone { font-size: 13px; }
+  .landing-page .footer-main { grid-template-columns: 1fr; }
+  .landing-info-dialog { padding: 24px; }
   .landing-form { padding: 26px 22px; }
   .landing-form h3 { font-size: 28px; }
 }

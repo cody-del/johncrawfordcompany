@@ -2,6 +2,7 @@ const menuToggle = document.querySelector('.menu-toggle');
 const navigation = document.querySelector('.main-navigation');
 const dropdowns = [...document.querySelectorAll('.nav-dropdown')];
 
+if (menuToggle && navigation) {
 function closeMenus(restoreFocus = false) {
   navigation.classList.remove('is-open');
   menuToggle.setAttribute('aria-expanded', 'false');
@@ -44,7 +45,14 @@ document.addEventListener('keydown', event => {
 });
 
 window.matchMedia('(min-width: 1024px)').addEventListener('change', () => closeMenus());
+}
 document.querySelector('#year').textContent = new Date().getFullYear();
+
+document.querySelectorAll('[data-landing-dialog]').forEach(button => {
+  button.addEventListener('click', () => {
+    document.getElementById(button.dataset.landingDialog)?.showModal();
+  });
+});
 
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 const hero = document.querySelector('.hero');

@@ -32,7 +32,7 @@ for (const [route, { html, ids }] of pages) {
   requireThat(/<html lang="en">/.test(html), `${route}: missing document language`);
   requireThat(/name="description" content="[^"]+"/.test(html), `${route}: missing description`);
   requireThat(/name="robots" content="noindex, nofollow"/.test(html), `${route}: preserve review indexing`);
-  requireThat(html.includes('href="/accessibility/"'), `${route}: missing accessibility link`);
+  requireThat(route.startsWith('/lp/') ? html.includes('aria-controls="landing-accessibility-dialog"') : html.includes('href="/accessibility/"'), `${route}: missing accessibility assistance`);
   requireThat(html.includes('22311 Ventura Blvd #101'), `${route}: wrong suite`);
   requireThat(!/Confirm before publishing|local shutter supplier|review_note|source_file|\/Users\//i.test(html), `${route}: private note exposed`);
   requireThat(!/href="#"/.test(html), `${route}: empty link`);
@@ -70,17 +70,23 @@ for (const hub of hubs) {
 requireThat(pages.get('/motorized-shades/')?.html.includes('The PowerView® App is required for programmed operation.'), 'Missing PowerView scheduling disclosure');
 const expectedRoutes = ['/', ...hubs.map(hub => hub.slug), '/accessibility/', '/privacy/', '/lp/custom-window-treatments/', '/lp/motorized-shades/'];
 requireThat(pages.size === expectedRoutes.length && expectedRoutes.every(route => pages.has(route)), `Expected the eight website routes and two campaign landing pages; found ${[...pages.keys()].join(', ')}`);
-const homeShowroom = pages.get('/')?.html.match(/<section class="section about"[\s\S]*?<\/section>/)?.[0].replaceAll('src="assets/', 'src="/assets/');
+const showroomContent = html => html.match(/<section class="section about"[\s\S]*?<\/section>/)?.[0].replaceAll('src="assets/', 'src="/assets/').replace(/<div class="showroom-actions">[\s\S]*?<\/div>/, '');
+const homeShowroom = showroomContent(pages.get('/')?.html || '');
 for (const route of ['/lp/custom-window-treatments/', '/lp/motorized-shades/']) {
   const html = pages.get(route)?.html || '';
-  const showroom = html.match(/<section class="section about"[\s\S]*?<\/section>/)?.[0];
-  requireThat(showroom === homeShowroom, `${route}: preserve the complete approved Woodland Hills section`);
-  requireThat(html.includes('href="/landings.css?v=landing-1"'), `${route}: scoped landing-page styles missing`);
+  requireThat(showroomContent(html) === homeShowroom, `${route}: preserve the approved Woodland Hills artwork, story, address and hours`);
+  requireThat(html.includes('href="/landings.css?v=conversion-only-1"'), `${route}: scoped landing-page styles missing`);
   const form = html.match(/<form class="landing-form"[\s\S]*?<\/form>/)?.[0] || '';
   requireThat((form.match(/\bdisabled\b/g) || []).length === 4 && !/action=|data-netlify|type="submit"/.test(form), `${route}: do not accept leads before the form destination is confirmed`);
   requireThat(html.includes('The PowerView® App is required for programmed operation.'), `${route}: missing PowerView disclosure`);
-  const nav = html.match(/<nav class="main-navigation"[\s\S]*?<\/nav>/)?.[0] || '';
-  requireThat(!/href="(?!#)/.test(nav), `${route}: main navigation must stay on the landing page`);
+  requireThat(!/class="main-navigation"|class="menu-toggle"|class="footer-nav"/.test(html), `${route}: browsing menus are outside the conversion-only brief`);
+  requireThat(!/<iframe\b/.test(html), `${route}: embedded maps must not provide an off-page exit`);
+  for (const anchor of html.matchAll(/<a\b[^>]*href="([^"]+)"[^>]*>/g)) {
+    requireThat(['#main', '#contact', 'tel:+18188845464'].includes(anchor[1]), `${route}: non-conversion link ${anchor[1]}`);
+  }
+  for (const id of ['landing-privacy-dialog','landing-accessibility-dialog']) {
+    requireThat(html.includes(`<dialog class="landing-info-dialog" id="${id}"`), `${route}: missing on-page information dialog ${id}`);
+  }
 }
 if (errors.length) { console.error(errors.join('\n')); process.exit(1); }
 console.log(`All ${pages.size} HTML routes passed: headings, metadata, internal links, assets, contact details and public copy separation.`);
