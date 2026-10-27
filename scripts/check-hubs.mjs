@@ -99,7 +99,7 @@ for (const route of ['/lp/custom-window-treatments/', '/lp/motorized-shades/']) 
   requireThat(html.includes('<strong>Appointment Only</strong>') && html.includes('Fill the form to schedule a showroom appointment.'), `${route}: direct showroom visits through an appointment request`);
   requireThat(/<p class="landing-john-story">[^<]*installing window treatments[^<]*1995\.[^<]*<\/p>/.test(html), `${route}: restore the concise, verified story about John's installation experience and California store`);
   requireThat(!html.includes('Come in to see fabrics and finishes'), `${route}: keep the restored showroom story concise`);
-  requireThat(html.includes('href="/landings.css?v=products-after-reviews-1"'), `${route}: scoped landing-page styles missing`);
+  requireThat(html.includes('href="/landings.css?v=benefit-panel-1"'), `${route}: scoped landing-page styles missing`);
   const form = html.match(/<form class="landing-form"[\s\S]*?<\/form>/)?.[0] || '';
   requireThat((form.match(/\bdisabled\b/g) || []).length === 5 && !/action=|data-netlify|type="submit"/.test(form), `${route}: do not accept leads before the form destination is confirmed`);
   requireThat(form.includes('name="showroom-appointment" type="checkbox"') && form.includes('I’d like a showroom appointment.'), `${route}: allow an explicit showroom appointment request`);

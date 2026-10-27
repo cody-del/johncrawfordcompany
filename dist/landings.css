@@ -12,7 +12,9 @@
 .landing-page .hero-actions { gap: 12px; margin-top: 26px; }
 .landing-page .landing-hero > .hero-video-toggle { position: absolute; z-index: 3; right: 24px; bottom: 24px; border-radius: 50%; background: var(--linen); color: var(--walnut); }
 .landing-page .reviews { padding-block: 64px; }
-.landing-benefits { padding-block: 72px; }
+.landing-benefits { padding-block: 56px 64px; }
+.landing-benefits > .container { padding: 44px; border: 1px solid var(--line); border-radius: 0 32px 0 32px; background: var(--linen); }
+.landing-benefits > .container::before { content: ""; display: block; width: 44px; height: 3px; margin-bottom: 20px; background: var(--magenta); }
 .landing-benefits h2 { font-size: 38px; }
 .landing-benefits-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px; margin-top: 36px; }
 .landing-benefit { min-width: 0; padding-top: 22px; border-top: 1px solid var(--line); }
@@ -74,6 +76,7 @@
   .landing-quote-grid { gap: 36px; }
   .landing-company-summary h2 { font-size: 34px; }
   .landing-quote { padding-block: 64px; }
+  .landing-benefits > .container { padding: 32px; }
   .landing-benefits-grid { gap: 28px; }
 }
 @media (max-width: 900px) {
@@ -94,7 +97,9 @@
   .landing-page .hero-actions { display: grid; grid-template-columns: 1.3fr 1fr; }
   .landing-page .hero-actions > .btn { min-width: 0; padding-inline: 10px; font-size: 10px; letter-spacing: .08em; }
   .landing-page .landing-hero > .hero-video-toggle { right: 20px; bottom: 16px; }
-  .landing-page .reviews, .landing-benefits, .landing-quote { padding-block: 48px; }
+  .landing-page .reviews, .landing-quote { padding-block: 48px; }
+  .landing-benefits { padding-block: 32px 48px; }
+  .landing-benefits > .container { padding: 28px 24px; border-radius: 0 24px 0 24px; }
   .landing-benefits h2 { font-size: 32px; }
   .landing-benefits-grid { grid-template-columns: minmax(0, 1fr); gap: 28px; margin-top: 28px; }
   .landing-benefit h3 { font-size: 24px; }
