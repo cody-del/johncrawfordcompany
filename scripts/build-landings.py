@@ -171,7 +171,7 @@ def build(motorized=False):
     head = head.replace('app.js?v=hubs-1', 'app.js?v=landing-conversion-1')
     # Campaign pages route showroom visits through appointments, without an address or walk-in hours.
     head = re.sub(r'\s*<script type="application/ld\+json">[\s\S]*?</script>', '', head)
-    head = head.replace('</head>', '<link rel="stylesheet" href="/landings.css?v=products-after-reviews-1">\n</head>')
+    head = head.replace('</head>', '<link rel="stylesheet" href="/landings.css?v=benefit-panel-1">\n</head>')
     mobile = re.search(r'<div class="mobile-contact"[\s\S]*?</div>', HOME).group()
     mobile = mobile.replace('Call the showroom', 'Call Us').replace('Request a consultation', 'Get Free Quote')
     body = '\n'.join([header(motorized), '<main id="main">', hero(motorized), reviews(motorized), products(motorized),
