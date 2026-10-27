@@ -100,6 +100,12 @@ for (const [route, { html }] of pages) {
   requireThat(html.includes('href="/services/consultation-measuring/"') && html.includes('href="/services/window-treatment-installation/"') && !/href="\/services\/window-treatment-installation\/#(?:measuring|installation)"/.test(html), `${route}: Consultation & Measuring and Installation need separate navigation destinations`);
   requireThat(/href="\/about\/"(?: aria-current="page")?>About<\/a>/.test(html), `${route}: About navigation missing`);
   requireThat(/href="\/contact\/"(?: aria-current="page")?>Contact<\/a>/.test(html), `${route}: Contact navigation missing`);
+  const header = html.match(/<header class="site-header">[\s\S]*?<\/header>/)?.[0] || '';
+  for (const [label, destinations] of [['Window Treatments', hubs], ['Services', services]]) {
+    const dropdown = [...header.matchAll(/<details\b[^>]*>[\s\S]*?<\/details>/g)].find(match => match[0].includes(`<summary>${label}</summary>`))?.[0] || '';
+    const hrefs = [...dropdown.matchAll(/<a\b[^>]*href="([^"]+)"/g)].map(match => match[1]);
+    requireThat(hrefs.length === destinations.length && destinations.every(page => hrefs.includes(page.slug)), `${route}: ${label} dropdown must link once to each published page`);
+  }
 }
 for (const [route, type] of [['/about/', 'AboutPage'], ['/contact/', 'ContactPage']]) {
   const html = pages.get(route)?.html || '';

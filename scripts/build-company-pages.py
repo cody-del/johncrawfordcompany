@@ -40,6 +40,23 @@ def update_navigation():
         '/services/window-treatment-installation/#installation': service_destinations['installation']
     }.items():
         text = text.replace(f'href="{legacy}"', f'href="{destination}"')
+    services = {page['id']: page for page in json.loads((ROOT / 'content/service-pages.json').read_text())}
+    links = '\n'.join(
+        f'            <a href="{e(services[key]["slug"])}">{e(services[key]["name"])}</a>'
+        for key in ['consultation', 'installation', 'repair', 'commercial', 'upholstery']
+    )
+    dropdown = f'''<details class="nav-dropdown" name="navigation">
+          <summary>Services</summary>
+          <div class="dropdown-panel">
+{links}
+          </div>
+        </details>'''
+    text, count = re.subn(
+        r'<details class="nav-dropdown" name="navigation">\s*<summary>Services</summary>[\s\S]*?</details>',
+        lambda match: dropdown, text, count=1
+    )
+    if count != 1:
+        raise ValueError('Expected one Services navigation dropdown on the homepage')
     path.write_text(text)
 
 
