@@ -1,8 +1,8 @@
-/* Campaign pages use the approved branding with reviews before the quote form. */
+/* Campaign pages use the approved branding with reviews and outcomes before the quote form. */
 .landing-header-actions { display: flex; align-items: center; gap: 16px; }
 .landing-header-number { font-size: 16px; white-space: nowrap; }
 .landing-call-cta { min-height: 44px; padding: 13px 20px; font-size: 11px; letter-spacing: .08em; }
-.landing-page .landing-hero { min-height: 480px; padding: 48px 0 56px; }
+.landing-page .landing-hero { min-height: clamp(600px, 74svh, 760px); padding: 72px 0 88px; }
 .landing-hero-inner { position: relative; z-index: 2; }
 .landing-page .landing-hero .hero-content { width: min(700px, 100%); padding: 40px; background: rgb(250 247 243 / 88%); }
 .landing-page .landing-hero h1 { font-size: clamp(36px, 3.5vw, 46px); line-height: 1.12; }
@@ -10,13 +10,20 @@
 .landing-page .landing-hero h1 .landing-hero-location { margin-top: 14px; font-size: .61em; font-weight: 500; line-height: 1.35; }
 .landing-page .hero-content > .landing-promise { margin-top: 22px; font-size: 17px; line-height: 1.65; }
 .landing-page .hero-actions { gap: 12px; margin-top: 26px; }
-.landing-motorized .hero-media img { object-position: 76% center; }
 .landing-page .landing-hero > .hero-video-toggle { position: absolute; z-index: 3; right: 24px; bottom: 24px; border-radius: 50%; background: var(--linen); color: var(--walnut); }
-.landing-products { padding-block: 52px 24px; }
+.landing-page .reviews { padding-block: 64px; }
+.landing-benefits { padding-block: 72px; }
+.landing-benefits h2 { font-size: 38px; }
+.landing-benefits-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px; margin-top: 36px; }
+.landing-benefit { min-width: 0; padding-top: 22px; border-top: 1px solid var(--line); }
+.landing-benefit h3 { font-size: 26px; }
+.landing-benefit p { margin-top: 12px; font-size: 16px; line-height: 1.7; }
+.landing-products { padding-block: 72px 24px; }
 .landing-products .product-copy { padding-top: 14px; }
-.landing-page .about { padding-block: 52px; }
+.landing-page .about { padding-block: 72px; }
 .landing-page .about-grid { align-items: center; }
 .landing-page .about-copy p { max-width: 390px; }
+.landing-page .about-copy .landing-john-story { margin-top: 22px; font-size: 16px; line-height: 1.75; }
 .landing-page .about-copy .landing-appointment-label { width: fit-content; margin-top: 20px; padding: 5px 12px; border: 1px solid var(--line); background: var(--linen); font-size: 13px; font-weight: 500; letter-spacing: .03em; }
 .landing-page .about-copy .landing-appointment-label + p { margin-top: 14px; }
 .landing-page .about-copy > .btn { margin-top: 22px; }
@@ -36,34 +43,49 @@
 .landing-dialog-heading form { margin: 0; }
 .landing-dialog-heading button { min-height: 44px; }
 .landing-info-dialog p { margin-top: 20px; font-size: 16px; }
-.landing-quote { padding-block: 46px; }
-.landing-quote > .container { max-width: 960px; }
+.landing-quote { padding-block: 80px; }
+.landing-quote > .container { max-width: 1184px; }
+.landing-quote-grid { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); align-items: start; gap: 64px; }
+.landing-company-summary { padding-top: 30px; }
+.landing-company-summary p.landing-company-eyebrow { margin: 0 0 14px; font-size: 12px; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; }
+.landing-company-summary h2 { max-width: 480px; font-size: 40px; }
+.landing-company-summary p { max-width: 480px; margin-top: 20px; font-size: 17px; line-height: 1.75; }
+.landing-company-summary > .btn { margin-top: 28px; }
 .landing-form { min-width: 0; padding: 32px 36px; background: #fff; border: 1px solid var(--line); border-radius: 0 24px 0 24px; scroll-margin-top: 20px; }
-.landing-form h2 { font-size: 34px; text-align: center; }
-.landing-form > p { text-align: center; }
+.landing-form h2 { font-size: 34px; }
 .landing-form .landing-follow-up { margin-top: 8px; font-size: 14px; line-height: 1.5; }
 .landing-form .landing-preview-note { margin-top: 10px; padding: 9px 12px; background: var(--linen); font-size: 12px; line-height: 1.5; }
-.landing-form-fields { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 22px; }
+.landing-form-fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-top: 22px; }
+.landing-form-field:first-child { grid-column: 1 / -1; }
 .landing-form-field { min-width: 0; }
 .landing-form label { display: block; margin-bottom: 5px; color: var(--walnut); font-size: 14px; font-weight: 500; }
 .landing-form .landing-form-field input { width: 100%; min-height: 48px; padding: 11px 13px; border: 1px solid #9a8575; border-radius: 0; background: #fff; color: var(--walnut); font: inherit; line-height: 1.5; }
 .landing-form input:disabled { background: var(--linen); opacity: 1; cursor: not-allowed; }
 .landing-form .landing-required { margin-top: 12px; font-size: 12px; }
-.landing-form label.landing-appointment-choice { display: flex; align-items: center; justify-content: center; gap: 10px; min-height: 44px; margin: 12px 0 0; font-size: 14px; font-weight: 400; }
+.landing-form label.landing-appointment-choice { display: flex; align-items: center; gap: 10px; min-height: 44px; margin: 12px 0 0; font-size: 14px; font-weight: 400; }
 .landing-appointment-choice input { flex-shrink: 0; width: 20px; height: 20px; accent-color: var(--magenta); }
-.landing-page .landing-form > .btn { display: flex; width: min(280px, 100%); margin: 14px auto 0; }
+.landing-page .landing-form > .btn { display: flex; width: 100%; margin: 14px 0 0; }
 .landing-form button:disabled { cursor: not-allowed; }
 .landing-form .landing-privacy { margin-top: 12px; font-size: 12px; line-height: 1.6; }
 @media (max-width: 1023px) {
   .landing-header-actions { margin-left: auto; }
   .landing-page .landing-hero .hero-content { width: min(650px, 100%); padding: 34px; }
   .landing-form { padding: 24px; }
+  .landing-quote-grid { gap: 36px; }
+  .landing-company-summary h2 { font-size: 34px; }
+  .landing-quote { padding-block: 64px; }
+  .landing-benefits-grid { gap: 28px; }
+}
+@media (max-width: 900px) {
+  .landing-quote-grid { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+  .landing-company-summary { padding-top: 0; }
+  .landing-company-summary h2, .landing-company-summary p { max-width: none; }
 }
 @media (max-width: 700px) {
   .landing-header-number { display: none; }
   .landing-header-actions { margin-left: auto; }
   .landing-call-cta { padding-inline: 15px; }
-  .landing-page .landing-hero { min-height: 0; padding-block: 24px 38px; }
+  .landing-page .landing-hero { min-height: 560px; padding-block: 48px 64px; }
   .landing-page .landing-hero .hero-content { padding: 28px 24px; }
   .landing-page .landing-hero h1 { font-size: clamp(30px, 8vw, 40px); }
   .landing-page .landing-hero h1 .landing-hero-title { white-space: normal; }
@@ -71,8 +93,13 @@
   .landing-page .hero-content > .landing-promise { margin-top: 18px; font-size: 16px; }
   .landing-page .hero-actions { display: grid; grid-template-columns: 1.3fr 1fr; }
   .landing-page .hero-actions > .btn { min-width: 0; padding-inline: 10px; font-size: 10px; letter-spacing: .08em; }
-  .landing-page .landing-hero > .hero-video-toggle { right: 20px; bottom: 4px; }
-  .landing-products { padding-block: 36px 12px; }
+  .landing-page .landing-hero > .hero-video-toggle { right: 20px; bottom: 16px; }
+  .landing-page .reviews, .landing-benefits, .landing-quote { padding-block: 48px; }
+  .landing-benefits h2 { font-size: 32px; }
+  .landing-benefits-grid { grid-template-columns: minmax(0, 1fr); gap: 28px; margin-top: 28px; }
+  .landing-benefit h3 { font-size: 24px; }
+  .landing-benefit { padding-top: 20px; }
+  .landing-products { padding-block: 48px 12px; }
   .landing-products .product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 16px; }
   .landing-products .product > img { height: auto; aspect-ratio: 1.35; }
   .landing-products .product h3 { font-size: 24px; }
@@ -83,7 +110,9 @@
   .landing-form { padding: 24px 22px; }
   .landing-form-fields { grid-template-columns: minmax(0, 1fr); gap: 12px; }
   .landing-form h2 { font-size: 28px; }
-  .landing-page .about { padding-block: 36px; }
+  .landing-company-summary h2 { font-size: 32px; }
+  .landing-company-summary p { margin-top: 16px; font-size: 16px; }
+  .landing-page .about { padding-block: 48px; }
   .landing-page .about-grid { gap: 24px; }
   .landing-page .about-copy p { max-width: none; }
 }
