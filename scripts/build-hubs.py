@@ -78,7 +78,7 @@ def head(page, hero_key=None, accessibility=False):
     title = page['title_tag']
     desc = page['meta_description']
     path = page['slug']
-    hub_css_version = 'contact-layout-1' if hero_key else 'hubs-1'
+    hub_css_version = 'contact-centered-1' if hero_key else 'hubs-1'
     body_class = 'interior-page accent-review-page' if page['name'] == 'Shades' else 'interior-page'
     og = IMAGES[hero_key]['src'] if hero_key else '/assets/showroom-illustration.svg'
     schema = [{
@@ -281,7 +281,7 @@ def contact(section, secondary_note=None):
       <div class="container hub-contact-accent-grid">
         <div class="hub-contact-message"><h2 id="contact-heading">{e(section['title'])}</h2>{paragraphs(section)}{note}</div>
         <div class="hub-contact-details">
-          <address>22311 Ventura Blvd #101<br>Woodland Hills, CA 91364</address><p class="hub-hours">Monday-Friday, 9 am-5 pm</p>
+          <address>22311 Ventura Blvd #101, Woodland Hills, CA 91364</address><p class="hub-hours">Monday-Friday, 9 am-5 pm</p>
           <div class="hub-contact-actions"><a class="btn btn-primary" href="tel:+18188845464">Call (818) 884-5464</a>
             <a class="btn btn-showroom-contact" href="{e(DIRECTIONS)}" target="_blank" rel="noopener noreferrer">Get directions<span class="sr-only"> (opens in a new tab)</span></a></div>
           <a class="text-link" href="mailto:john@johncrawford.com?subject=Window%20treatment%20consultation">Email us your project</a>

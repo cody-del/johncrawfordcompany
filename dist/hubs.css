@@ -203,8 +203,8 @@
 .interior-page .hub-contact-message > p { max-width: 600px; margin-top: 19px; }
 .interior-page .hub-contact-message > .hub-secondary-note { margin-top: 18px; font-size: 14px; line-height: 1.65; }
 .interior-page .hub-contact-details { width: 100%; max-width: 480px; min-width: 0; }
-.interior-page .hub-contact-details address { margin: 0; color: var(--walnut); font-size: 17px; line-height: 1.6; }
-.interior-page .hub-contact-details .hub-hours { margin-top: 8px; font-size: 15px; }
+.interior-page .hub-contact-details address { margin: 0; color: var(--walnut); font-size: clamp(15px, 1.35vw, 17px); line-height: 1.6; text-align: center; }
+.interior-page .hub-contact-details .hub-hours { margin-top: 8px; font-size: 15px; text-align: center; }
 .interior-page .hub-contact-details > .text-link { display: flex; align-items: center; justify-content: center; min-height: 44px; margin: 12px auto 0; }
 .interior-page .hub-accent-palm { position: absolute; z-index: 0; right: 0; bottom: 0; width: 140px; height: auto; pointer-events: none; }
 @media (min-width: 901px) and (max-width: 1100px) {
