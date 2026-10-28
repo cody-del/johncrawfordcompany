@@ -50,7 +50,7 @@ def showroom():
     return '''<section class="section about" id="about" aria-labelledby="about-heading">
       <div class="container about-grid"><div class="about-copy">
       <h2 class="showroom-title" id="about-heading"><img src="/assets/showroom-visit-headline.png" alt="Visit us in Woodland Hills" width="2514" height="840" loading="lazy" decoding="async"></h2>
-      <p class="landing-john-story">John got his start installing window treatments before opening his California store in 1995. That experience still shapes the advice we give in our Woodland Hills showroom.</p>
+      <p class="landing-john-story">John got his start installing window treatments before opening his California store in 1995. Today, you benefit from more than 30 years of hands-on experience.</p>
       <div class="landing-showroom-booking"><p class="landing-appointment-label"><span class="landing-appointment-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="16" height="16" rx="2"></rect><path d="M8 3v4M16 3v4M4 11h16M8 15h3"></path></svg></span><strong>Appointment Only</strong></p>
       <p class="landing-booking-copy">Fill the form to schedule a showroom appointment or free in-home consultation.</p><a class="btn btn-primary" href="#contact">Schedule Appointment</a></div>
       </div><div class="showroom-card"><figure class="showroom-figure">
@@ -104,16 +104,16 @@ def benefits(motorized):
     if motorized:
         heading = 'Easier control. Every day.'
         items = [
-            ('Less reaching', 'Adjust tall and hard-to-reach shades with a compatible remote.'),
-            ('A whole room, one control', 'Group compatible shades to open or close them together.'),
-            ('Ready to use', 'We install your shades, set up the controls and show you how they work.')
+            ('Voice, app or remote', 'Control compatible shades without reaching for the window. PowerView® voice control requires a Gateway.'),
+            ('Shades on your schedule', 'Set shades to open or close with your routine. The PowerView® App is required for programmed operation.'),
+            ('Comfort, privacy and style', 'Choose fabrics to soften glare, add privacy and complement your room.')
         ]
     else:
         heading = 'Made to fit your home.'
         items = [
-            ('Light that suits the room', 'Filter bright daylight, add privacy or choose more room darkening.'),
-            ('A fit made for your windows', 'We measure your windows and help you choose the right style, fabric and finish.'),
-            ('Installation taken care of', 'Our team installs your treatments and shows you how the controls work.')
+            ('Light that suits the room', 'Soften glare, add privacy or darken a bedroom with the right fabric or material.'),
+            ('A fit made for your windows', 'Choose colors and finishes that complement your room, with every treatment measured to fit.'),
+            ('Installation taken care of', 'Our team handles installation, so your new treatments are fitted and ready to use.')
         ]
     cards = ''.join(f'<article class="landing-benefit"><h3>{e(title)}</h3><p>{e(copy)}</p></article>' for title, copy in items)
     return f'''<section class="section landing-benefits" id="benefits" aria-labelledby="benefits-heading"><div class="container">
@@ -123,8 +123,8 @@ def benefits(motorized):
 def quote_form(motorized):
     intro = ('John helps you choose motorized shades and controls that fit your rooms and daily routine.' if motorized else
              'John helps you choose blinds, shades, shutters or drapery for your home, with motorization available.')
-    service = ('Our team handles measuring, installation and control setup, then shows you how to use your shades.' if motorized else
-               'Our team handles measuring and installation, and shows you how to use your new window treatments.')
+    service = ('We install your shades, set up the controls and help with questions after installation.' if motorized else
+               'From installation to questions down the road, you have a local team to turn to.')
     return f'''<section class="section linen landing-quote" aria-labelledby="company-summary-heading"><div class="container landing-quote-grid">
       <div class="landing-company-summary"><p class="landing-company-eyebrow">John Crawford Company</p><h2 id="company-summary-heading">Work with John Crawford.</h2><p>{e(intro)}</p><p>{e(service)}</p><a class="btn btn-showroom-contact" href="tel:+18188845464">Call Us</a></div>
       <form class="landing-form" id="contact" aria-labelledby="quote-heading" aria-describedby="form-preview form-required">
@@ -146,8 +146,8 @@ def quote_form(motorized):
 def hero(motorized):
     service = 'Motorized Shades' if motorized else 'Custom Window Treatments'
     headline = f'<span class="landing-hero-title">{service}</span> <span class="landing-hero-location">in Los Angeles &amp; Surrounding Areas</span>'
-    promise = ('Open a room to daylight with a touch. We handle measuring, installation and control setup.' if motorized else
-               'Get help choosing blinds, shades, shutters or drapery, including motorization. We handle measuring and installation.')
+    promise = ('Start with a free in-home consultation. We bring shade samples, measure your windows and help you choose controls. Our team handles installation and setup.' if motorized else
+               'Start with a free in-home consultation. We bring samples, measure your windows and help you choose blinds, shades, shutters or drapery. Our team handles installation.')
     media = re.search(r'<div class="hero-media"[\s\S]*</div>\s*</section>', section('top')).group()
     media = media.rsplit('</section>', 1)[0]
     video_control = re.search(r'<button class="hero-video-toggle"[\s\S]*?</button>', HOME).group()
@@ -164,7 +164,7 @@ def build(motorized=False):
     route = f'/lp/{slug}/'
     name = 'Motorized & Automated Shades' if motorized else 'Custom Window Treatments'
     title = f'{name} in Los Angeles | John Crawford Company'
-    description = ('Compare motorized and automated shades with John Crawford Company. Get help with controls, measuring, installation and setup from Woodland Hills.' if motorized else 'Blinds, shades, shutters, drapery and motorization in Los Angeles. Get personal help with selection, measuring and installation from John Crawford Company.')
+    description = ('Motorized shades in Los Angeles. Free in-home consultation, custom measuring and installation, with compatible voice, app and remote control options.' if motorized else 'Custom blinds, shades, shutters and drapery in Los Angeles. Free in-home consultation with samples and measuring, plus professional installation.')
     head = HOME[HOME.index('<head>'):HOME.index('</head>')+7]
     head = re.sub(r'<title>[\s\S]*?</title>', f'<title>{e(title)}</title>', head)
     head = re.sub(r'(<meta (?:name="description"|property="og:description") content=")[^"]*', lambda m:m[1]+e(description), head)
