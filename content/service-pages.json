@@ -4,17 +4,17 @@
     "name": "Blind & shade repair",
     "slug": "/services/blind-shade-repair/",
     "title": "Blind & Shade Repair in Los Angeles | John Crawford Co.",
-    "description": "Blind and shade repair inquiries in Los Angeles. Tell John Crawford Company about your product, the problem and what you’d like help with.",
+    "description": "Blind and shade repair in Los Angeles. Share photos and describe the problem so John Crawford Company can review the product, available parts and repair options.",
     "heading": "Blind and shade repair in Los Angeles",
-    "intro": "A blind that won’t tilt or a shade that stops halfway doesn’t always need replacing. Tell us what’s happening, and we’ll help you find out whether a repair makes sense.",
+    "intro": "A blind that won’t tilt or a shade that stops halfway leaves you with less control over light and privacy. Tell us what’s happening, and we’ll help you find out whether the treatment can be repaired.",
     "hero_image": "parkland",
     "cta": "Ask about a repair",
     "email_subject": "Blind and shade repair inquiry",
     "overview": {
-      "heading": "Let’s see what can be fixed.",
+      "heading": "Start with the treatment you already have.",
       "paragraphs": [
-        "Sometimes a small part is all that stands between a blind that works and one that doesn’t. John has collected components over the years and can help with selected brands, including some products we didn’t originally supply.",
-        "The product’s construction, condition and available parts determine what’s possible. If a repair is unlikely to last or replacement looks like the better use of your budget, we’ll talk that through with you."
+        "If you’re happy with the way a blind or shade looks, it’s worth finding out what has stopped it working. The answer may be a small component, a control issue or wear that needs a closer look. A description and a few photos give us a useful starting point.",
+        "John has collected blind and shade components over years of installation and repair work. That experience helps him assess selected brands, including some products we didn’t originally supply. The next step depends on the treatment’s construction, condition and the parts available for it."
       ],
       "links": [
         {
@@ -25,15 +25,29 @@
           "text": "Explore shade options",
           "href": "/shades/"
         }
+      ],
+      "topics": [
+        {
+          "title": "A blind that won’t adjust",
+          "text": "Let us know whether the slats won’t tilt, the blind won’t lift or something has come loose. Describe what happens when you try to use it, even if you don’t know which part is causing the problem."
+        },
+        {
+          "title": "A shade that catches or stops",
+          "text": "Tell us where the shade stops and whether it hangs unevenly. Photos of the whole window and the area giving you trouble help us understand the problem in context."
+        },
+        {
+          "title": "A motorized shade that won’t respond",
+          "text": "Include the system name if you know it, the control you use and whether one shade or several are affected. Some issues can be addressed with phone guidance; others need inspection or parts."
+        }
       ]
     },
     "feature": {
-      "heading": "Tell us about the problem.",
+      "heading": "A few photos help us understand the problem.",
       "paragraphs": [
-        "A few details about the product and how it’s behaving help us work out what to look at. You don’t need to know the name of the broken part.",
-        "For photos, show the whole blind or shade and the area giving you trouble. A picture of the product label is helpful if you can find it."
+        "Start with a photo of the whole blind or shade, then add a closer view of the damaged or loose area. A manufacturer’s label can help identify the product. You can describe the problem in your own words; knowing the name of the mechanism isn’t necessary.",
+        "If you remember when and where you bought the treatment, include those details too. An approximate date is useful, and it’s fine to say that you don’t know the brand or age.",
+        "The inquiry form brings those details together. You can also email your photos or call John to explain what is happening."
       ],
-      "note": "For a motorized shade, include the system name if you know it and tell us whether the problem affects one shade or several.",
       "link": {
         "text": "You can also email your photos",
         "email": true
@@ -49,19 +63,27 @@
     "faqs": [
       {
         "question": "Can you repair blinds you didn’t sell?",
-        "answer": "Sometimes. We can work on selected outside brands when suitable parts are available. Share photos and a description of the problem so we can see whether it’s something we can help with."
+        "answer": "Sometimes. We can work on selected outside brands when suitable parts are available. Send photos and a description first so we can review the product. Similar-looking blinds may use different components, so we need to assess the treatment you have."
       },
       {
-        "question": "Is a repair always less expensive than replacement?",
-        "answer": "Not always. Parts, labor and the condition of the treatment all matter. We’ll help you weigh the repair against replacement rather than assume an older blind is worth fixing."
+        "question": "What if I don’t know the brand or how old it is?",
+        "answer": "Send the details you do have. A photo of the whole treatment, any visible label and the problem area can help. An approximate purchase date or the name of the original seller is useful, but you can start the conversation without them."
       },
       {
-        "question": "Can you help with a motorized shade that isn’t responding?",
-        "answer": "Tell us which system you have and what happens when you use the control. Some problems can be addressed with phone guidance; others need inspection or parts. We’ll help you work out the next step."
+        "question": "Can you help with older blinds or shades?",
+        "answer": "Age alone doesn’t tell us whether a repair is possible. The construction, condition and availability of suitable components matter. John has helped with older treatments, but each product needs to be reviewed on its own."
+      },
+      {
+        "question": "Can a motorized shade problem be resolved by phone?",
+        "answer": "Some can. John has guided customers through an app adjustment when that was appropriate. Describe the system and what happens when you use the control, and we’ll work out whether phone guidance or an in-person check is the next step."
+      },
+      {
+        "question": "What if the treatment needs replacing?",
+        "answer": "We can help you compare new blinds or shades. Tell us what you liked about the original treatment and what you’d change. A free in-home consultation includes samples and measuring for a replacement project."
       }
     ],
-    "contact_heading": "Tell us what’s happening.",
-    "contact_text": "Share a few details using the repair inquiry form, or call us to talk about the problem. From our Woodland Hills showroom, we help customers across Los Angeles and nearby Valley communities with repair inquiries.",
+    "contact_heading": "Let’s find out what your blind or shade needs.",
+    "contact_text": "Share photos and a short description through the repair inquiry form, email John or call to talk it through. From Woodland Hills, we help customers across Los Angeles and nearby Valley communities review their repair options.",
     "related": [
       {
         "text": "Repair inquiry form",
@@ -79,7 +101,30 @@
         "text": "Window treatment installation",
         "href": "/services/window-treatment-installation/"
       }
-    ]
+    ],
+    "details": {
+      "heading": "What makes a repair worth doing?",
+      "items": [
+        {
+          "heading": "The right parts.",
+          "paragraphs": [
+            "Older treatments may use components that are difficult to find. John’s accumulated parts can help with some products; for others, we need to find out whether a suitable part can still be sourced."
+          ]
+        },
+        {
+          "heading": "The condition of the treatment.",
+          "paragraphs": [
+            "An otherwise sound treatment with a damaged component is a different proposition from one with worn or brittle construction. We consider the condition of the whole blind or shade, as well as the immediate fault."
+          ]
+        },
+        {
+          "heading": "The cost compared with replacement.",
+          "paragraphs": [
+            "Parts and labor can make a repair more expensive than expected. If the work looks unlikely to last, or replacement is the better use of your budget, we’ll explain why and talk through your options."
+          ]
+        }
+      ]
+    }
   },
   {
     "id": "consultation",
@@ -358,37 +403,38 @@
     "title": "Commercial Window Treatments Los Angeles | John Crawford",
     "description": "Interior blinds and shades for Los Angeles offices, restaurants and businesses. Get help with glare, privacy, product selection, measuring and installation.",
     "heading": "Commercial window treatments in Los Angeles",
-    "intro": "Afternoon sun at a café table and glare on an office screen call for different solutions. We help Los Angeles businesses choose interior blinds and shades around the way people use the space.",
+    "intro": "Daylight should work for the people using your space. We help Los Angeles offices, restaurants and businesses choose interior blinds and shades for screen glare, privacy and the look of the room, with measuring, installation and compatible motorized controls.",
     "hero_image": "designer-screen",
     "cta": "Discuss your space",
     "email_subject": "Commercial window treatment project",
     "overview": {
-      "heading": "Keep the view. Soften the glare.",
+      "heading": "Plan around the way your business uses the room.",
       "paragraphs": [
-        "John’s commercial work has included mesh solar shades for Western Bagel stores in the Valley. Those shades let people see outside while reducing glare from the windows. John has also handled window covering work for The Izaka-ya by Katsu-ya.",
-        "Your space may need something different. We’ll talk about when the sun is a problem, what people need to see and how much privacy you want. That helps narrow the choice of fabric and treatment."
+        "The windows nearest a workstation may need different coverage from those beside a café table or reception desk. We start by asking where the light becomes a problem, when it happens and what you want people to be able to see.",
+        "That conversation helps us balance the view, privacy and light control with the appearance of the space. The choice of fabric and treatment matters as much as the color: each changes how the window feels from inside the room."
       ],
       "topics": [
         {
-          "title": "Offices",
-          "text": "Consider desk positions, screen glare and privacy in meeting rooms alongside the look of the windows."
+          "title": "Offices and meeting rooms",
+          "text": "Desk positions, computer screens and meeting spaces all affect the choice. We can discuss how much daylight to keep, where glare is distracting and which windows need more privacy."
         },
         {
           "title": "Restaurants and cafés",
-          "text": "Think about the tables nearest the glass, changing daylight and the view customers enjoy from inside."
+          "text": "Consider the tables closest to the glass and how the sun moves during service. A treatment should address the light at those tables while fitting the atmosphere you want customers to enjoy."
         },
         {
-          "title": "Street-facing spaces",
-          "text": "Balance visibility from the sidewalk with the privacy and light control you want for the people inside."
+          "title": "Shops and street-facing spaces",
+          "text": "A storefront view and a private workspace can have different needs. Tell us where visibility is welcome and where people need more coverage, so we can compare the options window by window."
         }
       ]
     },
     "feature": {
-      "heading": "Compare fabrics and controls in person",
+      "heading": "Compare the view, coverage and finish together.",
       "image": "designer-roller",
       "paragraphs": [
-        "Screen shades are one option. Depending on the room, a roller shade with more coverage or a blind with adjustable slats may suit you better. We can compare materials and explain how they change the light and privacy.",
-        "We also help with measuring, installation and compatible motorized controls. Schedule a showroom visit or tell us about your space by phone or email, and we’ll discuss a useful next step."
+        "Solar screen shades can soften glare while preserving a view outside. They’re useful to consider when the windows are part of the appeal of the room. The fabric determines how much coverage you get, so we help you compare samples with your priorities in mind.",
+        "Where privacy is the main concern, we can look at roller fabrics with more coverage or blinds with adjustable slats. We’ll ask when the room is occupied and how it is used. A meeting room and a public seating area may need different levels of coverage.",
+        "Color and texture bring the treatment into the rest of the interior. A quiet, neutral shade may suit one space; another may call for a fabric that relates more closely to the furnishings. We can help you compare those choices alongside the practical requirements."
       ],
       "links": [
         {
@@ -409,19 +455,27 @@
     "faqs": [
       {
         "question": "Can you help with a small office or just a few windows?",
-        "answer": "Yes. Tell us about the windows and the problem you’re trying to solve. You don’t need a whole-building project to start a conversation."
+        "answer": "Yes. You don’t need a whole-building project to start a conversation. Tell us about the room, the number of windows and what you want to improve, and we’ll discuss suitable options."
+      },
+      {
+        "question": "Can I reduce glare and still see outside?",
+        "answer": "Solar screen shades are one option to compare. They can control glare while preserving a view, with coverage varying by fabric. If privacy is also important, let us know so we can consider it alongside the view."
       },
       {
         "question": "Can commercial shades be motorized?",
-        "answer": "Motorization is available with compatible products. We can discuss controls for individual shades or groups of shades, along with installation and setup. The options depend on the products and system you choose."
+        "answer": "Compatible products can use motorized controls. We can discuss individual shades or groups, control and hub setup, and any power requirements. The available options depend on the treatment and system you choose."
+      },
+      {
+        "question": "Do you handle measuring and installation?",
+        "answer": "Yes. We help with product selection, measuring and installation. The mounting details and chosen controls are part of that planning, so the treatment can be considered as a complete project."
       },
       {
         "question": "What should I send for a commercial inquiry?",
-        "answer": "Photos of the windows, the business location and a short description of the space are helpful. Tell us whether glare, privacy or another concern is the main reason you’re looking at window treatments."
+        "answer": "Send photos of the windows, the business location and a short description of the space. Include your main concern, such as glare at desks or privacy in a meeting room, along with any budget or timing you’d like to discuss."
       }
     ],
-    "contact_heading": "Tell us how your space needs to work.",
-    "contact_text": "We’ll help you compare interior window coverings for the people who use the room every day. Call John Crawford Company or email a few photos to begin.",
+    "contact_heading": "Tell us what the windows need to do.",
+    "contact_text": "Email a few photos or call to describe your business and the space you’re furnishing. We’ll help you compare interior window coverings and discuss the next step. You can also arrange a visit to our Woodland Hills showroom to look at materials in person.",
     "related": [
       {
         "text": "Consultation and measuring",
@@ -435,51 +489,81 @@
         "text": "Blind and shade repair",
         "href": "/services/blind-shade-repair/"
       }
-    ]
+    ],
+    "details": {
+      "heading": "Bring the product and installation details together.",
+      "items": [
+        {
+          "heading": "Measuring and fit.",
+          "paragraphs": [
+            "Window dimensions are part of the picture. We also consider mounting depth, surrounding trim and the room needed for the treatment to move. These details help shape the product choice and installation plan."
+          ]
+        },
+        {
+          "heading": "Controls people can use.",
+          "paragraphs": [
+            "Think about who adjusts the shades and how often. We can discuss manual operation and compatible motorized controls for individual shades or groups, including the setup and power requirements of the chosen system."
+          ]
+        },
+        {
+          "heading": "Scope, budget and timing.",
+          "paragraphs": [
+            "A few office windows and a restaurant with several banks of glass involve different work. Tell us about your priorities, budget and any dates you’re working toward. We’ll discuss product availability and installation arrangements for your project."
+          ]
+        }
+      ]
+    },
+    "story": {
+      "heading": "John’s commercial work.",
+      "paragraphs": [
+        "John has supplied mesh solar shades for Western Bagel stores in the Valley, where the aim was to cut glare while keeping a view through the windows. His commercial experience also includes window covering work for The Izaka-ya by Katsu-ya."
+      ]
+    }
   },
   {
     "id": "upholstery",
     "name": "Upholstery",
     "slug": "/upholstery/",
     "title": "Furniture Upholstery in Woodland Hills | John Crawford",
-    "description": "Explore furniture upholstery with John Crawford Company in Woodland Hills. Discuss your sofa or chair, compare fabric samples and weigh reupholstery costs.",
+    "description": "Furniture reupholstery in Woodland Hills. Compare fabrics for a sofa or chair, discuss possible changes and get a quote based on your piece and specialist assessment.",
     "heading": "Furniture upholstery in Woodland Hills",
-    "intro": "If you like the way your sofa sits or the way a favorite chair fits the room, new fabric may be worth a look. We help you explore reupholstery, starting with the piece you already own.",
+    "intro": "A sofa that fits the room perfectly. A chair that has been in the family for years. If the furniture still matters to you, a different fabric may give it a place in the room you want now. We help you explore reupholstery, starting with the piece you own.",
     "hero_image": null,
     "cta": "Discuss your furniture",
     "email_subject": "Furniture upholstery inquiry",
     "overview": {
-      "heading": "A piece worth keeping",
+      "heading": "Keep what you love about the piece.",
       "paragraphs": [
-        "A good frame, a family connection or a size that fits just right can make furniture hard to replace. Reupholstery gives you a way to consider a different fabric while keeping the piece you like.",
-        "John is straightforward about the cost: reupholstering can cost as much as new furniture, or more. It makes sense to compare both options, especially if you’re not attached to the piece."
+        "The reason to reupholster is often something a replacement would be hard to offer: a familiar seat, a well-made frame or dimensions chosen for a particular room. New fabric can change the appearance while giving you a way to keep those qualities.",
+        "John is straightforward about the cost. Reupholstery can cost as much as new furniture, or more. We discuss that early, then look at the condition of the piece, the work you have in mind and what makes it worth keeping to you."
       ],
       "topics": [
         {
-          "title": "A frame you value",
-          "text": "Tell us what you like about the piece, whether it’s the construction, comfort or a connection to your family."
+          "title": "A piece with a history",
+          "text": "A family chair or a sofa you’ve lived with for years can have value beyond its purchase price. Tell us what you want to preserve and what you’d like to change."
         },
         {
-          "title": "A size that works",
-          "text": "A custom-sized sofa or sectional may fit a particular corner or room in a way a new piece doesn’t."
+          "title": "A size that fits your room",
+          "text": "A custom sofa or sectional may work in a corner or layout that is difficult to furnish again. Its proportions can be a good reason to explore new upholstery."
         },
         {
-          "title": "A different look",
-          "text": "We can compare fabrics and ask our upholstery specialist about changes you have in mind for the shape of the piece."
+          "title": "A frame worth considering",
+          "text": "A piece with a sound frame may offer more possibilities than its worn fabric suggests. Our upholstery specialist’s assessment helps establish what work is appropriate for it."
         }
       ]
     },
     "feature": {
-      "heading": "What goes into your upholstery quote",
+      "heading": "From the first photos to your upholstery quote.",
       "paragraphs": [
-        "We start by talking about the furniture and your budget. From there, we can bring fabric samples, take photos and measurements, and review the work with an upholstery specialist.",
-        "Once we have the specialist’s assessment, we prepare your quote so you can decide whether to go ahead. The conversation is about what’s right for your furniture, rather than assuming every piece needs to be saved."
+        "Start by showing us the furniture and telling us what you have in mind. Photos of the whole piece and any worn areas help us understand its shape and condition. It’s also useful to know what you like about it and your general budget.",
+        "From there, we can arrange a visit with fabric samples, take measurements and photograph the details. Seeing the furniture in its room helps with decisions about color, pattern and how the new fabric will relate to the rest of the space.",
+        "John shares the photos, measurements and proposed work with an upholstery specialist. Once the specialist has assessed the project, we prepare a quote for you to consider. You can weigh the work and cost against buying a different piece."
       ],
       "checklist": [
-        "Photos showing the whole piece and any worn areas",
-        "What you like about it and what you’d change",
-        "Your ideas for fabric, color or pattern",
-        "The location of the furniture and your general budget"
+        "Photos of the whole piece and any areas of wear",
+        "What you like about the furniture and what you want to change",
+        "Ideas for fabric, color or pattern, if you have them",
+        "The furniture’s location and your general budget"
       ],
       "link": {
         "text": "Email us about your furniture",
@@ -490,19 +574,27 @@
     "faqs": [
       {
         "question": "Is reupholstery less expensive than buying new furniture?",
-        "answer": "Not necessarily. It can cost as much as a new piece or more. The reasons to consider it often include the frame, comfort, custom size or sentimental value. We’ll help you compare the cost with what the piece means to you."
+        "answer": "Not necessarily. It can cost as much as a new piece or more. The frame, custom size, comfort or sentimental value may make the work worthwhile. A quote lets you compare the cost with the reasons you want to keep the furniture."
       },
       {
-        "question": "Can I choose a different fabric?",
-        "answer": "Yes. We can bring samples and talk about the color, pattern and feel you’re looking for. Tell us how the furniture is used so we can help narrow the choices."
+        "question": "Can you bring fabric samples to my home?",
+        "answer": "Yes. As part of the upholstery process, we can arrange a visit with samples, take photos and measure the furniture. Start by calling or emailing a few photos so we can talk about the piece and your plans."
       },
       {
         "question": "Can the shape of a sofa or chair be changed?",
-        "answer": "Some changes may be possible. John has worked with an upholstery specialist on adjustments such as reshaping an arm or changing the look of a back. Share photos and your ideas so we can find out what’s appropriate for your piece."
+        "answer": "Some changes may be possible, such as adjusting an arm or the appearance of a back. The upholstery specialist needs to assess the frame and proposed work before we can confirm what is suitable."
+      },
+      {
+        "question": "Who carries out the upholstery work?",
+        "answer": "John works with an upholstery specialist who assesses the furniture and the proposed work. We help with the fabric selection, photos, measurements and quote, so you have the information you need to decide."
+      },
+      {
+        "question": "Do I need to know which fabric I want before contacting you?",
+        "answer": "No. You can start with the furniture and an idea of how you’d like the room to feel. Inspiration photos are helpful if you have them, and we can compare samples together."
       }
     ],
-    "contact_heading": "Tell us about the piece you have in mind.",
-    "contact_text": "Email a few photos or call John to talk about your furniture. Our Woodland Hills showroom serves Los Angeles and nearby Valley communities; showroom visits are by appointment.",
+    "contact_heading": "Let’s talk about the furniture you want to keep.",
+    "contact_text": "Email a few photos or call John to describe the piece, what you like about it and what you’d change. We help customers in Woodland Hills, Los Angeles and nearby Valley communities explore their upholstery options. Showroom visits are by appointment.",
     "related": [
       {
         "text": "Drapery and fabric options for your windows",
@@ -512,6 +604,36 @@
         "text": "About John Crawford Company",
         "href": "/about/"
       }
-    ]
+    ],
+    "details": {
+      "heading": "Choose the fabric for the way you live.",
+      "items": [
+        {
+          "heading": "Color in your room.",
+          "paragraphs": [
+            "Compare samples beside your flooring, walls and the furniture you plan to keep. A color that looks appealing on its own may feel different across a large sofa or next to a patterned rug."
+          ]
+        },
+        {
+          "heading": "Pattern and texture.",
+          "paragraphs": [
+            "A plain fabric, a visible weave and a bold pattern give the same piece very different looks. We can talk through how you want the furniture to sit within the room, whether it should be a focal point or blend into the surroundings."
+          ]
+        },
+        {
+          "heading": "Everyday use.",
+          "paragraphs": [
+            "Tell us whether this is the family sofa, a reading chair or a piece used mainly for guests. How you use it helps guide the fabric conversation, including the feel and care requirements of the materials you’re considering."
+          ]
+        }
+      ]
+    },
+    "story": {
+      "heading": "A different shape may be possible, too.",
+      "paragraphs": [
+        "John has worked with an upholstery specialist on changes such as reshaping an arm or squaring off a back for a more contemporary look. Reupholstery can sometimes be an opportunity to revisit the outline of a piece as well as its fabric.",
+        "The possibilities depend on the frame and construction. Share your ideas with us, and we can ask the specialist what is suitable for your furniture."
+      ]
+    }
   }
 ]
