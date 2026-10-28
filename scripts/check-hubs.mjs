@@ -81,8 +81,8 @@ for (const service of services) {
   requireThat(html.includes('mailto:john@johncrawford.com') && html.includes('href="/contact/#appointment-form"'), `${service.slug}: preserve the email, telephone and central appointment inquiry journey`);
   if (service.id === 'repair') {
     const form = html.match(/<form class="hub-consultation-form service-repair-form"[\s\S]*?<\/form>/)?.[0] || '';
-    requireThat(form.includes('id="repair-inquiry"') && html.includes('href="#repair-inquiry"') && (form.match(/\bdisabled\b/g) || []).length === 8 && !/action=|data-netlify|type="submit"/.test(form), 'Repair form must remain a disabled design preview pending GHL');
-    for (const name of ['purchased-when', 'purchased-from', 'problem', 'name', 'phone', 'email', 'photos']) requireThat(form.includes(`name="${name}"`), `Repair inquiry field missing: ${name}`);
+    requireThat(form.includes('id="repair-inquiry"') && html.includes('href="#repair-inquiry"') && (form.match(/\bdisabled\b/g) || []).length === 9 && !/action=|data-netlify|type="submit"/.test(form), 'Repair form must remain a disabled design preview pending GHL');
+    for (const name of ['purchased-when', 'purchased-from', 'problem', 'name', 'phone', 'email', 'postal-code', 'photos']) requireThat(form.includes(`name="${name}"`), `Repair inquiry field missing: ${name}`);
     requireThat(/type="file" accept="image\/\*" multiple/.test(form), 'Repair photo control must support multiple images');
   } else requireThat(!/<form\b/.test(html), `${service.slug}: keep the central contact inquiry destination`);
 }

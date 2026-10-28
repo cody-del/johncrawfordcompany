@@ -99,8 +99,9 @@ def repair_form():
           <div class="hub-form-field"><label for="repair-phone">Phone number</label><input id="repair-phone" name="phone" type="tel" autocomplete="tel" maxlength="30" required disabled></div>
           <div class="hub-form-field"><label for="repair-email">Email</label><input id="repair-email" name="email" type="email" autocomplete="email" maxlength="254" required disabled></div>
         </div>
+        <div class="hub-form-field"><label for="repair-zip">ZIP code</label><input id="repair-zip" name="postal-code" type="text" inputmode="numeric" autocomplete="postal-code" pattern="[0-9]{5}" maxlength="5" required disabled></div>
         <div class="hub-form-field repair-upload-field"><label for="repair-photos">Upload photos</label><input id="repair-photos" name="photos" type="file" accept="image/*" multiple aria-describedby="repair-photo-help" disabled><p id="repair-photo-help">You can include more than one photo.</p></div>
-        <p class="hub-form-required">Your name, phone, email and a description of the problem are required.</p>
+        <p class="hub-form-required">Your name, phone, email, ZIP code and a description of the problem are required.</p>
         <button class="btn btn-primary" type="button" disabled>Request repair help</button>
       </div>
       <p class="hub-form-notice" id="repair-form-notice">We use your details and photos to review your repair inquiry. <a href="/privacy/">Privacy Policy</a>.</p>
