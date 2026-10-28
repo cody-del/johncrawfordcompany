@@ -111,7 +111,7 @@ for (const [route, type] of [['/about/', 'AboutPage'], ['/contact/', 'ContactPag
   const html = pages.get(route)?.html || '';
   requireThat(html.includes(`"@type": "${type}"`), `${route}: page schema missing`);
   requireThat(html.includes('href="tel:+18188845464"') && html.includes('href="mailto:john@johncrawford.com'), `${route}: direct contact destinations missing`);
-  requireThat(html.includes('/company-pages.css?v=company-pages-6'), `${route}: scoped styles missing`);
+  requireThat(html.includes('/company-pages.css?v=company-pages-7'), `${route}: scoped styles missing`);
 }
 const contactForm = pages.get('/contact/')?.html.match(/<form class="hub-consultation-form"[\s\S]*?<\/form>/)?.[0] || '';
 requireThat(contactForm.includes('id="appointment-form"'), 'Contact appointment destination missing');

@@ -116,7 +116,7 @@ def head(page, kind):
 <link rel="preload" href="/assets/brand-latin-1.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/brand-latin-0.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/fonts.css?v=fonts-2"><link rel="stylesheet" href="/styles.css?v=appointments-1">
-<link rel="stylesheet" href="/hubs.css?v=contact-centered-1"><link rel="stylesheet" href="/company-pages.css?v=company-pages-6">
+<link rel="stylesheet" href="/hubs.css?v=contact-centered-1"><link rel="stylesheet" href="/company-pages.css?v=company-pages-7">
 <script src="/app.js?v=company-pages-1" defer></script>
 <script type="application/ld+json">{json.dumps(schema, ensure_ascii=False).replace('<', chr(92)+'u003c')}</script>
 </head><body class="interior-page company-page company-page--{page['name'].lower()}">
@@ -176,7 +176,7 @@ def about_body(page):
     <section class="section company-hero linen" aria-labelledby="page-heading"><div class="container company-hero-grid">
       <div class="company-hero-copy">{breadcrumbs(page)}<h1 id="page-heading">{e(page['heading'])}</h1><p>{e(page['intro'])}</p>
         <div class="company-actions"><a class="btn btn-primary" href="/contact/">Talk with John</a><a class="text-link" href="/contact/#showroom">Visit the showroom</a></div></div>
-      {showroom_art('company-hero-art', priority=True)}
+      <div class="company-hero-art company-hero-placeholder">Photo placeholder</div>
     </div></section>
     <section class="section company-story" aria-labelledby="story-heading"><div class="container company-story-grid">
       <h2 id="story-heading">{e(page['story_heading'])}</h2><div class="company-prose">{paragraphs(page['story'])}</div>
