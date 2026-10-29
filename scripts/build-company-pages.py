@@ -10,6 +10,7 @@ ROOT = Path(__file__).resolve().parents[1]
 DIST = ROOT / 'dist'
 CONTENT = json.loads((ROOT / 'content/company-pages.json').read_text())
 SERVICE_AREAS = json.loads((ROOT / 'content/service-areas.json').read_text())
+HOURS = json.loads((ROOT / 'content/business-hours.json').read_text())
 BASE = 'https://john-crawford-homepage.codytodd.chatgpt.site'
 DIRECTIONS = 'https://www.google.com/maps/search/?api=1&query=John+Crawford+Company+22311+Ventura+Blvd+Woodland+Hills'
 
@@ -89,8 +90,8 @@ def head(page, kind):
                     'addressLocality': 'Woodland Hills', 'addressRegion': 'CA',
                     'postalCode': '91364', 'addressCountry': 'US'},
         'openingHoursSpecification': [{'@type': 'OpeningHoursSpecification',
-            'dayOfWeek': ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-            'opens': '09:00', 'closes': '17:00'}]
+            'dayOfWeek': HOURS['days'],
+            'opens': HOURS['opens'], 'closes': HOURS['closes']}]
     }
     schema = [{
         '@context': 'https://schema.org', '@type': kind,
@@ -138,7 +139,7 @@ def showroom_art(css_class, priority=False):
 def contact_details():
     return f'''<div class="hub-contact-details">
       <address>22311 Ventura Blvd #101, Woodland Hills, CA 91364</address>
-      <p class="hub-hours appointment-hours"><span>Monday–Friday, 9 am–5 pm</span><strong class="appointment-only">Appointment Only</strong></p>
+      <p class="hub-hours appointment-hours"><span>{e(HOURS['display'])}</span><strong class="appointment-only">Appointment Only</strong></p>
       <div class="hub-contact-actions"><a class="btn btn-primary" href="tel:+18188845464">Call (818) 884-5464</a>
       <a class="btn btn-showroom-contact" href="/contact/#appointment-form">Schedule Appointment</a></div>
       <a class="text-link" href="mailto:john@johncrawford.com?subject=Window%20treatment%20consultation">Email us your project</a>

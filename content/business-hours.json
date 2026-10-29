@@ -1,0 +1,14 @@
+{
+  "days": [
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday"
+  ],
+  "opens": "09:00",
+  "closes": "17:00",
+  "display": "Monday–Saturday, 9 a.m.–5 p.m.",
+  "closed_display": "Sunday closed"
+}

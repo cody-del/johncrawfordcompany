@@ -6,6 +6,20 @@ const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const dist = resolve(root, 'dist');
 const errors = [];
 const requireThat = (condition, message) => { if (!condition) errors.push(message); };
+const hours = JSON.parse(await readFile(resolve(root, 'content/business-hours.json'), 'utf8'));
+function checkHoursSchema(value, route) {
+  if (!value || typeof value !== 'object') return 0;
+  let count = 0;
+  if (Object.hasOwn(value, 'openingHoursSpecification')) {
+    const specs = value.openingHoursSpecification;
+    requireThat(Array.isArray(specs) && specs.length === 1
+      && JSON.stringify(specs[0].dayOfWeek) === JSON.stringify(hours.days)
+      && specs[0].opens === hours.opens && specs[0].closes === hours.closes,
+      `${route}: structured business hours must match content/business-hours.json`);
+    count++;
+  }
+  return count + Object.values(value).reduce((sum, child) => sum + checkHoursSchema(child, route), 0);
+}
 const files = [];
 async function walk(dir) {
   for (const entry of await readdir(dir, { withFileTypes: true })) {
@@ -24,6 +38,13 @@ for (const file of files) {
 }
 const titles = new Set();
 for (const [route, { html, ids }] of pages) {
+  if (!route.startsWith('/lp/')) {
+    const footerHours = html.match(/<p class="footer-hours">[\s\S]*?<\/p>/)?.[0] || '';
+    requireThat(footerHours.includes(hours.display) && footerHours.includes(hours.closed_display),
+      `${route}: visible footer hours must match content/business-hours.json`);
+    requireThat(!/Monday[–—-]Friday|Saturday(?:[–—-]Sunday)? closed/i.test(html),
+      `${route}: obsolete weekday-only or Saturday-closed hours`);
+  }
   const title = html.match(/<title>([^<]+)<\/title>/)?.[1];
   requireThat(title && !titles.has(title), `${route}: missing or duplicate title`);
   titles.add(title);
@@ -52,10 +73,17 @@ for (const [route, { html, ids }] of pages) {
       catch { errors.push(`${route}: missing internal destination ${raw}`); }
     }
   }
+  let hoursSchemaCount = 0;
   for (const match of html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) {
-    try { JSON.parse(match[1]); } catch { errors.push(`${route}: malformed structured data`); }
+    try { hoursSchemaCount += checkHoursSchema(JSON.parse(match[1]), route); }
+    catch { errors.push(`${route}: malformed structured data`); }
   }
+  requireThat(route.startsWith('/lp/') ? hoursSchemaCount === 0 : hoursSchemaCount > 0,
+    `${route}: respect website business hours and campaign-page omissions`);
 }
+const contactDescription = pages.get('/contact/')?.html.match(/name="description" content="([^"]*)"/)?.[1] || '';
+requireThat(contactDescription.includes(hours.display),
+  'Contact metadata must use the confirmed business hours');
 const hubs = JSON.parse(await readFile(resolve(root, 'content/product-hubs.json'), 'utf8'));
 for (const hub of hubs) {
   const html = pages.get(hub.slug)?.html || '';
@@ -137,7 +165,7 @@ const homeShowroomArtwork = showroomArtwork(pages.get('/')?.html || '');
 for (const route of ['/lp/custom-window-treatments/', '/lp/motorized-shades/']) {
   const html = pages.get(route)?.html || '';
   requireThat(JSON.stringify(showroomArtwork(html)) === JSON.stringify(homeShowroomArtwork), `${route}: preserve the approved Woodland Hills artwork`);
-  requireThat(!/<address\b|91364|Monday–Friday|openingHoursSpecification|streetAddress/.test(html), `${route}: omit the showroom address and walk-in hours from landing pages`);
+  requireThat(!/<address\b|91364|Monday[–—-](?:Friday|Saturday)|openingHoursSpecification|streetAddress/.test(html), `${route}: omit the showroom address and walk-in hours from landing pages`);
   requireThat(html.includes('<strong>Appointment Only</strong>') && html.includes('Fill the form to schedule a showroom appointment or free in-home consultation.'), `${route}: offer a showroom appointment or free in-home consultation through the form`);
   requireThat(/<p class="landing-john-story">[^<]*installing window treatments[^<]*1995\.[^<]*<\/p>/.test(html), `${route}: restore the concise, verified story about John's installation experience and California store`);
   requireThat(!html.includes('Come in to see fabrics and finishes'), `${route}: keep the restored showroom story concise`);

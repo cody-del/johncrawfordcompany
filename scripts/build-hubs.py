@@ -8,6 +8,7 @@ ROOT = Path(__file__).resolve().parents[1]
 DIST = ROOT / 'dist'
 PAGES = json.loads((ROOT / 'content/product-hubs.json').read_text())
 IMAGES = json.loads((ROOT / 'content/product-images.json').read_text())
+HOURS = json.loads((ROOT / 'content/business-hours.json').read_text())
 BASE = 'https://john-crawford-homepage.codytodd.chatgpt.site'
 HOME = (DIST / 'index.html').read_text()
 DIRECTIONS = 'https://www.google.com/maps/search/?api=1&query=John+Crawford+Company+22311+Ventura+Blvd+Woodland+Hills'
@@ -102,8 +103,8 @@ def head(page, hero_key=None, accessibility=False):
                                   'addressLocality': 'Woodland Hills', 'addressRegion': 'CA',
                                   'postalCode': '91364', 'addressCountry': 'US'},
                       'openingHoursSpecification': [{'@type':'OpeningHoursSpecification',
-                          'dayOfWeek':['Monday','Tuesday','Wednesday','Thursday','Friday'],
-                          'opens':'09:00','closes':'17:00'}]}
+                          'dayOfWeek': HOURS['days'],
+                          'opens': HOURS['opens'], 'closes': HOURS['closes']}]}
     }]
     return f'''<!doctype html>
 <html lang="en">
@@ -284,7 +285,7 @@ def contact(section, secondary_note=None):
       <div class="container hub-contact-accent-grid">
         <div class="hub-contact-message"><h2 id="contact-heading">{e(section['title'])}</h2>{paragraphs(section)}{note}</div>
         <div class="hub-contact-details">
-          <address>22311 Ventura Blvd #101, Woodland Hills, CA 91364</address><p class="hub-hours appointment-hours"><span>Monday–Friday, 9 am–5 pm</span><strong class="appointment-only">Appointment Only</strong></p>
+          <address>22311 Ventura Blvd #101, Woodland Hills, CA 91364</address><p class="hub-hours appointment-hours"><span>{e(HOURS['display'])}</span><strong class="appointment-only">Appointment Only</strong></p>
           <div class="hub-contact-actions"><a class="btn btn-primary" href="tel:+18188845464">Call (818) 884-5464</a>
             <a class="btn btn-showroom-contact" href="/contact/#appointment-form">Schedule Appointment</a></div>
           <a class="text-link" href="mailto:john@johncrawford.com?subject=Window%20treatment%20consultation">Email us your project</a>
@@ -348,13 +349,13 @@ accessibility = {'name':'Accessibility', 'slug':'/accessibility/',
     'title_tag':'Accessibility | John Crawford Company',
     'meta_description':'Need help using the John Crawford Company website? Call (818) 884-5464 or email john@johncrawford.com for help with product information or consultation requests.'}
 header, footer, mobile = partials(accessibility['slug'])
-html = head(accessibility, accessibility=True) + header.replace('href="#contact"','href="/#contact"') + '''<main id="main" class="accessibility-content section"><div class="container hub-readable">
+html = head(accessibility, accessibility=True) + header.replace('href="#contact"','href="/#contact"') + f'''<main id="main" class="accessibility-content section"><div class="container hub-readable">
   <h1>Accessibility</h1>
   <p>We want everyone to be able to find product information and get in touch with John Crawford Company. We are working to make this website easier to use.</p>
   <h2>Need help using the website?</h2>
   <p>If you have difficulty reading a page, browsing window treatments or contacting us through the website, call <a href="tel:+18188845464">(818) 884-5464</a> or email <a href="mailto:john@johncrawford.com">john@johncrawford.com</a>.</p>
   <p>Tell us which page or feature caused the problem and how you would like us to contact you. We can also discuss products and consultation requests by phone.</p>
-  <p>Showroom hours: Monday–Friday, 9 am–5 pm. <strong class="appointment-only">Appointment Only</strong>.</p>
+  <p>Showroom hours: {e(HOURS['display'])} <strong class="appointment-only">Appointment Only</strong>.</p>
   <p class="statement-date">Statement reviewed October 22, 2026.</p>
 </div></main>''' + footer.replace('href="#contact"','href="/#contact"') + mobile.replace('href="#contact"','href="/#contact"') + '</body></html>\n'
 target=DIST/'accessibility/index.html';target.parent.mkdir(exist_ok=True);target.write_text(html)
