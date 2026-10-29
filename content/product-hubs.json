@@ -27,7 +27,7 @@
         "items": [
           {
             "title": "Roller and solar shades",
-            "text": "Choose solid fabric for privacy or screen fabric for glare control and a daytime view outside.",
+            "text": "Roller shades offer fabrics from sheer to opaque. Screen fabrics can reduce glare while preserving a daytime view outside; privacy depends on the fabric.",
             "collections": [
               "Designer Roller Shades",
               "Designer Screen Shades",
@@ -38,7 +38,7 @@
           },
           {
             "title": "Cellular and honeycomb shades",
-            "text": "Honeycomb-shaped fabric adds insulation at the window, with light-filtering and room-darkening options to suit the room.",
+            "text": "Cellular fabric adds insulation at the window. Compare traditional honeycomb folds with Sonnette® Cellular Roller Shades, which roll up into the headrail.",
             "collections": [
               "Duette® Honeycomb Shades",
               "Applause® Cellular Shades",
@@ -47,7 +47,7 @@
           },
           {
             "title": "Sheer shades",
-            "text": "Adjust daylight and privacy with fabric vanes. Each collection has a different look when the vanes are open or closed.",
+            "text": "Adjustable fabric vanes soften daylight and change privacy. Silhouette® Sheer Shades hold the vanes between sheer layers; Pirouette® Sheer Shades attach them to a sheer backing.",
             "collections": [
               "Silhouette® Sheer Shades",
               "Pirouette® Sheer Shades",
@@ -56,7 +56,7 @@
           },
           {
             "title": "Roman shades",
-            "text": "Fabric folds add softness and shape. Compare fold styles and linings for the look and light control you want.",
+            "text": "Soft fabric folds give Roman shades their shape. Compare a style that rolls into the headrail with one that gathers into a stack, then choose the fabric and lining for your room.",
             "collections": [
               "Vignette® Modern Roman Shades",
               "Carole Fabrics® Roman Shades",
@@ -92,7 +92,14 @@
         "title": "Measuring, installation and help afterward",
         "paragraphs": [
           "Our service includes measuring and installation as well as shade selection. We check the mounting space and available controls, fit the shades and show you how to use them.",
-          "If a backorder changes the schedule, we'll keep you informed. If a question comes up after installation, you can contact us for help."
+          "We keep you informed as the project moves along. After installation, you can call us with questions about the shades or their controls."
+        ],
+        "links": [
+          {
+            "paragraph": 0,
+            "text": "measuring and installation",
+            "href": "/services/window-treatment-installation/"
+          }
         ]
       },
       {
@@ -121,11 +128,18 @@
       {
         "title": "See the shade options in Woodland Hills",
         "paragraphs": [
-          "Schedule a showroom visit to compare fabrics, colors and finishes and talk through your rooms. If you're unsure where to start, tell us what you'd like to change about your current window coverings."
+          "Schedule a visit to our Woodland Hills showroom to compare shade fabrics, colors and controls. You can also request a free in-home consultation to see samples beside your own windows."
         ],
         "contact": true,
         "cta": "Request a consultation",
-        "secondary_cta": "Get directions"
+        "secondary_cta": "Get directions",
+        "links": [
+          {
+            "paragraph": 0,
+            "text": "free in-home consultation",
+            "href": "/services/consultation-measuring/"
+          }
+        ]
       }
     ]
   },
@@ -157,7 +171,7 @@
         "items": [
           {
             "title": "Parkland® Wood Blinds",
-            "text": "Real-wood slats in painted and stained finishes. Choose a wood tone that works with your trim, flooring and furniture.",
+            "text": "Real wood with natural grain, in painted and stained finishes.",
             "id": "parkland-wood-blinds"
           },
           {
@@ -172,7 +186,7 @@
           },
           {
             "title": "Aria™ Soft Blinds",
-            "text": "Soft fabric vanes diffuse daylight and give horizontal blinds a fabric finish. An option when you want adjustable light control with a softer look.",
+            "text": "Fabric vanes give these blinds a softer look and diffuse daylight. Choose light-filtering or light-dimming fabric, depending on the light and privacy you want.",
             "id": "aria-soft-blinds"
           },
           {
@@ -193,17 +207,24 @@
         ]
       },
       {
-        "title": "The fit matters when you open the window",
+        "title": "A good fit makes blinds look and work better",
         "paragraphs": [
-          "Handles, locks, trim and window depth all affect the installation. A blind needs room to tilt, lift or slide without getting in the way of the window or door.",
-          "Professional measuring helps confirm the fit. If you're considering blinds for several windows together, we can also talk through the layout and the way you'd like to operate them."
+          "A window handle or shallow frame can affect which blind fits. We measure at several points and check the mounting space and clearance, including room for the blind to tilt, lift or draw to the side. For sliding doors, we also look at where the treatment gathers when it’s open."
+        ],
+        "id": "the-fit-matters-when-you-open-the-window",
+        "links": [
+          {
+            "paragraph": 0,
+            "text": "measure at several points",
+            "href": "/services/window-treatment-installation/"
+          }
         ]
       },
       {
         "title": "One window is welcome",
         "paragraphs": [
           "You don't need a whole-house project to call us. If you're replacing a blind in one room, we'll help you choose for that window and explain the next steps.",
-          "For a larger project, we can work through the rooms together and compare where the same material makes sense and where you may want something different."
+          "If you’re working on several rooms, the blinds can coordinate without all being the same. A bathroom may suit a different material from a living room."
         ]
       },
       {
@@ -211,7 +232,7 @@
         "faqs": [
           {
             "question": "What's the difference between wood and faux wood blinds?",
-            "answer": "Real wood gives you natural grain and stained finish choices. Faux wood offers a wood-style appearance with different material properties, including moisture resistance. We'll help you compare them for the actual room."
+            "answer": "Wood blinds have natural grain and painted or stained finishes. EverWood® Faux Wood Blinds offer a wood-style look and are designed to stand up to humidity and sunlight. They’re worth considering for a bathroom or sunroom."
           },
           {
             "question": "Can blinds make a bedroom completely dark?",
@@ -229,18 +250,35 @@
           },
           {
             "question": "Can you repair a blind I already own?",
-            "answer": "We can review the product and available components. Send a photo and describe the problem so we can assess whether repair is possible. Parts availability and the condition of the blind matter, including for products from other brands."
+            "answer": "We repair some blinds, including selected outside brands, when suitable parts are available. Tell us what’s broken and email us photos. We’ll review the product’s condition and parts availability to see whether repair is worth considering.",
+            "links": [
+              {
+                "text": "We repair some blinds",
+                "href": "/services/blind-shade-repair/"
+              },
+              {
+                "text": "email us photos",
+                "href": "mailto:john@johncrawford.com"
+              }
+            ]
           }
         ]
       },
       {
         "title": "See custom blinds in Woodland Hills",
         "paragraphs": [
-          "Visit our Woodland Hills showroom to compare blind materials and finishes. We can talk through your rooms and answer questions about measuring and installation."
+          "Schedule a visit to our Woodland Hills showroom to compare blind materials and finishes. You can also request a free in-home consultation to see samples beside your own windows."
         ],
         "contact": true,
         "cta": "Request a consultation",
-        "secondary_cta": "Get directions"
+        "secondary_cta": "Get directions",
+        "links": [
+          {
+            "paragraph": 0,
+            "text": "free in-home consultation",
+            "href": "/services/consultation-measuring/"
+          }
+        ]
       }
     ]
   },
@@ -261,7 +299,7 @@
         "title": "Wood tones and painted finishes",
         "paragraphs": [
           "A stained wood shutter can bring out the wood tones in your floor or furniture. For a painted look, compare the shutter finish with your window trim to see whether you want the colors to match.",
-          "For a bathroom or a room that gets strong sun, consider Palm Beach™ vinyl shutters, designed for moisture and sun exposure. The collections below let you compare them with wood and composite options."
+          "For a bathroom or a sunny room, consider Palm Beach™ Polysatin™ Vinyl Shutters, made to withstand moisture and strong sunlight. Compare them with wood and composite options below."
         ],
         "items": [
           {
@@ -282,11 +320,11 @@
         ]
       },
       {
-        "title": "Look at the panels as well as the louvers",
+        "title": "Panel layout and louver size",
         "paragraphs": [
-          "Louver size changes the appearance of the shutter and the view when the louvers are open. Panel width and the number of panels affect how the shutters open into the room.",
-          "We can compare frame and panel options with you, looking at the window depth, handles and nearby furniture to see what suits the room."
-        ]
+          "Louver size affects the look of the shutter and the view through it. Panel size and layout affect how far the shutters open into the room. We can show you the differences and check the space around handles, furniture and the window frame."
+        ],
+        "id": "look-at-the-panels-as-well-as-the-louvers"
       },
       {
         "title": "Privacy, daylight and bedroom light",
@@ -299,12 +337,19 @@
         "title": "From measuring to the finished installation",
         "paragraphs": [
           "John's background in installation shapes how we look at a window. Along with the style you like, we consider the mounting space, fit and how the panels will open.",
-          "At installation, we check the fit and operation and show you how to use the shutters. Ask us about the panels, louvers or care instructions for the material you've chosen."
+          "At installation, we check how the panels and louvers move and show you how to use the shutters."
         ],
         "quote": {
           "text": "Great service throughout entire process. From 1st consult to installation every step was performed professionally & with quality craftsmanship. Our shades & shutters are more beautiful than expected! …",
           "author": "Mary Yingling, Google review"
-        }
+        },
+        "links": [
+          {
+            "paragraph": 0,
+            "text": "installation",
+            "href": "/services/window-treatment-installation/"
+          }
+        ]
       },
       {
         "title": "Questions about interior shutters",
@@ -315,7 +360,7 @@
           },
           {
             "question": "Should I choose a larger louver?",
-            "answer": "It depends on the look you prefer and the depth of the window. We'll show you the available sizes and consider the view, proportions and clearance together."
+            "answer": "Larger louvers give a broader look with fewer horizontal lines across the window. The right size also depends on the window depth and the clearance needed for the louvers to tilt. We can show you the available sizes."
           },
           {
             "question": "What affects the cost of custom shutters?",
@@ -326,11 +371,18 @@
       {
         "title": "See the materials and finishes in person",
         "paragraphs": [
-          "Visit our Woodland Hills showroom to see shutter materials, finishes and louver sizes in person. Tell us which rooms you're working on and the look you have in mind."
+          "Schedule a visit to our Woodland Hills showroom to see shutter materials, finishes and louver sizes in person. You can also request a free in-home consultation to compare samples with your window trim and furnishings."
         ],
         "contact": true,
         "cta": "Request a consultation",
-        "secondary_cta": "Get directions"
+        "secondary_cta": "Get directions",
+        "links": [
+          {
+            "paragraph": 0,
+            "text": "free in-home consultation",
+            "href": "/services/consultation-measuring/"
+          }
+        ]
       }
     ]
   },
@@ -343,7 +395,7 @@
       {
         "title": "Custom Drapery and Curtains in Los Angeles, California",
         "paragraphs": [
-          "Some rooms need curtains that close each evening; others need side panels to finish the window. Visit John Crawford Company in Woodland Hills to explore fabrics, lining and hardware. Our team also handles measuring and installation."
+          "Some rooms need curtains that close each evening; others need side panels to finish the window. At John Crawford Company in Woodland Hills, we’ll help you compare fabrics, lining and hardware, with measuring and installation handled by our team."
         ],
         "cta": "Request a consultation"
       },
@@ -359,15 +411,15 @@
         "items": [
           {
             "title": "Carole Fabrics® Custom Drapes",
-            "text": "Carole Fabrics, a Hunter Douglas partner company, offers fabric choices for functioning drapery and stationary panels. We'll help compare color, pattern and texture, along with lining and heading styles."
+            "text": "Carole Fabrics, a Hunter Douglas partner company, offers custom curtains that open and close, as well as side panels that stay in place. Compare colors and textures, then choose the lining and the pleats or folds at the top."
           },
           {
             "title": "Hunter Douglas Luminette® Sheer Panels",
-            "text": "Sheer panels with adjustable vertical fabric vanes offer light control across wide windows and doors. This is another option to compare if you like a sheer appearance and want to adjust the view and privacy."
+            "text": "Luminette® Sheer Panels combine a sheer fabric with rotating vertical vanes. They soften daylight across wide windows and sliding doors while letting you adjust the view and privacy."
           },
           {
             "title": "Hunter Douglas Provenance® Woven Wood Shades",
-            "text": "The collection includes vertical woven options for a different texture at large openings. We'll review the available configurations, weave and privacy lining for the window or door you're working on."
+            "text": "Provenance® Woven Wood Shades also come in a vertical drapery style for wide openings. Natural woven materials give a different texture from fabric curtains. We can show you the available weaves and explain the privacy each provides."
           }
         ]
       },
@@ -400,14 +452,20 @@
       {
         "title": "Professional drapery measuring and installation",
         "paragraphs": [
-          "Professional measuring helps us work out the fabric, hardware and mounting details for your windows. Our team also installs the drapery, checks how it hangs and moves, and shows you how to use it.",
-          "One customer described the hardware side of a drapery project this way:"
+          "Professional measuring helps us work out the fabric, hardware and mounting details for your windows. Our team also installs the drapery, checks how it hangs and moves, and shows you how to use it."
         ],
         "quote": {
           "text": "Quick response by John to organize materials fabrication and excellent installation service … to replace damaged curtain rods in a 22 foot run of drapery. Highly recommended!",
           "author": "Jan Edling, Google review"
         },
-        "id": "measuring-and-installation-for-the-whole-arrangement"
+        "id": "measuring-and-installation-for-the-whole-arrangement",
+        "links": [
+          {
+            "paragraph": 0,
+            "text": "Professional measuring",
+            "href": "/services/consultation-measuring/"
+          }
+        ]
       },
       {
         "title": "Questions about custom drapery",
@@ -422,18 +480,25 @@
           },
           {
             "question": "Can I add motorized control?",
-            "answer": "Motorized drapery hardware is available for compatible arrangements. We'll review the fabric, hardware, opening and supported system before recommending an option."
+            "answer": "Motorized tracks are an option for some drapery. They open and close the curtains with a compatible control. We’ll check the fabric weight, opening and hardware to see what will work for your windows."
           }
         ]
       },
       {
         "title": "See drapery fabrics in Woodland Hills",
         "paragraphs": [
-          "Bring your ideas to our Woodland Hills showroom and see the fabrics in person. We can look at styles, lining and hardware together, and talk through any questions about measuring or installation."
+          "Schedule a visit to our Woodland Hills showroom to see drapery fabrics, linings and hardware in person. You can also request a free in-home consultation to compare samples in your own rooms."
         ],
         "contact": true,
         "cta": "Request a consultation",
-        "secondary_cta": "Get directions"
+        "secondary_cta": "Get directions",
+        "links": [
+          {
+            "paragraph": 0,
+            "text": "free in-home consultation",
+            "href": "/services/consultation-measuring/"
+          }
+        ]
       }
     ]
   },
@@ -446,7 +511,7 @@
       {
         "title": "Motorized Shades in Los Angeles, California",
         "paragraphs": [
-          "Adjust a tall window without reaching for it, or lower several shades together when the afternoon light changes. We help you choose compatible motorized shades, install them and set up the controls. Visit our Woodland Hills showroom or call to discuss your rooms."
+          "Lower a shade at a tall window without reaching for it, or adjust several shades together as the afternoon light changes. At John Crawford Company in Woodland Hills, we help you choose compatible shades and controls, install them and set up the system."
         ],
         "cta": "Discuss motorization"
       },
@@ -454,7 +519,7 @@
         "title": "Choose shades and controls that suit your room",
         "paragraphs": [
           "Some customers prefer a handheld remote. Others like the app or a control on the wall. We start with the way you want to use the shades, whether that's one window at a time or several together.",
-          "The fabric determines the light and privacy; the motor changes how you operate the shade. Start with the shade style you like, and we'll confirm which motors and controls are available for it."
+          "Choose the shade style for the light, privacy and look you want. Then we’ll check which motors and controls are available for that style and your window size."
         ],
         "links": [
           {
@@ -468,7 +533,7 @@
         "title": "Hunter Douglas PowerView® Automation",
         "paragraphs": [
           "PowerView® Automation lets you operate selected Hunter Douglas window treatments with a remote or the PowerView® App. In the app, you can set schedules for the times you want the shades to move.",
-          "We'll confirm whether you need a gateway for the controls and connections you want. At installation, we set up the system and show you how to use it."
+          "A PowerView® Gen 3 Gateway is needed for control while you’re away and for supported smart-home connections. We’ll check the accessories needed for the features you want."
         ],
         "disclosure": "The PowerView® App is required for programmed operation."
       },
@@ -489,19 +554,26 @@
       {
         "title": "A motorization job in Santa Rosa Valley",
         "paragraphs": [
-          "On a new-build project in Santa Rosa Valley, one of the connections for the hardwired shades wasn't working after the walls had been finished. We coordinated with an electrician to resolve the wiring issue, then completed the shade and app setup."
+          "On a new-build project in Santa Rosa Valley, we installed hardwired shades and set up the app controls. When a wiring connection needed attention, we coordinated with an electrician to resolve it and complete the setup."
         ]
       },
       {
         "title": "Help after the shades are installed",
         "paragraphs": [
           "We set up the controls and show you how they work at installation. You can also call us with questions afterward.",
-          "John has walked customers through recalibrating a shade in the app over the phone. When that solves the problem, there's no need for a service visit. Some problems need an in-person check."
+          "John has helped customers recalibrate a shade in the app over the phone. If the issue needs a closer look, we can discuss an in-person service visit."
         ],
         "quote": {
           "text": "Wonderful and smooth experience. … The results are really just jaw dropping. Could not be better. Definitely spring for the Electric shades.",
           "author": "Carol Larimer, Google review"
-        }
+        },
+        "links": [
+          {
+            "paragraph": 0,
+            "text": "at installation",
+            "href": "/services/window-treatment-installation/"
+          }
+        ]
       },
       {
         "title": "Questions about motorized window treatments",
@@ -512,22 +584,29 @@
           },
           {
             "question": "Will it work with my existing smart-home system?",
-            "answer": "Tell us which smart-home system you use. We'll check the shade motor, controls and any gateway or accessories needed to connect them."
+            "answer": "For PowerView® Gen 3, a Gateway connects the shades with supported smart-home systems. Tell us which system you use and we’ll check the connection and any accessories it needs."
           },
           {
             "question": "Can I keep a remote as well as an app?",
-            "answer": "Many systems support more than one control method. We'll confirm the combination available for your shades and show you how to use it."
+            "answer": "Yes. PowerView® shades can use a compatible remote as well as the PowerView® App. We’ll help you choose the controls you prefer and explain any accessories needed for additional features."
           }
         ]
       },
       {
         "title": "Talk with us about motorization",
         "paragraphs": [
-          "Tell us which windows you'd like to operate more easily and whether you're starting with new shades or reviewing an existing system. We'll help you work through the product, controls, installation and setup."
+          "Tell us which windows you’d like to control more easily. You can schedule a visit to our Woodland Hills showroom or request a free in-home consultation to compare compatible shade and control options."
         ],
         "contact": true,
         "cta": "Discuss motorization",
-        "secondary_cta": "Email us your project"
+        "secondary_cta": "Email us your project",
+        "links": [
+          {
+            "paragraph": 0,
+            "text": "free in-home consultation",
+            "href": "/services/consultation-measuring/"
+          }
+        ]
       }
     ]
   }

@@ -11,6 +11,9 @@ IMAGES = json.loads((ROOT / 'content/product-images.json').read_text())
 BASE = 'https://john-crawford-homepage.codytodd.chatgpt.site'
 HOME = (DIST / 'index.html').read_text()
 DIRECTIONS = 'https://www.google.com/maps/search/?api=1&query=John+Crawford+Company+22311+Ventura+Blvd+Woodland+Hills'
+CONTENT_LINK_DESTINATIONS = ({page['slug'] for page in PAGES}
+    | {page['slug'] for page in json.loads((ROOT / 'content/service-pages.json').read_text())}
+    | {'mailto:john@johncrawford.com'})
 
 
 def e(value):
@@ -24,8 +27,8 @@ def tag_id(value):
 def linked_text(text, links=()):
     spans = []
     for link in links:
-        if link['href'] not in {page['slug'] for page in PAGES}:
-            raise ValueError(f'Unknown product link: {link["href"]}')
+        if link['href'] not in CONTENT_LINK_DESTINATIONS:
+            raise ValueError(f'Unknown content link: {link["href"]}')
         match = re.search(r'(?<!\w)' + re.escape(link['text']) + r'(?!\w)', text)
         if not match:
             raise ValueError(f'Link text not found: {link["text"]}')
@@ -239,7 +242,7 @@ def detail_panel(sections, photo_key, title, panel_id, topic_titles=None, prefix
     photo = IMAGES[photo_key]
     topics = []
     for topic_title, section in zip(topic_titles or [s['title'] for s in sections], sections):
-        sid = tag_id(section['title'])
+        sid = section.get('id', tag_id(section['title']))
         inline_quote = '' if quotes_below else quote(section)
         topics.append(f'<article class="{prefix}-topic" aria-labelledby="{sid}"><h3 id="{sid}">{e(topic_title)}</h3>{paragraphs(section)}{inline_quote}</article>')
     below = ''.join(quote(section) for section in sections) if quotes_below else ''
