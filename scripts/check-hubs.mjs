@@ -120,7 +120,7 @@ const contactForm = pages.get('/contact/')?.html.match(/<form class="hub-consult
 const areaHtml = pages.get(serviceAreas.slug)?.html || '';
 const areaCommunities = serviceAreas.regions.flatMap(region => region.communities);
 requireThat(serviceAreas.regions.length === 5 && areaCommunities.length === 27 && new Set(areaCommunities).size === 27, 'The single Service Areas hub must retain all five supplied regions and 27 distinct communities');
-requireThat(areaHtml.includes('/service-areas.css?v=service-areas-2') && !/<form\b/.test(areaHtml), 'Service Areas should use its directory layout and central contact journey');
+requireThat(areaHtml.includes('/service-areas.css?v=service-areas-3') && !/<form\b/.test(areaHtml), 'Service Areas should use its directory layout and central contact journey');
 const areaMain = areaHtml.match(/<main\b[\s\S]*?<\/main>/)?.[0] || '';
 requireThat(!/\bZIP\b|\b\d{5}\b/i.test(areaMain), 'Keep ZIP codes out of the service-area listings and inquiry copy');
 for (const region of serviceAreas.regions) {

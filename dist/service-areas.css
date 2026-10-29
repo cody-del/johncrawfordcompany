@@ -6,10 +6,11 @@
 .company-page--service-areas .area-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 10px 26px; margin-top: 26px; }
 .company-page--service-areas .area-actions .text-link { display: inline-flex; align-items: center; min-height: 44px; }
 .company-page--service-areas .area-directory { padding-block: 52px 64px; }
-.company-page--service-areas .area-regions { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 28px; align-items: stretch; }
-.company-page--service-areas .area-region { min-width: 0; padding: 28px 32px; border: 1px solid var(--line); border-radius: 0 22px 0 22px; background: var(--white); }
-.company-page--service-areas .area-region--primary { grid-column: 1 / -1; background: var(--linen); }
-.company-page--service-areas .area-region h2 { margin: 0 0 22px; padding-bottom: 20px; border-bottom: 1px solid var(--line); font-size: clamp(27px, 2.5vw, 32px); line-height: 1.25; text-wrap: balance; }
+.company-page--service-areas .area-regions { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 40px 56px; align-items: stretch; }
+.company-page--service-areas .area-region { min-width: 0; padding: 26px 0 0; border: 0; border-top: 1px solid var(--line); border-radius: 0; background: transparent; }
+.company-page--service-areas .area-region--primary { grid-column: 1 / -1; padding: 28px 32px; border-top: 0; background: var(--linen); }
+.company-page--service-areas .area-region h2 { margin: 0 0 22px; font-size: clamp(27px, 2.5vw, 32px); line-height: 1.25; text-wrap: balance; }
+.company-page--service-areas .area-region--primary h2 { padding-bottom: 20px; border-bottom: 1px solid var(--line); }
 .company-page--service-areas .area-places { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 8px 24px; margin: 0; padding: 0; list-style: none; }
 .company-page--service-areas .area-region--primary .area-places { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 .company-page--service-areas .area-place { min-width: 0; margin: 0; padding-block: 5px; color: var(--walnut); font-size: 17px; line-height: 1.65; }
@@ -25,8 +26,8 @@
   }
 }
 @media (max-width: 1000px) {
-  .company-page--service-areas .area-regions { gap: 24px; }
-  .company-page--service-areas .area-region { padding: 26px; }
+  .company-page--service-areas .area-regions { gap: 34px; }
+  .company-page--service-areas .area-region--primary { padding: 26px; }
   .company-page--service-areas .area-region--primary .area-places { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
   .company-page--service-areas .area-contact-inner { align-items: flex-start; flex-direction: column; gap: 24px; }
 }
@@ -34,10 +35,12 @@
   .company-page--service-areas .area-hero { padding-block: 32px 40px; }
   .company-page--service-areas .area-intro { font-size: 16px; }
   .company-page--service-areas .area-directory { padding-block: 38px 46px; }
-  .company-page--service-areas .area-regions { grid-template-columns: minmax(0, 1fr); gap: 20px; }
-  .company-page--service-areas .area-region { padding: 24px 22px; border-radius: 0 18px 0 18px; }
+  .company-page--service-areas .area-regions { grid-template-columns: minmax(0, 1fr); gap: 30px; }
+  .company-page--service-areas .area-region { padding: 24px 0 0; }
+  .company-page--service-areas .area-region--primary { padding: 24px 22px; }
   .company-page--service-areas .area-places { grid-template-columns: minmax(0, 1fr); gap: 5px 16px; }
-  .company-page--service-areas .area-region h2 { margin-bottom: 16px; padding-bottom: 16px; }
+  .company-page--service-areas .area-region h2 { margin-bottom: 16px; }
+  .company-page--service-areas .area-region--primary h2 { padding-bottom: 16px; }
   .company-page--service-areas .area-place { font-size: 16px; }
   .company-page--service-areas .area-contact { padding-block: 40px 46px; }
   .company-page--service-areas .area-contact p { font-size: 16px; }
