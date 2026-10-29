@@ -1,0 +1,42 @@
+/* One regional directory, using the site's existing type and content rails. */
+.company-page--service-areas .area-hero { padding-block: 48px 52px; }
+.company-page--service-areas .breadcrumbs { margin-bottom: 22px; color: var(--text); }
+.company-page--service-areas h1 { max-width: 880px; font-size: clamp(38px, 4.2vw, 56px); line-height: 1.12; }
+.company-page--service-areas .area-intro { max-width: 740px; margin-top: 22px; font-size: 18px; line-height: 1.75; }
+.company-page--service-areas .area-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 10px 26px; margin-top: 26px; }
+.company-page--service-areas .area-actions .text-link { display: inline-flex; align-items: center; min-height: 44px; }
+.company-page--service-areas .area-directory { padding-block: 52px 64px; }
+.company-page--service-areas .area-regions { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 44px 64px; align-items: start; }
+.company-page--service-areas .area-region { min-width: 0; border-top: 1px solid var(--line); padding-top: 24px; }
+.company-page--service-areas .area-region--primary { grid-column: 1 / -1; border-top: 0; padding-top: 0; }
+.company-page--service-areas .area-region h2 { margin: 0 0 22px; font-size: clamp(27px, 2.5vw, 34px); line-height: 1.25; }
+.company-page--service-areas .area-places { margin: 0; }
+.company-page--service-areas .area-region--primary .area-places { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: 64px; }
+.company-page--service-areas .area-place { display: grid; grid-template-columns: minmax(0, 1fr) max-content; align-items: baseline; gap: 12px 20px; min-width: 0; min-height: 62px; padding-block: 15px; border-bottom: 1px solid var(--line); }
+.company-page--service-areas .area-place dt { color: var(--walnut); font-size: 17px; line-height: 1.65; }
+.company-page--service-areas .area-place dd { margin: 0; color: var(--text); font-size: 15px; line-height: 1.65; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.company-page--service-areas .area-contact { padding-block: 48px 56px; }
+.company-page--service-areas .area-contact-inner { display: flex; justify-content: space-between; align-items: center; gap: 32px 64px; }
+.company-page--service-areas .area-contact-copy { max-width: 660px; }
+.company-page--service-areas .area-contact h2 { font-size: clamp(30px, 3vw, 40px); line-height: 1.2; }
+.company-page--service-areas .area-contact p { margin-top: 18px; font-size: 17px; line-height: 1.8; }
+.company-page--service-areas .area-contact .btn { flex-shrink: 0; }
+@media (max-width: 1000px) {
+  .company-page--service-areas .area-regions { column-gap: 36px; }
+  .company-page--service-areas .area-region--primary .area-places { column-gap: 36px; }
+  .company-page--service-areas .area-place { column-gap: 14px; }
+  .company-page--service-areas .area-contact-inner { align-items: flex-start; flex-direction: column; gap: 24px; }
+}
+@media (max-width: 700px) {
+  .company-page--service-areas .area-hero { padding-block: 32px 40px; }
+  .company-page--service-areas .area-intro { font-size: 16px; }
+  .company-page--service-areas .area-directory { padding-block: 38px 46px; }
+  .company-page--service-areas .area-regions { grid-template-columns: minmax(0, 1fr); gap: 32px; }
+  .company-page--service-areas .area-region--primary .area-places { grid-template-columns: minmax(0, 1fr); }
+  .company-page--service-areas .area-region h2 { margin-bottom: 16px; }
+  .company-page--service-areas .area-place { min-height: 58px; padding-block: 13px; }
+  .company-page--service-areas .area-place dt { font-size: 16px; }
+  .company-page--service-areas .area-place dd { font-size: 14px; }
+  .company-page--service-areas .area-contact { padding-block: 40px 46px; }
+  .company-page--service-areas .area-contact p { font-size: 16px; }
+}

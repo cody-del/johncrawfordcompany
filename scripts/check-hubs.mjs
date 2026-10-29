@@ -72,7 +72,8 @@ for (const hub of hubs) {
 }
 requireThat(pages.get('/motorized-shades/')?.html.includes('The PowerView® App is required for programmed operation.'), 'Missing PowerView scheduling disclosure');
 const services = JSON.parse(await readFile(resolve(root, 'content/service-pages.json'), 'utf8'));
-const expectedRoutes = ['/', ...hubs.map(hub => hub.slug), ...services.map(service => service.slug), '/accessibility/', '/privacy/', '/about/', '/contact/', '/lp/custom-window-treatments/', '/lp/motorized-shades/'];
+const serviceAreas = JSON.parse(await readFile(resolve(root, 'content/service-areas.json'), 'utf8'));
+const expectedRoutes = ['/', ...hubs.map(hub => hub.slug), ...services.map(service => service.slug), '/accessibility/', '/privacy/', '/about/', '/contact/', serviceAreas.slug, '/lp/custom-window-treatments/', '/lp/motorized-shades/'];
 requireThat(pages.size === expectedRoutes.length && expectedRoutes.every(route => pages.has(route)), `Expected ${expectedRoutes.length} routes including both campaign landing pages; found ${[...pages.keys()].join(', ')}`);
 for (const service of services) {
   const html = pages.get(service.slug)?.html || '';
@@ -101,6 +102,8 @@ for (const [route, { html }] of pages) {
   requireThat(/href="\/about\/"(?: aria-current="page")?>About<\/a>/.test(html), `${route}: About navigation missing`);
   requireThat(/href="\/contact\/"(?: aria-current="page")?>Contact<\/a>/.test(html), `${route}: Contact navigation missing`);
   const header = html.match(/<header class="site-header">[\s\S]*?<\/header>/)?.[0] || '';
+  const footer = html.match(/<footer class="site-footer"[\s\S]*?<\/footer>/)?.[0] || '';
+  requireThat(header.includes('href="/service-areas/"') && footer.includes('href="/service-areas/"'), `${route}: Service Areas must be reachable from the header and footer`);
   for (const [label, destinations] of [['Window Treatments', hubs], ['Services', services]]) {
     const dropdown = [...header.matchAll(/<details\b[^>]*>[\s\S]*?<\/details>/g)].find(match => match[0].includes(`<summary>${label}</summary>`))?.[0] || '';
     const hrefs = [...dropdown.matchAll(/<a\b[^>]*href="([^"]+)"/g)].map(match => match[1]);
@@ -114,6 +117,14 @@ for (const [route, type] of [['/about/', 'AboutPage'], ['/contact/', 'ContactPag
   requireThat(html.includes('/company-pages.css?v=company-pages-7'), `${route}: scoped styles missing`);
 }
 const contactForm = pages.get('/contact/')?.html.match(/<form class="hub-consultation-form"[\s\S]*?<\/form>/)?.[0] || '';
+const areaHtml = pages.get(serviceAreas.slug)?.html || '';
+const areaZipCodes = serviceAreas.regions.flatMap(region => region.communities.flatMap(place => place.zip_codes));
+requireThat(serviceAreas.regions.length === 5 && areaZipCodes.length === 28 && new Set(areaZipCodes).size === 28, 'The single Service Areas hub must retain all five supplied regions and 28 unique ZIP codes');
+requireThat(areaHtml.includes('/service-areas.css?v=service-areas-1') && !/<form\b/.test(areaHtml), 'Service Areas should use its directory layout and central contact journey');
+for (const region of serviceAreas.regions) {
+  requireThat(areaHtml.includes(`id="${region.id}-heading"`) && areaHtml.includes(region.heading.replaceAll('&', '&amp;')), `Service area region missing: ${region.heading}`);
+  for (const place of region.communities) requireThat(areaHtml.includes(`<dt>${place.name}</dt>`) && place.zip_codes.every(zip => areaHtml.includes(zip)), `Service area community or ZIP code missing: ${place.name}`);
+}
 requireThat(contactForm.includes('id="appointment-form"'), 'Contact appointment destination missing');
 requireThat((contactForm.match(/\bdisabled\b/g) || []).length === 9 && !/action=|data-netlify|type="submit"/.test(contactForm), 'Contact form must remain a design preview until GHL is configured');
 requireThat(contactForm.includes('autocomplete="postal-code"') && contactForm.includes('<select id="company-product"') && contactForm.includes('<textarea id="company-message"'), 'Contact form must include ZIP code, product interest and message');
