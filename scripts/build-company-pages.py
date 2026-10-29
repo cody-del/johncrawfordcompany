@@ -218,22 +218,18 @@ def contact_body(page):
 def service_areas_body(page):
     regions = []
     for index, region in enumerate(page['regions']):
-        places = ''.join(
-            f'<div class="area-place"><dt>{e(place["name"])}</dt>'
-            f'<dd><span class="sr-only">ZIP codes: </span>{e(", ".join(place["zip_codes"]))}</dd></div>'
-            for place in region['communities']
-        )
+        places = ''.join(f'<li class="area-place">{e(place)}</li>' for place in region['communities'])
         modifier = ' area-region--primary' if index == 0 else ''
         regions.append(
             f'<section class="area-region{modifier}" id="{e(region["id"])}" aria-labelledby="{e(region["id"])}-heading">'
-            f'<h2 id="{e(region["id"])}-heading">{e(region["heading"])}</h2><dl class="area-places">{places}</dl></section>'
+            f'<h2 id="{e(region["id"])}-heading">{e(region["heading"])}</h2><ul class="area-places">{places}</ul></section>'
         )
     return f'''<main id="main">
     <section class="section area-hero linen" aria-labelledby="page-heading"><div class="container">
       {breadcrumbs(page)}<h1 id="page-heading">{e(page['heading'])}</h1><p class="area-intro">{e(page['intro'])}</p>
       <div class="area-actions"><a class="btn btn-primary" href="/contact/#appointment-form">Request a consultation</a><a class="text-link" href="tel:+18188845464">Call (818) 884-5464</a></div>
     </div></section>
-    <section class="section area-directory" aria-label="Service communities and ZIP codes"><div class="container area-regions">{''.join(regions)}</div></section>
+    <section class="section area-directory" aria-label="Service area communities"><div class="container area-regions">{''.join(regions)}</div></section>
     <section class="section area-contact linen" aria-labelledby="area-contact-heading"><div class="container area-contact-inner">
       <div class="area-contact-copy"><h2 id="area-contact-heading">{e(page['contact_heading'])}</h2><p>{e(page['contact_text'])}</p></div>
       <a class="btn btn-primary" href="/contact/#appointment-form">Request a free in-home visit</a>
@@ -249,7 +245,7 @@ if __name__ == '__main__':
         header, footer, mobile = partials(page)
         page_head = head(page, kind)
         if key == 'service_areas':
-            page_head = page_head.replace('</head>', '<link rel="stylesheet" href="/service-areas.css?v=service-areas-1">\n</head>')
+            page_head = page_head.replace('</head>', '<link rel="stylesheet" href="/service-areas.css?v=service-areas-2">\n</head>')
         html = page_head + header + renderer(page) + footer + mobile + '</body></html>\n'
         target = DIST / page['slug'].strip('/') / 'index.html'
         target.parent.mkdir(parents=True, exist_ok=True)

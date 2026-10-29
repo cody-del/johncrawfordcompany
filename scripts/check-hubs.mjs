@@ -118,12 +118,14 @@ for (const [route, type] of [['/about/', 'AboutPage'], ['/contact/', 'ContactPag
 }
 const contactForm = pages.get('/contact/')?.html.match(/<form class="hub-consultation-form"[\s\S]*?<\/form>/)?.[0] || '';
 const areaHtml = pages.get(serviceAreas.slug)?.html || '';
-const areaZipCodes = serviceAreas.regions.flatMap(region => region.communities.flatMap(place => place.zip_codes));
-requireThat(serviceAreas.regions.length === 5 && areaZipCodes.length === 28 && new Set(areaZipCodes).size === 28, 'The single Service Areas hub must retain all five supplied regions and 28 unique ZIP codes');
-requireThat(areaHtml.includes('/service-areas.css?v=service-areas-1') && !/<form\b/.test(areaHtml), 'Service Areas should use its directory layout and central contact journey');
+const areaCommunities = serviceAreas.regions.flatMap(region => region.communities);
+requireThat(serviceAreas.regions.length === 5 && areaCommunities.length === 27 && new Set(areaCommunities).size === 27, 'The single Service Areas hub must retain all five supplied regions and 27 distinct communities');
+requireThat(areaHtml.includes('/service-areas.css?v=service-areas-2') && !/<form\b/.test(areaHtml), 'Service Areas should use its directory layout and central contact journey');
+const areaMain = areaHtml.match(/<main\b[\s\S]*?<\/main>/)?.[0] || '';
+requireThat(!/\bZIP\b|\b\d{5}\b/i.test(areaMain), 'Keep ZIP codes out of the service-area listings and inquiry copy');
 for (const region of serviceAreas.regions) {
   requireThat(areaHtml.includes(`id="${region.id}-heading"`) && areaHtml.includes(region.heading.replaceAll('&', '&amp;')), `Service area region missing: ${region.heading}`);
-  for (const place of region.communities) requireThat(areaHtml.includes(`<dt>${place.name}</dt>`) && place.zip_codes.every(zip => areaHtml.includes(zip)), `Service area community or ZIP code missing: ${place.name}`);
+  for (const place of region.communities) requireThat(areaHtml.includes(`<li class="area-place">${place}</li>`), `Service area community missing: ${place}`);
 }
 requireThat(contactForm.includes('id="appointment-form"'), 'Contact appointment destination missing');
 requireThat((contactForm.match(/\bdisabled\b/g) || []).length === 9 && !/action=|data-netlify|type="submit"/.test(contactForm), 'Contact form must remain a design preview until GHL is configured');

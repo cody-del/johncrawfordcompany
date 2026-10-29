@@ -7,58 +7,63 @@
   "heading": "Window treatment service areas",
   "intro": "From our Woodland Hills showroom, we help with custom window treatments, professional measuring and installation in the communities below.",
   "contact_heading": "Let’s plan a visit.",
-  "contact_text": "Tell us your ZIP code and which rooms you have in mind. If you don’t see your community listed, give us a call and we’ll confirm whether we can arrange a visit.",
+  "contact_text": "Tell us where you’re located and what you’d like to change about your windows. If your community isn’t listed, give us a call.",
   "regions": [
     {
       "id": "san-fernando-valley",
       "heading": "San Fernando Valley & nearby foothills",
       "communities": [
-        {"name": "Woodland Hills / Warner Center", "zip_codes": ["91364", "91367"]},
-        {"name": "West Hills / Canoga Park", "zip_codes": ["91304"]},
-        {"name": "West Hills / Bell Canyon", "zip_codes": ["91307"]},
-        {"name": "Tarzana", "zip_codes": ["91356"]},
-        {"name": "Encino", "zip_codes": ["91316", "91436"]},
-        {"name": "Sherman Oaks", "zip_codes": ["91403", "91423"]},
-        {"name": "Studio City", "zip_codes": ["91604"]},
-        {"name": "Toluca Lake / Studio City", "zip_codes": ["91602"]},
-        {"name": "Valley Village", "zip_codes": ["91607"]},
-        {"name": "Chatsworth", "zip_codes": ["91311"]},
-        {"name": "Granada Hills", "zip_codes": ["91344"]},
-        {"name": "Northridge / Sherwood Forest", "zip_codes": ["91324", "91325"]},
-        {"name": "Porter Ranch", "zip_codes": ["91326"]}
+        "Woodland Hills",
+        "Warner Center",
+        "West Hills",
+        "Canoga Park",
+        "Bell Canyon",
+        "Tarzana",
+        "Encino",
+        "Sherman Oaks",
+        "Studio City",
+        "Toluca Lake",
+        "Valley Village",
+        "Chatsworth",
+        "Granada Hills",
+        "Northridge",
+        "Sherwood Forest",
+        "Porter Ranch"
       ]
     },
     {
       "id": "calabasas-hidden-hills-agoura-hills",
       "heading": "Calabasas, Hidden Hills & Agoura Hills",
       "communities": [
-        {"name": "Calabasas / Hidden Hills", "zip_codes": ["91302"]},
-        {"name": "Agoura Hills", "zip_codes": ["91301"]}
+        "Calabasas",
+        "Hidden Hills",
+        "Agoura Hills"
       ]
     },
     {
       "id": "conejo-valley",
       "heading": "Conejo Valley",
       "communities": [
-        {"name": "Oak Park", "zip_codes": ["91377"]},
-        {"name": "Westlake Village / Thousand Oaks", "zip_codes": ["91361", "91362"]},
-        {"name": "Thousand Oaks", "zip_codes": ["91360"]},
-        {"name": "Newbury Park", "zip_codes": ["91320"]}
+        "Oak Park",
+        "Westlake Village",
+        "Thousand Oaks",
+        "Newbury Park"
       ]
     },
     {
       "id": "simi-valley-moorpark",
       "heading": "Simi Valley & Moorpark",
       "communities": [
-        {"name": "Simi Valley", "zip_codes": ["93063", "93065"]},
-        {"name": "Moorpark", "zip_codes": ["93021"]}
+        "Simi Valley",
+        "Moorpark"
       ]
     },
     {
       "id": "santa-clarita-valley",
       "heading": "Santa Clarita Valley",
       "communities": [
-        {"name": "Stevenson Ranch / FivePoint Valencia", "zip_codes": ["91381"]}
+        "Stevenson Ranch",
+        "FivePoint Valencia"
       ]
     }
   ]
