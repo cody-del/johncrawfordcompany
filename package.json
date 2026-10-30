@@ -5,6 +5,6 @@
   "scripts": {
     "preview": "python3 -m http.server 4317 --bind 127.0.0.1 --directory dist",
     "build:company": "python3 scripts/build-company-pages.py",
-    "check": "node --check dist/app.js && node scripts/check-site.mjs && node scripts/check-hubs.mjs && python3 scripts/check-customer-copy.py --html dist --min-html-files 18"
+    "check": "node --check dist/app.js && node scripts/check-site.mjs && node scripts/check-hubs.mjs && python3 scripts/check-customer-copy.py --html dist --min-html-files 18 && node --test tests/lead.test.mjs"
   }
 }

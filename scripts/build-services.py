@@ -86,24 +86,25 @@ def overview(section, page):
 
 
 def repair_form():
-    return '''<form class="hub-consultation-form service-repair-form" id="repair-inquiry" aria-labelledby="feature-heading" aria-describedby="repair-form-preview repair-form-notice">
-      <p id="repair-form-preview" class="sr-only">This form is a design preview and does not accept submissions or photo uploads.</p>
+    return '''<form class="hub-consultation-form service-repair-form" id="repair-inquiry" data-lead-form="repair" aria-labelledby="feature-heading" aria-describedby="repair-form-notice" novalidate>
       <div class="hub-form-fields">
         <div class="repair-form-row">
-          <div class="hub-form-field"><label for="repair-purchased-when">When did you buy the product?</label><input id="repair-purchased-when" name="purchased-when" type="text" autocomplete="off" maxlength="80" placeholder="Approximate date" disabled></div>
-          <div class="hub-form-field"><label for="repair-purchased-from">Where did you buy it?</label><input id="repair-purchased-from" name="purchased-from" type="text" autocomplete="off" maxlength="160" placeholder="Store or company" disabled></div>
+          <div class="hub-form-field"><label for="repair-purchased-when">When did you buy the product?</label><input id="repair-purchased-when" name="purchased-when" type="text" autocomplete="off" maxlength="80" placeholder="Approximate date"></div>
+          <div class="hub-form-field"><label for="repair-purchased-from">Where did you buy it?</label><input id="repair-purchased-from" name="purchased-from" type="text" autocomplete="off" maxlength="160" placeholder="Store or company"></div>
         </div>
-        <div class="hub-form-field"><label for="repair-problem">What’s broken?</label><textarea id="repair-problem" name="problem" rows="3" maxlength="3000" required disabled></textarea></div>
-        <div class="hub-form-field"><label for="repair-name">Full name</label><input id="repair-name" name="name" type="text" autocomplete="name" maxlength="120" required disabled></div>
+        <div class="hub-form-field"><label for="repair-problem">What’s broken?</label><textarea id="repair-problem" name="problem" rows="3" maxlength="3000" required></textarea></div>
+        <div class="hub-form-field"><label for="repair-name">Full name</label><input id="repair-name" name="name" type="text" autocomplete="name" maxlength="120" required></div>
         <div class="repair-form-row">
-          <div class="hub-form-field"><label for="repair-phone">Phone number</label><input id="repair-phone" name="phone" type="tel" autocomplete="tel" maxlength="30" required disabled></div>
-          <div class="hub-form-field"><label for="repair-email">Email</label><input id="repair-email" name="email" type="email" autocomplete="email" maxlength="254" required disabled></div>
+          <div class="hub-form-field"><label for="repair-phone">Phone number</label><input id="repair-phone" name="phone" type="tel" autocomplete="tel" maxlength="30" required></div>
+          <div class="hub-form-field"><label for="repair-email">Email</label><input id="repair-email" name="email" type="email" autocomplete="email" maxlength="254" required></div>
         </div>
-        <div class="hub-form-field"><label for="repair-zip">ZIP code</label><input id="repair-zip" name="postal-code" type="text" inputmode="numeric" autocomplete="postal-code" pattern="[0-9]{5}" maxlength="5" required disabled></div>
-        <div class="hub-form-field repair-upload-field"><label for="repair-photos">Upload photos</label><input id="repair-photos" name="photos" type="file" accept="image/*" multiple aria-describedby="repair-photo-help" disabled><p id="repair-photo-help">You can include more than one photo.</p></div>
+        <div class="hub-form-field"><label for="repair-zip">ZIP code</label><input id="repair-zip" name="postal-code" type="text" inputmode="numeric" autocomplete="postal-code" pattern="[0-9]{5}" maxlength="5" required></div>
+        <div class="hub-form-field repair-upload-field"><p>Have photos? After you send this form, email them to <a href="mailto:john@johncrawford.com?subject=Repair%20photos">john@johncrawford.com</a>.</p></div>
         <p class="hub-form-required">Your name, phone, email, ZIP code and a description of the problem are required.</p>
-        <button class="btn btn-primary" type="button" disabled>Request repair help</button>
+        <div class="lead-form-trap" aria-hidden="true"><label>Leave this field empty <input name="website" type="text" tabindex="-1" autocomplete="off"></label></div>
+        <button class="btn btn-primary" type="submit">Request repair help</button>
       </div>
+      <p class="lead-form-status" role="status" tabindex="-1"></p>
       <p class="hub-form-notice" id="repair-form-notice">We use your details and photos to review your repair inquiry. <a href="/privacy/">Privacy Policy</a>.</p>
     </form>'''
 

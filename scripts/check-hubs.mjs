@@ -6,6 +6,11 @@ const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const dist = resolve(root, 'dist');
 const errors = [];
 const requireThat = (condition, message) => { if (!condition) errors.push(message); };
+// A form app.js sends to /api/lead: enabled, one submit button, the hidden bot trap
+// and a status line. netlify/lib/site.mjs lists what each kind sends to GHL.
+const isLeadForm = (form, kind) => form.includes(`data-lead-form="${kind}"`)
+  && !/\bdisabled\b|action=|data-netlify|does not accept submissions/.test(form)
+  && (form.match(/type="submit"/g) || []).length === 1 && form.includes('name="website"') && form.includes('class="lead-form-status"');
 const hours = JSON.parse(await readFile(resolve(root, 'content/business-hours.json'), 'utf8'));
 function checkHoursSchema(value, route) {
   if (!value || typeof value !== 'object') return 0;
@@ -95,7 +100,7 @@ for (const hub of hubs) {
   requireThat(!/\bGallery\b/.test(html), `${hub.slug}: unconfirmed Gallery designation`);
   const introPreview = html.match(/<section class="section hub-introduction hub-intro-consultation"[\s\S]*?<\/section>/)?.[0] || '';
   const formPreview = introPreview.match(/<form\b[\s\S]*?<\/form>/)?.[0] || '';
-  requireThat((formPreview.match(/\bdisabled\b/g) || []).length === 4 && !/data-netlify|action=|type="submit"/.test(formPreview), `${hub.slug}: design-only form must not accept submissions before GHL setup`);
+  requireThat(isLeadForm(formPreview, 'consultation'), `${hub.slug}: consultation form must send leads to GHL through app.js`);
   requireThat(/<\/section>\s*<section class="section hub-introduction hub-intro-consultation"/.test(html), `${hub.slug}: consultation section must follow the hero`);
 }
 requireThat(pages.get('/motorized-shades/')?.html.includes('The PowerView® App is required for programmed operation.'), 'Missing PowerView scheduling disclosure');
@@ -110,9 +115,10 @@ for (const service of services) {
   requireThat(html.includes('mailto:john@johncrawford.com') && html.includes('href="/contact/#appointment-form"'), `${service.slug}: preserve the email, telephone and central appointment inquiry journey`);
   if (service.id === 'repair') {
     const form = html.match(/<form class="hub-consultation-form service-repair-form"[\s\S]*?<\/form>/)?.[0] || '';
-    requireThat(form.includes('id="repair-inquiry"') && html.includes('href="#repair-inquiry"') && (form.match(/\bdisabled\b/g) || []).length === 9 && !/action=|data-netlify|type="submit"/.test(form), 'Repair form must remain a disabled design preview pending GHL');
-    for (const name of ['purchased-when', 'purchased-from', 'problem', 'name', 'phone', 'email', 'postal-code', 'photos']) requireThat(form.includes(`name="${name}"`), `Repair inquiry field missing: ${name}`);
-    requireThat(/type="file" accept="image\/\*" multiple/.test(form), 'Repair photo control must support multiple images');
+    requireThat(form.includes('id="repair-inquiry"') && html.includes('href="#repair-inquiry"') && isLeadForm(form, 'repair'), 'Repair form must send leads to GHL through app.js');
+    for (const name of ['purchased-when', 'purchased-from', 'problem', 'name', 'phone', 'email', 'postal-code']) requireThat(form.includes(`name="${name}"`), `Repair inquiry field missing: ${name}`);
+    // GHL takes no photos through the contact API, so the form asks for them by email instead.
+    requireThat(!/type="file"/.test(form) && form.includes('href="mailto:john@johncrawford.com?subject=Repair%20photos"'), 'Repair photos must be requested by email');
   } else requireThat(!/<form\b/.test(html), `${service.slug}: keep the central contact inquiry destination`);
 }
 const consultationHtml = pages.get('/services/consultation-measuring/')?.html || '';
@@ -156,10 +162,10 @@ for (const region of serviceAreas.regions) {
   for (const place of region.communities) requireThat(areaHtml.includes(`<li class="area-place">${place}</li>`), `Service area community missing: ${place}`);
 }
 requireThat(contactForm.includes('id="appointment-form"'), 'Contact appointment destination missing');
-requireThat((contactForm.match(/\bdisabled\b/g) || []).length === 9 && !/action=|data-netlify|type="submit"/.test(contactForm), 'Contact form must remain a design preview until GHL is configured');
+requireThat(isLeadForm(contactForm, 'contact'), 'Contact form must send leads to GHL through app.js');
 requireThat(contactForm.includes('autocomplete="postal-code"') && contactForm.includes('<select id="company-product"') && contactForm.includes('<textarea id="company-message"'), 'Contact form must include ZIP code, product interest and message');
 const appointmentOptions = contactForm.match(/<fieldset class="company-appointment-options">[\s\S]*?<\/fieldset>/)?.[0] || '';
-requireThat((appointmentOptions.match(/name="appointment-type"/g) || []).length === 2 && (appointmentOptions.match(/type="radio" disabled/g) || []).length === 2 && !/\brequired\b|\bchecked\b|type="checkbox"/.test(appointmentOptions), 'Contact appointment choices must be one optional, unchecked design-only radio group');
+requireThat((appointmentOptions.match(/name="appointment-type"/g) || []).length === 2 && (appointmentOptions.match(/type="radio">/g) || []).length === 2 && !/\brequired\b|\bchecked\b|type="checkbox"/.test(appointmentOptions), 'Contact appointment choices must be one optional, unchecked radio group');
 const showroomArtwork = html => [...(html.match(/<section class="section about"[\s\S]*?<\/section>/)?.[0] || '').matchAll(/<img\b[^>]+src="\/?assets\/([^\"]+)"/g)].map(m => m[1]);
 const homeShowroomArtwork = showroomArtwork(pages.get('/')?.html || '');
 for (const route of ['/lp/custom-window-treatments/', '/lp/motorized-shades/']) {

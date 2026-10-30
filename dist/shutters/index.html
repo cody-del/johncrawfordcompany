@@ -78,15 +78,16 @@
       <div class="container hub-intro-grid">
         <div class="hub-prose hub-intro-copy"><h2 id="introduction-heading">Wood tones and painted finishes</h2><p>A stained wood shutter can bring out the wood tones in your floor or furniture. For a painted look, compare the shutter finish with your window trim to see whether you want the colors to match.</p>
 <p>For a bathroom or a sunny room, consider Palm Beach™ Polysatin™ Vinyl Shutters, made to withstand moisture and strong sunlight. Compare them with wood and composite options below.</p><img class="hub-accent-floral" src="/assets/accents/floral-corner-complete.png" alt="" aria-hidden="true" width="1254" height="1254" loading="lazy" decoding="async"></div>
-        <form class="hub-consultation-form" aria-label="Consultation form preview" aria-describedby="consultation-preview consultation-required consultation-notice">
-          <p class="sr-only" id="consultation-preview">This form is a design preview and does not accept submissions.</p>
+        <form class="hub-consultation-form" data-lead-form="consultation" aria-label="Consultation request" aria-describedby="consultation-required consultation-notice" novalidate>
           <div class="hub-form-fields">
-            <div class="hub-form-field"><label for="consultation-name">Full name</label><input id="consultation-name" name="name" type="text" autocomplete="name" maxlength="120" required disabled></div>
-            <div class="hub-form-field"><label for="consultation-phone">Phone number</label><input id="consultation-phone" name="phone" type="tel" autocomplete="tel" minlength="7" maxlength="30" required disabled></div>
-            <div class="hub-form-field"><label for="consultation-email">Email</label><input id="consultation-email" name="email" type="email" autocomplete="email" maxlength="254" required disabled></div>
+            <div class="hub-form-field"><label for="consultation-name">Full name</label><input id="consultation-name" name="name" type="text" autocomplete="name" maxlength="120" required></div>
+            <div class="hub-form-field"><label for="consultation-phone">Phone number</label><input id="consultation-phone" name="phone" type="tel" autocomplete="tel" minlength="7" maxlength="30" required></div>
+            <div class="hub-form-field"><label for="consultation-email">Email</label><input id="consultation-email" name="email" type="email" autocomplete="email" maxlength="254" required></div>
             <p class="hub-form-required" id="consultation-required">All fields are required.</p>
-            <button class="btn btn-primary" type="button" disabled>Request a consultation</button>
+            <div class="lead-form-trap" aria-hidden="true"><label>Leave this field empty <input name="website" type="text" tabindex="-1" autocomplete="off"></label></div>
+            <button class="btn btn-primary" type="submit">Request a consultation</button>
           </div>
+          <p class="lead-form-status" role="status" tabindex="-1"></p>
           <p class="hub-form-notice" id="consultation-notice">We collect your name, phone number and email to respond to your project inquiry. <a href="/privacy/">Privacy Policy</a>.</p>
         </form>
       </div>
