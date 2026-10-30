@@ -170,15 +170,16 @@ def intro(section, page):
     return f'''<section class="section hub-introduction hub-intro-consultation" aria-labelledby="introduction-heading">
       <div class="container hub-intro-grid">
         <div class="hub-prose hub-intro-copy"><h2 id="introduction-heading">{e(section['title'])}</h2>{body}{floral}</div>
-        <form class="hub-consultation-form" aria-label="Consultation form preview" aria-describedby="consultation-preview consultation-required consultation-notice">
-          <p class="sr-only" id="consultation-preview">This form is a design preview and does not accept submissions.</p>
+        <form class="hub-consultation-form" data-lead-form="consultation" aria-label="Consultation request" aria-describedby="consultation-required consultation-notice" novalidate>
           <div class="hub-form-fields">
-            <div class="hub-form-field"><label for="consultation-name">Full name</label><input id="consultation-name" name="name" type="text" autocomplete="name" maxlength="120" required disabled></div>
-            <div class="hub-form-field"><label for="consultation-phone">Phone number</label><input id="consultation-phone" name="phone" type="tel" autocomplete="tel" minlength="7" maxlength="30" required disabled></div>
-            <div class="hub-form-field"><label for="consultation-email">Email</label><input id="consultation-email" name="email" type="email" autocomplete="email" maxlength="254" required disabled></div>
+            <div class="hub-form-field"><label for="consultation-name">Full name</label><input id="consultation-name" name="name" type="text" autocomplete="name" maxlength="120" required></div>
+            <div class="hub-form-field"><label for="consultation-phone">Phone number</label><input id="consultation-phone" name="phone" type="tel" autocomplete="tel" minlength="7" maxlength="30" required></div>
+            <div class="hub-form-field"><label for="consultation-email">Email</label><input id="consultation-email" name="email" type="email" autocomplete="email" maxlength="254" required></div>
             <p class="hub-form-required" id="consultation-required">All fields are required.</p>
-            <button class="btn btn-primary" type="button" disabled>Request a consultation</button>
+            <div class="lead-form-trap" aria-hidden="true"><label>Leave this field empty <input name="website" type="text" tabindex="-1" autocomplete="off"></label></div>
+            <button class="btn btn-primary" type="submit">Request a consultation</button>
           </div>
+          <p class="lead-form-status" role="status" tabindex="-1"></p>
           <p class="hub-form-notice" id="consultation-notice">We collect your name, phone number and email to respond to your project inquiry. <a href="/privacy/">Privacy Policy</a>.</p>
         </form>
       </div>
@@ -376,14 +377,14 @@ def support_page(name, slug, title, description, body):
 support_page('Privacy Policy', '/privacy/', 'Privacy Policy | John Crawford Company',
     'How John Crawford Company handles website consultation requests, contact information, hosting and embedded services.', '''
   <h1>Privacy Policy</h1>
-  <p class="statement-date">Effective October 22, 2026.</p>
+  <p class="statement-date">Effective October 31, 2026.</p>
   <p>This policy describes information collected through the John Crawford Company website and how to contact us about it.</p>
   <h2>Information you provide</h2>
-  <p>The forms displayed on this preview do not accept submissions or file uploads. If you email us, we receive the contact information, project details and any photos or attachments you choose to send.</p>
+  <p>When you send a form on this website, we receive the contact details and project information you enter. If you email us, we receive the contact information, project details and any photos or attachments you choose to send.</p>
   <h2>How your information is used</h2>
   <p>We use inquiry information to respond, discuss your project and provide the help you request. Our website providers also process information to operate and protect the website.</p>
   <h2>Website providers</h2>
-  <p>This website is hosted through Netlify and, for the preview, ChatGPT Sites. Hosting providers may process technical information, such as IP addresses, browser details and request logs, to deliver and secure the website.</p>
+  <p>Form submissions are kept in HighLevel, the customer relationship system we use to manage inquiries. This website is hosted through Netlify and, for the preview, ChatGPT Sites. Hosting providers may process technical information, such as IP addresses, browser details and request logs, to deliver and secure the website.</p>
   <h2>Embedded services and tracking</h2>
   <p>This website includes a Google Maps embed. Loading that map may allow Google to receive device and visit information and use its own cookies or similar technologies. Social profile links take you to separate services when you open them. Those providers' privacy practices apply to their services. See <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google's Privacy Policy<span class="sr-only"> (opens in a new tab)</span></a>.</p>
   <p>We have not installed advertising pixels or audience-tracking analytics on this website. The website does not change its behavior in response to browser Do Not Track signals. Embedded third-party services may follow their own tracking practices.</p>

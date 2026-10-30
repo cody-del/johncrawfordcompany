@@ -78,15 +78,16 @@
       <div class="container hub-intro-grid">
         <div class="hub-prose hub-intro-copy"><h2 id="introduction-heading">Curtains and side panels</h2><p>Curtains that open and close need room for the fabric to gather at the sides. Stationary panels stay in place to frame the window. We can compare the two with you and look at how much coverage you&#x27;d like.</p>
 <p>Lining affects how much light comes through and how the drapery looks from outside. Length and fullness change the way the fabric hangs. We&#x27;ll look at those details with you, along with colors and patterns that work with the room.</p><img class="hub-accent-floral" src="/assets/accents/floral-corner-complete.png" alt="" aria-hidden="true" width="1254" height="1254" loading="lazy" decoding="async"></div>
-        <form class="hub-consultation-form" aria-label="Consultation form preview" aria-describedby="consultation-preview consultation-required consultation-notice">
-          <p class="sr-only" id="consultation-preview">This form is a design preview and does not accept submissions.</p>
+        <form class="hub-consultation-form" data-lead-form="consultation" aria-label="Consultation request" aria-describedby="consultation-required consultation-notice" novalidate>
           <div class="hub-form-fields">
-            <div class="hub-form-field"><label for="consultation-name">Full name</label><input id="consultation-name" name="name" type="text" autocomplete="name" maxlength="120" required disabled></div>
-            <div class="hub-form-field"><label for="consultation-phone">Phone number</label><input id="consultation-phone" name="phone" type="tel" autocomplete="tel" minlength="7" maxlength="30" required disabled></div>
-            <div class="hub-form-field"><label for="consultation-email">Email</label><input id="consultation-email" name="email" type="email" autocomplete="email" maxlength="254" required disabled></div>
+            <div class="hub-form-field"><label for="consultation-name">Full name</label><input id="consultation-name" name="name" type="text" autocomplete="name" maxlength="120" required></div>
+            <div class="hub-form-field"><label for="consultation-phone">Phone number</label><input id="consultation-phone" name="phone" type="tel" autocomplete="tel" minlength="7" maxlength="30" required></div>
+            <div class="hub-form-field"><label for="consultation-email">Email</label><input id="consultation-email" name="email" type="email" autocomplete="email" maxlength="254" required></div>
             <p class="hub-form-required" id="consultation-required">All fields are required.</p>
-            <button class="btn btn-primary" type="button" disabled>Request a consultation</button>
+            <div class="lead-form-trap" aria-hidden="true"><label>Leave this field empty <input name="website" type="text" tabindex="-1" autocomplete="off"></label></div>
+            <button class="btn btn-primary" type="submit">Request a consultation</button>
           </div>
+          <p class="lead-form-status" role="status" tabindex="-1"></p>
           <p class="hub-form-notice" id="consultation-notice">We collect your name, phone number and email to respond to your project inquiry. <a href="/privacy/">Privacy Policy</a>.</p>
         </form>
       </div>
