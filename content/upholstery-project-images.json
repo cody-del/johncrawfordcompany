@@ -1,0 +1,32 @@
+{
+  "upholstery-sofa": {
+    "src": "/assets/upholstery-sofa-768.webp",
+    "width": 768,
+    "height": 1024,
+    "srcset": "/assets/upholstery-sofa-480.webp 480w, /assets/upholstery-sofa-768.webp 768w, /assets/upholstery-sofa-1086.webp 1086w",
+    "sizes": "(max-width: 400px) calc(100vw - 40px), 360px",
+    "alt": "Beige sofa with black piping and a blue cushion.",
+    "caption": "",
+    "portrait": true
+  },
+  "upholstery-chair-before": {
+    "src": "/assets/upholstery-chair-before-768.webp",
+    "width": 768,
+    "height": 1024,
+    "srcset": "/assets/upholstery-chair-before-384.webp 384w, /assets/upholstery-chair-before-768.webp 768w",
+    "sizes": "(max-width: 600px) calc(100vw - 40px), (max-width: 1000px) 44vw, 440px",
+    "alt": "Before: high-back chair with worn burgundy upholstery and a chrome frame.",
+    "caption": "",
+    "portrait": true
+  },
+  "upholstery-chair-after": {
+    "src": "/assets/upholstery-chair-after-768.webp",
+    "width": 768,
+    "height": 1024,
+    "srcset": "/assets/upholstery-chair-after-384.webp 384w, /assets/upholstery-chair-after-768.webp 768w",
+    "sizes": "(max-width: 600px) calc(100vw - 40px), (max-width: 1000px) 44vw, 440px",
+    "alt": "After: the chair reupholstered in purple fabric with zebra-patterned outer panels.",
+    "caption": "",
+    "portrait": true
+  }
+}

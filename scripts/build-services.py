@@ -10,6 +10,7 @@ ROOT = Path(__file__).resolve().parents[1]
 DIST = ROOT / 'dist'
 PAGES = json.loads((ROOT / 'content/service-pages.json').read_text())
 IMAGES = json.loads((ROOT / 'content/product-images.json').read_text())
+IMAGES.update(json.loads((ROOT / 'content/upholstery-project-images.json').read_text()))
 IMAGES['powerview-blue'] = {
     'src': '/assets/powerview-wall-remote.jpg', 'width': 1440, 'height': 1080,
     'caption': 'Hunter Douglas PowerView® Automation wall-mounted control',
@@ -47,15 +48,20 @@ def photo(key, hero=False):
         return '<div class="service-photo-placeholder">Photo placeholder</div>'
     im = IMAGES[key]
     attrs = 'fetchpriority="high"' if hero else 'loading="lazy"'
-    return (f'<figure class="service-photo"><img src="{e(im["src"])}" alt="{e(im["alt"])}" '
-            f'width="{im["width"]}" height="{im["height"]}" {attrs} decoding="async">'
-            f'<figcaption>{e(im["caption"])}</figcaption></figure>')
+    responsive = f'srcset="{e(im["srcset"])}" sizes="{e(im["sizes"])}" ' if im.get('srcset') else ''
+    classes = 'service-photo' + (' service-photo--portrait' if im.get('portrait') else '')
+    caption = f'<figcaption>{e(im["caption"])}</figcaption>' if im.get('caption') else ''
+    return (f'<figure class="{classes}"><img src="{e(im["src"])}" alt="{e(im["alt"])}" '
+            f'width="{im["width"]}" height="{im["height"]}" {responsive}{attrs} decoding="async">'
+            f'{caption}</figure>')
 
 
 def head(page):
     html = company.head(page, 'WebPage')
     html = html.replace(f'company-page--{page["name"].lower()}', f'service-page service-page--{page["id"]}')
     html = html.replace('</head>', '<link rel="stylesheet" href="/services.css?v=service-editorial-1">\n</head>')
+    if page['id'] == 'upholstery':
+        html = html.replace('/services.css?v=service-editorial-1', '/services.css?v=service-editorial-1-upholstery-projects-1')
     def service_schema(match):
         graph = json.loads(match.group(1))
         service_id = BASE + page['slug'] + '#service'
@@ -162,6 +168,17 @@ def proof(page):
     return ''
 
 
+def before_after(page):
+    comparison = page.get('before_after')
+    if not comparison:
+        return ''
+    items = ''.join(f'<article><h3>{label}</h3>{photo(comparison[key])}</article>'
+                    for label, key in [('Before', 'before_image'), ('After', 'after_image')])
+    return (f'<section class="section service-comparison linen" aria-labelledby="upholstery-comparison-heading">'
+            f'<div class="container"><h2 id="upholstery-comparison-heading">{e(comparison["heading"])}</h2>'
+            f'<div class="service-comparison-grid">{items}</div></div></section>')
+
+
 def project_details(page):
     details = page.get('details')
     if not details:
@@ -187,7 +204,7 @@ def body(page):
     contact = (f'<section class="section service-contact{contact_background}" id="contact" aria-labelledby="contact-heading"><div class="container service-contact-grid">'
                f'<div class="service-prose"><h2 id="contact-heading">{e(page["contact_heading"])}</h2><p>{e(page["contact_text"])}</p>'
                f'{links(page["related"], page)}</div>{contact_details}</div></section>')
-    return '<main id="main">' + hero + overview(page['overview'], page) + feature(page['feature'], page) + project_details(page) + proof(page) + faq + contact + '</main>'
+    return '<main id="main">' + hero + overview(page['overview'], page) + feature(page['feature'], page) + before_after(page) + project_details(page) + proof(page) + faq + contact + '</main>'
 
 
 if __name__ == '__main__':

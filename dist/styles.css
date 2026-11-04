@@ -161,7 +161,8 @@ address { font-style: normal; }
 .upholstery-panel { display: grid; grid-template-columns: 1.1fr 1fr; gap: 76px; align-items: stretch; }
 .upholstery-copy p { margin-top: 20px; }
 .upholstery-copy .btn { margin-top: 27px; }
-.upholstery-placeholder { display: grid; place-items: center; min-height: 300px; background: #e0e0e0; color: #555; font-size: 16px; line-height: 1.5; }
+.upholstery-photo { min-width: 0; margin: 0; align-self: center; }
+.upholstery-photo img { display: block; width: 100%; height: auto; }
 .about-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 72px; align-items: start; }
 .about-copy { padding-top: clamp(7px, .7vw, 10px); }
 .about-copy p { margin-top: 22px; }
@@ -354,7 +355,6 @@ address { font-style: normal; }
   .service-grid h3 { font-size: 26px; }
   .services .section-intro { margin-bottom: 30px; }
   .upholstery-panel { grid-template-columns: 1fr; gap: 30px; }
-  .upholstery-placeholder { min-height: 0; height: min(80vw, 340px); }
   .about-copy p { margin-top: 18px; }
   .showroom-actions { gap: 12px; }
   .showroom-actions .btn { padding-inline: 12px; font-size: 11px; }

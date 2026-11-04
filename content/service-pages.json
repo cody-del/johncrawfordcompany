@@ -526,7 +526,7 @@
     "description": "Furniture reupholstery in Woodland Hills. Compare fabrics for a sofa or chair, discuss possible changes and get a quote based on your piece and specialist assessment.",
     "heading": "Furniture upholstery in Woodland Hills",
     "intro": "If you love a chair or have a sofa that fits your room just right, it may be worth reupholstering. We help you compare fabrics and work with an upholstery specialist to price the changes you have in mind.",
-    "hero_image": null,
+    "hero_image": "upholstery-sofa",
     "cta": "Discuss your furniture",
     "email_subject": "Furniture upholstery inquiry",
     "overview": {
@@ -631,6 +631,11 @@
       "paragraphs": [
         "John has worked with an upholstery specialist to reshape arms or square off a back for a more contemporary look. The options depend on the frame and construction. Share your ideas and we’ll ask the specialist what would work for your piece."
       ]
+    },
+    "before_after": {
+      "heading": "Upholstery before and after",
+      "before_image": "upholstery-chair-before",
+      "after_image": "upholstery-chair-after"
     }
   }
 ]

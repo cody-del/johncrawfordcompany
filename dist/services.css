@@ -95,3 +95,16 @@
   .service-page .service-links { gap: 2px 18px; }
   .service-page .service-repair-form { padding: 20px; }
 }
+
+/* Client upholstery photos retain their full portrait framing. */
+.service-page--upholstery .service-hero .service-photo { width: 100%; max-width: 360px; justify-self: center; }
+.service-page--upholstery .service-photo--portrait img { display: block; height: auto; aspect-ratio: 3 / 4; object-fit: contain; }
+.service-page--upholstery .service-comparison h2 { max-width: 920px; margin-inline: auto; font-size: clamp(30px, 3vw, 42px); line-height: 1.2; }
+.service-page--upholstery .service-comparison-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px; max-width: 920px; margin: 28px auto 0; }
+.service-page--upholstery .service-comparison-grid > article { min-width: 0; }
+.service-page--upholstery .service-comparison-grid h3 { margin-bottom: 14px; font-family: var(--body); font-size: 18px; line-height: 1.5; font-weight: 600; }
+.service-page--upholstery .service-comparison .service-photo img { border-radius: 0; }
+@media (max-width: 600px) {
+  .service-page--upholstery .service-comparison-grid { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+  .service-page--upholstery .service-comparison-grid > article { width: 100%; max-width: 440px; justify-self: center; }
+}
