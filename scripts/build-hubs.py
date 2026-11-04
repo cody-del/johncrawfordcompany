@@ -393,3 +393,29 @@ support_page('Privacy Policy', '/privacy/', 'Privacy Policy | John Crawford Comp
   <p>You can also write to John Crawford Company, 22311 Ventura Blvd #101, Woodland Hills, CA 91364.</p>
   <h2>Policy updates</h2>
   <p>We will post changes on this page and update the effective date when this policy changes.</p>''')
+
+
+support_page('Terms of Service', '/terms/', 'Terms of Service | John Crawford Company',
+    'Terms for using the John Crawford Company website, requesting a consultation or quote, and visiting the Woodland Hills showroom.', '''
+  <h1>Terms of Service</h1>
+  <p class="statement-date">Effective November 5, 2026.</p>
+  <p>These terms apply to your use of the John Crawford Company website. By using the website, you agree to them.</p>
+  <h2>Using this website</h2>
+  <p>The website gives general information about window treatments, repairs, upholstery and our services. Product images show manufacturer collections and are not presented as John Crawford Company installations. Please do not misuse the website, send false information, interfere with its operation or submit automated requests through its forms.</p>
+  <h2>Consultation and quote requests</h2>
+  <p>Sending a form, email or phone request does not place an order or create an obligation to buy. Product choices, measurements, pricing, installation timing and other project details are confirmed with you directly before anything is ordered. Product features, colors and availability are set by the manufacturers and may change.</p>
+  <h2>Showroom visits</h2>
+  <p>Showroom visits are by appointment only. Call <a href="tel:+18188845464">(818) 884-5464</a> or use the website's contact form to arrange a time.</p>
+  <h2>Third-party links and services</h2>
+  <p>The website includes a Google Maps embed and links to other websites, such as Instagram and product manufacturers. Those services are run by other companies, and their own terms and privacy policies apply.</p>
+  <h2>Content and trademarks</h2>
+  <p>Text, photos and logos on this website belong to John Crawford Company or are used with permission. Hunter Douglas, Alta, PowerView and other product names are trademarks of their respective owners.</p>
+  <h2>Privacy</h2>
+  <p>Our <a href="/privacy/">Privacy Policy</a> explains how we handle the information you send through this website.</p>
+  <h2>Website information and liability</h2>
+  <p>We work to keep the website accurate, but it is provided as is and may contain errors or be unavailable at times. To the extent permitted by law, John Crawford Company is not liable for losses arising from use of the website. Product warranties are provided by the manufacturers and are explained with your project.</p>
+  <p>These terms are governed by the laws of the State of California.</p>
+  <h2>Changes to these terms</h2>
+  <p>We will post changes on this page and update the effective date when these terms change.</p>
+  <h2>Contact us</h2>
+  <p>John Crawford Company, 22311 Ventura Blvd #101, Woodland Hills, CA 91364. Call <a href="tel:+18188845464">(818) 884-5464</a> or email <a href="mailto:john@johncrawford.com">john@johncrawford.com</a>.</p>''')

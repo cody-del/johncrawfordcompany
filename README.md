@@ -11,7 +11,7 @@ Netlify serves the same checked files at https://johncrawfordcompany.netlify.app
 - `/shades/`, `/blinds/`, `/shutters/`, `/drapery/`, `/motorized-shades/`: first five product hubs, built from the approved copy.
 - `/about/`, `/contact/`: company story and contact form design.
 - `/services/blind-shade-repair/`, `/services/consultation-measuring/`, `/services/window-treatment-installation/`, `/services/commercial-window-treatments/`, `/upholstery/`: service pages based on the call and intake.
-- `/accessibility/`, `/privacy/`: website assistance, contact and privacy information.
+- `/accessibility/`, `/privacy/`, `/terms/`: website assistance, privacy information and website terms of service.
 - `/lp/custom-window-treatments/`: campaign landing page for blinds, shades, shutters, drapery and motorization.
 - `/lp/motorized-shades/`: campaign landing page for motorized and automated shade searches.
 
