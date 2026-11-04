@@ -199,6 +199,12 @@ document.querySelectorAll('form[data-lead-form]').forEach(form => {
   let pending = false;
 
   function problem(field) {
+    if (field.type === 'file') {
+      if (field.files.length > 5) return 'Please choose up to five photos.';
+      if ([...field.files].some(file => !['image/jpeg', 'image/png', 'image/webp'].includes(file.type))) return 'Please choose JPG, PNG or WebP photos.';
+      if ([...field.files].some(file => file.size > 20 * 1024 * 1024)) return 'Please choose photos smaller than 20 MB each.';
+      return '';
+    }
     const value = field.value.trim();
     if (!value) return field.required ? 'Please complete the ' + field.labels[0].textContent.toLowerCase() + ' field.' : '';
     if (field.type === 'email' && !field.validity.valid) return 'Please enter a valid email address.';
@@ -243,23 +249,34 @@ document.querySelectorAll('form[data-lead-form]').forEach(form => {
       // wait it out rather than have the lead rejected.
       const wait = LEAD_MIN_FILL_MS + 100 - performance.now();
       if (wait > 0) await new Promise(resolve => setTimeout(resolve, wait));
-      const payload = Object.fromEntries(new FormData(form));
+      const formData = new FormData(form);
+      const photos = [...(form.querySelector('input[type="file"]')?.files ?? [])];
+      formData.delete('photos');
+      const payload = Object.fromEntries(formData);
       payload.form = form.dataset.leadForm;
       payload.page = location.pathname;
       // Time since the page started loading, on this browser's own clock.
       payload.elapsedMs = Math.round(performance.now());
+      let body = JSON.stringify(payload);
+      if (photos.length) {
+        button.textContent = 'Preparing photos…';
+        body = new FormData();
+        Object.entries(payload).forEach(([key, value]) => body.append(key, String(value)));
+        for (let i = 0; i < photos.length; i++) body.append('photos', await prepareRepairPhoto(photos[i]), `repair-photo-${i + 1}.jpg`);
+        button.textContent = 'Sending…';
+      }
       const response = await fetch('/api/lead', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
+        ...(photos.length ? {} : {headers: { 'Content-Type': 'application/json' }}),
+        body,
         // AbortSignal.timeout is missing before Safari 16; send without a timeout there rather than fail.
-        signal: AbortSignal.timeout?.(20000),
+        signal: AbortSignal.timeout?.(35000),
       });
       const result = await response.json();
       if (!response.ok || result.success !== true) throw new Error(result.error || LEAD_CALL_US);
       form.reset();
       form.classList.add('is-sent');
-      show('Thank you. We received your request and will contact you soon.', false);
+      show(result.warning || 'Thank you. We received your request and will contact you soon.', false);
     } catch (error) {
       show(error.name === 'TimeoutError' || error instanceof TypeError || error instanceof SyntaxError ? LEAD_CALL_US : error.message, true);
     } finally {
@@ -270,3 +287,53 @@ document.querySelectorAll('form[data-lead-form]').forEach(form => {
     }
   });
 });
+
+// Keep the native, keyboard-accessible file picker and show the chosen filenames.
+document.querySelectorAll('.repair-upload-field input[type="file"]').forEach(input => {
+  const selection = input.form.querySelector('#repair-photo-selection');
+  const update = () => {
+    selection.textContent = input.files.length ? [...input.files].map(file => file.name).join(', ') : 'No photos selected';
+  };
+  input.addEventListener('change', update);
+  input.form.addEventListener('reset', () => { selection.textContent = 'No photos selected'; });
+});
+
+// Canvas exports a compact JPEG and removes camera metadata before any upload.
+async function prepareRepairPhoto(file) {
+  const url = URL.createObjectURL(file);
+  try {
+    const image = new Image();
+    await new Promise((resolve, reject) => {
+      image.onload = resolve;
+      image.onerror = () => reject(new Error('We couldn’t read a photo. Please choose another JPG, PNG or WebP photo.'));
+      image.src = url;
+    });
+    if (!image.naturalWidth || !image.naturalHeight) throw new Error('We couldn’t read a photo. Please choose another photo.');
+    const canvas = document.createElement('canvas');
+    let scale = Math.min(1, 1600 / Math.max(image.naturalWidth, image.naturalHeight));
+    for (let attempt = 0; attempt < 4; attempt++) {
+      canvas.width = Math.max(1, Math.round(image.naturalWidth * scale));
+      canvas.height = Math.max(1, Math.round(image.naturalHeight * scale));
+      const context = canvas.getContext('2d');
+      context.fillStyle = '#fff';
+      context.fillRect(0, 0, canvas.width, canvas.height);
+      context.drawImage(image, 0, 0, canvas.width, canvas.height);
+      const photo = await new Promise(resolve => canvas.toBlob(resolve, 'image/jpeg', .82));
+      if (photo && photo.size <= 650 * 1024) return photo;
+      scale *= .75;
+    }
+    throw new Error('A photo is too large. Please choose a smaller photo.');
+  } finally { URL.revokeObjectURL(url); }
+}
+
+const repairPhotoInput = document.querySelector('form[data-lead-form="repair"] input[type="file"]');
+if (repairPhotoInput) {
+  const selection = document.getElementById('repair-photo-selection');
+  fetch('/api/repair-upload', {cache: 'no-store'})
+    .then(response => response.ok ? response.json() : Promise.reject())
+    .then(result => {
+      repairPhotoInput.disabled = result.enabled !== true;
+      if (repairPhotoInput.disabled) selection.textContent = 'Photo uploads are temporarily unavailable. Please use the email link below.';
+    })
+    .catch(() => { selection.textContent = 'Photo uploads are temporarily unavailable. Please use the email link below.'; });
+}

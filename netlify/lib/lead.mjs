@@ -2,10 +2,10 @@
 // is upserted, then anything the visitor wrote beyond their contact details is
 // added as a note. The way Beautiful Blinds & Shades' landing page sends its own
 // (cody-del/beautifullanding, netlify/lib/consultation.mjs). The token and
-// location come from this site's Netlify environment variables. This file is
-// identical in johncrawfordcompany and johncrawfordlanding; what differs between
-// the two sites lives in site.mjs.
+// location come from this site's Netlify environment variables. Repair photo
+// uploads are specific to the main website.
 import {FORMS, LEAD_TAG, PHONE} from './site.mjs';
+import {repairUploadsConfigured, validateRepairPhotos, uploadRepairPhotos, REPAIR_PHOTO_FALLBACK} from './repair-photos.mjs';
 
 export const GHL_API = 'https://services.leadconnectorhq.com';
 const GHL_VERSION = '2021-07-28';
@@ -19,7 +19,7 @@ export const EMAIL = /^(?!\.)(?!.*\.\.)([A-Z0-9_'+\-.]*)[A-Z0-9_+-]@([A-Z0-9][A-
 
 const CONTACT_LIMITS = {name: 120, phone: 30, email: 254};
 
-export async function submitLead(data, {fetcher = fetch, rateLimited = () => false, env = process.env} = {}) {
+export async function submitLead(data, {fetcher = fetch, rateLimited = () => false, env = process.env, photos = []} = {}) {
   const fail = (status, error) => ({status, body: {success: false, error}});
   if (!data || typeof data !== 'object' || Array.isArray(data)) return fail(400, 'Please check your contact details.');
   const form = typeof data.form === 'string' && Object.hasOwn(FORMS, data.form) ? FORMS[data.form] : null;
@@ -49,6 +49,9 @@ export async function submitLead(data, {fetcher = fetch, rateLimited = () => fal
     if (field.pattern && !field.pattern.test(value)) return fail(400, field.error);
     answers.push({field, value});
   }
+  const photoError = await validateRepairPhotos(photos);
+  if (photoError || (photos.length && data.form !== 'repair')) return fail(400, photoError || 'Photos can only be included with repair requests.');
+  if (photos.length && !repairUploadsConfigured(env)) return fail(503, 'Photo uploads are temporarily unavailable. Please email your photos to john@johncrawford.com, or send this form without photos.');
   if (rateLimited()) return fail(429, `Too many requests. Please wait a few minutes or call ${PHONE}.`);
 
   const token = env.GHL_PRIVATE_TOKEN;
@@ -68,7 +71,7 @@ export async function submitLead(data, {fetcher = fetch, rateLimited = () => fal
     phone: `+${digits.length === 10 ? '1' : ''}${digits}`,
     email: data.email.trim().toLowerCase(),
     source,
-    tags: [LEAD_TAG],
+    tags: [LEAD_TAG, ...(form.tags ?? [])],
   };
   const note = [];
   for (const {field, value} of answers) {
@@ -81,7 +84,7 @@ export async function submitLead(data, {fetcher = fetch, rateLimited = () => fal
   try {
     const response = await fetcher(`${GHL_API}/contacts/upsert`, {
       method: 'POST', headers,
-      // Netlify stops synchronous functions after 10 seconds, and the note needs time too.
+      // Leave time for the note and optional repair-photo upload.
       body: JSON.stringify(contact), signal: AbortSignal.timeout(6000),
     });
     const result = await response.json();
@@ -95,17 +98,36 @@ export async function submitLead(data, {fetcher = fetch, rateLimited = () => fal
     console.error(`[lead] GHL request failed: ${error.name}`);
     return fail(502, `We couldn’t confirm your request. Please call ${PHONE} before submitting again.`);
   }
+  let photoUploadFailed = false;
+  if (photos.length) {
+    try {
+      await uploadRepairPhotos(photos, {contactId, env, fetcher});
+      note.push(`Repair photos: ${photos.length} saved to the Repair request photos field.`);
+    } catch (error) {
+      photoUploadFailed = true;
+      console.error(`[lead] GHL repair-photo upload failed: ${error.name}`);
+      note.push('Repair photos: upload failed. Please follow up with the customer for their photos.');
+    }
+  }
   // The contact is in GHL by now, so a failed note is logged but the lead still counts.
+  let noteFailed = false;
   if (note.length) {
     try {
       const response = await fetcher(`${GHL_API}/contacts/${encodeURIComponent(contactId)}/notes`, {
         method: 'POST', headers,
         body: JSON.stringify({body: [`${source} form`, ...note].join('\n')}), signal: AbortSignal.timeout(3000),
       });
-      if (!response.ok) console.error(`[lead] GHL did not save the note (HTTP ${response.status})`);
+      if (!response.ok) {
+        noteFailed = true;
+        console.error(`[lead] GHL did not save the note (HTTP ${response.status})`);
+      }
     } catch (error) {
+      noteFailed = true;
       console.error(`[lead] GHL note request failed: ${error.name}`);
     }
   }
-  return {status: 200, body: {success: true, contactId}};
+  const warning = noteFailed && data.form === 'repair'
+    ? `We received your contact details, but couldn’t save all of your repair information. Please call ${PHONE} or email john@johncrawford.com.`
+    : photoUploadFailed ? REPAIR_PHOTO_FALLBACK : '';
+  return {status: 200, body: {success: true, contactId, ...(warning ? {warning} : {})}};
 }

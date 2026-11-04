@@ -46,6 +46,7 @@ export const FORMS = {
   },
   repair: {
     source: 'Website: Repair page',
+    tags: ['website-repair-request'],
     pages: {},
     fields: [
       {name: 'problem', label: 'What’s broken', max: 3000, required: true},

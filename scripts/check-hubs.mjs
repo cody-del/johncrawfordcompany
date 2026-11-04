@@ -9,7 +9,7 @@ const requireThat = (condition, message) => { if (!condition) errors.push(messag
 // A form app.js sends to /api/lead: enabled, one submit button, the hidden bot trap
 // and a status line. netlify/lib/site.mjs lists what each kind sends to GHL.
 const isLeadForm = (form, kind) => form.includes(`data-lead-form="${kind}"`)
-  && !/\bdisabled\b|action=|data-netlify|does not accept submissions/.test(form)
+  && !/\bdisabled\b|action=|data-netlify|does not accept submissions/.test(form.replace(/<input[^>]*type="file"[^>]*>/g, ''))
   && (form.match(/type="submit"/g) || []).length === 1 && form.includes('name="website"') && form.includes('class="lead-form-status"');
 const hours = JSON.parse(await readFile(resolve(root, 'content/business-hours.json'), 'utf8'));
 function checkHoursSchema(value, route) {
@@ -119,8 +119,8 @@ for (const service of services) {
     const form = html.match(/<form class="hub-consultation-form service-repair-form"[\s\S]*?<\/form>/)?.[0] || '';
     requireThat(form.includes('id="repair-inquiry"') && html.includes('href="#repair-inquiry"') && isLeadForm(form, 'repair'), 'Repair form must send leads to GHL through app.js');
     for (const name of ['purchased-when', 'purchased-from', 'problem', 'name', 'phone', 'email', 'postal-code']) requireThat(form.includes(`name="${name}"`), `Repair inquiry field missing: ${name}`);
-    // GHL takes no photos through the contact API, so the form asks for them by email instead.
-    requireThat(!/type="file"/.test(form) && form.includes('href="mailto:john@johncrawford.com?subject=Repair%20photos"'), 'Repair photos must be requested by email');
+    requireThat(/type="file"[^>]*multiple[^>]*disabled/.test(form) && form.includes('Upload photos') && form.includes('id="repair-photo-selection"'), 'Repair photo uploads must wait for the GHL upload capability check');
+    requireThat(form.includes('href="mailto:john@johncrawford.com?subject=Repair%20photos"'), 'Repair photo email fallback missing');
   } else requireThat(!/<form\b/.test(html), `${service.slug}: keep the central contact inquiry destination`);
 }
 const consultationHtml = pages.get('/services/consultation-measuring/')?.html || '';

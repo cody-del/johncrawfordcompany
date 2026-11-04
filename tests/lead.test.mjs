@@ -47,7 +47,7 @@ test('a repair lead skips blank optional answers', async () => {
   const {calls, fetcher} = ghl();
   assert.equal((await submitLead(repair(), {fetcher, env})).status, 200);
   assert.equal(calls[0].body.source, 'Website: Repair page');
-  assert.deepEqual(calls[0].body.tags, ['website-lead']);
+  assert.deepEqual(calls[0].body.tags, ['website-lead', 'website-repair-request']);
   assert.equal(calls[1].body.body, 'Website: Repair page form\nWhat’s broken: Cord snapped on a cellular shade.\nBought from: Costco\nZIP code: 91367');
 });
 
@@ -103,7 +103,8 @@ test('every website form is live and matches what site.mjs expects', () => {
   for (const [route, kind, names] of forms) {
     const form = page(route).match(new RegExp(`<form [^>]*data-lead-form="${kind}"[\\s\\S]*?</form>`))?.[0];
     assert.ok(form, `${route}: no ${kind} form`);
-    assert.doesNotMatch(form, /\bdisabled\b/);
+    assert.doesNotMatch(form.replace(/<input[^>]*type="file"[^>]*>/g, ''), /\bdisabled\b/);
+    if (kind === 'repair') assert.match(form, /type="file"[^>]*multiple[^>]*disabled/);
     for (const name of ['name', 'phone', 'email', 'website', ...names]) assert.match(form, new RegExp(`name="${name}"`), `${route}: ${name}`);
   }
   // The review copies of the campaign pages stay previews; the live ones are in cody-del/johncrawfordlanding.
