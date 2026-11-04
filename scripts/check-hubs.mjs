@@ -58,7 +58,9 @@ for (const [route, { html, ids }] of pages) {
   requireThat(/<html lang="en">/.test(html), `${route}: missing document language`);
   requireThat(/name="description" content="[^"]+"/.test(html), `${route}: missing description`);
   requireThat(/name="robots" content="noindex, nofollow"/.test(html), `${route}: preserve review indexing`);
-  requireThat(route.startsWith('/lp/') ? html.includes('aria-controls="landing-accessibility-dialog"') : html.includes('href="/accessibility/"'), `${route}: missing accessibility assistance`);
+  for (const policy of ['/accessibility/', '/privacy/', '/terms/']) {
+    requireThat(html.includes(`href="${policy}"`), `${route}: footer must link ${policy}`);
+  }
   requireThat(route.startsWith('/lp/') ? !html.includes('22311 Ventura') : html.includes('22311 Ventura Blvd #101'), `${route}: respect landing-page appointment-only addressing or the verified website suite`);
   requireThat(!/Confirm before publishing|local shutter supplier|review_note|source_file|\/Users\//i.test(html), `${route}: private note exposed`);
   requireThat(!/\bMax\b/.test(html), `${route}: employee name must stay out of public copy`);
@@ -207,11 +209,9 @@ for (const route of ['/lp/custom-window-treatments/', '/lp/motorized-shades/']) 
   }
   requireThat(/<button class="btn btn-primary" type="button" disabled>Get Free Quote<\/button>/.test(html), `${route}: form button must match Get Free Quote actions`);
   for (const anchor of html.matchAll(/<a\b[^>]*href="([^"]+)"[^>]*>/g)) {
-    requireThat(['#main', '#contact', 'tel:+18188845464'].includes(anchor[1]), `${route}: non-conversion link ${anchor[1]}`);
+    requireThat(['#main', '#contact', 'tel:+18188845464', '/accessibility/', '/privacy/', '/terms/'].includes(anchor[1]), `${route}: non-conversion link ${anchor[1]}`);
   }
-  for (const id of ['landing-privacy-dialog','landing-accessibility-dialog']) {
-    requireThat(html.includes(`<dialog class="landing-info-dialog" id="${id}"`), `${route}: missing on-page information dialog ${id}`);
-  }
+  requireThat(html.includes('<dialog class="landing-info-dialog" id="landing-privacy-dialog"'), `${route}: missing the quote form's privacy summary dialog`);
 }
 if (errors.length) { console.error(errors.join('\n')); process.exit(1); }
 console.log(`All ${pages.size} HTML routes passed: headings, metadata, internal links, assets, contact details and public copy separation.`);
