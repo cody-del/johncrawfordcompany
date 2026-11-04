@@ -1,0 +1,65 @@
+{
+  "date": "2026-11-04",
+  "duration_seconds": 19.467,
+  "fps": 30,
+  "shots": [
+    {
+      "name": "coastal-lounge",
+      "clip": 8,
+      "start": 3.6,
+      "end": 10.4,
+      "rate": 1.2,
+      "mobile_center": 0.57,
+      "source_sha256": "92b0284c272d9c3468b0575c7f82abc7d9a48572ca5d2b589fba440ba80ffea1"
+    },
+    {
+      "name": "coastal-bath",
+      "clip": 9,
+      "start": 2.4,
+      "end": 9.6,
+      "rate": 1.2,
+      "mobile_center": 0.32,
+      "source_sha256": "0ad776656e5ee17dc56a69202a78731644e9d62a525612e9ed87ddd096aa729d"
+    },
+    {
+      "name": "lower-and-tilt",
+      "clip": 3,
+      "start": 4.5,
+      "end": 16.5,
+      "rate": 1.25,
+      "mobile_center": 0.52,
+      "source_sha256": "3da494ca2f563c8b74d2e8d22b3b16fb087870e31bb64fea2c04a7a684c59596"
+    }
+  ],
+  "source_exclusions": [
+    "installs - 7 of 12.mov: fast camera pan and little useful shade movement",
+    "All clips used in the existing hero: 20261017_120924.mp4 and 20261017_120958.mp4"
+  ],
+  "treatment": {
+    "transitions": "0.6-second cross dissolves, including the loop seam",
+    "stabilization": "Two-pass bounded stabilization, 4% zoom",
+    "speed": "Gentle 1.2x–1.25x playback; no reversed motion",
+    "color": "HLG/Dolby Vision base converted to SDR BT.709; gentle shadow lift on the final room",
+    "audio": "Removed; no music or added titles"
+  },
+  "desktop": {
+    "file": "hero-shades-loop-desktop-20261104.mp4",
+    "size": [
+      1280,
+      720
+    ],
+    "sha256": "3eac76d22813b12292242e0757786d56f6ea8482ae4893db042c3d726306eca3",
+    "poster": "hero-shades-poster-desktop-20261104.webp"
+  },
+  "mobile": {
+    "file": "hero-shades-loop-mobile-20261104.mp4",
+    "size": [
+      540,
+      960
+    ],
+    "sha256": "ee7abb46fa295e3224b7cf86fb4217955a7aa5927a7995635fcd0718c1024f52",
+    "poster": "hero-shades-poster-mobile-20261104.webp"
+  },
+  "source": "Client-supplied installs - 8 of 12.mov, installs - 9 of 12.mov and installs - 3 of 12.mov. No footage from the former hero.",
+  "fallbacks": "Matching posters; existing overlay, pause control, reduced-motion, data-saver and offscreen-pause behavior retained."
+}
