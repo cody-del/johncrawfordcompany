@@ -1,5 +1,6 @@
 {
   "date": "2026-11-04",
+  "asset_revision": "20261104-color2",
   "duration_seconds": 19.467,
   "fps": 30,
   "shots": [
@@ -39,26 +40,26 @@
     "transitions": "0.6-second cross dissolves, including the loop seam",
     "stabilization": "Two-pass bounded stabilization, 4% zoom",
     "speed": "Gentle 1.2x–1.25x playback; no reversed motion",
-    "color": "HLG/Dolby Vision base converted to SDR BT.709; gentle shadow lift on the final room",
+    "color": "Corrected HLG-to-SDR conversion for the coastal clips: Mobius, explicit peak 10, highlight desaturation disabled, no added gamma lift. Original final room retained byte-for-byte before assembly.",
     "audio": "Removed; no music or added titles"
   },
   "desktop": {
-    "file": "hero-shades-loop-desktop-20261104.mp4",
+    "file": "hero-shades-loop-desktop-20261104-color2.mp4",
     "size": [
       1280,
       720
     ],
-    "sha256": "3eac76d22813b12292242e0757786d56f6ea8482ae4893db042c3d726306eca3",
-    "poster": "hero-shades-poster-desktop-20261104.webp"
+    "sha256": "ff06f129e20f28911ca7451256e27ed769d2c04bcedd3a0f54824b3a70ab6a5a",
+    "poster": "hero-shades-poster-desktop-20261104-color2.webp"
   },
   "mobile": {
-    "file": "hero-shades-loop-mobile-20261104.mp4",
+    "file": "hero-shades-loop-mobile-20261104-color2.mp4",
     "size": [
       540,
       960
     ],
-    "sha256": "ee7abb46fa295e3224b7cf86fb4217955a7aa5927a7995635fcd0718c1024f52",
-    "poster": "hero-shades-poster-mobile-20261104.webp"
+    "sha256": "ae3dc0fc51b8c3424b233539c89b75511f12903730ec60037afbd2d0854fc74d",
+    "poster": "hero-shades-poster-mobile-20261104-color2.webp"
   },
   "source": "Client-supplied installs - 8 of 12.mov, installs - 9 of 12.mov and installs - 3 of 12.mov. No footage from the former hero.",
   "fallbacks": "Matching posters; existing overlay, pause control, reduced-motion, data-saver and offscreen-pause behavior retained."
