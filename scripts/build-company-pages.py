@@ -179,7 +179,7 @@ def about_body(page):
     <section class="section company-hero linen" aria-labelledby="page-heading"><div class="container company-hero-grid">
       <div class="company-hero-copy">{breadcrumbs(page)}<h1 id="page-heading">{e(page['heading'])}</h1><p>{e(page['intro'])}</p>
         <div class="company-actions"><a class="btn btn-primary" href="/contact/">Talk with John</a><a class="text-link" href="/contact/#showroom">Visit the showroom</a></div></div>
-      <div class="company-hero-art company-hero-placeholder">Photo placeholder</div>
+      <figure class="company-hero-art company-photo"><img src="/assets/john-crawford-showroom.webp" alt="John Crawford outside his Woodland Hills showroom, pointing to the John Crawford Company sign." width="1024" height="768" fetchpriority="high" decoding="async"></figure>
     </div></section>
     <section class="section company-story" aria-labelledby="story-heading"><div class="container company-story-grid">
       <h2 id="story-heading">{e(page['story_heading'])}</h2><div class="company-prose">{paragraphs(page['story'])}</div>
