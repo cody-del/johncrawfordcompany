@@ -13,7 +13,8 @@ requireThat(new Set(ids).size === ids.length, 'Duplicate HTML IDs');
 requireThat((html.match(/<h1\b/g) || []).length === 1, 'Expected one H1');
 requireThat(/Custom Window Treatments <span>in Los Angeles, California<\/span>/.test(html), 'Missing agreed homepage H1');
 requireThat(/name="description" content="[^"]*custom window treatments in Los Angeles/i.test(html), 'Missing main topic in meta description');
-requireThat(html.includes('name="robots" content="noindex, nofollow"'), 'Review version must stay noindex');
+requireThat(html.includes('name="robots" content="index, follow, max-image-preview:large"'), 'Homepage must be indexable');
+requireThat(html.includes('<link rel="canonical" href="https://www.johncrawfordcompany.com/">') && !html.includes('chatgpt.site'), 'Homepage must use the www.johncrawfordcompany.com canonical');
 requireThat(!/href="#"/.test(html), 'Empty placeholder link');
 requireThat(!/class="[^"]*(?:eyebrow|kicker)/.test(html), 'Eyebrow text is outside the brief');
 requireThat(!/[↗→➜➝]/.test(html), 'Decorative arrows are outside the brief');
@@ -28,4 +29,4 @@ for (const match of html.matchAll(/<script type="application\/ld\+json">([\s\S]*
   catch (error) { errors.push(`Invalid business structured data: ${error.message}`); }
 }
 if (errors.length) { console.error(errors.join('\n')); process.exit(1); }
-console.log('Homepage checks passed: metadata, anchors, assets, brand details and review indexing.');
+console.log('Homepage checks passed: metadata, anchors, assets, brand details and indexing.');

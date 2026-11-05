@@ -9,7 +9,7 @@ DIST = ROOT / 'dist'
 PAGES = json.loads((ROOT / 'content/product-hubs.json').read_text())
 IMAGES = json.loads((ROOT / 'content/product-images.json').read_text())
 HOURS = json.loads((ROOT / 'content/business-hours.json').read_text())
-BASE = 'https://john-crawford-homepage.codytodd.chatgpt.site'
+BASE = 'https://www.johncrawfordcompany.com'
 HOME = (DIST / 'index.html').read_text()
 DIRECTIONS = 'https://www.google.com/maps/search/?api=1&query=John+Crawford+Company+22311+Ventura+Blvd+Woodland+Hills'
 CONTENT_LINK_DESTINATIONS = ({page['slug'] for page in PAGES}
@@ -113,7 +113,7 @@ def head(page, hero_key=None, accessibility=False):
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{e(title)}</title>
   <meta name="description" content="{e(desc)}">
-  <meta name="robots" content="noindex, nofollow">
+  <meta name="robots" content="index, follow, max-image-preview:large">
   <meta name="theme-color" content="#FFFFFF">
   <link rel="canonical" href="{BASE}{path}">
   <meta property="og:type" content="website">

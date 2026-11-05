@@ -11,7 +11,7 @@ DIST = ROOT / 'dist'
 CONTENT = json.loads((ROOT / 'content/company-pages.json').read_text())
 SERVICE_AREAS = json.loads((ROOT / 'content/service-areas.json').read_text())
 HOURS = json.loads((ROOT / 'content/business-hours.json').read_text())
-BASE = 'https://john-crawford-homepage.codytodd.chatgpt.site'
+BASE = 'https://www.johncrawfordcompany.com'
 DIRECTIONS = 'https://www.google.com/maps/search/?api=1&query=John+Crawford+Company+22311+Ventura+Blvd+Woodland+Hills'
 
 
@@ -109,7 +109,7 @@ def head(page, kind):
 <html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{e(page['title'])}</title><meta name="description" content="{e(page['description'])}">
-<meta name="robots" content="noindex, nofollow"><meta name="theme-color" content="#FFFFFF">
+<meta name="robots" content="index, follow, max-image-preview:large"><meta name="theme-color" content="#FFFFFF">
 <link rel="canonical" href="{BASE}{page['slug']}">
 <meta property="og:type" content="website"><meta property="og:title" content="{e(page['title'])}">
 <meta property="og:description" content="{e(page['description'])}"><meta property="og:url" content="{BASE}{page['slug']}">
@@ -254,3 +254,4 @@ if __name__ == '__main__':
         target.write_text(html)
         print(page['slug'])
     subprocess.run([sys.executable, str(ROOT / 'scripts/build-services.py')], check=True)
+    subprocess.run([sys.executable, str(ROOT / 'scripts/build-sitemap.py')], check=True)

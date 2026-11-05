@@ -57,7 +57,9 @@ for (const [route, { html, ids }] of pages) {
   requireThat(ids.length === new Set(ids).size, `${route}: duplicate IDs`);
   requireThat(/<html lang="en">/.test(html), `${route}: missing document language`);
   requireThat(/name="description" content="[^"]+"/.test(html), `${route}: missing description`);
-  requireThat(/name="robots" content="noindex, nofollow"/.test(html), `${route}: preserve review indexing`);
+  // The /lp/ copies duplicate go.johncrawfordcompany.com (cody-del/johncrawfordlanding), so only they stay out of search.
+  requireThat(route.startsWith('/lp/') ? /name="robots" content="noindex, nofollow"/.test(html) : /name="robots" content="index, follow, max-image-preview:large"/.test(html), `${route}: wrong robots tag`);
+  requireThat(html.includes(`<link rel="canonical" href="https://www.johncrawfordcompany.com${route}">`) && !html.includes('chatgpt.site'), `${route}: canonical must be its www.johncrawfordcompany.com URL`);
   for (const policy of ['/accessibility/', '/privacy/', '/terms/']) {
     requireThat(html.includes(`href="${policy}"`), `${route}: footer must link ${policy}`);
   }
@@ -213,5 +215,13 @@ for (const route of ['/lp/custom-window-treatments/', '/lp/motorized-shades/']) 
   }
   requireThat(html.includes('<dialog class="landing-info-dialog" id="landing-privacy-dialog"'), `${route}: missing the quote form's privacy summary dialog`);
 }
+// sitemap.xml lists exactly the indexable pages (scripts/build-sitemap.py), and robots.txt points to it.
+const sitemap = await readFile(resolve(dist, 'sitemap.xml'), 'utf8').catch(() => '');
+const listed = [...sitemap.matchAll(/<loc>https:\/\/www\.johncrawfordcompany\.com(\/[^<]*)<\/loc>/g)].map(match => match[1]).sort();
+const indexable = [...pages].filter(([, page]) => /name="robots" content="index, follow/.test(page.html)).map(([route]) => route).sort();
+requireThat(listed.length > 0 && JSON.stringify(listed) === JSON.stringify(indexable), 'sitemap.xml must list exactly the indexable pages; run python3 scripts/build-sitemap.py');
+const robots = await readFile(resolve(dist, 'robots.txt'), 'utf8').catch(() => '');
+requireThat(/^Sitemap: https:\/\/www\.johncrawfordcompany\.com\/sitemap\.xml$/m.test(robots) && !/^Disallow: \/\s*$/m.test(robots), 'robots.txt must allow crawling and point to the sitemap');
+
 if (errors.length) { console.error(errors.join('\n')); process.exit(1); }
 console.log(`All ${pages.size} HTML routes passed: headings, metadata, internal links, assets, contact details and public copy separation.`);
