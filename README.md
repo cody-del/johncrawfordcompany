@@ -41,9 +41,33 @@ Run `python3 scripts/build-landings.py` to rebuild the campaign pages with the a
 
 ## Lead forms and GoHighLevel
 
-The product hub, contact and repair forms send leads to John Crawford Company's GoHighLevel location through `/api/lead` (`netlify/functions/lead.mjs`, shared code in `netlify/lib/lead.mjs`, identical in `cody-del/johncrawfordlanding`). `app.js` checks the fields and posts them; the function upserts the contact with the tag `website-lead`, a source naming the form (for example `Website: Contact page` or `Website: Shades page`), the ZIP code where asked, and `in-home-consultation` or `showroom-appointment` when the visitor picks one. Product interest, the message and the repair answers are written as a note on the contact. It refuses the hidden `website` field, submissions sent within 3 seconds of page load and more than 5 per visitor per 15 minutes. What each form sends is set in `netlify/lib/site.mjs`; the form markup comes from `scripts/build-hubs.py`, `scripts/build-company-pages.py` and `scripts/build-services.py`.
+The product hub, contact and repair forms post to `/api/lead` (`netlify/functions/lead.mjs`, with validation and GHL requests in `netlify/lib/lead.mjs`). The server upserts the contact and saves a complete submission snapshot in the existing **Latest inquiry details** contact field (`contact.latest_inquiry_details`, ID `INk19lHx5XU2HQQhdFNQ`). It then saves a contact note. The **Note Added** workflow uses that note for the shared welcome email and the inquiry-specific internal email. Tags label the request; adding tags or using Contact Created does not replace the saved-note handoff.
 
-The Netlify site needs two environment variables: `GHL_PRIVATE_TOKEN` (a private integration token made inside John Crawford's sub-account, with contact and note write access) and `GHL_LOCATION_ID`. John Crawford's GHL lead workflow should trigger on the `website-lead` tag. `npm run check` also runs `tests/lead.test.mjs`.
+Netlify uses `GHL_PRIVATE_TOKEN` and `GHL_LOCATION_ID`. The John Crawford location is `90BPGKl4VhW1sRil5f6b`. Optional repair uploads also require `GHL_REPAIR_PHOTO_FIELD_ID` (the existing private **Repair request photos** field, `OFy6KwIA4iCqESEDU8gQ`) and `forms.write` on the location token. Reuse these fields; do not create separate repair-answer fields.
+
+### Repair form contract — verified November 5, 2026
+
+| Website input name | Required | Destination |
+| --- | --- | --- |
+| `name` | Yes | Standard first/last name, split from the full name; complete name in inquiry details and note |
+| `phone` | Yes | Standard phone normalized to `+1XXXXXXXXXX`; inquiry details and note |
+| `email` | Yes | Standard email; inquiry details and note |
+| `postal-code` | Yes | Standard five-digit `postalCode`; inquiry details and note |
+| `problem` | Yes | Inquiry details and note, labeled `What’s broken` |
+| `purchased-when` | No | Inquiry details and note, labeled `Bought` |
+| `purchased-from` | No | Inquiry details and note, labeled `Bought from` |
+| `photos` | No | Existing private Repair request photos file field |
+
+Repair routing stays `form = repair`, `source = Website: Repair page`, with both `website-lead` and `website-repair-request` tags. First upsert the contact and inquiry details, then finish optional photo processing, then create the contact note. Its first two lines must be exactly:
+
+```text
+John Crawford form submission: Website repair request
+Source: Website: Repair page
+```
+
+The snapshot includes the full name, normalized phone, email, source, every supplied repair answer and selected photo count. The final note repeats those details and adds photo-upload success or failure after processing. Blank optional answers are omitted. The browser converts selected JPG/PNG/WebP images to compact JPEGs before upload; the backend accepts up to five JPG/PNG photos at **650 KiB each**. Preserve this conversion step and do not send WebP directly to the backend. If a photo upload fails after the contact is saved, preserve the inquiry, record the failure in its note and show the email fallback.
+
+The hidden `website` field, minimum three-second fill time, same-origin checks and five-request/15-minute visitor limit remain in place. `netlify/lib/site.mjs` defines each form's fields and labels; `app.js` handles validation and photo preparation. Form markup comes from `scripts/build-hubs.py`, `scripts/build-company-pages.py` and `scripts/build-services.py`. `npm run check` includes the mapping, upload and note-order tests; those use a mocked GHL service and do not send live workflow emails.
 
 ## Service-page content and reviews
 

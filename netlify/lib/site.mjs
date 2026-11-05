@@ -1,9 +1,9 @@
 // What this site's forms send to GoHighLevel; netlify/lib/lead.mjs does the sending.
 export const PHONE = '(818) 884-5464';
 
-// Every website lead gets this tag. John Crawford's GHL lead workflow should
-// trigger on it; renaming it detaches every new lead from that workflow without
-// any error, so change the GHL trigger in the same sitting.
+// Every website lead gets this label; repair requests also get their own tag.
+// The saved submission note triggers the Note Added email workflow. Neither
+// these tags nor Contact Created replaces that handoff.
 export const LEAD_TAG = 'website-lead';
 
 const ZIP = {

@@ -36,7 +36,7 @@ test('a contact-page lead carries its ZIP, appointment tag and a note with every
   assert.deepEqual(calls[0].body, {
     locationId: 'loc-test', firstName: 'Ada', lastName: 'Lovelace', phone: '+18185550142', email: 'ada@example.com',
     source: 'Website: Contact page', tags: ['website-lead', 'showroom-appointment'], postalCode: '91364',
-    customFields: [{id: 'INk19lHx5XU2HQQhdFNQ', field_value: expectedSubmission}],
+    customFields: [{id: 'INk19lHx5XU2HQQhdFNQ', fieldValue: expectedSubmission}],
   });
   assert.equal(calls[1].url, `${GHL_API}/contacts/c-1/notes`);
   assert.equal(calls[1].body.body, expectedSubmission);
@@ -48,6 +48,7 @@ test('a repair lead skips blank optional answers', async () => {
   assert.equal(calls[0].body.source, 'Website: Repair page');
   assert.deepEqual(calls[0].body.tags, ['website-lead', 'website-repair-request']);
   assert.equal(calls[1].body.body, 'John Crawford form submission: Website repair request\nSource: Website: Repair page\nName: Ada Lovelace\nPhone: +18185550142\nEmail: ada@example.com\nWhat’s broken: Cord snapped on a cellular shade.\nBought from: Costco\nZIP code: 91367\nPhotos selected: 0');
+  assert.deepEqual(calls[0].body.customFields, [{id: 'INk19lHx5XU2HQQhdFNQ', fieldValue: calls[1].body.body}]);
 });
 
 test('a product-hub lead names its page and always writes the notification note', async () => {
@@ -100,13 +101,23 @@ test('every website form is live and matches what site.mjs expects', () => {
   const forms = [
     ...['/shades/', '/blinds/', '/shutters/', '/drapery/', '/motorized-shades/'].map(route => [route, 'consultation', []]),
     ['/contact/', 'contact', ['product', 'postal-code', 'appointment-type', 'message']],
-    ['/services/blind-shade-repair/', 'repair', ['problem', 'purchased-when', 'purchased-from', 'postal-code']],
+    ['/services/blind-shade-repair/', 'repair', ['problem', 'purchased-when', 'purchased-from', 'postal-code', 'photos']],
   ];
   for (const [route, kind, names] of forms) {
     const form = page(route).match(new RegExp(`<form [^>]*data-lead-form="${kind}"[\\s\\S]*?</form>`))?.[0];
     assert.ok(form, `${route}: no ${kind} form`);
     assert.doesNotMatch(form.replace(/<input[^>]*type="file"[^>]*>/g, ''), /\bdisabled\b/);
-    if (kind === 'repair') assert.match(form, /type="file"[^>]*multiple[^>]*disabled/);
+    if (kind === 'repair') {
+      assert.match(form, /type="file"[^>]*multiple[^>]*disabled/);
+      for (const name of ['name', 'phone', 'email', 'postal-code', 'problem']) {
+        const input = form.match(new RegExp(`<(?:input|textarea)\\b[^>]*name="${name}"[^>]*>`))?.[0];
+        assert.ok(input && /\brequired\b/.test(input), `${route}: ${name} must be required`);
+      }
+      for (const name of ['purchased-when', 'purchased-from', 'photos']) {
+        const input = form.match(new RegExp(`<input\\b[^>]*name="${name}"[^>]*>`))?.[0];
+        assert.ok(input && !/\brequired\b/.test(input), `${route}: ${name} must remain optional`);
+      }
+    }
     for (const name of ['name', 'phone', 'email', 'website', ...names]) assert.match(form, new RegExp(`name="${name}"`), `${route}: ${name}`);
   }
   // The review copies of the campaign pages stay previews; the live ones are in cody-del/johncrawfordlanding.

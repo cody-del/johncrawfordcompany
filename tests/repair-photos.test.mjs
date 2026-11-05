@@ -30,6 +30,20 @@ test('repair details, both lead tags and multiple photos reach the same GHL cont
   const contact = JSON.parse(calls[0].init.body);
   assert.deepEqual(contact.tags, ['website-lead', 'website-repair-request']);
   assert.equal(contact.postalCode, '91364');
+  assert.equal(calls[0].url, `${GHL_API}/contacts/upsert`);
+  assert.equal(contact.firstName, 'Repair');
+  assert.equal(contact.lastName, 'Test');
+  assert.equal(contact.phone, '+18185550142');
+  assert.equal(contact.email, 'repair@example.com');
+  assert.equal(contact.source, 'Website: Repair page');
+  const expectedDetails = [
+    'John Crawford form submission: Website repair request',
+    'Source: Website: Repair page',
+    'Name: Repair Test', 'Phone: +18185550142', 'Email: repair@example.com',
+    'What’s broken: Shade will not lift.', 'Bought: 2020', 'Bought from: Original dealer',
+    'ZIP code: 91364', 'Photos selected: 2',
+  ].join('\n');
+  assert.deepEqual(contact.customFields, [{id: 'INk19lHx5XU2HQQhdFNQ', fieldValue: expectedDetails}]);
   const upload = calls[1];
   const url = new URL(upload.url);
   assert.equal(url.origin, GHL_API);
@@ -43,13 +57,15 @@ test('repair details, both lead tags and multiple photos reach the same GHL cont
   assert.ok(files.every(([key, value]) => key.startsWith('repair-files-test_') && value.size === png().size));
   assert.notEqual(files[0][0], files[1][0]);
   const note = JSON.parse(calls[2].init.body).body;
-  for (const answer of ['Shade will not lift.', 'Bought: 2020', 'Bought from: Original dealer', 'ZIP code: 91364', 'Repair photos: 2 saved']) assert.ok(note.includes(answer));
+  assert.equal(calls[2].url, `${GHL_API}/contacts/repair-contact/notes`);
+  assert.equal(note, expectedDetails + '\nRepair photos: 2 saved to the Repair request photos field.');
 });
 
 test('invalid, oversized, spoofed or excessive photos are refused before any CRM write', async () => {
   const invalid = [
     Array.from({length: 6}, png),
     [new File(['<svg/>'], 'photo.svg', {type: 'image/svg+xml'})],
+    [new File([png()], 'unconverted.webp', {type: 'image/webp'})],
     [new File(['not a jpeg'], 'fake.jpg', {type: 'image/jpeg'})],
     [new File([new Uint8Array(MAX_REPAIR_PHOTO_BYTES + 1)], 'big.png', {type: 'image/png'})],
   ];
@@ -76,7 +92,11 @@ test('a photo-upload error preserves the lead and clearly reports the photo fail
     const result = await submitLead(data, {env, fetcher, photos: [png()]});
     assert.equal(result.body.success, true);
     assert.equal(result.body.warning, REPAIR_PHOTO_FALLBACK);
-    assert.match(JSON.parse(calls[2].init.body).body, /upload failed/);
+    const savedDetails = JSON.parse(calls[0].init.body).customFields[0];
+    assert.equal(savedDetails.id, 'INk19lHx5XU2HQQhdFNQ');
+    const savedNote = JSON.parse(calls[2].init.body).body;
+    assert.equal(savedNote, savedDetails.fieldValue + '\nRepair photos: upload failed. Please follow up with the customer for their photos.');
+    assert.ok(savedNote.startsWith('John Crawford form submission: Website repair request\nSource: Website: Repair page\n'));
   }
 });
 
@@ -118,4 +138,44 @@ test('repair details are never silently lost if GHL refuses the note', async () 
   const result = await submitLead(data, {env, fetcher});
   assert.equal(result.body.success, true);
   assert.match(result.body.warning, /couldn’t save all of your repair information/);
+});
+
+
+test('repair photos use the existing private file field after upsert and finish before the workflow note', async () => {
+  const actualEnv = {...env, GHL_REPAIR_PHOTO_FIELD_ID: 'OFy6KwIA4iCqESEDU8gQ'};
+  let completeUpload;
+  const uploadFinished = new Promise(resolve => { completeUpload = resolve; });
+  let markUploadStarted;
+  const uploadStarted = new Promise(resolve => { markUploadStarted = resolve; });
+  const calls = [];
+  const fetcher = async (url, init) => {
+    calls.push({url, init});
+    if (url.endsWith('/upsert')) return Response.json({contact: {id: 'repair-contact'}});
+    if (url.includes('/upload-custom-files')) {
+      assert.ok([...init.body.keys()].every(key => key.startsWith('OFy6KwIA4iCqESEDU8gQ_')));
+      markUploadStarted();
+      await uploadFinished;
+    }
+    return Response.json({success: true});
+  };
+  const submission = submitLead(data, {env: actualEnv, fetcher, photos: [png()]});
+  await uploadStarted;
+  assert.equal(calls.length, 2, 'the Note Added workflow must wait for photo processing');
+  completeUpload();
+  assert.equal((await submission).body.success, true);
+  assert.equal(calls.length, 3);
+  assert.ok(calls[2].url.endsWith('/contacts/repair-contact/notes'));
+  assert.ok(calls.every(call => !/locations\/.*customFields/.test(call.url)), 'reuse the configured fields; do not create repair custom fields');
+});
+
+
+test('the verified photo contract accepts five photos and exactly 650 KiB per photo', async () => {
+  assert.equal(MAX_REPAIR_PHOTO_BYTES, 650 * 1024);
+  const bytes = new Uint8Array(650 * 1024);
+  bytes.set(new Uint8Array(await png().arrayBuffer()));
+  assert.equal(await validateRepairPhotos([new File([bytes], 'limit.png', {type: 'image/png'})]), '');
+  const {fetcher, calls} = mockGhl();
+  assert.equal((await submitLead(data, {env, fetcher, photos: Array.from({length: 5}, png)})).body.success, true);
+  const note = JSON.parse(calls.at(-1).init.body).body;
+  assert.match(note, /Photos selected: 5\nRepair photos: 5 saved/);
 });

@@ -81,8 +81,9 @@ export async function submitLead(data, {fetcher = fetch, rateLimited = () => fal
     if (field.tags) contact.tags.push(field.tags[value]);
     note.push(`${field.label}: ${field.options ? field.options[value] : value}`);
   }
-  // Save a complete submission snapshot before tag-triggered workflows can run.
-  // The note is created for every form, including compact forms with no extra answers.
+  // Save the complete inquiry snapshot during upsert. The Note Added workflow
+  // starts only after the final submission note is saved, following photo processing.
+  // Tags label the request; they do not replace that automation handoff.
   const inquiryType = LEAD_TAG === 'google_landing_page'
     ? 'Google Ads lead' : data.form === 'repair' ? 'Website repair request' : 'Website lead';
   if (data.form === 'repair') note.push(`Photos selected: ${photos.length}`);
@@ -90,7 +91,7 @@ export async function submitLead(data, {fetcher = fetch, rateLimited = () => fal
     `John Crawford form submission: ${inquiryType}`, `Source: ${source}`,
     `Name: ${data.name.trim()}`, `Phone: ${contact.phone}`, `Email: ${contact.email}`, ...note,
   ].join('\n');
-  contact.customFields = [{id: INQUIRY_DETAILS_FIELD_ID, field_value: submissionDetails()}];
+  contact.customFields = [{id: INQUIRY_DETAILS_FIELD_ID, fieldValue: submissionDetails()}];
 
   const headers = {Authorization: `Bearer ${token}`, Version: GHL_VERSION, 'Content-Type': 'application/json', Accept: 'application/json'};
   let contactId;
