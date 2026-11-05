@@ -635,7 +635,10 @@
     "before_after": {
       "heading": "Upholstery before and after",
       "before_image": "upholstery-chair-before",
-      "after_image": "upholstery-chair-after"
+      "after_image": "upholstery-chair-after",
+      "paragraphs": [
+        "New purple fabric and black-and-white outer panels replace the worn burgundy upholstery. The chair keeps its tufted back and chrome frame."
+      ]
     }
   }
 ]

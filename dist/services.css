@@ -104,14 +104,20 @@
 /* Client upholstery photos retain their full portrait framing. */
 .service-page--upholstery .service-hero .service-photo { width: 100%; max-width: 360px; justify-self: center; }
 .service-page--upholstery .service-photo--portrait img { display: block; height: auto; aspect-ratio: 3 / 4; object-fit: contain; }
-.service-page--upholstery .service-comparison h2 { max-width: 920px; margin-inline: auto; font-size: clamp(30px, 3vw, 42px); line-height: 1.2; }
-.service-page--upholstery .service-comparison-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px; max-width: 920px; margin: 28px auto 0; }
+.service-page--upholstery .service-comparison { padding-block: 56px; }
+.service-page--upholstery .service-comparison-layout { display: grid; grid-template-columns: minmax(0, .95fr) minmax(0, 1.05fr); gap: clamp(32px, 5vw, 72px); align-items: center; }
+.service-page--upholstery .service-comparison-copy { max-width: 470px; }
+.service-page--upholstery .service-comparison h2 { font-size: clamp(30px, 3vw, 42px); line-height: 1.2; }
+.service-page--upholstery .service-comparison-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; width: 100%; max-width: 480px; justify-self: end; }
 .service-page--upholstery .service-comparison-grid > article { min-width: 0; }
-.service-page--upholstery .service-comparison-grid h3 { margin-bottom: 14px; font-family: var(--body); font-size: 18px; line-height: 1.5; font-weight: 600; }
+.service-page--upholstery .service-comparison-grid h3 { margin-bottom: 10px; font-family: var(--body); font-size: 16px; line-height: 1.5; font-weight: 600; }
 .service-page--upholstery .service-comparison .service-photo img { border-radius: 0; }
-@media (max-width: 600px) {
-  .service-page--upholstery .service-comparison-grid { grid-template-columns: minmax(0, 1fr); gap: 28px; }
-  .service-page--upholstery .service-comparison-grid > article { width: 100%; max-width: 440px; justify-self: center; }
+.service-page--upholstery .service-comparison + .service-details { padding-top: clamp(40px, 5vw, 64px); }
+@media (max-width: 760px) {
+  .service-page--upholstery .service-comparison { padding-block: 48px; }
+  .service-page--upholstery .service-comparison-layout { grid-template-columns: minmax(0, 1fr); gap: 26px; }
+  .service-page--upholstery .service-comparison-copy { max-width: 560px; }
+  .service-page--upholstery .service-comparison-grid { justify-self: start; }
 }
 
 .service-page .repair-upload-button:has(input:disabled) { opacity: .6; cursor: default; }

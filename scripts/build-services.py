@@ -64,7 +64,7 @@ def head(page):
         html = html.replace('/services.css?v=service-editorial-1', '/services.css?v=service-editorial-1-repair-upload-1')
         html = html.replace('/app.js?v=company-pages-1', '/app.js?v=repair-upload-1')
     if page['id'] == 'upholstery':
-        html = html.replace('/services.css?v=service-editorial-1', '/services.css?v=service-editorial-1-upholstery-projects-1')
+        html = html.replace('/services.css?v=service-editorial-1', '/services.css?v=service-editorial-1-upholstery-projects-2')
     def service_schema(match):
         graph = json.loads(match.group(1))
         service_id = BASE + page['slug'] + '#service'
@@ -178,7 +178,8 @@ def before_after(page):
     items = ''.join(f'<article><h3>{label}</h3>{photo(comparison[key])}</article>'
                     for label, key in [('Before', 'before_image'), ('After', 'after_image')])
     return (f'<section class="section service-comparison linen" aria-labelledby="upholstery-comparison-heading">'
-            f'<div class="container"><h2 id="upholstery-comparison-heading">{e(comparison["heading"])}</h2>'
+            f'<div class="container service-comparison-layout"><div class="service-comparison-copy service-prose">'
+            f'<h2 id="upholstery-comparison-heading">{e(comparison["heading"])}</h2>{paragraphs(comparison.get("paragraphs", []))}</div>'
             f'<div class="service-comparison-grid">{items}</div></div></section>')
 
 

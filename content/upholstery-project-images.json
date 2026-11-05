@@ -14,7 +14,7 @@
     "width": 768,
     "height": 1024,
     "srcset": "/assets/upholstery-chair-before-384.webp 384w, /assets/upholstery-chair-before-768.webp 768w",
-    "sizes": "(max-width: 600px) calc(100vw - 40px), (max-width: 1000px) 44vw, 440px",
+    "sizes": "(max-width: 520px) calc((100vw - 56px) / 2), 232px",
     "alt": "Before: high-back chair with worn burgundy upholstery and a chrome frame.",
     "caption": "",
     "portrait": true
@@ -24,7 +24,7 @@
     "width": 768,
     "height": 1024,
     "srcset": "/assets/upholstery-chair-after-384.webp 384w, /assets/upholstery-chair-after-768.webp 768w",
-    "sizes": "(max-width: 600px) calc(100vw - 40px), (max-width: 1000px) 44vw, 440px",
+    "sizes": "(max-width: 520px) calc((100vw - 56px) / 2), 232px",
     "alt": "After: the chair reupholstered in purple fabric with zebra-patterned outer panels.",
     "caption": "",
     "portrait": true
