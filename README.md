@@ -37,6 +37,8 @@ Run `npm run build:company` after changing public website content to regenerate 
 
 `netlify.toml` publishes `dist` and runs `npm run check` before upload. The Netlify project is connected to `main` for continuous deployment. Product images are labeled by collection and are not presented as John Crawford installations.
 
+The shared header uses **Request a consultation** as its Contact-page link, without a duplicate Contact navigation item. Its circular **Call now** control reveals the phone number as a tap-to-call link; Escape and clicking outside close it. The homepage hero and mobile consultation action also link to `/contact/`.
+
 ## Lead forms and GoHighLevel
 
 The product hub, contact and repair forms post to `/api/lead` (`netlify/functions/lead.mjs`, with validation and GHL requests in `netlify/lib/lead.mjs`). The server upserts the contact and saves a complete submission snapshot in the existing **Latest inquiry details** contact field (`contact.latest_inquiry_details`, ID `INk19lHx5XU2HQQhdFNQ`). It then saves a contact note. The **Note Added** workflow uses that note for the shared welcome email and the inquiry-specific internal email. Tags label the request; adding tags or using Contact Created does not replace the saved-note handoff.

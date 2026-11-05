@@ -127,9 +127,9 @@ def head(page, hero_key=None, accessibility=False):
   <link rel="preload" href="/assets/brand-latin-1.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/assets/brand-latin-0.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/assets/fonts.css?v=fonts-2">
-  <link rel="stylesheet" href="/styles.css?v=appointments-1">
+  <link rel="stylesheet" href="/styles.css?v=header-contact-20261105">
   <link rel="stylesheet" href="/hubs.css?v={hub_css_version}">
-  <script src="/app.js?v=hubs-1" defer></script>
+  <script src="/app.js?v=header-contact-20261105" defer></script>
   <script type="application/ld+json">{json.dumps(schema, ensure_ascii=False).replace('<', chr(92)+'u003c')}</script>
 </head>
 <body class="{body_class}">

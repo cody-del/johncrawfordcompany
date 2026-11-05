@@ -1,6 +1,7 @@
 const menuToggle = document.querySelector('.menu-toggle');
 const navigation = document.querySelector('.main-navigation');
-const dropdowns = [...document.querySelectorAll('.nav-dropdown')];
+const dropdowns = [...document.querySelectorAll('.nav-dropdown, .header-call')];
+const headerCall = document.querySelector('.header-call');
 
 if (menuToggle && navigation) {
 function closeMenus(restoreFocus = false) {
@@ -14,12 +15,17 @@ menuToggle.addEventListener('click', () => {
   const open = menuToggle.getAttribute('aria-expanded') !== 'true';
   navigation.classList.toggle('is-open', open);
   menuToggle.setAttribute('aria-expanded', String(open));
-  if (!open) dropdowns.forEach(dropdown => { dropdown.open = false; });
+  dropdowns.forEach(dropdown => { dropdown.open = false; });
 });
 
 dropdowns.forEach(dropdown => {
   dropdown.addEventListener('toggle', () => {
-    if (dropdown.open) dropdowns.forEach(other => {
+    if (!dropdown.open) return;
+    if (dropdown === headerCall) {
+      navigation.classList.remove('is-open');
+      menuToggle.setAttribute('aria-expanded', 'false');
+    }
+    dropdowns.forEach(other => {
       if (other !== dropdown) other.open = false;
     });
   });
@@ -31,6 +37,7 @@ navigation.addEventListener('click', event => {
 
 document.addEventListener('click', event => {
   if (!event.target.closest('.site-header')) closeMenus();
+  else if (headerCall?.open && !event.target.closest('.header-call')) headerCall.open = false;
 });
 
 document.addEventListener('keydown', event => {
