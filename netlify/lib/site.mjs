@@ -12,8 +12,8 @@ const ZIP = {
 };
 
 // Each form names its fields, with the names the page's inputs use. A field with
-// `tags` adds the tag for its value, one with `contactField` sets that contact
-// field, and every answer is also written in the contact's note.
+// `tags` adds the tag for its value, `contactField` sets a standard contact field,
+// and `customFieldId` reuses a verified GHL field. Every answer also goes in the note.
 export const FORMS = {
   // The short form on each product hub.
   consultation: {
@@ -33,15 +33,17 @@ export const FORMS = {
     fields: [
       {
         name: 'product', label: 'Product interest', max: 20, required: true,
+        customFieldId: '2I2MvrMS6CKqDxaKLzYv',
         options: {shades: 'Shades', blinds: 'Blinds', shutters: 'Shutters', drapery: 'Drapery', 'motorized-shades': 'Motorized shades', 'not-sure': 'Not sure yet'},
       },
       ZIP,
       {
         name: 'appointment-type', label: 'I’d like to schedule', max: 20,
+        customFieldId: 'SKg45GOfgzh35A9YFPXF',
         options: {'in-home': 'Free in-home consultation', showroom: 'Showroom visit'},
         tags: {'in-home': 'in-home-consultation', showroom: 'showroom-appointment'},
       },
-      {name: 'message', label: 'Message', max: 3000, required: true},
+      {name: 'message', label: 'Message', max: 3000, required: true, customFieldId: 'FrUjsXAor23MmsUeT3c4'},
     ],
   },
   repair: {

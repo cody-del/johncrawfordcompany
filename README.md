@@ -45,6 +45,20 @@ The product hub, contact and repair forms post to `/api/lead` (`netlify/function
 
 Netlify uses `GHL_PRIVATE_TOKEN` and `GHL_LOCATION_ID`. The John Crawford location is `90BPGKl4VhW1sRil5f6b`. Optional repair uploads also require `GHL_REPAIR_PHOTO_FIELD_ID` (the existing private **Repair request photos** field, `OFy6KwIA4iCqESEDU8gQ`) and `forms.write` on the location token. Reuse these fields; do not create separate repair-answer fields.
 
+### Contact form mapping — verified November 5, 2026
+
+Name, phone, email and ZIP use the existing standard contact fields. The Contact object was checked before adding the three missing fields below; reuse these IDs for future forms instead of creating equivalents.
+
+| Website input name | GHL field | Field ID |
+| --- | --- | --- |
+| `product` | Product interest — single dropdown, `contact.product_interest` | `2I2MvrMS6CKqDxaKLzYv` |
+| `appointment-type` | Appointment type — radio select, `contact.appointment_type` | `SKg45GOfgzh35A9YFPXF` |
+| `message` | Message — multi line, `contact.message` | `FrUjsXAor23MmsUeT3c4` |
+
+Product choices are Shades, Blinds, Shutters, Drapery, Motorized shades and Not sure yet. Appointment choices are Free in-home consultation and Showroom visit. GHL receives these readable labels, not the website's internal option values. Appointment choice is optional: a blank answer omits that custom-field update rather than clearing an earlier preference. All other visible contact-form fields are required.
+
+Every submitted answer also remains in **Latest inquiry details** and the saved submission note. The note begins `John Crawford form submission: Website lead`, followed by `Source: Website: Contact page`, preserving the existing Note Added workflow. No additional environment variables or custom fields for name, phone, email or ZIP are needed.
+
 ### Repair form contract — verified November 5, 2026
 
 | Website input name | Required | Destination |

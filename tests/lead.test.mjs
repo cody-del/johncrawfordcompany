@@ -28,7 +28,7 @@ function ghl({upsert = {status: 200, body: {contact: {id: 'c-1'}}}, note = {stat
   return {calls, fetcher};
 }
 
-test('a contact-page lead carries its ZIP, appointment tag and a note with every answer', async () => {
+test('a contact-page lead maps each answer once and keeps the complete workflow note', async () => {
   const {calls, fetcher} = ghl();
   const result = await submitLead(contact(), {fetcher, env});
   assert.deepEqual(result, {status: 200, body: {success: true, contactId: 'c-1'}});
@@ -36,10 +36,58 @@ test('a contact-page lead carries its ZIP, appointment tag and a note with every
   assert.deepEqual(calls[0].body, {
     locationId: 'loc-test', firstName: 'Ada', lastName: 'Lovelace', phone: '+18185550142', email: 'ada@example.com',
     source: 'Website: Contact page', tags: ['website-lead', 'showroom-appointment'], postalCode: '91364',
-    customFields: [{id: 'INk19lHx5XU2HQQhdFNQ', fieldValue: expectedSubmission}],
+    customFields: [
+      {id: 'INk19lHx5XU2HQQhdFNQ', fieldValue: expectedSubmission},
+      {id: '2I2MvrMS6CKqDxaKLzYv', fieldValue: 'Shutters'},
+      {id: 'SKg45GOfgzh35A9YFPXF', fieldValue: 'Showroom visit'},
+      {id: 'FrUjsXAor23MmsUeT3c4', fieldValue: 'Three bedroom windows.\nPrefer mornings.'},
+    ],
   });
   assert.equal(calls[1].url, `${GHL_API}/contacts/c-1/notes`);
   assert.equal(calls[1].body.body, expectedSubmission);
+});
+
+test('all product choices save their readable label in the same Product interest field', async () => {
+  for (const [value, label] of Object.entries({
+    shades: 'Shades', blinds: 'Blinds', shutters: 'Shutters', drapery: 'Drapery',
+    'motorized-shades': 'Motorized shades', 'not-sure': 'Not sure yet',
+  })) {
+    const {calls, fetcher} = ghl();
+    assert.equal((await submitLead(contact({product: value}), {fetcher, env})).status, 200);
+    const fields = calls[0].body.customFields;
+    assert.deepEqual(fields.filter(field => field.id === '2I2MvrMS6CKqDxaKLzYv'), [
+      {id: '2I2MvrMS6CKqDxaKLzYv', fieldValue: label},
+    ]);
+    assert.equal(new Set(fields.map(field => field.id)).size, fields.length);
+    assert.match(calls[1].body.body, new RegExp(`Product interest: ${label}\\n`));
+  }
+});
+
+test('both appointment choices map to the existing radio field and keep their routing tag', async () => {
+  for (const [value, label, tag] of [
+    ['in-home', 'Free in-home consultation', 'in-home-consultation'],
+    ['showroom', 'Showroom visit', 'showroom-appointment'],
+  ]) {
+    const {calls, fetcher} = ghl();
+    assert.equal((await submitLead(contact({'appointment-type': value}), {fetcher, env})).status, 200);
+    assert.deepEqual(calls[0].body.customFields.find(field => field.id === 'SKg45GOfgzh35A9YFPXF'), {
+      id: 'SKg45GOfgzh35A9YFPXF', fieldValue: label,
+    });
+    assert.deepEqual(calls[0].body.tags, ['website-lead', tag]);
+  }
+});
+
+test('an omitted appointment choice does not clear an existing contact preference', async () => {
+  for (const value of [undefined, '', '   ']) {
+    const {calls, fetcher} = ghl();
+    assert.equal((await submitLead(contact({'appointment-type': value}), {fetcher, env})).status, 200);
+    const fields = calls[0].body.customFields;
+    assert.equal(fields.length, 3);
+    assert.ok(!fields.some(field => field.id === 'SKg45GOfgzh35A9YFPXF'));
+    assert.deepEqual(calls[0].body.tags, ['website-lead']);
+    assert.doesNotMatch(calls[1].body.body, /I’d like to schedule/);
+    assert.equal(fields[0].fieldValue, calls[1].body.body);
+  }
 });
 
 test('a repair lead skips blank optional answers', async () => {

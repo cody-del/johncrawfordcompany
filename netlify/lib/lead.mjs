@@ -36,8 +36,8 @@ export async function submitLead(data, {fetcher = fetch, rateLimited = () => fal
   const digits = data.phone.replace(/\D/g, '');
   if (!/^\d{10}$|^1\d{10}$/.test(digits) || !EMAIL.test(data.email.trim())) return fail(400, 'Please enter a valid phone number and email address.');
 
-  // The form's own fields, checked against site.mjs. Each one either goes on
-  // the contact (contactField), becomes a tag (tags), or is written in the note.
+  // Validate the form's own fields against site.mjs before mapping answers to
+  // standard/custom contact fields, tags and the complete submission note.
   const answers = [];
   for (const field of form.fields) {
     const raw = data[field.name];
@@ -76,10 +76,13 @@ export async function submitLead(data, {fetcher = fetch, rateLimited = () => fal
     tags: [LEAD_TAG, ...(form.tags ?? [])],
   };
   const note = [];
+  const customFields = [];
   for (const {field, value} of answers) {
+    const answer = field.options ? field.options[value] : value;
     if (field.contactField) contact[field.contactField] = value;
+    if (field.customFieldId) customFields.push({id: field.customFieldId, fieldValue: answer});
     if (field.tags) contact.tags.push(field.tags[value]);
-    note.push(`${field.label}: ${field.options ? field.options[value] : value}`);
+    note.push(`${field.label}: ${answer}`);
   }
   // Save the complete inquiry snapshot during upsert. The Note Added workflow
   // starts only after the final submission note is saved, following photo processing.
@@ -91,7 +94,7 @@ export async function submitLead(data, {fetcher = fetch, rateLimited = () => fal
     `John Crawford form submission: ${inquiryType}`, `Source: ${source}`,
     `Name: ${data.name.trim()}`, `Phone: ${contact.phone}`, `Email: ${contact.email}`, ...note,
   ].join('\n');
-  contact.customFields = [{id: INQUIRY_DETAILS_FIELD_ID, fieldValue: submissionDetails()}];
+  contact.customFields = [{id: INQUIRY_DETAILS_FIELD_ID, fieldValue: submissionDetails()}, ...customFields];
 
   const headers = {Authorization: `Bearer ${token}`, Version: GHL_VERSION, 'Content-Type': 'application/json', Accept: 'application/json'};
   let contactId;
