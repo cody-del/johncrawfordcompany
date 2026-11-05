@@ -68,7 +68,12 @@ export function createLeadHandler(submit = submitLead, rateLimited = createRateL
     }
     const ip = context?.ip ?? request.headers.get('x-nf-client-connection-ip') ?? 'unknown';
     const token = data?.[TOKEN_FIELD];
-    if (data && typeof data === 'object') delete data[TOKEN_FIELD];
+    // Copy the answers without the token rather than deleting it: multipart answers are
+    // defined as non-configurable properties above, and deleting one throws.
+    if (data && typeof data === 'object' && !Array.isArray(data) && Object.hasOwn(data, TOKEN_FIELD)) {
+      const {[TOKEN_FIELD]: _token, ...answers} = data;
+      data = answers;
+    }
     if (!(await isHuman(token, ip))) return send(403, {error: `We couldn’t confirm this request came from a person. Please try again, or call ${PHONE}.`});
     const result = await submit(data, {rateLimited: () => rateLimited(ip), photos});
     return send(result.status, result.body);

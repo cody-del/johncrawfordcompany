@@ -68,3 +68,19 @@ test('every lead form gets the widget, with the test key away from the live host
   assert.match(app, /payload\['cf-turnstile-response'\] = token;/);
   assert.match(app, /TURNSTILE_LIVE_HOSTS\.includes\(location\.hostname\) \? '[^']*' : '1x00000000000000000000AA'/);
 });
+
+test('a multipart repair request with photos and a token reaches the lead check without the token', async () => {
+  // Regression: deleting the token from multipart answers threw and every repair request with photos failed.
+  const png = new File([Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+a8gAAAABJRU5ErkJggg==', 'base64')], 'photo.png', {type: 'image/png'});
+  const fields = new FormData();
+  for (const [name, value] of Object.entries({form: 'repair', name: 'Repair Test', elapsedMs: '4000', [TOKEN_FIELD]: 'token-1'})) fields.append(name, value);
+  fields.append('photos', png);
+  let received;
+  const handler = createLeadHandler(async (data, options) => { received = {data, options}; return {status: 200, body: {success: true}}; },
+    () => false, async token => token === 'token-1');
+  const response = await handler(new Request('https://www.example.com/api/lead', {method: 'POST', headers: {origin: 'https://www.example.com'}, body: fields}), {ip: '1.2.3.4'});
+  assert.equal(response.status, 200);
+  assert.deepEqual(received.data, {form: 'repair', name: 'Repair Test', elapsedMs: 4000});
+  assert.equal(received.options.photos.length, 1);
+});
+
