@@ -72,7 +72,7 @@ Every submitted answer also remains in **Latest inquiry details** and the saved 
 
 These three repair-answer fields were added in GHL by the user and verified in the Contact object on November 5, 2026. The website reuses their exact IDs. The optional purchase-date input uses a native date picker and sends a validated `YYYY-MM-DD` value without timezone conversion. Blank optional purchase answers omit those field updates rather than clearing earlier contact values. The form labels match the GHL questions; no new CRM fields are created by the integration.
 
-Repair routing stays `form = repair`, `source = Website: Repair page`, with both `website-lead` and `website-repair-request` tags. First upsert the contact and inquiry details, then finish optional photo processing, then create the contact note. Its first two lines must be exactly:
+Repair routing stays `form = repair`, `source = Website: Repair page`, with both `website-lead` and `website-repair-request` tags. First upsert the contact and inquiry details, then finish optional photo processing, then create the contact note. When photos are attached, the upsert leaves the tags off and they are added last (`POST /contacts/{id}/tags`, retried through the upsert if that fails): the tags start the **JC | 01 Form Inquiries** workflow, and its repair alert email shows `{{contact.repair_request_photos}}`, so the photos must already be saved. Without photos, the tags go on in the first upsert as before. Its first two lines must be exactly:
 
 ```text
 John Crawford form submission: Website repair request

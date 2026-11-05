@@ -30,9 +30,12 @@ test('repair details, both lead tags and multiple photos reach the same GHL cont
   const {calls, fetcher} = mockGhl();
   const result = await submitLead(data, {env, fetcher, photos: [png(), png()]});
   assert.equal(result.body.success, true);
-  assert.equal(calls.length, 3);
+  assert.equal(calls.length, 4);
   const contact = JSON.parse(calls[0].init.body);
-  assert.deepEqual(contact.tags, ['website-lead', 'website-repair-request']);
+  // The tags start the alert workflow, so they come last, once the photos are saved.
+  assert.equal(contact.tags, undefined);
+  assert.equal(calls[3].url, `${GHL_API}/contacts/repair-contact/tags`);
+  assert.deepEqual(JSON.parse(calls[3].init.body), {tags: ['website-lead', 'website-repair-request']});
   assert.equal(contact.postalCode, '91364');
   assert.equal(calls[0].url, `${GHL_API}/contacts/upsert`);
   assert.equal(contact.firstName, 'Repair');
@@ -173,8 +176,9 @@ test('repair photos use the existing private file field after upsert and finish 
   assert.equal(calls.length, 2, 'the Note Added workflow must wait for photo processing');
   completeUpload();
   assert.equal((await submission).body.success, true);
-  assert.equal(calls.length, 3);
+  assert.equal(calls.length, 4);
   assert.ok(calls[2].url.endsWith('/contacts/repair-contact/notes'));
+  assert.ok(calls[3].url.endsWith('/contacts/repair-contact/tags'), 'the tags that start the alert workflow come after the photos');
   assert.ok(calls.every(call => !/locations\/.*customFields/.test(call.url)), 'reuse the configured fields; do not create repair custom fields');
 });
 
@@ -186,6 +190,33 @@ test('the verified photo contract accepts five photos and exactly 650 KiB per ph
   assert.equal(await validateRepairPhotos([new File([bytes], 'limit.png', {type: 'image/png'})]), '');
   const {fetcher, calls} = mockGhl();
   assert.equal((await submitLead(data, {env, fetcher, photos: Array.from({length: 5}, png)})).body.success, true);
-  const note = JSON.parse(calls.at(-1).init.body).body;
+  const note = JSON.parse(calls.find(call => call.url.endsWith('/notes')).init.body).body;
   assert.match(note, /Photos selected: 5\nRepair photos: 5 saved/);
 });
+
+test('a repair request without photos is tagged in the first save, as before', async () => {
+  const {calls, fetcher} = mockGhl();
+  assert.equal((await submitLead(data, {env, fetcher})).body.success, true);
+  assert.deepEqual(JSON.parse(calls[0].init.body).tags, ['website-lead', 'website-repair-request']);
+  assert.ok(!calls.some(call => call.url.endsWith('/tags')));
+});
+
+test('tags still reach the contact when the photo upload fails', async () => {
+  const {calls, fetcher} = mockGhl({uploadStatus: 500});
+  await submitLead(data, {env, fetcher, photos: [png()]});
+  assert.equal(calls.at(-1).url, `${GHL_API}/contacts/repair-contact/tags`);
+});
+
+test('if adding the tags fails, the upsert adds them so the alert still starts', async () => {
+  const calls = [];
+  const fetcher = async (url, init) => {
+    calls.push({url, body: init.body instanceof FormData ? null : JSON.parse(init.body)});
+    if (url.endsWith('/tags')) return Response.json({message: 'busy'}, {status: 502});
+    return Response.json(url.endsWith('/upsert') ? {contact: {id: 'repair-contact'}} : {success: true});
+  };
+  assert.equal((await submitLead(data, {env, fetcher, photos: [png()]})).body.success, true);
+  const retry = calls.at(-1);
+  assert.equal(retry.url, `${GHL_API}/contacts/upsert`);
+  assert.deepEqual(retry.body, {locationId: 'loc-test', email: 'repair@example.com', phone: '+18185550142', tags: ['website-lead', 'website-repair-request']});
+});
+

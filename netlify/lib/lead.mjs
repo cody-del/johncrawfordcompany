@@ -99,6 +99,11 @@ export async function submitLead(data, {fetcher = fetch, rateLimited = () => fal
     `Name: ${data.name.trim()}`, `Phone: ${contact.phone}`, `Email: ${contact.email}`, ...note,
   ].join('\n');
   contact.customFields = [{id: INQUIRY_DETAILS_FIELD_ID, fieldValue: submissionDetails()}, ...customFields];
+  // The tags start GHL's alert workflow, and its repair email shows the Repair request photos
+  // field. With photos, tag the contact only after they are saved, so the email includes them.
+  const tags = contact.tags;
+  const tagAfterPhotos = photos.length > 0;
+  if (tagAfterPhotos) delete contact.tags;
 
   const headers = {Authorization: `Bearer ${token}`, Version: GHL_VERSION, 'Content-Type': 'application/json', Accept: 'application/json'};
   let contactId;
@@ -145,10 +150,30 @@ export async function submitLead(data, {fetcher = fetch, rateLimited = () => fal
     noteFailed = true;
     console.error(`[lead] GHL note request failed: ${error.name}`);
   }
+  if (tagAfterPhotos) await addTags(contactId, contact, tags, {fetcher, headers});
   const warning = noteFailed
     ? data.form === 'repair'
       ? `We received your contact details, but couldn’t save all of your repair information. Please call ${PHONE} or email john@johncrawford.com.`
       : `We received your contact details, but could not save the complete inquiry. Please call ${PHONE} or email john@johncrawford.com.`
     : photoUploadFailed ? REPAIR_PHOTO_FALLBACK : '';
   return {status: 200, body: {success: true, contactId, ...(warning ? {warning} : {})}};
+}
+
+// Adds the lead tags that start GHL's alert workflow. A second try goes through the upsert,
+// because an untagged lead would reach GHL without anyone being alerted.
+async function addTags(contactId, contact, tags, {fetcher, headers}) {
+  const attempts = [
+    [`${GHL_API}/contacts/${encodeURIComponent(contactId)}/tags`, {tags}],
+    [`${GHL_API}/contacts/upsert`, {locationId: contact.locationId, email: contact.email, phone: contact.phone, tags}],
+  ];
+  for (const [url, body] of attempts) {
+    try {
+      const response = await fetcher(url, {method: 'POST', headers, body: JSON.stringify(body), signal: AbortSignal.timeout(3000)});
+      if (response.ok) return;
+      console.error(`[lead] GHL did not tag the lead (HTTP ${response.status})`);
+    } catch (error) {
+      console.error(`[lead] GHL tag request failed: ${error.name}`);
+    }
+  }
+  console.error('[lead] the lead is in GHL untagged, so its alert workflow did not start');
 }
