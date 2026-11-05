@@ -83,6 +83,14 @@ The snapshot includes the full name, normalized phone, email, source, every supp
 
 The hidden `website` field, minimum three-second fill time, same-origin checks and five-request/15-minute visitor limit remain in place. `netlify/lib/site.mjs` defines each form's fields and labels; `app.js` handles validation and photo preparation. Form markup comes from `scripts/build-hubs.py`, `scripts/build-company-pages.py` and `scripts/build-services.py`. `npm run check` includes the mapping, upload and note-order tests; those use a mocked GHL service and do not send live workflow emails.
 
+## Spam protection
+
+Every lead form goes through these checks in `/api/lead` before anything reaches GHL:
+
+- **Cloudflare Turnstile.** `dist/app.js` adds an invisible human check to each form. Visitors only see a checkbox if Cloudflare wants one. `netlify/lib/turnstile.mjs` (identical in `johncrawfordcompany` and `johncrawfordlanding`) checks the token with Cloudflare and refuses the lead with a 403 when the token is missing or refused. If Cloudflare can't be reached, the lead goes through rather than being lost. One widget, made in the gbp@shadestrategy.com Cloudflare account, covers `www.johncrawfordcompany.com`, `johncrawfordcompany.com` and `go.johncrawfordcompany.com`. Its site key, `0x4AAAAAAF1MJ5a53NsFXu0h`, is `TURNSTILE_SITE_KEY` in `dist/app.js` (public, in the page) and its secret is the Netlify variable `TURNSTILE_SECRET_KEY` (Production, Functions, secret). Other hosts, such as deploy previews, use Cloudflare's always-pass test site key; give Deploy Previews the test secret `1x0000000000000000000000000000000AA`, or no secret, which switches the check off. Netlify functions read the secret at deploy time, so redeploy after setting it.
+- **Netlify rate limit.** `netlify/functions/lead.mjs` limits each visitor (IP + domain) to 10 requests per 3 minutes. Netlify counts these itself, for every copy of the function and across restarts, and answers with a 429.
+- **In the function:** a hidden `website` field, a 3-second minimum after page load, same-origin JSON only, size limits, field checks, and an in-memory limit of 5 leads per visitor per 15 minutes.
+
 ## Service-page content and reviews
 
 The Consultation & Measuring and Installation pages have a full editorial rewrite covering the free home visit, samples in the room, measuring, product choices, quote planning, installation and compatible controls. The installation copy preserves the explanation of checking width and height at several points and looking at whether the opening is square and level. New project-detail panels and relevant questions make the content easier to scan. Service testimonials use a white card on linen, readable five-star ratings, a Google attribution and the existing customer wording. The consultation page pairs John’s one-window story with an approved customer review.

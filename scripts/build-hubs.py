@@ -377,14 +377,14 @@ def support_page(name, slug, title, description, body):
 support_page('Privacy Policy', '/privacy/', 'Privacy Policy | John Crawford Company',
     'How John Crawford Company handles website consultation requests, contact information, hosting and embedded services.', '''
   <h1>Privacy Policy</h1>
-  <p class="statement-date">Effective October 31, 2026.</p>
+  <p class="statement-date">Effective November 6, 2026.</p>
   <p>This policy describes information collected through the John Crawford Company website and how to contact us about it.</p>
   <h2>Information you provide</h2>
   <p>When you send a form on this website, we receive the contact details and project information you enter. If you email us, we receive the contact information, project details and any photos or attachments you choose to send.</p>
   <h2>How your information is used</h2>
   <p>We use inquiry information to respond, discuss your project and provide the help you request. Our website providers also process information to operate and protect the website.</p>
   <h2>Website providers</h2>
-  <p>Form submissions are kept in HighLevel, the customer relationship system we use to manage inquiries. This website is hosted through Netlify and, for the preview, ChatGPT Sites. Hosting providers may process technical information, such as IP addresses, browser details and request logs, to deliver and secure the website.</p>
+  <p>Form submissions are kept in HighLevel, the customer relationship system we use to manage inquiries. This website is hosted through Netlify and, for the preview, ChatGPT Sites. Hosting providers may process technical information, such as IP addresses, browser details and request logs, to deliver and secure the website. Our forms use Cloudflare Turnstile to confirm that a person, not an automated program, is sending them; Cloudflare receives browser and device information for that check.</p>
   <h2>Embedded services and tracking</h2>
   <p>This website includes a Google Maps embed. Loading that map may allow Google to receive device and visit information and use its own cookies or similar technologies. Social profile links take you to separate services when you open them. Those providers' privacy practices apply to their services. See <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google's Privacy Policy<span class="sr-only"> (opens in a new tab)</span></a>.</p>
   <p>We have not installed advertising pixels or audience-tracking analytics on this website. The website does not change its behavior in response to browser Do Not Track signals. Embedded third-party services may follow their own tracking practices.</p>
