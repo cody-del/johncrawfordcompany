@@ -107,7 +107,7 @@ def head(page, kind):
     }]
     return f'''<!doctype html>
 <html lang="en"><head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"><script type="text/javascript" charset="UTF-8" src="https://cdn.cookie-script.com/s/bb49fbb8483ced09e550fab9f04307c1.js"></script><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{e(page['title'])}</title><meta name="description" content="{e(page['description'])}">
 <meta name="robots" content="index, follow, max-image-preview:large"><meta name="theme-color" content="#FFFFFF">
 <link rel="canonical" href="{BASE}{page['slug']}">
