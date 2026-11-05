@@ -4,6 +4,7 @@ import {readFileSync} from 'node:fs';
 import {submitLead, GHL_API, MIN_FILL_MS} from '../netlify/lib/lead.mjs';
 import {createLeadHandler, createRateLimiter} from '../netlify/lib/lead-http.mjs';
 
+const expectedSubmission = "John Crawford form submission: Website lead\nSource: Website: Contact page\nName: Ada Lovelace\nPhone: +18185550142\nEmail: ada@example.com\nProduct interest: Shutters\nZIP code: 91364\nI’d like to schedule: Showroom visit\nMessage: Three bedroom windows.\nPrefer mornings.";
 const env = {GHL_PRIVATE_TOKEN: 'pit-test', GHL_LOCATION_ID: 'loc-test'};
 const person = {name: 'Ada Lovelace', phone: '818-555-0142', email: 'Ada@Example.com', website: '', elapsedMs: MIN_FILL_MS + 500};
 const contact = (extra = {}) => ({
@@ -35,12 +36,10 @@ test('a contact-page lead carries its ZIP, appointment tag and a note with every
   assert.deepEqual(calls[0].body, {
     locationId: 'loc-test', firstName: 'Ada', lastName: 'Lovelace', phone: '+18185550142', email: 'ada@example.com',
     source: 'Website: Contact page', tags: ['website-lead', 'showroom-appointment'], postalCode: '91364',
+    customFields: [{id: 'INk19lHx5XU2HQQhdFNQ', field_value: expectedSubmission}],
   });
   assert.equal(calls[1].url, `${GHL_API}/contacts/c-1/notes`);
-  assert.equal(calls[1].body.body, [
-    'Website: Contact page form', 'Product interest: Shutters', 'ZIP code: 91364', 'I’d like to schedule: Showroom visit',
-    'Message: Three bedroom windows.\nPrefer mornings.',
-  ].join('\n'));
+  assert.equal(calls[1].body.body, expectedSubmission);
 });
 
 test('a repair lead skips blank optional answers', async () => {
@@ -48,14 +47,15 @@ test('a repair lead skips blank optional answers', async () => {
   assert.equal((await submitLead(repair(), {fetcher, env})).status, 200);
   assert.equal(calls[0].body.source, 'Website: Repair page');
   assert.deepEqual(calls[0].body.tags, ['website-lead', 'website-repair-request']);
-  assert.equal(calls[1].body.body, 'Website: Repair page form\nWhat’s broken: Cord snapped on a cellular shade.\nBought from: Costco\nZIP code: 91367');
+  assert.equal(calls[1].body.body, 'John Crawford form submission: Website repair request\nSource: Website: Repair page\nName: Ada Lovelace\nPhone: +18185550142\nEmail: ada@example.com\nWhat’s broken: Cord snapped on a cellular shade.\nBought from: Costco\nZIP code: 91367\nPhotos selected: 0');
 });
 
-test('a product-hub lead names its page and needs no note', async () => {
+test('a product-hub lead names its page and always writes the notification note', async () => {
   const {calls, fetcher} = ghl();
   const result = await submitLead({form: 'consultation', page: '/motorized-shades/', ...person}, {fetcher, env});
   assert.equal(result.status, 200);
-  assert.equal(calls.length, 1);
+  assert.equal(calls.length, 2);
+  assert.match(calls[1].body.body, /^John Crawford form submission: Website lead\nSource: Website: Motorized Shades page/);
   assert.equal(calls[0].body.source, 'Website: Motorized Shades page');
   assert.deepEqual(calls[0].body.tags, ['website-lead']);
 });
@@ -76,11 +76,13 @@ test('missing or invalid answers never reach GHL', async () => {
   }
 });
 
-test('GHL failures are reported; a failed note is not', async () => {
+test('contact failures are reported and a failed notification note shows a warning', async () => {
   let {fetcher} = ghl({upsert: {status: 401, body: {}}});
   assert.equal((await submitLead(contact(), {fetcher, env})).status, 502);
   ({fetcher} = ghl({note: {status: 400}}));
-  assert.equal((await submitLead(contact(), {fetcher, env})).status, 200);
+  const saved = await submitLead(contact(), {fetcher, env});
+  assert.equal(saved.status, 200);
+  assert.match(saved.body.warning, /could not save the complete inquiry/);
   assert.equal((await submitLead(contact(), {fetcher, env: {GHL_LOCATION_ID: 'x'}})).status, 500);
 });
 
