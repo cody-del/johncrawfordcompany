@@ -9,6 +9,8 @@ import {repairUploadsConfigured, validateRepairPhotos, uploadRepairPhotos, REPAI
 
 export const GHL_API = 'https://services.leadconnectorhq.com';
 const GHL_VERSION = '2021-07-28';
+// John Crawford contact.latest_inquiry_details; remap this ID for another subaccount.
+const INQUIRY_DETAILS_FIELD_ID = 'INk19lHx5XU2HQQhdFNQ';
 
 // Submissions sooner than this after the page loads are refused. app.js waits
 // it out, so a person is never caught by it.
@@ -79,6 +81,17 @@ export async function submitLead(data, {fetcher = fetch, rateLimited = () => fal
     if (field.tags) contact.tags.push(field.tags[value]);
     note.push(`${field.label}: ${field.options ? field.options[value] : value}`);
   }
+  // Save a complete submission snapshot before tag-triggered workflows can run.
+  // The note is created for every form, including compact forms with no extra answers.
+  const inquiryType = LEAD_TAG === 'google_landing_page'
+    ? 'Google Ads lead' : data.form === 'repair' ? 'Website repair request' : 'Website lead';
+  if (data.form === 'repair') note.push(`Photos selected: ${photos.length}`);
+  const submissionDetails = () => [
+    `John Crawford form submission: ${inquiryType}`, `Source: ${source}`,
+    `Name: ${data.name.trim()}`, `Phone: ${contact.phone}`, `Email: ${contact.email}`, ...note,
+  ].join('\n');
+  contact.customFields = [{id: INQUIRY_DETAILS_FIELD_ID, field_value: submissionDetails()}];
+
   const headers = {Authorization: `Bearer ${token}`, Version: GHL_VERSION, 'Content-Type': 'application/json', Accept: 'application/json'};
   let contactId;
   try {
@@ -111,23 +124,23 @@ export async function submitLead(data, {fetcher = fetch, rateLimited = () => fal
   }
   // The contact is in GHL by now, so a failed note is logged but the lead still counts.
   let noteFailed = false;
-  if (note.length) {
-    try {
-      const response = await fetcher(`${GHL_API}/contacts/${encodeURIComponent(contactId)}/notes`, {
-        method: 'POST', headers,
-        body: JSON.stringify({body: [`${source} form`, ...note].join('\n')}), signal: AbortSignal.timeout(3000),
-      });
-      if (!response.ok) {
-        noteFailed = true;
-        console.error(`[lead] GHL did not save the note (HTTP ${response.status})`);
-      }
-    } catch (error) {
+  try {
+    const response = await fetcher(`${GHL_API}/contacts/${encodeURIComponent(contactId)}/notes`, {
+      method: 'POST', headers,
+      body: JSON.stringify({body: submissionDetails()}), signal: AbortSignal.timeout(3000),
+    });
+    if (!response.ok) {
       noteFailed = true;
-      console.error(`[lead] GHL note request failed: ${error.name}`);
+      console.error(`[lead] GHL did not save the note (HTTP ${response.status})`);
     }
+  } catch (error) {
+    noteFailed = true;
+    console.error(`[lead] GHL note request failed: ${error.name}`);
   }
-  const warning = noteFailed && data.form === 'repair'
-    ? `We received your contact details, but couldn’t save all of your repair information. Please call ${PHONE} or email john@johncrawford.com.`
+  const warning = noteFailed
+    ? data.form === 'repair'
+      ? `We received your contact details, but couldn’t save all of your repair information. Please call ${PHONE} or email john@johncrawford.com.`
+      : `We received your contact details, but could not save the complete inquiry. Please call ${PHONE} or email john@johncrawford.com.`
     : photoUploadFailed ? REPAIR_PHOTO_FALLBACK : '';
   return {status: 200, body: {success: true, contactId, ...(warning ? {warning} : {})}};
 }
