@@ -4,6 +4,10 @@ import {submitLead, GHL_API, MIN_FILL_MS} from '../netlify/lib/lead.mjs';
 import {createLeadHandler} from '../netlify/lib/lead-http.mjs';
 import {MAX_REPAIR_PHOTO_BYTES, REPAIR_PHOTO_FALLBACK, validateRepairPhotos, repairUploadsConfigured} from '../netlify/lib/repair-photos.mjs';
 
+// These tests post without a Turnstile token; keep a build's real TURNSTILE_SECRET_KEY
+// (Netlify sets it for production builds) from switching the human check on here.
+delete process.env.TURNSTILE_SECRET_KEY;
+
 const env = {GHL_PRIVATE_TOKEN: 'pit-test', GHL_LOCATION_ID: 'loc-test', GHL_REPAIR_PHOTO_FIELD_ID: 'repair-files-test'};
 const data = {
   form: 'repair', page: '/services/blind-shade-repair/', name: 'Repair Test', phone: '8185550142', email: 'repair@example.com',
