@@ -107,7 +107,7 @@ def head(page, kind):
     }]
     return f'''<!doctype html>
 <html lang="en"><head>
-<meta charset="utf-8"><script type="text/javascript" charset="UTF-8" src="https://cdn.cookie-script.com/s/bb49fbb8483ced09e550fab9f04307c1.js"></script><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"><script type="text/javascript" charset="UTF-8" src="https://cdn.cookie-script.com/s/bb49fbb8483ced09e550fab9f04307c1.js"></script><!-- Meta Pixel: CookieScript runs it only after the visitor allows Targeting cookies. --><script type="text/plain" data-cookiescript="accepted" data-cookiecategory="targeting">!function(f,b,e,v,n,t,s){{if(f.fbq)return;n=f.fbq=function(){{n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)}};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','4317054311941000');fbq('track','PageView');</script><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{e(page['title'])}</title><meta name="description" content="{e(page['description'])}">
 <meta name="robots" content="index, follow, max-image-preview:large"><meta name="theme-color" content="#FFFFFF">
 <link rel="canonical" href="{BASE}{page['slug']}">
