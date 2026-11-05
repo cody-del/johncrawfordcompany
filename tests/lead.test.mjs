@@ -168,7 +168,5 @@ test('every website form is live and matches what site.mjs expects', () => {
     }
     for (const name of ['name', 'phone', 'email', 'website', ...names]) assert.match(form, new RegExp(`name="${name}"`), `${route}: ${name}`);
   }
-  // The review copies of the campaign pages stay previews; the live ones are in cody-del/johncrawfordlanding.
-  for (const route of ['/lp/custom-window-treatments/', '/lp/motorized-shades/']) assert.doesNotMatch(page(route), /data-lead-form/);
   assert.doesNotMatch(page('/privacy/'), /do not accept submissions/);
 });

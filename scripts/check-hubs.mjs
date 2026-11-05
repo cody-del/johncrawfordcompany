@@ -43,13 +43,11 @@ for (const file of files) {
 }
 const titles = new Set();
 for (const [route, { html, ids }] of pages) {
-  if (!route.startsWith('/lp/')) {
-    const footerHours = html.match(/<p class="footer-hours">[\s\S]*?<\/p>/)?.[0] || '';
-    requireThat(footerHours.includes(hours.display) && footerHours.includes(hours.closed_display),
-      `${route}: visible footer hours must match content/business-hours.json`);
-    requireThat(!/Monday[–—-]Friday|Saturday(?:[–—-]Sunday)? closed/i.test(html),
-      `${route}: obsolete weekday-only or Saturday-closed hours`);
-  }
+  const footerHours = html.match(/<p class="footer-hours">[\s\S]*?<\/p>/)?.[0] || '';
+  requireThat(footerHours.includes(hours.display) && footerHours.includes(hours.closed_display),
+    `${route}: visible footer hours must match content/business-hours.json`);
+  requireThat(!/Monday[–—-]Friday|Saturday(?:[–—-]Sunday)? closed/i.test(html),
+    `${route}: obsolete weekday-only or Saturday-closed hours`);
   const title = html.match(/<title>([^<]+)<\/title>/)?.[1];
   requireThat(title && !titles.has(title), `${route}: missing or duplicate title`);
   titles.add(title);
@@ -57,13 +55,12 @@ for (const [route, { html, ids }] of pages) {
   requireThat(ids.length === new Set(ids).size, `${route}: duplicate IDs`);
   requireThat(/<html lang="en">/.test(html), `${route}: missing document language`);
   requireThat(/name="description" content="[^"]+"/.test(html), `${route}: missing description`);
-  // The /lp/ copies duplicate go.johncrawfordcompany.com (cody-del/johncrawfordlanding), so only they stay out of search.
-  requireThat(route.startsWith('/lp/') ? /name="robots" content="noindex, nofollow"/.test(html) : /name="robots" content="index, follow, max-image-preview:large"/.test(html), `${route}: wrong robots tag`);
+  requireThat(/name="robots" content="index, follow, max-image-preview:large"/.test(html), `${route}: wrong robots tag`);
   requireThat(html.includes(`<link rel="canonical" href="https://www.johncrawfordcompany.com${route}">`) && !html.includes('chatgpt.site'), `${route}: canonical must be its www.johncrawfordcompany.com URL`);
   for (const policy of ['/accessibility/', '/privacy/', '/terms/']) {
     requireThat(html.includes(`href="${policy}"`), `${route}: footer must link ${policy}`);
   }
-  requireThat(route.startsWith('/lp/') ? !html.includes('22311 Ventura') : html.includes('22311 Ventura Blvd #101'), `${route}: respect landing-page appointment-only addressing or the verified website suite`);
+  requireThat(html.includes('22311 Ventura Blvd #101'), `${route}: show the verified showroom address`);
   requireThat(!/Confirm before publishing|local shutter supplier|review_note|source_file|\/Users\//i.test(html), `${route}: private note exposed`);
   requireThat(!/\bMax\b/.test(html), `${route}: employee name must stay out of public copy`);
   requireThat(/<strong(?: class="appointment-only")?>Appointment Only<\/strong>/.test(html), `${route}: bold showroom appointment notice missing`);
@@ -87,7 +84,7 @@ for (const [route, { html, ids }] of pages) {
     try { hoursSchemaCount += checkHoursSchema(JSON.parse(match[1]), route); }
     catch { errors.push(`${route}: malformed structured data`); }
   }
-  requireThat(route.startsWith('/lp/') ? hoursSchemaCount === 0 : hoursSchemaCount > 0,
+  requireThat(hoursSchemaCount > 0,
     `${route}: respect website business hours and campaign-page omissions`);
 }
 const contactDescription = pages.get('/contact/')?.html.match(/name="description" content="([^"]*)"/)?.[1] || '';
@@ -110,8 +107,8 @@ for (const hub of hubs) {
 requireThat(pages.get('/motorized-shades/')?.html.includes('The PowerView® App is required for programmed operation.'), 'Missing PowerView scheduling disclosure');
 const services = JSON.parse(await readFile(resolve(root, 'content/service-pages.json'), 'utf8'));
 const serviceAreas = JSON.parse(await readFile(resolve(root, 'content/service-areas.json'), 'utf8'));
-const expectedRoutes = ['/', ...hubs.map(hub => hub.slug), ...services.map(service => service.slug), '/accessibility/', '/privacy/', '/terms/', '/about/', '/contact/', serviceAreas.slug, '/lp/custom-window-treatments/', '/lp/motorized-shades/'];
-requireThat(pages.size === expectedRoutes.length && expectedRoutes.every(route => pages.has(route)), `Expected ${expectedRoutes.length} routes including both campaign landing pages; found ${[...pages.keys()].join(', ')}`);
+const expectedRoutes = ['/', ...hubs.map(hub => hub.slug), ...services.map(service => service.slug), '/accessibility/', '/privacy/', '/terms/', '/about/', '/contact/', serviceAreas.slug];
+requireThat(pages.size === expectedRoutes.length && expectedRoutes.every(route => pages.has(route)), `Expected ${expectedRoutes.length} routes; found ${[...pages.keys()].join(', ')}`);
 for (const service of services) {
   const html = pages.get(service.slug)?.html || '';
   requireThat(html.includes('/services.css?v=service-editorial-1') && html.includes('"@type": "Service"'), `${service.slug}: service template or structured data missing`);
@@ -135,7 +132,6 @@ for (const html of [consultationHtml, installationHtml]) {
   requireThat(hero.includes('href="/contact/#appointment-form"'), 'Both service hero actions must lead to the central appointment form');
 }
 for (const [route, { html }] of pages) {
-  if (route.startsWith('/lp/')) continue;
   requireThat(html.includes('href="/services/consultation-measuring/"') && html.includes('href="/services/window-treatment-installation/"') && !/href="\/services\/window-treatment-installation\/#(?:measuring|installation)"/.test(html), `${route}: Consultation & Measuring and Installation need separate navigation destinations`);
   requireThat(/href="\/about\/"(?: aria-current="page")?>About<\/a>/.test(html), `${route}: About navigation missing`);
   requireThat(/href="\/contact\/"(?: aria-current="page")?>Contact<\/a>/.test(html), `${route}: Contact navigation missing`);
@@ -170,51 +166,6 @@ requireThat(isLeadForm(contactForm, 'contact'), 'Contact form must send leads to
 requireThat(contactForm.includes('autocomplete="postal-code"') && contactForm.includes('<select id="company-product"') && contactForm.includes('<textarea id="company-message"'), 'Contact form must include ZIP code, product interest and message');
 const appointmentOptions = contactForm.match(/<fieldset class="company-appointment-options">[\s\S]*?<\/fieldset>/)?.[0] || '';
 requireThat((appointmentOptions.match(/name="appointment-type"/g) || []).length === 2 && (appointmentOptions.match(/type="radio">/g) || []).length === 2 && !/\brequired\b|\bchecked\b|type="checkbox"/.test(appointmentOptions), 'Contact appointment choices must be one optional, unchecked radio group');
-const showroomArtwork = html => [...(html.match(/<section class="section about"[\s\S]*?<\/section>/)?.[0] || '').matchAll(/<img\b[^>]+src="\/?assets\/([^\"]+)"/g)].map(m => m[1]);
-const homeShowroomArtwork = showroomArtwork(pages.get('/')?.html || '');
-for (const route of ['/lp/custom-window-treatments/', '/lp/motorized-shades/']) {
-  const html = pages.get(route)?.html || '';
-  requireThat(JSON.stringify(showroomArtwork(html)) === JSON.stringify(homeShowroomArtwork), `${route}: preserve the approved Woodland Hills artwork`);
-  requireThat(!/<address\b|91364|Monday[–—-](?:Friday|Saturday)|openingHoursSpecification|streetAddress/.test(html), `${route}: omit the showroom address and walk-in hours from landing pages`);
-  requireThat(html.includes('<strong>Appointment Only</strong>') && html.includes('Fill the form to schedule a showroom appointment or free in-home consultation.'), `${route}: offer a showroom appointment or free in-home consultation through the form`);
-  requireThat(/<p class="landing-john-story">[^<]*installing window treatments[^<]*1995\.[^<]*<\/p>/.test(html), `${route}: restore the concise, verified story about John's installation experience and California store`);
-  requireThat(!html.includes('Come in to see fabrics and finishes'), `${route}: keep the restored showroom story concise`);
-  requireThat(html.includes('href="/landings.css?v=appointment-options-1"'), `${route}: scoped landing-page styles missing`);
-  const form = html.match(/<form class="landing-form"[\s\S]*?<\/form>/)?.[0] || '';
-  requireThat((form.match(/\bdisabled\b/g) || []).length === 6 && !/action=|data-netlify|type="submit"/.test(form), `${route}: do not accept leads before the form destination is confirmed`);
-  const landingAppointmentOptions = form.match(/<fieldset class="landing-appointment-options">[\s\S]*?<\/fieldset>/)?.[0] || '';
-  requireThat((landingAppointmentOptions.match(/name="appointment-type"/g) || []).length === 2 && (landingAppointmentOptions.match(/type="radio" disabled/g) || []).length === 2 && !/\brequired\b|\bchecked\b|type="checkbox"/.test(landingAppointmentOptions), `${route}: offer one optional, unchecked appointment radio group`);
-  requireThat(landingAppointmentOptions.includes('<legend>I’d like to schedule') && landingAppointmentOptions.includes('Free in-home consultation') && landingAppointmentOptions.includes('Showroom appointment') && landingAppointmentOptions.indexOf('value="in-home"') < landingAppointmentOptions.indexOf('value="showroom"'), `${route}: lead appointment choices with the free in-home consultation`);
-  if (/programmed operation|schedule (?:compatible )?shades/i.test(html)) requireThat(html.includes('The PowerView® App is required for programmed operation.'), `${route}: missing PowerView disclosure for programmed shade operation`);
-  const openingSection = html.match(/<main[^>]*>\s*(<section\b[\s\S]*?<\/section>)/)?.[1] || '';
-  requireThat(!openingSection.includes(form) && /<section class="reviews"[\s\S]*?<\/section>\s*<section class="section landing-products"[\s\S]*?<\/section>\s*<section class="section landing-benefits"[\s\S]*?<\/section>\s*<section class="section about"[\s\S]*?<\/section>\s*<section class="section linen landing-quote"[\s\S]*?<\/section>\s*<\/main>/.test(html) && !!form, `${route}: follow reviews with product images, outcomes, Woodland Hills and the final quote form`);
-  requireThat(html.includes('class="container landing-quote-grid"') && /<div class="landing-company-summary">[\s\S]*?<h2 id="company-summary-heading">Work with John Crawford\.<\/h2>[\s\S]*?<\/div>\s*<form class="landing-form"/.test(html), `${route}: place the John introduction beside the right-side form`);
-  requireThat((html.match(/<article class="landing-benefit">/g) || []).length === 3, `${route}: include three concise customer outcomes`);
-  const expectedService = route.includes('motorized-shades') ? 'Motorized Shades' : 'Custom Window Treatments';
-  requireThat(openingSection.includes(`<span class="landing-hero-title">${expectedService}</span> <span class="landing-hero-location">in Los Angeles &amp; Surrounding Areas</span>`), `${route}: identify the service and target area in the hero`);
-  requireThat(!/class="brand-bar"|class="brand-names"|class="alta-name"|hunter-douglas-gallery/.test(html), `${route}: omit the Hunter Douglas and Alta brand row`);
-  requireThat(openingSection.includes('id="hero-video"') && openingSection.includes('class="hero-video-toggle"'), `${route}: restore the website video with a pause control on both landing pages`);
-  const productOptions = html.match(/<section class="section landing-products"[\s\S]*?<\/section>/)?.[0] || '';
-  requireThat((productOptions.match(/<article class="product"/g) || []).length === 4 && !/<p\b|<a\b/.test(productOptions), `${route}: show four product images and names without descriptions or browsing links`);
-  const reviewSection = html.match(/<section class="reviews"[\s\S]*?<\/section>/)?.[0] || '';
-  requireThat(html.includes(reviewSection + '\n' + productOptions) && !!reviewSection && !!productOptions, `${route}: put product cards directly below Google reviews`);
-  requireThat((html.match(/<section\b/g) || []).length === 6 && !/id="(?:services|window-treatments|motorization)"/.test(html), `${route}: retain the focused hero, reviews, outcomes, John/form, image cards and illustrated appointment section`);
-  requireThat(!/class="main-navigation"|class="menu-toggle"|class="footer-nav"/.test(html), `${route}: browsing menus are outside the conversion-only brief`);
-  requireThat(!/<iframe\b/.test(html), `${route}: embedded maps must not provide an off-page exit`);
-  requireThat(!/class="[^"]*(?:faq-list|questions-grid)|id="questions"|href="#questions"/.test(html), `${route}: landing-page FAQs must be removed`);
-  const conversionContent = html.split('<dialog class="landing-info-dialog"')[0];
-  for (const match of conversionContent.matchAll(/<a\b[^>]*href="(#contact|tel:[^"]+)"[^>]*>([\s\S]*?)<\/a>/g)) {
-    const label = match[2].replace(/<[^>]*>/g, '').trim();
-    const showroomSection = html.match(/<section class="section about"[\s\S]*?<\/section>/)?.[0] || '';
-    const isAppointmentAction = match[1] === '#contact' && label === 'Schedule Appointment' && showroomSection.includes(match[0]);
-    requireThat(isAppointmentAction || label === (match[1] === '#contact' ? 'Get Free Quote' : 'Call Us'), `${route}: inconsistent conversion action ${label}`);
-  }
-  requireThat(/<button class="btn btn-primary" type="button" disabled>Get Free Quote<\/button>/.test(html), `${route}: form button must match Get Free Quote actions`);
-  for (const anchor of html.matchAll(/<a\b[^>]*href="([^"]+)"[^>]*>/g)) {
-    requireThat(['#main', '#contact', 'tel:+18188845464', '/accessibility/', '/privacy/', '/terms/'].includes(anchor[1]), `${route}: non-conversion link ${anchor[1]}`);
-  }
-  requireThat(html.includes('<dialog class="landing-info-dialog" id="landing-privacy-dialog"'), `${route}: missing the quote form's privacy summary dialog`);
-}
 // sitemap.xml lists exactly the indexable pages (scripts/build-sitemap.py), and robots.txt points to it.
 const sitemap = await readFile(resolve(dist, 'sitemap.xml'), 'utf8').catch(() => '');
 const listed = [...sitemap.matchAll(/<loc>https:\/\/www\.johncrawfordcompany\.com(\/[^<]*)<\/loc>/g)].map(match => match[1]).sort();

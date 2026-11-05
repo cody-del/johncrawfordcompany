@@ -30,7 +30,9 @@ const firstRule = path => rules.find(rule => matches(rule, path));
 for (const { from, to } of rules) {
   requireThat(from === from.toLowerCase(), `${from}: Netlify matching is case-sensitive; the old site uses lowercase URLs`);
   requireThat(!isPage(from.replace(/\/\*$/, '')), `${from}: is a page on the new site, so the rule would never apply`);
-  requireThat(to === '/' || (to.endsWith('/') && isPage(to)), `${from}: target ${to} is not a page in dist/`);
+  // The only off-site targets are the campaign pages on go.johncrawfordcompany.com.
+  const GO_PAGES = ['https://go.johncrawfordcompany.com/', 'https://go.johncrawfordcompany.com/motorized-shades/'];
+  requireThat(to === '/' || GO_PAGES.includes(to) || (to.endsWith('/') && isPage(to)), `${from}: target ${to} is not a page in dist/ or on go.johncrawfordcompany.com`);
   requireThat(!firstRule(to), `${from}: target ${to} is itself redirected (chain)`);
 }
 
