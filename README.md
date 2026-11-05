@@ -57,3 +57,16 @@ Repair, Commercial Window Treatments and Upholstery also have expanded editorial
 All pages retain `noindex, nofollow` and review canonical URLs. The current production domain has not been migrated. Individual collection and location pages remain separate future work. The five service pages are linked through the shared Services navigation. Consultation & Measuring and Installation have separate URLs and headings. Both emphasize a free in-home consultation with samples brought to the home and measurements taken there; their primary actions lead to the central contact form. The old installation-page #measuring link forwards to the consultation page. The client-requested upholstery photo placeholder remains on the homepage and upholstery preview page.
 
 Private intake records, transcripts, dealer policies, local credentials and QA artifacts are excluded from this repository.
+
+## Domain launch (redirects from the old dealer site)
+
+www.johncrawfordcompany.com currently points at the Hunter Douglas dealer site (`www` CNAME `10044210.hd-website.com`; the domain and DNS are at GoDaddy). `launch/legacy-redirects.txt` maps every old URL in `launch/old-site-urls.txt` (the 46 sitemap URLs plus Contact Us, Promotions, Accessibility and Contact from its navigation) to the closest page here with a permanent (301) redirect. Old product pages go to their product hub; nothing reuses Hunter Douglas's product text. The map is **switched off**: Netlify only applies it once it is copied to `dist/_redirects`. `node scripts/check-redirects.mjs` (part of `npm run check`) requires every old URL to be a page here or covered by a rule, every target to be a page in `dist/`, no redirect chains, lowercase sources, and `dist/_redirects`, once it exists, to be an exact copy of the map.
+
+Launch order, with John's OK:
+
+1. Before the move: verify a Search Console **Domain** property for johncrawfordcompany.com through a DNS TXT record at GoDaddy (this doesn't affect the current site) and note the old site's top pages.
+2. Switch indexing on: replace `noindex, nofollow` with indexable robots tags and point `BASE` (canonical URLs) in `scripts/build-*.py` at `https://www.johncrawfordcompany.com`, then update the checks that require review indexing (`check-site.mjs`, `check-hubs.mjs`).
+3. `cp launch/legacy-redirects.txt dist/_redirects`, run `npm run check`, merge.
+4. Add www.johncrawfordcompany.com (primary) and the apex to the Netlify site, then change the GoDaddy DNS: `www` CNAME to the Netlify site and the apex to Netlify's load balancer.
+5. Spot-check a few old URLs (`curl -sI https://www.johncrawfordcompany.com/hunter-douglas/shades/cellular-shades/duette` should return 301 to `/shades/`), submit the new sitemap in Search Console, and update the website link on the Google Business Profile.
+6. For two to four weeks, watch Search Console's Pages report for 404s and add rules for any old URL this list missed.
