@@ -11,8 +11,8 @@ The live site is https://www.johncrawfordcompany.com/, served by the Netlify sit
 - `/about/`, `/contact/`: company story and contact form design.
 - `/services/blind-shade-repair/`, `/services/consultation-measuring/`, `/services/window-treatment-installation/`, `/services/commercial-window-treatments/`, `/upholstery/`: service pages based on the call and intake.
 - `/accessibility/`, `/privacy/`, `/terms/`: website assistance, privacy information and website terms of service.
-- `/lp/custom-window-treatments/`: campaign landing page for blinds, shades, shutters, drapery and motorization.
-- `/lp/motorized-shades/`: campaign landing page for motorized and automated shade searches.
+
+The campaign landing pages are not part of this site: they live at https://go.johncrawfordcompany.com/ and `/motorized-shades/` (`cody-del/johncrawfordlanding`). Their old review copies here, `/lp/custom-window-treatments/` and `/lp/motorized-shades/`, were removed on November 6, 2026; `dist/_redirects` sends those addresses (and anything under `/lp/`) to the go. pages with permanent (301) redirects.
 
 ## Run locally
 
@@ -34,8 +34,6 @@ Open http://127.0.0.1:4317/.
 - `scripts/check-customer-copy.py`: blocks recognizable internal writer notes and unfinished copy before publication.
 
 Run `npm run build:company` after changing public website content to regenerate hubs, company pages and services, then `npm run check`. Generated HTML is committed so all important content is available without JavaScript.
-
-Run `python3 scripts/build-landings.py` to rebuild the campaign pages with the approved branding. Both use taller responsive video heroes, customer reviews, four product image/name cards directly below the reviews, three concise benefits in a contained linen panel with a subtle magenta accent, the illustrated Woodland Hills appointment section, and an introduction to John beside the quote form as the final main section. The appointment copy offers a showroom appointment or free in-home consultation. The desktop form is on the right: a full-width name field followed by phone/email together; all fields stack on phones. An optional appointment radio group leads with Free in-home consultation, followed by Showroom appointment, with neither selected by default. The showroom appointment notice, instruction and CTA are grouped beneath a fine divider with a small calendar icon. The verified paragraph about John's installation background and his California store opening in 1995 is restored beneath the Woodland Hills heading. Visits remain appointment only; landing pages omit the address and walk-in hours. There are no browsing menus, FAQs or vendor brand rows; the only off-page links are the footer's Accessibility, Privacy Policy and Terms of Service pages, matching the live landing pages. The quote form's privacy notice opens a short same-page summary that links to the full policy. The campaign forms here remain disabled review copies; the live landing pages, whose forms send to GHL, are in `cody-del/johncrawfordlanding`.
 
 `netlify.toml` publishes `dist` and runs `npm run check` before upload. The Netlify project is connected to `main` for continuous deployment. Product images are labeled by collection and are not presented as John Crawford installations.
 
@@ -91,7 +89,7 @@ Repair, Commercial Window Treatments and Upholstery also have expanded editorial
 
 ## Indexing
 
-Every page except the `/lp/` review copies is indexable (`index, follow, max-image-preview:large`) with a canonical URL on https://www.johncrawfordcompany.com, set by `BASE` in `scripts/build-*.py` and by hand in `dist/index.html`. The `/lp/` copies stay `noindex, nofollow`, because the live campaign pages are on go.johncrawfordcompany.com (`cody-del/johncrawfordlanding`). `scripts/build-sitemap.py`, run last by `npm run build:company`, writes `dist/sitemap.xml` from the indexable pages and `dist/robots.txt`; `check-hubs.mjs` fails if the sitemap and the pages disagree. Individual collection and location pages remain separate future work. The five service pages are linked through the shared Services navigation. Consultation & Measuring and Installation have separate URLs and headings. Both emphasize a free in-home consultation with samples brought to the home and measurements taken there; their primary actions lead to the central contact form. The old installation-page #measuring link forwards to the consultation page. The client-requested upholstery photo placeholder remains on the homepage and upholstery preview page.
+Every page is indexable (`index, follow, max-image-preview:large`) with a canonical URL on https://www.johncrawfordcompany.com, set by `BASE` in `scripts/build-*.py` and by hand in `dist/index.html`. `scripts/build-sitemap.py`, run last by `npm run build:company`, writes `dist/sitemap.xml` from the indexable pages and `dist/robots.txt`; `check-hubs.mjs` fails if the sitemap and the pages disagree. Individual collection and location pages remain separate future work. The five service pages are linked through the shared Services navigation. Consultation & Measuring and Installation have separate URLs and headings. Both emphasize a free in-home consultation with samples brought to the home and measurements taken there; their primary actions lead to the central contact form. The old installation-page #measuring link forwards to the consultation page. The client-requested upholstery photo placeholder remains on the homepage and upholstery preview page.
 
 Private intake records, transcripts, dealer policies, local credentials and QA artifacts are excluded from this repository.
 

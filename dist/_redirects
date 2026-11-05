@@ -1,7 +1,13 @@
 # Old Hunter Douglas dealer-site URLs → the new John Crawford Company site.
-# NOT LIVE. At launch, copy this file to dist/_redirects (see README "Domain launch").
+# LIVE: dist/_redirects is an exact copy of this file (see README "Domain launch").
 # Netlify matches each `from` with or without a trailing slash; matching is case-sensitive, and the old site uses lowercase only.
 # Specific rules come first; Netlify uses the first rule that matches.
+
+# The campaign pages' old review copies on this site → the live ones on go.johncrawfordcompany.com
+# (cody-del/johncrawfordlanding). Netlify keeps query strings such as gclid and utm_*.
+/lp/custom-window-treatments      https://go.johncrawfordcompany.com/                    301
+/lp/motorized-shades              https://go.johncrawfordcompany.com/motorized-shades/   301
+/lp/*                             https://go.johncrawfordcompany.com/                    301
 
 # Company and policy pages (/, /about, /accessibility and /contact keep their addresses)
 /contact-us                       /contact/                                  301

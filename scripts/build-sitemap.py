@@ -1,7 +1,6 @@
 """Write dist/sitemap.xml and dist/robots.txt from the indexable pages in dist/.
 
-A page is listed when its robots tag allows indexing, so the /lp/ review copies
-(noindex; the live campaign pages are on go.johncrawfordcompany.com) stay out.
+A page is listed when its robots tag allows indexing.
 build-company-pages.py runs this last; scripts/check-hubs.mjs checks the result.
 """
 from pathlib import Path
