@@ -7,7 +7,7 @@ import re
 ROOT = Path(__file__).resolve().parents[1]
 DIST = ROOT / 'dist'
 HOME = (DIST / 'index.html').read_text()
-BASE = 'https://john-crawford-homepage.codytodd.chatgpt.site'
+BASE = 'https://www.johncrawfordcompany.com'
 
 
 def e(value):
