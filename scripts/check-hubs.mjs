@@ -134,9 +134,12 @@ for (const html of [consultationHtml, installationHtml]) {
 for (const [route, { html }] of pages) {
   requireThat(html.includes('href="/services/consultation-measuring/"') && html.includes('href="/services/window-treatment-installation/"') && !/href="\/services\/window-treatment-installation\/#(?:measuring|installation)"/.test(html), `${route}: Consultation & Measuring and Installation need separate navigation destinations`);
   requireThat(/href="\/about\/"(?: aria-current="page")?>About<\/a>/.test(html), `${route}: About navigation missing`);
-  requireThat(/href="\/contact\/"(?: aria-current="page")?>Contact<\/a>/.test(html), `${route}: Contact navigation missing`);
   const header = html.match(/<header class="site-header">[\s\S]*?<\/header>/)?.[0] || '';
   const footer = html.match(/<footer class="site-footer"[\s\S]*?<\/footer>/)?.[0] || '';
+  const navigation = header.match(/<nav class="main-navigation"[\s\S]*?<\/nav>/)?.[0] || '';
+  requireThat(!/>Contact<\/a>/.test(navigation), `${route}: omit the duplicate Contact navigation link`);
+  requireThat(/<a class="btn btn-primary header-cta" href="\/contact\/"(?: aria-current="page")?>Request a consultation<\/a>/.test(header), `${route}: the header consultation button must open the Contact page`);
+  requireThat(header.includes('class="header-call"') && header.includes('<span class="sr-only">Call now</span>') && header.includes('href="tel:+18188845464"'), `${route}: include the labeled phone disclosure and correct tap-to-call number`);
   requireThat(header.includes('href="/service-areas/"') && footer.includes('href="/service-areas/"'), `${route}: Service Areas must be reachable from the header and footer`);
   for (const [label, destinations] of [['Window Treatments', hubs], ['Services', services]]) {
     const dropdown = [...header.matchAll(/<details\b[^>]*>[\s\S]*?<\/details>/g)].find(match => match[0].includes(`<summary>${label}</summary>`))?.[0] || '';

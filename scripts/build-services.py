@@ -62,7 +62,6 @@ def head(page):
     html = html.replace('</head>', '<link rel="stylesheet" href="/services.css?v=service-editorial-1">\n</head>')
     if page['id'] == 'repair':
         html = html.replace('/services.css?v=service-editorial-1', '/services.css?v=service-editorial-1-repair-fields-20261105')
-        html = html.replace('/app.js?v=company-pages-1', '/app.js?v=repair-fields-20261105')
     if page['id'] == 'upholstery':
         html = html.replace('/services.css?v=service-editorial-1', '/services.css?v=service-editorial-1-upholstery-projects-2')
     def service_schema(match):
