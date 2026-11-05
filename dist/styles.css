@@ -96,7 +96,7 @@ address { font-style: normal; }
 .ornament-medallion { flex: 0 0 56px; display: grid; place-items: center; width: 56px; height: 56px; padding: 6px; border-radius: 50%; background: var(--white); }
 .ornament-divider img { width: 44px; height: 44px; }
 .reviews-layout { display: grid; grid-template-columns: 148px minmax(0, 1fr); gap: 56px; align-items: center; padding-right: 46px; }
-.reviews-summary { display: flex; flex-direction: column; align-items: center; margin-bottom: 32px; padding: 22px 12px; text-align: center; background: white; border: 1px solid var(--line); border-radius: 12px; box-shadow: 0 4px 16px #5c371f08; }
+.reviews-summary { display: flex; flex-direction: column; align-items: center; margin-bottom: 32px; padding: 22px 12px; text-align: center; }
 .google-mark { width: 40px; height: 40px; margin-bottom: 10px; }
 .google-label { font-family: var(--body); font-size: 25px; font-weight: 600; line-height: 1.2; letter-spacing: -.04em; color: #3c4043; }
 .google-review-caption { margin-top: 4px; font-size: 12px; line-height: 1.4; color: #5e5e5e; }
@@ -334,7 +334,7 @@ address { font-style: normal; }
   .alta-name { font-size: 26px; }
   .reviews { padding-block: 40px; }
   .reviews-layout { grid-template-columns: minmax(0, 1fr); gap: 20px; padding-right: 0; }
-  .reviews-summary { display: grid; grid-template-columns: 40px minmax(0, 1fr); column-gap: 14px; row-gap: 5px; margin: 0 14px; padding: 14px 16px; text-align: left; }
+  .reviews-summary { display: grid; grid-template-columns: 40px max-content; justify-self: center; column-gap: 14px; row-gap: 5px; margin: 0; padding: 14px 0; text-align: left; }
   .google-mark { grid-row: 1 / 3; margin-bottom: 0; }
   .google-label { font-size: 24px; }
   .google-review-caption { margin-top: 2px; }
