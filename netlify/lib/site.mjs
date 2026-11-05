@@ -51,9 +51,9 @@ export const FORMS = {
     tags: ['website-repair-request'],
     pages: {},
     fields: [
-      {name: 'problem', label: 'What’s broken', max: 3000, required: true},
-      {name: 'purchased-when', label: 'Bought', max: 80},
-      {name: 'purchased-from', label: 'Bought from', max: 160},
+      {name: 'problem', label: 'What’s broken', max: 3000, required: true, customFieldId: 'OfVLHC3hwaE9autFcPpz'},
+      {name: 'purchased-when', label: 'Bought', max: 10, format: 'date', customFieldId: 'RuaSSSqBjgysltRF496w'},
+      {name: 'purchased-from', label: 'Bought from', max: 160, customFieldId: 'mPeAbxuP1EXJ5FRkmD7K'},
       ZIP,
     ],
   },

@@ -41,7 +41,7 @@ Run `npm run build:company` after changing public website content to regenerate 
 
 The product hub, contact and repair forms post to `/api/lead` (`netlify/functions/lead.mjs`, with validation and GHL requests in `netlify/lib/lead.mjs`). The server upserts the contact and saves a complete submission snapshot in the existing **Latest inquiry details** contact field (`contact.latest_inquiry_details`, ID `INk19lHx5XU2HQQhdFNQ`). It then saves a contact note. The **Note Added** workflow uses that note for the shared welcome email and the inquiry-specific internal email. Tags label the request; adding tags or using Contact Created does not replace the saved-note handoff.
 
-Netlify uses `GHL_PRIVATE_TOKEN` and `GHL_LOCATION_ID`. The John Crawford location is `90BPGKl4VhW1sRil5f6b`. Optional repair uploads also require `GHL_REPAIR_PHOTO_FIELD_ID` (the existing private **Repair request photos** field, `OFy6KwIA4iCqESEDU8gQ`) and `forms.write` on the location token. Reuse these fields; do not create separate repair-answer fields.
+Netlify uses `GHL_PRIVATE_TOKEN` and `GHL_LOCATION_ID`. The John Crawford location is `90BPGKl4VhW1sRil5f6b`. Optional repair uploads also require `GHL_REPAIR_PHOTO_FIELD_ID` (the existing private **Repair request photos** field, `OFy6KwIA4iCqESEDU8gQ`) and `forms.write` on the location token. Reuse the verified fields below; do not create duplicates.
 
 ### Contact form mapping — verified November 5, 2026
 
@@ -65,10 +65,12 @@ Every submitted answer also remains in **Latest inquiry details** and the saved 
 | `phone` | Yes | Standard phone normalized to `+1XXXXXXXXXX`; inquiry details and note |
 | `email` | Yes | Standard email; inquiry details and note |
 | `postal-code` | Yes | Standard five-digit `postalCode`; inquiry details and note |
-| `problem` | Yes | Inquiry details and note, labeled `What’s broken` |
-| `purchased-when` | No | Inquiry details and note, labeled `Bought` |
-| `purchased-from` | No | Inquiry details and note, labeled `Bought from` |
+| `problem` | Yes | What’s broken? — multi line, `contact.whats_broken`, ID `OfVLHC3hwaE9autFcPpz`; inquiry details and note, labeled `What’s broken` |
+| `purchased-when` | No | When did you buy the product? — date picker, `contact.when_did_you_buy_the_product`, ID `RuaSSSqBjgysltRF496w`; inquiry details and note, labeled `Bought` |
+| `purchased-from` | No | Where did you buy it? — single line, `contact.where_did_you_buy_it`, ID `mPeAbxuP1EXJ5FRkmD7K`; inquiry details and note, labeled `Bought from` |
 | `photos` | No | Existing private Repair request photos file field |
+
+These three repair-answer fields were added in GHL by the user and verified in the Contact object on November 5, 2026. The website reuses their exact IDs. The optional purchase-date input uses a native date picker and sends a validated `YYYY-MM-DD` value without timezone conversion. Blank optional purchase answers omit those field updates rather than clearing earlier contact values. The form labels match the GHL questions; no new CRM fields are created by the integration.
 
 Repair routing stays `form = repair`, `source = Website: Repair page`, with both `website-lead` and `website-repair-request` tags. First upsert the contact and inquiry details, then finish optional photo processing, then create the contact note. Its first two lines must be exactly:
 

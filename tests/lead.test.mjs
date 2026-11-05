@@ -96,7 +96,32 @@ test('a repair lead skips blank optional answers', async () => {
   assert.equal(calls[0].body.source, 'Website: Repair page');
   assert.deepEqual(calls[0].body.tags, ['website-lead', 'website-repair-request']);
   assert.equal(calls[1].body.body, 'John Crawford form submission: Website repair request\nSource: Website: Repair page\nName: Ada Lovelace\nPhone: +18185550142\nEmail: ada@example.com\nWhat’s broken: Cord snapped on a cellular shade.\nBought from: Costco\nZIP code: 91367\nPhotos selected: 0');
-  assert.deepEqual(calls[0].body.customFields, [{id: 'INk19lHx5XU2HQQhdFNQ', fieldValue: calls[1].body.body}]);
+  assert.deepEqual(calls[0].body.customFields, [
+    {id: 'INk19lHx5XU2HQQhdFNQ', fieldValue: calls[1].body.body},
+    {id: 'OfVLHC3hwaE9autFcPpz', fieldValue: 'Cord snapped on a cellular shade.'},
+    {id: 'mPeAbxuP1EXJ5FRkmD7K', fieldValue: 'Costco'},
+  ]);
+});
+
+test('repair purchase dates stay date-only and invalid calendar dates never reach GHL', async () => {
+  for (const value of ['2020', 'yesterday', '2023-02-29', '2024-02-30', '2024-13-01', '2024-2-9']) {
+    const {calls, fetcher} = ghl();
+    assert.equal((await submitLead(repair({'purchased-when': value}), {fetcher, env})).status, 400, value);
+    assert.equal(calls.length, 0);
+  }
+  const {calls, fetcher} = ghl();
+  assert.equal((await submitLead(repair({'purchased-when': '2024-02-29'}), {fetcher, env})).status, 200);
+  assert.deepEqual(calls[0].body.customFields.find(field => field.id === 'RuaSSSqBjgysltRF496w'), {
+    id: 'RuaSSSqBjgysltRF496w', fieldValue: '2024-02-29',
+  });
+  assert.match(calls[1].body.body, /Bought: 2024-02-29\n/);
+});
+
+test('blank optional repair answers do not clear existing purchase fields', async () => {
+  const {calls, fetcher} = ghl();
+  assert.equal((await submitLead(repair({'purchased-when': '', 'purchased-from': ''}), {fetcher, env})).status, 200);
+  assert.deepEqual(calls[0].body.customFields.map(field => field.id), ['INk19lHx5XU2HQQhdFNQ', 'OfVLHC3hwaE9autFcPpz']);
+  assert.doesNotMatch(calls[1].body.body, /Bought/);
 });
 
 test('a product-hub lead names its page and always writes the notification note', async () => {
@@ -165,6 +190,8 @@ test('every website form is live and matches what site.mjs expects', () => {
         const input = form.match(new RegExp(`<input\\b[^>]*name="${name}"[^>]*>`))?.[0];
         assert.ok(input && !/\brequired\b/.test(input), `${route}: ${name} must remain optional`);
       }
+      assert.match(form, /id="repair-purchased-when"[^>]*type="date"[^>]*aria-describedby="repair-date-help"/);
+      assert.match(form, /id="repair-date-help"[^>]*>Purchase date is optional/);
     }
     for (const name of ['name', 'phone', 'email', 'website', ...names]) assert.match(form, new RegExp(`name="${name}"`), `${route}: ${name}`);
   }

@@ -7,7 +7,7 @@ import {MAX_REPAIR_PHOTO_BYTES, REPAIR_PHOTO_FALLBACK, validateRepairPhotos, rep
 const env = {GHL_PRIVATE_TOKEN: 'pit-test', GHL_LOCATION_ID: 'loc-test', GHL_REPAIR_PHOTO_FIELD_ID: 'repair-files-test'};
 const data = {
   form: 'repair', page: '/services/blind-shade-repair/', name: 'Repair Test', phone: '8185550142', email: 'repair@example.com',
-  website: '', elapsedMs: MIN_FILL_MS + 100, problem: 'Shade will not lift.', 'purchased-when': '2020', 'purchased-from': 'Original dealer', 'postal-code': '91364',
+  website: '', elapsedMs: MIN_FILL_MS + 100, problem: 'Shade will not lift.', 'purchased-when': '2020-06-15', 'purchased-from': 'Original dealer', 'postal-code': '91364',
 };
 const png = () => new File([Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+a8gAAAABJRU5ErkJggg==', 'base64')], 'photo.png', {type: 'image/png'});
 function mockGhl({uploadStatus = 200, throwUpload = false} = {}) {
@@ -40,10 +40,16 @@ test('repair details, both lead tags and multiple photos reach the same GHL cont
     'John Crawford form submission: Website repair request',
     'Source: Website: Repair page',
     'Name: Repair Test', 'Phone: +18185550142', 'Email: repair@example.com',
-    'What’s broken: Shade will not lift.', 'Bought: 2020', 'Bought from: Original dealer',
+    'What’s broken: Shade will not lift.', 'Bought: 2020-06-15', 'Bought from: Original dealer',
     'ZIP code: 91364', 'Photos selected: 2',
   ].join('\n');
-  assert.deepEqual(contact.customFields, [{id: 'INk19lHx5XU2HQQhdFNQ', fieldValue: expectedDetails}]);
+  assert.deepEqual(contact.customFields, [
+    {id: 'INk19lHx5XU2HQQhdFNQ', fieldValue: expectedDetails},
+    {id: 'OfVLHC3hwaE9autFcPpz', fieldValue: 'Shade will not lift.'},
+    {id: 'RuaSSSqBjgysltRF496w', fieldValue: '2020-06-15'},
+    {id: 'mPeAbxuP1EXJ5FRkmD7K', fieldValue: 'Original dealer'},
+  ]);
+  assert.equal(new Set(contact.customFields.map(field => field.id)).size, 4);
   const upload = calls[1];
   const url = new URL(upload.url);
   assert.equal(url.origin, GHL_API);

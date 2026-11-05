@@ -61,8 +61,8 @@ def head(page):
     html = html.replace(f'company-page--{page["name"].lower()}', f'service-page service-page--{page["id"]}')
     html = html.replace('</head>', '<link rel="stylesheet" href="/services.css?v=service-editorial-1">\n</head>')
     if page['id'] == 'repair':
-        html = html.replace('/services.css?v=service-editorial-1', '/services.css?v=service-editorial-1-repair-upload-1')
-        html = html.replace('/app.js?v=company-pages-1', '/app.js?v=repair-upload-1')
+        html = html.replace('/services.css?v=service-editorial-1', '/services.css?v=service-editorial-1-repair-fields-20261105')
+        html = html.replace('/app.js?v=company-pages-1', '/app.js?v=repair-fields-20261105')
     if page['id'] == 'upholstery':
         html = html.replace('/services.css?v=service-editorial-1', '/services.css?v=service-editorial-1-upholstery-projects-2')
     def service_schema(match):
@@ -98,9 +98,10 @@ def repair_form():
     return '''<form class="hub-consultation-form service-repair-form" id="repair-inquiry" data-lead-form="repair" aria-labelledby="feature-heading" aria-describedby="repair-form-notice" novalidate>
       <div class="hub-form-fields">
         <div class="repair-form-row">
-          <div class="hub-form-field"><label for="repair-purchased-when">When did you buy the product?</label><input id="repair-purchased-when" name="purchased-when" type="text" autocomplete="off" maxlength="80" placeholder="Approximate date"></div>
+          <div class="hub-form-field"><label for="repair-purchased-when">When did you buy the product?</label><input id="repair-purchased-when" name="purchased-when" type="date" autocomplete="off" aria-describedby="repair-date-help"></div>
           <div class="hub-form-field"><label for="repair-purchased-from">Where did you buy it?</label><input id="repair-purchased-from" name="purchased-from" type="text" autocomplete="off" maxlength="160" placeholder="Store or company"></div>
         </div>
+        <p id="repair-date-help" class="repair-date-help">Purchase date is optional. Leave it blank if you’re not sure.</p>
         <div class="hub-form-field"><label for="repair-problem">What’s broken?</label><textarea id="repair-problem" name="problem" rows="3" maxlength="3000" required></textarea></div>
         <div class="hub-form-field"><label for="repair-name">Full name</label><input id="repair-name" name="name" type="text" autocomplete="name" maxlength="120" required></div>
         <div class="repair-form-row">

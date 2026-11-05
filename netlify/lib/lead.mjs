@@ -49,6 +49,10 @@ export async function submitLead(data, {fetcher = fetch, rateLimited = () => fal
     }
     if (value.length > field.max || (field.options && !Object.hasOwn(field.options, value))) return fail(400, 'Please check your details.');
     if (field.pattern && !field.pattern.test(value)) return fail(400, field.error);
+    if (field.format === 'date' && (!/^\d{4}-\d{2}-\d{2}$/.test(value)
+      || !Number.isFinite(Date.parse(value)) || new Date(value).toISOString().slice(0, 10) !== value)) {
+      return fail(400, 'Please enter a valid purchase date or leave it blank.');
+    }
     answers.push({field, value});
   }
   const photoError = await validateRepairPhotos(photos);

@@ -205,6 +205,7 @@ document.querySelectorAll('form[data-lead-form]').forEach(form => {
       if ([...field.files].some(file => file.size > 20 * 1024 * 1024)) return 'Please choose photos smaller than 20 MB each.';
       return '';
     }
+    if (field.type === 'date' && !field.validity.valid) return 'Please enter a valid purchase date or leave it blank.';
     const value = field.value.trim();
     if (!value) return field.required ? 'Please complete the ' + field.labels[0].textContent.toLowerCase() + ' field.' : '';
     if (field.type === 'email' && !field.validity.valid) return 'Please enter a valid email address.';
