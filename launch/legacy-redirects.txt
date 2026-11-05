@@ -1,0 +1,35 @@
+# Old Hunter Douglas dealer-site URLs → the new John Crawford Company site.
+# NOT LIVE. At launch, copy this file to dist/_redirects (see README "Domain launch").
+# Netlify matches each `from` with or without a trailing slash; matching is case-sensitive, and the old site uses lowercase only.
+# Specific rules come first; Netlify uses the first rule that matches.
+
+# Company and policy pages (/, /about, /accessibility and /contact keep their addresses)
+/contact-us                       /contact/                                  301
+/privacy-policy                   /privacy/                                  301
+/terms-of-use                     /terms/                                    301
+/promotions                       /contact/                                  301
+
+# Services and other products
+/more-products-services/services/window-covering-measuring-and-installations  /services/window-treatment-installation/  301
+/more-products-services/services/upholstery                     /upholstery/          301
+/more-products-services/products/motorized-window-coverings     /motorized-shades/    301
+/more-products-services/products/outdoor-solar-shades           /shades/              301
+/more-products-services/products/custom-bedding                 /drapery/             301
+/more-products-services/products/drapery-hardware               /drapery/             301
+/more-products-services/products/drapery-and-valances           /drapery/             301
+/more-products-services/products/fabrics                        /drapery/             301
+/more-products-services/products/window-top-treatments          /drapery/             301
+/more-products-services/*                                       /                     301
+
+# Hunter Douglas product pages → product hubs
+/hunter-douglas/drapery/woven-wood-shades   /shades/     301
+/hunter-douglas/shades                      /shades/     301
+/hunter-douglas/shades/*                    /shades/     301
+/hunter-douglas/blinds                      /blinds/     301
+/hunter-douglas/blinds/*                    /blinds/     301
+/hunter-douglas/shutters                    /shutters/   301
+/hunter-douglas/shutters/*                  /shutters/   301
+/hunter-douglas/drapery                     /drapery/    301
+/hunter-douglas/drapery/*                   /drapery/    301
+/hunter-douglas                             /            301
+/hunter-douglas/*                           /            301
