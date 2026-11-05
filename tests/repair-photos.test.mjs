@@ -102,8 +102,13 @@ test('multipart uploads retain origin protection and refuse oversized or non-rep
   assert.equal((await handler(request('https://other.example', new FormData()))).status, 403);
   const fields = new FormData(); fields.append('form', 'contact'); fields.append('elapsedMs', '4000'); fields.append('photos', png());
   assert.equal((await handler(request('https://example.com', fields))).status, 400);
-  const big = new FormData(); big.append('photos', new Blob([new Uint8Array(4 * 1024 * 1024)]), 'big.jpg');
-  assert.equal((await handler(request('https://example.com', big))).status, 413);
+  // A byte-backed request exercises the streaming limit without Node 24's
+  // FormData/Blob producer continuing to enqueue after reader.cancel().
+  const oversized = new Request('https://example.com/api/lead', {
+    method: 'POST', headers: {origin: 'https://example.com', 'content-type': 'multipart/form-data; boundary=oversized-test'},
+    body: new Uint8Array(4 * 1024 * 1024 + 1),
+  });
+  assert.equal((await handler(oversized)).status, 413);
   assert.equal(calls, 0);
 });
 
