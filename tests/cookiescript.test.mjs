@@ -52,3 +52,28 @@ test('the Lead event fires only after a confirmed lead, without contact details'
   assert.ok(app.indexOf("fbq('track', 'Lead')") > app.indexOf("Thank you. We received your request"), 'Lead must follow the confirmed thank-you');
 });
 
+
+// GA4 (G-H1RC8T47T3) also only runs through CookieScript, after the visitor allows Performance
+// cookies, and only on the production host so previews and the netlify.app address send nothing.
+const GA_OPEN = '<script type="text/plain" data-cookiescript="accepted" data-cookiecategory="performance">';
+
+test('GA4 is consent-gated, after CookieScript, production-only and loaded once per page', () => {
+  let withGa = 0;
+  for (const file of pages(dist)) {
+    const html = readFileSync(file, 'utf8');
+    assert.equal(html.split("gtag('config','G-H1RC8T47T3')").length - 1, 1, `${file}: GA4 config must appear exactly once`);
+    assert.doesNotMatch(html, /<script[^>]*src="https:\/\/www\.googletagmanager\.com\/gtag\/js/, `${file}: gtag.js must not load outside CookieScript`);
+    const ga = html.indexOf(GA_OPEN);
+    assert.ok(ga > html.indexOf(TAG) && ga < html.indexOf('</head>'), `${file}: GA4 must be gated and come after CookieScript in <head>`);
+    assert.ok(html.slice(ga).startsWith(GA_OPEN + "if(location.hostname==='www.johncrawfordcompany.com')"), `${file}: GA4 must check the production host first`);
+    withGa++;
+  }
+  assert.ok(withGa > 0);
+});
+
+test('generate_lead fires only after a confirmed lead, without contact details', () => {
+  const app = readFileSync(new URL('../dist/app.js', import.meta.url), 'utf8');
+  const calls = app.match(/gtag\('event', 'generate_lead'[^)]*\)/g) || [];
+  assert.deepEqual(calls, ["gtag('event', 'generate_lead')"]);
+  assert.ok(app.indexOf("gtag('event', 'generate_lead')") > app.indexOf("Thank you. We received your request"), 'generate_lead must follow the confirmed thank-you');
+});
