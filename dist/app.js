@@ -335,6 +335,9 @@ document.querySelectorAll('form[data-lead-form]').forEach(form => {
       // Meta Pixel lead, only for a lead GHL confirmed and only if the visitor allowed Targeting cookies
       // (otherwise CookieScript never loaded the pixel and fbq doesn't exist). No contact details are sent.
       try { if (typeof fbq === 'function') fbq('track', 'Lead'); } catch {}
+      // GA4 lead, same rule: only for a lead GHL confirmed, only if the visitor allowed Performance cookies
+      // (gtag exists only on www.johncrawfordcompany.com after consent). No contact details are sent.
+      try { if (typeof gtag === 'function') gtag('event', 'generate_lead'); } catch {}
     } catch (error) {
       show(error.name === 'TimeoutError' || error instanceof TypeError || error instanceof SyntaxError ? LEAD_CALL_US : error.message, true);
     } finally {
