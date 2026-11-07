@@ -16,14 +16,15 @@ The campaign landing pages are not part of this site: they live at https://go.jo
 
 ## Run locally
 
-No frontend dependency installation or framework build is required. Checks use Node.js and Python 3's standard library.
+There is no framework build. The checks use Node.js and Python 3's standard library; the publish step needs one dev dependency, esbuild, to minify the CSS and JavaScript.
 
 ```sh
-npm run check
-npm run preview
+npm ci
+npm run check     # checks and tests on dist/
+npm run preview   # serves dist/ (readable files) at http://127.0.0.1:4317/
+npm run build     # checks, then writes _site/ (what Netlify publishes)
+npm run preview:site  # serves _site/ (minified files) at http://127.0.0.1:4318/
 ```
-
-Open http://127.0.0.1:4317/.
 
 ## Source and publishing
 
@@ -35,7 +36,7 @@ Open http://127.0.0.1:4317/.
 
 Run `npm run build:company` after changing public website content to regenerate hubs, company pages and services, then `npm run check`. Generated HTML is committed so all important content is available without JavaScript.
 
-`netlify.toml` publishes `dist` and runs `npm run check` before upload. The Netlify project is connected to `main` for continuous deployment. Product images are labeled by collection and are not presented as John Crawford installations.
+`netlify.toml` runs `npm run build` and publishes `_site`. That build runs `npm run check`, then `scripts/minify-site.mjs` copies `dist/` to `_site/` and minifies every `.css` and `.js` file there with esbuild (same file names and `?v=` addresses; HTML, images and `_redirects` are copied unchanged). Keep editing the readable files in `dist/`; `_site/` is generated and ignored by git. `tests/minify.test.mjs` checks that the minified files keep their globals, form endpoints, Turnstile key and Lead/GA4 events. The Netlify project is connected to `main` for continuous deployment. Product images are labeled by collection and are not presented as John Crawford installations.
 
 The shared header uses **Request a consultation** as its Contact-page link, without a duplicate Contact navigation item. Its circular **Call now** control reveals the phone number as a tap-to-call link; Escape and clicking outside close it. The homepage hero and mobile consultation action also link to `/contact/`.
 

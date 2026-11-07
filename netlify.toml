@@ -1,6 +1,8 @@
+# dist/ holds the readable source files. `npm run build` runs the checks, then copies dist/ to
+# _site/ with every .css and .js file minified (scripts/minify-site.mjs); Netlify publishes _site/.
 [build]
-  command = "npm run check"
-  publish = "dist"
+  command = "npm run build"
+  publish = "_site"
 
 [build.environment]
   NODE_VERSION = "22"
