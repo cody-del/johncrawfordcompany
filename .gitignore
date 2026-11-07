@@ -4,3 +4,4 @@ node_modules/
 .openai/workflow-state/
 *.tar.gz
 qa/
+_site/

@@ -350,16 +350,31 @@ for page in PAGES:
 
 accessibility = {'name':'Accessibility', 'slug':'/accessibility/',
     'title_tag':'Accessibility | John Crawford Company',
-    'meta_description':'Need help using the John Crawford Company website? Call (818) 884-5464 or email john@johncrawford.com for help with product information or consultation requests.'}
+    'meta_description':'Our accessibility statement: the WCAG 2.1 Level AA goal for this website and how to get help or report a problem. Call (818) 884-5464 or email john@johncrawford.com.'}
 header, footer, mobile = partials(accessibility['slug'])
 html = head(accessibility, accessibility=True) + header.replace('href="#contact"','href="/#contact"') + f'''<main id="main" class="accessibility-content section"><div class="container hub-readable">
   <h1>Accessibility</h1>
-  <p>We want everyone to be able to find product information and get in touch with John Crawford Company. We are working to make this website easier to use.</p>
-  <h2>Need help using the website?</h2>
-  <p>If you have difficulty reading a page, browsing window treatments or contacting us through the website, call <a href="tel:+18188845464">(818) 884-5464</a> or email <a href="mailto:john@johncrawford.com">john@johncrawford.com</a>.</p>
-  <p>Tell us which page or feature caused the problem and how you would like us to contact you. We can also discuss products and consultation requests by phone.</p>
+  <p class="statement-date">Statement updated November 7, 2026.</p>
+  <p>We want everyone to be able to find product information and get in touch with John Crawford Company. That includes people who use a screen reader, magnification, voice control, a keyboard instead of a mouse, or other assistive technology. We are working to make this website easier to use for every visitor.</p>
+  <h2>Our goal</h2>
+  <p>We aim for this website to meet the Web Content Accessibility Guidelines (WCAG) 2.1 at Level AA. These guidelines, published by the World Wide Web Consortium (W3C), explain how to make web content more usable for people with disabilities, including people with low vision, blindness, hearing loss, limited movement and cognitive disabilities. WCAG 2.1 Level AA is a goal we are working toward; we do not claim that every page fully meets it today.</p>
+  <h2>What this website does</h2>
+  <ul>
+    <li>A &ldquo;Skip to content&rdquo; link at the top of each page lets keyboard users go straight to the main content.</li>
+    <li>Pages use headings in order and labeled navigation, so they can be browsed by structure.</li>
+    <li>Images that carry information have text descriptions; decorative images are hidden from screen readers.</li>
+    <li>The menus and the Call now button work with a keyboard, and the Escape key closes them.</li>
+    <li>The homepage background video has no sound, has a pause button, and does not play when your device asks for reduced motion.</li>
+    <li>Form fields have visible labels, and messages about missing or incorrect answers are announced to screen readers.</li>
+  </ul>
+  <h2>Content from other companies</h2>
+  <p>Some parts of the website come from other companies, such as the Google Maps map, the Cloudflare human check on our forms, the cookie notice and links to Instagram. We choose these services with care, but we do not control how accessible they are. If one of them gets in your way, contact us and we will help you another way.</p>
+  <h2>Need help or want to report a problem?</h2>
+  <p>If you have difficulty reading a page, browsing window treatments or contacting us through the website, call <a href="tel:+18188845464">(818) 884-5464</a> or email <a href="mailto:john@johncrawford.com">john@johncrawford.com</a>. You can also write to John Crawford Company, 22311 Ventura Blvd #101, Woodland Hills, CA 91364.</p>
+  <p>Tell us which page or feature caused the problem, what you were trying to do, and how you would like us to contact you. We can also give product information, take a consultation or repair request, and answer questions by phone or email instead of through the website forms.</p>
   <p>Showroom hours: {e(HOURS['display'])} <strong class="appointment-only">Appointment Only</strong>.</p>
-  <p class="statement-date">Statement reviewed October 22, 2026.</p>
+  <h2>Keeping this statement current</h2>
+  <p>We review this statement when we make changes to the website and update the date at the top of this page.</p>
 </div></main>''' + footer.replace('href="#contact"','href="/#contact"') + mobile.replace('href="#contact"','href="/#contact"') + '</body></html>\n'
 target=DIST/'accessibility/index.html';target.parent.mkdir(exist_ok=True);target.write_text(html)
 
