@@ -51,3 +51,25 @@
 /hunter-douglas/shutters/palm-beach
 /hunter-douglas/drapery
 /hunter-douglas/drapery/woven-wood-shades
+# Added 2026-11-09 from Search Console 404 / soft-404 reports (old pages that still had impressions):
+/home
+/sitemap
+/motorized-window-coverings
+/more-products-services/services/wells-fargo-financing
+/inspiration-solutions/shape/bay-bow-corner-window-blinds-and-shades
+/inspiration-solutions/shape/arched-window-blinds-and-shades
+/inspiration-solutions/shape/picture-window-blinds-and-shades
+/inspiration-solutions/room/bathroom-blinds-and-shades
+/inspiration-solutions/room/bedroom-blinds-and-shades
+/inspiration-solutions/function/child-and-pet-friendly-blinds-and-shades
+/inspiration-solutions/design/motorized-skylight-shades
+/inspiration-solutions/design/zebra-shades
+/inspiration-solutions/design/cozy-home-energy-efficient-shades
+/inspiration-solutions/design/drapery-vs-side-panels
+/inspiration-solutions/design/window-blinds-guide
+/window-treatments/shades/roman-shades/carole-roman
+/window-treatments/blinds/vertical-blinds/vertical-solutions
+/window-treatments/blinds/vertical-blinds/somner
+/window-treatments/blinds/fabric-blinds/aria
+/hunter-douglas/featured/top-down-bottom-up-shades
+/hunter-douglas/featured/door-coverings
