@@ -3,6 +3,12 @@
 # Netlify matches each `from` with or without a trailing slash; matching is case-sensitive, and the old site uses lowercase only.
 # Specific rules come first; Netlify uses the first rule that matches.
 
+# Apex and http addresses reach www in ONE hop (Netlify's own http->https->www chain would take two).
+# Full-URL rules need the `!` (force) flag; /:splat keeps the path and any query string.
+http://johncrawfordcompany.com/*       https://www.johncrawfordcompany.com/:splat   301!
+https://johncrawfordcompany.com/*      https://www.johncrawfordcompany.com/:splat   301!
+http://www.johncrawfordcompany.com/*   https://www.johncrawfordcompany.com/:splat   301!
+
 # The campaign pages' old review copies on this site → the live ones on go.johncrawfordcompany.com
 # (cody-del/johncrawfordlanding). Netlify keeps query strings such as gclid and utm_*.
 /lp/custom-window-treatments      https://go.johncrawfordcompany.com/                    301
@@ -10,12 +16,16 @@
 /lp/*                             https://go.johncrawfordcompany.com/                    301
 
 # Company and policy pages (/, /about, /accessibility and /contact keep their addresses)
+/home                             /                                          301
+/sitemap                          /sitemap.xml                               301
 /contact-us                       /contact/                                  301
 /privacy-policy                   /privacy/                                  301
 /terms-of-use                     /terms/                                    301
 /promotions                       /contact/                                  301
 
 # Services and other products
+/motorized-window-coverings       /motorized-shades/                         301
+/more-products-services/services/wells-fargo-financing          /contact/             301
 /more-products-services/services/window-covering-measuring-and-installations  /services/window-treatment-installation/  301
 /more-products-services/services/upholstery                     /upholstery/          301
 /more-products-services/products/motorized-window-coverings     /motorized-shades/    301
@@ -27,7 +37,29 @@
 /more-products-services/products/window-top-treatments          /drapery/             301
 /more-products-services/*                                       /                     301
 
+# Old inspiration-solutions pages (shape / room / function / design topics) → the product hub that serves the topic.
+# Lifestyle articles with no equivalent here (furniture, flooring, lighting, kitchens, decor) are deliberately NOT redirected, so they stay 404.
+/inspiration-solutions/shape/bay-bow-corner-window-blinds-and-shades   /shutters/            301
+/inspiration-solutions/shape/arched-window-blinds-and-shades           /shutters/            301
+/inspiration-solutions/shape/picture-window-blinds-and-shades          /shades/              301
+/inspiration-solutions/room/bathroom-blinds-and-shades                 /blinds/              301
+/inspiration-solutions/room/bedroom-blinds-and-shades                  /blinds/              301
+/inspiration-solutions/function/child-and-pet-friendly-blinds-and-shades  /shades/           301
+/inspiration-solutions/design/motorized-skylight-shades                /motorized-shades/    301
+/inspiration-solutions/design/zebra-shades                             /shades/              301
+/inspiration-solutions/design/cozy-home-energy-efficient-shades        /shades/              301
+/inspiration-solutions/design/drapery-vs-side-panels                   /drapery/             301
+/inspiration-solutions/design/window-blinds-guide                      /blinds/              301
+
+# Old /window-treatments/ product pages
+/window-treatments/shades/roman-shades/carole-roman                    /shades/              301
+/window-treatments/blinds/vertical-blinds/vertical-solutions           /blinds/              301
+/window-treatments/blinds/vertical-blinds/somner                       /blinds/              301
+/window-treatments/blinds/fabric-blinds/aria                           /blinds/              301
+
 # Hunter Douglas product pages → product hubs
+/hunter-douglas/featured/top-down-bottom-up-shades   /shades/   301
+/hunter-douglas/featured/door-coverings              /blinds/   301
 /hunter-douglas/drapery/woven-wood-shades   /shades/     301
 /hunter-douglas/shades                      /shades/     301
 /hunter-douglas/shades/*                    /shades/     301
