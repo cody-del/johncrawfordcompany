@@ -6,7 +6,7 @@
     "preview": "python3 -m http.server 4317 --bind 127.0.0.1 --directory dist",
     "preview:site": "python3 -m http.server 4318 --bind 127.0.0.1 --directory _site",
     "build:company": "python3 scripts/build-company-pages.py",
-    "check": "node --check dist/app.js && node scripts/check-site.mjs && node scripts/check-hubs.mjs && node scripts/check-redirects.mjs && python3 scripts/check-customer-copy.py --html dist --min-html-files 17 && node --test tests/lead.test.mjs tests/turnstile.test.mjs tests/cookiescript.test.mjs tests/repair-photos.test.mjs tests/minify.test.mjs",
+    "check": "node --check dist/app.js && node scripts/check-site.mjs && node scripts/check-hubs.mjs && node scripts/check-redirects.mjs && python3 scripts/check-customer-copy.py --html dist --min-html-files 18 && node --test tests/lead.test.mjs tests/turnstile.test.mjs tests/cookiescript.test.mjs tests/repair-photos.test.mjs tests/minify.test.mjs",
     "build": "npm run check && node scripts/minify-site.mjs"
   },
   "devDependencies": {

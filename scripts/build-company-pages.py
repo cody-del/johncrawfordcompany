@@ -1,4 +1,4 @@
-"""Build the About and Contact pages from the client's call and intake copy."""
+"""Build the company pages, service-area directory and empty blog hub."""
 from pathlib import Path
 from html import escape
 import json
@@ -117,7 +117,7 @@ def head(page, kind):
 <meta name="twitter:card" content="summary_large_image"><link rel="icon" href="data:,">
 <link rel="preload" href="/assets/brand-latin-1.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/brand-latin-0.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/assets/fonts.css?v=fonts-2"><link rel="stylesheet" href="/styles.css?v=header-contact-20261105">
+<link rel="stylesheet" href="/assets/fonts.css?v=fonts-2"><link rel="stylesheet" href="/styles.css?v=footer-blog-20261111">
 <link rel="stylesheet" href="/hubs.css?v=contact-centered-1"><link rel="stylesheet" href="/company-pages.css?v=company-pages-7">
 <script src="/app.js?v=header-contact-20261105" defer></script>
 <script type="application/ld+json">{json.dumps(schema, ensure_ascii=False).replace('<', chr(92)+'u003c')}</script>
@@ -239,10 +239,18 @@ def service_areas_body(page):
     </main>'''
 
 
+def blog_body(page):
+    return f'''<main id="main">
+    <section class="section company-hero linen" aria-labelledby="page-heading"><div class="container">
+      <div class="company-hero-copy">{breadcrumbs(page)}<h1 id="page-heading">{e(page['heading'])}</h1><p>{e(page['intro'])}</p></div>
+    </div></section>
+    </main>'''
+
+
 if __name__ == '__main__':
     update_navigation()
     subprocess.run([sys.executable, str(ROOT / 'scripts/build-hubs.py')], check=True)
-    for key, kind, renderer in [('about', 'AboutPage', about_body), ('contact', 'ContactPage', contact_body), ('service_areas', 'CollectionPage', service_areas_body)]:
+    for key, kind, renderer in [('about', 'AboutPage', about_body), ('contact', 'ContactPage', contact_body), ('service_areas', 'CollectionPage', service_areas_body), ('blog', 'Blog', blog_body)]:
         page = SERVICE_AREAS if key == 'service_areas' else CONTENT[key]
         header, footer, mobile = partials(page)
         page_head = head(page, kind)

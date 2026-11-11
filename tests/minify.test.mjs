@@ -3,11 +3,12 @@ import assert from 'node:assert/strict';
 import { mkdtempSync, readdirSync, readFileSync, rmSync, statSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { extname, join, relative } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { minifyAsset, minifySite } from '../scripts/minify-site.mjs';
 
 // Netlify publishes _site/: dist/ with every .css and .js file minified (Semrush "unminified
 // JavaScript and CSS files"). The minified files must behave exactly like the readable sources.
-const dist = new URL('../dist/', import.meta.url).pathname;
+const dist = fileURLToPath(new URL('../dist/', import.meta.url));
 const files = dir => readdirSync(dir).flatMap(name => {
   const path = join(dir, name);
   return statSync(path).isDirectory() ? files(path) : [path];

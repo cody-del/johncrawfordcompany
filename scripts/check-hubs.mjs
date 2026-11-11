@@ -107,7 +107,7 @@ for (const hub of hubs) {
 requireThat(pages.get('/motorized-shades/')?.html.includes('The PowerView® App is required for programmed operation.'), 'Missing PowerView scheduling disclosure');
 const services = JSON.parse(await readFile(resolve(root, 'content/service-pages.json'), 'utf8'));
 const serviceAreas = JSON.parse(await readFile(resolve(root, 'content/service-areas.json'), 'utf8'));
-const expectedRoutes = ['/', ...hubs.map(hub => hub.slug), ...services.map(service => service.slug), '/accessibility/', '/privacy/', '/terms/', '/about/', '/contact/', serviceAreas.slug];
+const expectedRoutes = ['/', ...hubs.map(hub => hub.slug), ...services.map(service => service.slug), '/accessibility/', '/privacy/', '/terms/', '/about/', '/contact/', '/blog/', serviceAreas.slug];
 requireThat(pages.size === expectedRoutes.length && expectedRoutes.every(route => pages.has(route)), `Expected ${expectedRoutes.length} routes; found ${[...pages.keys()].join(', ')}`);
 for (const service of services) {
   const html = pages.get(service.slug)?.html || '';

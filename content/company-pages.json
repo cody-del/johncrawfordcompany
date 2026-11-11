@@ -1,4 +1,12 @@
 {
+  "blog": {
+    "name": "Blog",
+    "slug": "/blog/",
+    "title": "Blog | John Crawford Company",
+    "description": "Window treatment ideas and advice from John Crawford Company in Woodland Hills, California.",
+    "heading": "Blog",
+    "intro": "Window treatment ideas and advice from John Crawford Company."
+  },
   "about": {
     "name": "About",
     "slug": "/about/",

@@ -9,6 +9,7 @@ The live site is https://www.johncrawfordcompany.com/, served by the Netlify sit
 - `/`: approved homepage design.
 - `/shades/`, `/blinds/`, `/shutters/`, `/drapery/`, `/motorized-shades/`: first five product hubs, built from the approved copy.
 - `/about/`, `/contact/`: company story and contact form design.
+- `/blog/`: blog hub with no published posts or sample article cards, linked only from the footer's Company column.
 - `/services/blind-shade-repair/`, `/services/consultation-measuring/`, `/services/window-treatment-installation/`, `/services/commercial-window-treatments/`, `/upholstery/`: service pages based on the call and intake.
 - `/accessibility/`, `/privacy/`, `/terms/`: website assistance, privacy information and website terms of service.
 
@@ -39,6 +40,8 @@ Run `npm run build:company` after changing public website content to regenerate 
 `netlify.toml` runs `npm run build` and publishes `_site`. That build runs `npm run check`, then `scripts/minify-site.mjs` copies `dist/` to `_site/` and minifies every `.css` and `.js` file there with esbuild (same file names and `?v=` addresses; HTML, images and `_redirects` are copied unchanged). Keep editing the readable files in `dist/`; `_site/` is generated and ignored by git. `tests/minify.test.mjs` checks that the minified files keep their globals, form endpoints, Turnstile key and Lead/GA4 events. The Netlify project is connected to `main` for continuous deployment. Product images are labeled by collection and are not presented as John Crawford installations.
 
 The shared header uses **Request a consultation** as its Contact-page link, without a duplicate Contact navigation item. Its circular **Call now** control reveals the phone number as a tap-to-call link; Escape and clicking outside close it. The homepage hero and mobile consultation action also link to `/contact/`.
+
+The footer's Company column groups About, Service Areas, Our work, Blog and Contact beside Our services. The bottom row keeps the policy links and the linked credit **Built by www.shadestrategy.com**. Blog stays out of the header navigation.
 
 ## Lead forms and GoHighLevel
 
