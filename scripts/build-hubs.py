@@ -14,6 +14,7 @@ HOME = (DIST / 'index.html').read_text()
 DIRECTIONS = 'https://www.google.com/maps/search/?api=1&query=John+Crawford+Company+22311+Ventura+Blvd+Woodland+Hills'
 CONTENT_LINK_DESTINATIONS = ({page['slug'] for page in PAGES}
     | {page['slug'] for page in json.loads((ROOT / 'content/service-pages.json').read_text())}
+    | {post['slug'] for post in json.loads((ROOT / 'content/blog-posts.json').read_text())}
     | {'mailto:john@johncrawford.com'})
 
 

@@ -1,4 +1,4 @@
-"""Build the company pages, service-area directory and empty blog hub."""
+"""Build the company pages, service-area directory and blog."""
 from pathlib import Path
 from html import escape
 import json
@@ -9,6 +9,7 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 DIST = ROOT / 'dist'
 CONTENT = json.loads((ROOT / 'content/company-pages.json').read_text())
+BLOG_POSTS = json.loads((ROOT / 'content/blog-posts.json').read_text())
 SERVICE_AREAS = json.loads((ROOT / 'content/service-areas.json').read_text())
 HOURS = json.loads((ROOT / 'content/business-hours.json').read_text())
 BASE = 'https://www.johncrawfordcompany.com'
@@ -245,10 +246,23 @@ def service_areas_body(page):
 
 
 def blog_body(page):
+    cards = []
+    for index, post in enumerate(BLOG_POSTS):
+        cover = post['cover']
+        cards.append(
+            f'<article class="blog-card"><a class="blog-card-link" href="{e(post["slug"])}" aria-labelledby="blog-card-{index}-heading">'
+            f'<img src="{e(cover["src"])}" alt="" width="{cover["width"]}" height="{cover["height"]}" loading="lazy" decoding="async">'
+            f'<div class="blog-card-copy"><time datetime="{e(post["published"])}">{e(post["published_display"])}</time>'
+            f'<h2 id="blog-card-{index}-heading">{e(post["heading"])}</h2><p>{e(post["excerpt"])}</p>'
+            '<span class="blog-card-read">Read the guide</span></div></a></article>'
+        )
+    listing = ('<section class="section blog-list" aria-label="Articles"><div class="container">'
+               + ''.join(cards) + '</div></section>') if cards else ''
     return f'''<main id="main">
     <section class="section company-hero linen" aria-labelledby="page-heading"><div class="container">
       <div class="company-hero-copy">{breadcrumbs(page)}<h1 id="page-heading">{e(page['heading'])}</h1><p>{e(page['intro'])}</p></div>
     </div></section>
+    {listing}
     </main>'''
 
 
@@ -261,10 +275,13 @@ if __name__ == '__main__':
         page_head = head(page, kind)
         if key == 'service_areas':
             page_head = page_head.replace('</head>', '<link rel="stylesheet" href="/service-areas.css?v=service-areas-3">\n</head>')
+        if key == 'blog':
+            page_head = page_head.replace('</head>', '<link rel="stylesheet" href="/blog.css?v=large-windows-20261111">\n</head>')
         html = page_head + header + renderer(page) + footer + mobile + '</body></html>\n'
         target = DIST / page['slug'].strip('/') / 'index.html'
         target.parent.mkdir(parents=True, exist_ok=True)
         target.write_text(html)
         print(page['slug'])
     subprocess.run([sys.executable, str(ROOT / 'scripts/build-services.py')], check=True)
+    subprocess.run([sys.executable, str(ROOT / 'scripts/build-blog.py')], check=True)
     subprocess.run([sys.executable, str(ROOT / 'scripts/build-sitemap.py')], check=True)

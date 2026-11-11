@@ -9,7 +9,8 @@ The live site is https://www.johncrawfordcompany.com/, served by the Netlify sit
 - `/`: approved homepage design.
 - `/shades/`, `/blinds/`, `/shutters/`, `/drapery/`, `/motorized-shades/`: first five product hubs, built from the approved copy.
 - `/about/`, `/contact/`: company story and contact form design.
-- `/blog/`: blog hub with no published posts or sample article cards, linked only from the footer's Company column.
+- `/blog/`: blog hub, linked from the footer's Company column.
+- `/blog/how-to-choose-window-treatments-for-large-windows/`: guide with a product comparison table and contextual product and consultation links.
 - `/services/blind-shade-repair/`, `/services/consultation-measuring/`, `/services/window-treatment-installation/`, `/services/commercial-window-treatments/`, `/upholstery/`: service pages based on the call and intake.
 - `/accessibility/`, `/privacy/`, `/terms/`: website assistance, privacy information and website terms of service.
 
@@ -32,10 +33,11 @@ npm run preview:site  # serves _site/ (minified files) at http://127.0.0.1:4318/
 - `dist/`: ready-to-serve HTML, styles, JavaScript and local assets.
 - `content/`: approved public product copy and freshly written image alternatives.
 - `scripts/build-hubs.py`: regenerates hub HTML from the public copy and homepage navigation/footer.
+- `scripts/build-blog.py`: generates articles from `content/blog-posts.json`, including article metadata, breadcrumbs and BlogPosting structured data.
 - `scripts/check-site.mjs`, `scripts/check-hubs.mjs`: metadata, headings, assets, contact and route checks.
 - `scripts/check-customer-copy.py`: blocks recognizable internal writer notes and unfinished copy before publication.
 
-Run `npm run build:company` after changing public website content to regenerate hubs, company pages and services, then `npm run check`. Generated HTML is committed so all important content is available without JavaScript.
+Run `npm run build:company` after changing public website content to regenerate hubs, company pages, services and blog articles, then `npm run check`. Generated HTML is committed so all important content is available without JavaScript.
 
 `netlify.toml` runs `npm run build` and publishes `_site`. That build runs `npm run check`, then `scripts/minify-site.mjs` copies `dist/` to `_site/` and minifies every `.css` and `.js` file there with esbuild (same file names and `?v=` addresses; HTML, images and `_redirects` are copied unchanged). Keep editing the readable files in `dist/`; `_site/` is generated and ignored by git. `tests/minify.test.mjs` checks that the minified files keep their globals, form endpoints, Turnstile key and Lead/GA4 events. The Netlify project is connected to `main` for continuous deployment. Product images are labeled by collection and are not presented as John Crawford installations.
 

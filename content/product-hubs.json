@@ -85,7 +85,15 @@
         "paragraphs": [
           "We've used solar mesh shades in Valley storefronts to help manage glare while keeping a view outside. At home, a screen shade can help when afternoon sunlight falls across a television or the spot where you sit.",
           "Daytime view and nighttime privacy are different needs. A lit room may be visible through a screen fabric after dark. If you need privacy then, we can look at a different fabric or an additional layer.",
-          "For a bedroom, we'll also look at room-darkening fabrics and the light that can enter around the edges. The fabric and the way the shade fits both matter."
+          "For a bedroom, we'll also look at room-darkening fabrics and the light that can enter around the edges. The fabric and the way the shade fits both matter.",
+          "For a wide opening, our guide to window treatments for large windows compares shade layouts, coverage and controls."
+        ],
+        "links": [
+          {
+            "paragraph": 3,
+            "text": "window treatments for large windows",
+            "href": "/blog/how-to-choose-window-treatments-for-large-windows/"
+          }
         ]
       },
       {
@@ -209,7 +217,8 @@
       {
         "title": "A good fit makes blinds look and work better",
         "paragraphs": [
-          "A window handle or shallow frame can affect which blind fits. We measure at several points and check the mounting space and clearance, including room for the blind to tilt, lift or draw to the side. For sliding doors, we also look at where the treatment gathers when it’s open."
+          "A window handle or shallow frame can affect which blind fits. We measure at several points and check the mounting space and clearance, including room for the blind to tilt, lift or draw to the side. For sliding doors, we also look at where the treatment gathers when it’s open.",
+          "For a broad window or sliding door, see our guide to choosing window treatments for large windows."
         ],
         "id": "the-fit-matters-when-you-open-the-window",
         "links": [
@@ -217,6 +226,11 @@
             "paragraph": 0,
             "text": "measure at several points",
             "href": "/services/window-treatment-installation/"
+          },
+          {
+            "paragraph": 1,
+            "text": "choosing window treatments for large windows",
+            "href": "/blog/how-to-choose-window-treatments-for-large-windows/"
           }
         ]
       },
