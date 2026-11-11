@@ -114,7 +114,12 @@ def head(page, kind):
 <meta property="og:type" content="website"><meta property="og:title" content="{e(page['title'])}">
 <meta property="og:description" content="{e(page['description'])}"><meta property="og:url" content="{BASE}{page['slug']}">
 <meta property="og:image" content="{BASE}/assets/john-crawford-logo.png"><meta property="og:image:alt" content="John Crawford Company — Window Treatments">
-<meta name="twitter:card" content="summary_large_image"><link rel="icon" href="data:,">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.ico?v=20261111" type="image/x-icon" sizes="16x16 32x32 48x48">
+<link rel="icon" href="/favicon-32x32.png?v=20261111" type="image/png" sizes="32x32">
+<link rel="icon" href="/favicon-48x48.png?v=20261111" type="image/png" sizes="48x48">
+<link rel="icon" href="/favicon-192x192.png?v=20261111" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=20261111" sizes="180x180">
 <link rel="preload" href="/assets/brand-latin-1.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/brand-latin-0.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/fonts.css?v=fonts-2"><link rel="stylesheet" href="/styles.css?v=footer-blog-20261111">
