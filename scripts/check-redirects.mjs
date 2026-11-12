@@ -80,6 +80,13 @@ const GSC_TARGETS = {
   '/window-treatments/blinds/vertical-blinds/vertical-solutions': '/blinds/',
   '/window-treatments/blinds/vertical-blinds/somner': '/blinds/',
   '/window-treatments/blinds/fabric-blinds/aria': '/blinds/',
+  // Search Console 404s, 2026-11-10.
+  '/window-treatments/shades/sheer-shades/luminette': '/shades/',
+  '/window-treatments/shades/sheer-shades/pirouette': '/shades/',
+  '/content/dealer/en/us/california/john-crawford-company-10044210/home/about.html': '/about/',
+  '/content/dealer/en/us/california/john-crawford-company-10044210/home/privacy-policy.html': '/privacy/',
+  '/content/dealer/en/us/california/john-crawford-company-10044210/home/sitemap.html': '/sitemap.xml',
+  '/content/dealer/en/us/california/john-crawford-company-10044210/home/inspiration-solutions/shape/arched-window-blinds-and-shades.html': '/shutters/',
 };
 for (const [from, to] of Object.entries(GSC_TARGETS)) {
   const rule = firstRule(from);

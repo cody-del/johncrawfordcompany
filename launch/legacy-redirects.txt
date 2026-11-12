@@ -53,6 +53,8 @@ http://www.johncrawfordcompany.com/*   https://www.johncrawfordcompany.com/:spla
 
 # Old /window-treatments/ product pages
 /window-treatments/shades/roman-shades/carole-roman                    /shades/              301
+/window-treatments/shades/sheer-shades/luminette                       /shades/              301
+/window-treatments/shades/sheer-shades/pirouette                       /shades/              301
 /window-treatments/blinds/vertical-blinds/vertical-solutions           /blinds/              301
 /window-treatments/blinds/vertical-blinds/somner                       /blinds/              301
 /window-treatments/blinds/fabric-blinds/aria                           /blinds/              301
@@ -71,3 +73,10 @@ http://www.johncrawfordcompany.com/*   https://www.johncrawfordcompany.com/:spla
 /hunter-douglas/drapery/*                   /drapery/    301
 /hunter-douglas                             /            301
 /hunter-douglas/*                           /            301
+
+# The dealer platform's raw page paths, which Google still crawls (Search Console 404s, 2026-11-10).
+# Same targets as the short URLs above.
+/content/dealer/en/us/california/john-crawford-company-10044210/home/about.html                 /about/        301
+/content/dealer/en/us/california/john-crawford-company-10044210/home/privacy-policy.html        /privacy/      301
+/content/dealer/en/us/california/john-crawford-company-10044210/home/sitemap.html               /sitemap.xml   301
+/content/dealer/en/us/california/john-crawford-company-10044210/home/inspiration-solutions/shape/arched-window-blinds-and-shades.html   /shutters/   301
