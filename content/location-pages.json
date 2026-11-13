@@ -6,7 +6,7 @@
     "title": "Window Treatments in Woodland Hills | John Crawford",
     "description": "Compare custom blinds, shades, shutters and drapery at John Crawford Company's Woodland Hills showroom, or arrange a free in-home consultation.",
     "heading": "Custom window treatments in Woodland Hills",
-    "intro": "Visit John Crawford Company on Ventura Boulevard to see materials and finishes in person. We’ll help you compare window treatments for your home, whether you’re replacing one blind or choosing something for every room.",
+    "intro": "Arrange a visit to our Woodland Hills showroom on Ventura Boulevard to compare fabrics and finishes in person. We’re happy to help with one window or a whole home.",
     "hero_image": {
       "src": "/assets/john-crawford-showroom.webp",
       "width": 1024,
@@ -15,12 +15,12 @@
       "caption": "John outside our showroom at 22311 Ventura Blvd #101."
     },
     "hero_cta": "Schedule a showroom visit",
-    "hero_secondary": "Explore a free in-home consultation",
+    "hero_secondary": "Free in-home consultations",
     "hero_secondary_href": "/services/consultation-measuring/",
     "introduction": {
-      "heading": "See how the materials look and the treatments move.",
+      "heading": "See the choices in person.",
       "paragraphs": [
-        "A shutter’s painted finish, the texture of a woven shade and the folds in a Roman shade can be easier to compare in person. At the showroom, we can look at those details together and talk about what you like.",
+        "It’s easier to compare colors and textures when you can see them in person. At the showroom, we can look at shutter finishes, shade fabrics and drapery samples together.",
         "John started with installation, and that experience still shapes the advice we give. We consider how a treatment fits the window, how much of the view you’ll have when it’s open and which controls you prefer."
       ],
       "link": {"text": "Meet John Crawford", "href": "/about/"},
@@ -31,21 +31,21 @@
     "products_intro": "We carry Hunter Douglas and Alta window treatments. Start with the look you like, then compare the fabrics, materials and controls available for your windows.",
     "products": [
       {"title": "Shades", "text": "Compare roller, honeycomb, Roman, woven wood and sheer shades for daylight, privacy and texture.", "href": "/shades/"},
-      {"title": "Shutters", "text": "Look at wood, composite and vinyl collections, with louver sizes and panel layouts suited to the opening.", "href": "/shutters/"},
+      {"title": "Shutters", "text": "Compare wood, composite and vinyl shutters to find a finish and style you like.", "href": "/shutters/"},
       {"title": "Blinds", "text": "Explore wood, faux wood and metal blinds, along with vertical options for broad windows and doors.", "href": "/blinds/"},
-      {"title": "Drapery", "text": "Bring fabric into the room with custom drapes, side panels and hardware, on their own or layered with a shade.", "href": "/drapery/"},
-      {"title": "Motorized shades", "text": "Compare compatible shade controls and learn how we handle installation and setup.", "href": "/motorized-shades/"}
+      {"title": "Drapery", "text": "Explore fabrics and hardware for custom drapery, on its own or layered with a shade.", "href": "/drapery/"},
+      {"title": "Motorized shades", "text": "Learn about motorized shade options and how we handle installation and setup.", "href": "/motorized-shades/"}
     ],
     "visit": {
       "heading": "Prefer to compare samples at home?",
       "paragraphs": [
-        "We also offer free in-home consultations in Woodland Hills and Warner Center. Seeing a fabric against your own window helps you judge the color, the view through it and the light coming into the room.",
-        "We bring samples, talk through your ideas and take measurements. You can tell us which rooms you’re considering and the budget you’d like to work within."
+        "We also offer free in-home consultations in Woodland Hills and Warner Center. Seeing samples in your room makes it easier to compare colors and see how the fabric changes the light.",
+        "We’ll bring samples, talk through your ideas and budget, and take measurements during the visit."
       ],
       "steps": [
         {"title": "Compare the options", "text": "We’ll look at the light, privacy and appearance you want in each room.", "href": "/services/consultation-measuring/", "link_text": "Consultation & measuring"},
-        {"title": "Check the fit", "text": "We measure at several points and check the depth, trim and clearance around the window.", "href": "/services/window-treatment-installation/", "link_text": "How we measure and install"},
-        {"title": "Get comfortable with the controls", "text": "At installation, we check operation and show you how to use your window treatments.", "href": "/motorized-shades/", "link_text": "Motorization & setup"}
+        {"title": "Check the fit", "text": "We check the size and shape of the windows so we can recommend options that fit well.", "href": "/services/window-treatment-installation/", "link_text": "How we measure and install"},
+        {"title": "Help with the controls", "text": "We can explain the control options and show you how they work, including motorization where available.", "href": "/motorized-shades/", "link_text": "Motorization & setup"}
       ]
     },
     "questions_heading": "Planning a visit or a project",
@@ -62,9 +62,9 @@
     "css_class": "location",
     "slug": "/service-areas/bell-canyon/",
     "title": "Window Treatments in Bell Canyon | John Crawford Company",
-    "description": "Explore custom shades, shutters, blinds and drapery for your Bell Canyon home. Book a free in-home consultation with John Crawford Company.",
+    "description": "Explore custom shades, shutters, blinds and drapery for your Bell Canyon home. Request a free in-home consultation with John Crawford Company.",
     "heading": "Custom window treatments in Bell Canyon",
-    "intro": "See the fabrics in the room where you’ll use them. We bring samples to your Bell Canyon home and help you compare window treatments for the daylight, privacy and style you want.",
+    "intro": "Explore custom shades, shutters, blinds and drapery for your Bell Canyon home. We offer free in-home consultations so you can see samples in your own space and get help choosing.",
     "hero_image": {
       "src": "/assets/products/vignette.jpg",
       "width": 1280,
@@ -79,8 +79,8 @@
     "introduction": {
       "heading": "Start with the rooms you use every day.",
       "paragraphs": [
-        "Perhaps the afternoon sun falls across your seating area, or you want more privacy in a bedroom. You may like the view and want a treatment that leaves as much of it visible as possible.",
-        "During a free in-home consultation in Bell Canyon, we look at the windows with you, bring samples and take measurements. A fabric that looks right on a sample book can look quite different with daylight behind it. We’ll help you compare it at the window."
+        "Maybe the afternoon sun hits your seating area, or you’d like more privacy in a bedroom. If keeping the view is important, we can talk through that, too.",
+        "We’ll bring samples and take measurements during the home visit. You can hold fabrics up to the window, see how much light comes through and talk with us about the look you have in mind."
       ],
       "link": {"text": "What to expect from an in-home consultation", "href": "/services/consultation-measuring/"}
     },
@@ -88,34 +88,34 @@
     "products_intro": "Our range includes Hunter Douglas and Alta window treatments. You can coordinate the colors and fabrics across your home while choosing different treatments for different openings.",
     "products": [
       {"title": "Shades", "text": "Compare light-filtering and room-darkening fabrics, along with woven textures and Roman folds.", "href": "/shades/"},
-      {"title": "Shutters", "text": "Adjust daylight with tilting louvers and compare wood, composite and vinyl finishes against your trim.", "href": "/shutters/"},
-      {"title": "Blinds", "text": "Explore horizontal slats for tilt control and vertical treatments that move to the side of a wide opening.", "href": "/blinds/"},
+      {"title": "Shutters", "text": "Compare wood, composite and vinyl shutters, and see how the colors look with your window trim.", "href": "/shutters/"},
+      {"title": "Blinds", "text": "Compare wood, faux wood and metal blinds, plus vertical options for wide windows and sliding doors.", "href": "/blinds/"},
       {"title": "Drapery", "text": "Compare fabric, lining and hardware for curtains that close across the window or panels that frame it.", "href": "/drapery/"},
-      {"title": "Motorized shades", "text": "See control options for compatible treatments, including shades that are difficult to reach by hand.", "href": "/motorized-shades/"}
+      {"title": "Motorized shades", "text": "Find out how motorized shades work and which controls are available.", "href": "/motorized-shades/"}
     ],
     "feature": {
       "heading": "Adjust your shades from across the room.",
       "image": "powerview",
       "paragraphs": [
-        "If a window is above a stairway or behind furniture, a compatible motorized treatment can make everyday adjustments easier. Hunter Douglas PowerView® Automation lets you operate compatible shades with a remote or the PowerView® App.",
-        "We’ll help you compare controls and power options, including how you would reach a rechargeable shade’s charging connection. Installation and setup are part of our work, and we’ll show you how the selected controls operate."
+        "For a high window or one behind furniture, motorization lets you adjust the shade without reaching the window. Hunter Douglas PowerView® Automation offers remote and app control for compatible shades.",
+        "We can explain how the shades are powered and help you choose controls you’ll be comfortable using. We also handle installation and setup, and show you how to use the system."
       ],
       "link": {"text": "Explore PowerView® Automation", "href": "/motorized-shades/#powerview-heading"}
     },
     "visit": {
       "heading": "The fit deserves as much attention as the fabric.",
       "paragraphs": [
-        "Window measurements involve more than one width and one height. We check at several points, look for differences in level and squareness, and consider handles, frames and the space around the opening.",
-        "For a broad window or a glass door, we also look at where the treatment sits when it’s open. A shade, a drapery panel and a sliding fabric panel each use that space differently."
+        "We measure at several points across and down each window, then check how straight and level the opening is. This helps us recommend a treatment that fits well and works properly.",
+        "For wide windows and glass doors, we’ll also look at the view when the treatment is open and whether you can use the door comfortably."
       ],
       "link": {"text": "Read about professional measuring and installation", "href": "/services/window-treatment-installation/"},
       "guide": {"text": "Our guide to window treatments for large windows", "href": "/blog/how-to-choose-window-treatments-for-large-windows/"}
     },
-    "questions_heading": "A few details before your consultation",
+    "questions_heading": "Questions about getting started",
     "faqs": [
       {"question": "Do you have a showroom in Bell Canyon?", "answer": "Our showroom is in Woodland Hills, at 22311 Ventura Blvd #101. We serve Bell Canyon with free in-home consultations, and you’re also welcome to arrange a showroom appointment.", "link": {"text": "Visit the Woodland Hills showroom", "href": "/service-areas/woodland-hills/"}},
-      {"question": "Do I need to know which product I want?", "answer": "You can start with the room and what you’d like to change. Tell us about the light, privacy or appearance you have in mind, and we’ll help you compare suitable options."},
-      {"question": "Can I replace some treatments and keep others?", "answer": "Yes. We can help with one window or several rooms. If you’re keeping existing treatments, we can look at how new fabrics, finishes and hardware would work alongside them."}
+      {"question": "Do I need to know which product I want?", "answer": "You can start with a question or a few ideas about the room. We’ll help you explore the options, even if you haven’t settled on a style or product."},
+      {"question": "Can I replace some treatments and keep others?", "answer": "Yes. We can help with one window or several rooms. We can also help you choose new fabrics and finishes that work with the treatments you want to keep."}
     ],
     "contact_heading": "Plan a visit to your Bell Canyon home.",
     "contact_text": "Tell us which rooms you’re thinking about, or ask for a showroom appointment. We serve Bell Canyon from our Woodland Hills showroom."
