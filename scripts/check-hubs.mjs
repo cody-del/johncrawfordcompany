@@ -108,7 +108,8 @@ requireThat(pages.get('/motorized-shades/')?.html.includes('The PowerView® App 
 const services = JSON.parse(await readFile(resolve(root, 'content/service-pages.json'), 'utf8'));
 const serviceAreas = JSON.parse(await readFile(resolve(root, 'content/service-areas.json'), 'utf8'));
 const blogPosts = JSON.parse(await readFile(resolve(root, 'content/blog-posts.json'), 'utf8'));
-const expectedRoutes = ['/', ...blogPosts.map(post => post.slug), ...hubs.map(hub => hub.slug), ...services.map(service => service.slug), '/accessibility/', '/privacy/', '/terms/', '/about/', '/contact/', '/blog/', serviceAreas.slug];
+const locations = JSON.parse(await readFile(resolve(root, 'content/location-pages.json'), 'utf8'));
+const expectedRoutes = ['/', ...locations.map(location => location.slug), ...blogPosts.map(post => post.slug), ...hubs.map(hub => hub.slug), ...services.map(service => service.slug), '/accessibility/', '/privacy/', '/terms/', '/about/', '/contact/', '/blog/', serviceAreas.slug];
 requireThat(pages.size === expectedRoutes.length && expectedRoutes.every(route => pages.has(route)), `Expected ${expectedRoutes.length} routes; found ${[...pages.keys()].join(', ')}`);
 for (const service of services) {
   const html = pages.get(service.slug)?.html || '';
@@ -163,7 +164,22 @@ const areaMain = areaHtml.match(/<main\b[\s\S]*?<\/main>/)?.[0] || '';
 requireThat(!/\bZIP\b|\b\d{5}\b/i.test(areaMain), 'Keep ZIP codes out of the service-area listings and inquiry copy');
 for (const region of serviceAreas.regions) {
   requireThat(areaHtml.includes(`id="${region.id}-heading"`) && areaHtml.includes(region.heading.replaceAll('&', '&amp;')), `Service area region missing: ${region.heading}`);
-  for (const place of region.communities) requireThat(areaHtml.includes(`<li class="area-place">${place}</li>`), `Service area community missing: ${place}`);
+  for (const place of region.communities) {
+    const location = locations.find(location => location.name === place);
+    const expected = location ? `<a href="${location.slug}">${place}</a>` : place;
+    requireThat(areaHtml.includes(`<li class="area-place">${expected}</li>`), `Service area community or published destination missing: ${place}`);
+  }
+}
+for (const location of locations) {
+  const html = pages.get(location.slug)?.html || '';
+  const main = html.match(/<main\b[\s\S]*?<\/main>/)?.[0] || '';
+  requireThat(!/<form\b/.test(main) && main.includes('href="/contact/#appointment-form"'), `${location.slug}: retain the central appointment form journey`);
+  const graph = JSON.parse(html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)?.[1] || '[]');
+  const service = graph.find(entity => entity['@type'] === 'Service');
+  const page = graph.find(entity => entity['@type'] === 'WebPage');
+  requireThat(service?.areaServed?.name === `${location.name}, California`, `${location.slug}: describe the actual service area`);
+  requireThat(page?.publisher?.address?.addressLocality === 'Woodland Hills' && page?.publisher?.address?.streetAddress === '22311 Ventura Blvd #101', `${location.slug}: use the real Woodland Hills showroom, not an invented branch`);
+  requireThat(main.includes('Appointment Only') && main.includes(hours.display), `${location.slug}: show the verified appointment hours`);
 }
 requireThat(contactForm.includes('id="appointment-form"'), 'Contact appointment destination missing');
 requireThat(isLeadForm(contactForm, 'contact'), 'Contact form must send leads to GHL through app.js');

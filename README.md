@@ -11,6 +11,7 @@ The live site is https://www.johncrawfordcompany.com/, served by the Netlify sit
 - `/about/`, `/contact/`: company story and contact form design.
 - `/blog/`: blog hub, linked from the footer's Company column.
 - `/blog/how-to-choose-window-treatments-for-large-windows/`: guide with a product comparison table and contextual product and consultation links.
+- `/service-areas/woodland-hills/`, `/service-areas/bell-canyon/`: local pages for the Woodland Hills showroom and in-home service in Bell Canyon, linked from Areas We Serve.
 - `/services/blind-shade-repair/`, `/services/consultation-measuring/`, `/services/window-treatment-installation/`, `/services/commercial-window-treatments/`, `/upholstery/`: service pages based on the call and intake.
 - `/accessibility/`, `/privacy/`, `/terms/`: website assistance, privacy information and website terms of service.
 
@@ -34,10 +35,11 @@ npm run preview:site  # serves _site/ (minified files) at http://127.0.0.1:4318/
 - `content/`: approved public product copy and freshly written image alternatives.
 - `scripts/build-hubs.py`: regenerates hub HTML from the public copy and homepage navigation/footer.
 - `scripts/build-blog.py`: generates articles from `content/blog-posts.json`, including article metadata, breadcrumbs and BlogPosting structured data.
+- `scripts/build-locations.py`: builds the local service pages from `content/location-pages.json`, using the real Woodland Hills business identity and a separate service area for each page.
 - `scripts/check-site.mjs`, `scripts/check-hubs.mjs`: metadata, headings, assets, contact and route checks.
 - `scripts/check-customer-copy.py`: blocks recognizable internal writer notes and unfinished copy before publication.
 
-Run `npm run build:company` after changing public website content to regenerate hubs, company pages, services and blog articles, then `npm run check`. Generated HTML is committed so all important content is available without JavaScript.
+Run `npm run build:company` after changing public website content to regenerate hubs, company pages, services, local pages and blog articles, then `npm run check`. Generated HTML is committed so all important content is available without JavaScript.
 
 `netlify.toml` runs `npm run build` and publishes `_site`. That build runs `npm run check`, then `scripts/minify-site.mjs` copies `dist/` to `_site/` and minifies every `.css` and `.js` file there with esbuild (same file names and `?v=` addresses; HTML, images and `_redirects` are copied unchanged). Keep editing the readable files in `dist/`; `_site/` is generated and ignored by git. `tests/minify.test.mjs` checks that the minified files keep their globals, form endpoints, Turnstile key and Lead/GA4 events. The Netlify project is connected to `main` for continuous deployment. Product images are labeled by collection and are not presented as John Crawford installations.
 
@@ -107,7 +109,7 @@ Repair, Commercial Window Treatments and Upholstery also have expanded editorial
 
 ## Indexing
 
-Every page is indexable (`index, follow, max-image-preview:large`) with a canonical URL on https://www.johncrawfordcompany.com, set by `BASE` in `scripts/build-*.py` and by hand in `dist/index.html`. `scripts/build-sitemap.py`, run last by `npm run build:company`, writes `dist/sitemap.xml` from the indexable pages and `dist/robots.txt`; `check-hubs.mjs` fails if the sitemap and the pages disagree. Individual collection and location pages remain separate future work. The five service pages are linked through the shared Services navigation. Consultation & Measuring and Installation have separate URLs and headings. Both emphasize a free in-home consultation with samples brought to the home and measurements taken there; their primary actions lead to the central contact form. The old installation-page #measuring link forwards to the consultation page. The client-requested upholstery photo placeholder remains on the homepage and upholstery preview page.
+Every page is indexable (`index, follow, max-image-preview:large`) with a canonical URL on https://www.johncrawfordcompany.com, set by `BASE` in `scripts/build-*.py` and by hand in `dist/index.html`. `scripts/build-sitemap.py`, run last by `npm run build:company`, writes `dist/sitemap.xml` from the indexable pages and `dist/robots.txt`; `check-hubs.mjs` fails if the sitemap and the pages disagree. Individual collection pages and additional location pages remain future work. The five service pages are linked through the shared Services navigation. Consultation & Measuring and Installation have separate URLs and headings. Both emphasize a free in-home consultation with samples brought to the home and measurements taken there; their primary actions lead to the central contact form. The old installation-page #measuring link forwards to the consultation page. The client-requested upholstery photo placeholder remains on the homepage and upholstery preview page.
 
 Private intake records, transcripts, dealer policies, local credentials and QA artifacts are excluded from this repository.
 

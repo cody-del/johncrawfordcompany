@@ -1,0 +1,76 @@
+/* Local pages use the existing type, colors and content rails. */
+.company-page--location .section { padding-block: clamp(48px, 5.4vw, 72px); }
+.location-hero-grid, .location-feature-grid, .location-introduction--photo .location-intro-grid, .location-visit-grid, .location-questions-grid, .location-contact-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(32px, 5vw, 68px); align-items: center; }
+.location-hero-copy, .location-prose { min-width: 0; }
+.location-hero .breadcrumbs { display: flex; flex-wrap: wrap; gap: 4px 10px; margin-bottom: 24px; font-size: 13px; line-height: 1.7; }
+.location-hero h1 { font-size: clamp(38px, 4.4vw, 60px); line-height: 1.12; }
+.location-hero-copy > p { margin-top: 24px; font-size: 18px; line-height: 1.8; }
+.location-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 12px 24px; margin-top: 26px; }
+.location-actions .btn { max-width: 100%; }
+.location-actions .text-link { display: inline-flex; align-items: center; min-width: 0; max-width: 100%; min-height: 44px; }
+.location-photo { min-width: 0; margin: 0; }
+.location-photo img { width: 100%; height: auto; }
+.location-photo figcaption { margin-top: 10px; color: var(--text); font-size: 12px; line-height: 1.6; }
+.location-photo .text-link { margin-top: 2px; font-size: 14px; }
+.location-prose h2, .location-section-heading h2, .location-visit-grid > h2, .location-questions-grid > h2 { font-size: clamp(30px, 3vw, 42px); line-height: 1.2; }
+.location-prose h2 + p { margin-top: 22px; }
+.location-prose p { font-size: 17px; line-height: 1.8; }
+.location-prose p + p { margin-top: 18px; }
+.location-prose > .text-link { margin-top: 18px; }
+.location-introduction:not(.location-introduction--photo) { border-top: 1px solid var(--line); }
+.location-introduction:not(.location-introduction--photo) .location-intro-grid { max-width: 900px; }
+.location-introduction--photo > .location-intro-grid { align-items: center; }
+.location-introduction--photo .location-photo + .text-link { margin-top: 10px; font-size: 14px; }
+.location-section-heading { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: start; gap: 24px 68px; }
+.location-section-heading p { font-size: 17px; line-height: 1.8; }
+.location-product-list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; margin: 36px 0 0; padding: 0; list-style: none; }
+.location-product-list li { border-top: 1px solid #bca99a; padding-top: 20px; min-width: 0; }
+.location-product-list h3 { font-size: 28px; line-height: 1.3; }
+.location-product-list h3 a { display: inline-block; padding-block: 4px; color: var(--magenta); text-decoration-thickness: 1px; }
+.location-product-list h3 a:hover { color: var(--walnut); }
+.location-product-list p { margin-top: 12px; font-size: 16px; line-height: 1.8; }
+.location-feature-grid { grid-template-columns: minmax(0, 1fr) minmax(0, .9fr); }
+.location-feature + .location-visit { border-top: 1px solid var(--line); }
+.location-visit-grid { align-items: start; }
+.location-steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; margin: 36px 0 0; padding: 0; list-style: none; counter-reset: visit; }
+.location-steps li { counter-increment: visit; border-top: 1px solid var(--line); padding-top: 20px; }
+.location-steps li::before { content: "0" counter(visit); display: block; color: var(--text); font-size: 13px; margin-bottom: 12px; }
+.location-steps h3 { font-size: 25px; }
+.location-steps p { margin-top: 12px; font-size: 16px; line-height: 1.8; }
+.location-steps .text-link { margin-top: 12px; font-size: 15px; }
+.location-guide .text-link { font-size: 15px; }
+.location-questions-grid { grid-template-columns: minmax(0, .7fr) minmax(0, 1.3fr); align-items: start; }
+.location-faq-list { min-width: 0; border-top: 1px solid #bca99a; }
+.location-faq-list details { border-bottom: 1px solid #bca99a; }
+.location-faq-list summary { position: relative; padding: 20px 30px 20px 0; font-size: 18px; font-weight: 500; line-height: 1.6; list-style: none; cursor: pointer; }
+.location-faq-list summary::-webkit-details-marker { display: none; }
+.location-faq-list summary::after { position: absolute; right: 2px; top: 20px; content: "+"; }
+.location-faq-list details[open] > summary::after { content: "−"; }
+.location-faq-list details > div { padding: 0 24px 22px 0; }
+.location-faq-list p { font-size: 16px; line-height: 1.8; }
+.location-faq-list .text-link { margin-top: 12px; }
+.location-contact-grid { grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); }
+.location-contact-grid .hub-contact-details { min-width: 0; width: 100%; }
+.location-contact-grid .hub-contact-details address { white-space: normal; font-size: 17px; }
+.location-contact-grid .hub-contact-actions .btn { padding-inline: 20px; font-size: 11px; }
+@media (max-width: 1000px) {
+  .location-hero-grid { grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: 32px; }
+  .location-product-list { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; }
+  .location-steps { gap: 24px; }
+  .location-contact-grid { grid-template-columns: minmax(0, 1fr); }
+  .location-contact-grid .hub-contact-details { max-width: 700px; justify-self: center; }
+}
+@media (max-width: 700px) {
+  .company-page--location .section { padding-block: 40px; }
+  .location-hero-grid, .location-feature-grid, .location-introduction--photo .location-intro-grid, .location-visit-grid, .location-questions-grid, .location-section-heading { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+  .location-hero h1 { font-size: clamp(36px, 8vw, 48px); }
+  .location-hero-copy > p { font-size: 17px; margin-top: 20px; }
+  .location-hero .breadcrumbs { margin-bottom: 20px; }
+  .location-introduction--photo .location-intro-grid > div:first-child { order: 2; }
+  .location-introduction--photo .location-intro-grid > .location-prose { order: 1; }
+  .location-product-list, .location-steps { grid-template-columns: minmax(0, 1fr); gap: 26px; margin-top: 28px; }
+  .location-prose h2, .location-section-heading h2, .location-visit-grid > h2, .location-questions-grid > h2 { font-size: 32px; }
+  .location-prose p, .location-section-heading p { font-size: 16px; }
+  .location-contact-grid .hub-contact-actions { grid-template-columns: minmax(0, 1fr); }
+  .location-contact-grid .hub-contact-actions .btn { font-size: 11px; }
+}

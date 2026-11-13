@@ -14,6 +14,8 @@
 .company-page--service-areas .area-places { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 8px 24px; margin: 0; padding: 0; list-style: none; }
 .company-page--service-areas .area-region--primary .area-places { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 .company-page--service-areas .area-place { min-width: 0; margin: 0; padding-block: 5px; color: var(--walnut); font-size: 17px; line-height: 1.65; }
+.company-page--service-areas .area-place a { color: var(--magenta); text-decoration-thickness: 1px; }
+.company-page--service-areas .area-place a:hover { color: var(--walnut); }
 .company-page--service-areas .area-contact { padding-block: 48px 56px; }
 .company-page--service-areas .area-contact-inner { display: flex; justify-content: space-between; align-items: center; gap: 32px 64px; }
 .company-page--service-areas .area-contact-copy { max-width: 660px; }

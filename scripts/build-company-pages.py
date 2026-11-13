@@ -10,6 +10,7 @@ ROOT = Path(__file__).resolve().parents[1]
 DIST = ROOT / 'dist'
 CONTENT = json.loads((ROOT / 'content/company-pages.json').read_text())
 BLOG_POSTS = json.loads((ROOT / 'content/blog-posts.json').read_text())
+LOCATION_PAGES = json.loads((ROOT / 'content/location-pages.json').read_text())
 SERVICE_AREAS = json.loads((ROOT / 'content/service-areas.json').read_text())
 HOURS = json.loads((ROOT / 'content/business-hours.json').read_text())
 BASE = 'https://www.johncrawfordcompany.com'
@@ -225,8 +226,11 @@ def contact_body(page):
 
 def service_areas_body(page):
     regions = []
+    destinations = {location['name']: location['slug'] for location in LOCATION_PAGES}
     for index, region in enumerate(page['regions']):
-        places = ''.join(f'<li class="area-place">{e(place)}</li>' for place in region['communities'])
+        places = ''.join('<li class="area-place">' +
+                         (f'<a href="{e(destinations[place])}">{e(place)}</a>' if place in destinations else e(place)) +
+                         '</li>' for place in region['communities'])
         modifier = ' area-region--primary' if index == 0 else ''
         regions.append(
             f'<section class="area-region{modifier}" id="{e(region["id"])}" aria-labelledby="{e(region["id"])}-heading">'
@@ -284,4 +288,5 @@ if __name__ == '__main__':
         print(page['slug'])
     subprocess.run([sys.executable, str(ROOT / 'scripts/build-services.py')], check=True)
     subprocess.run([sys.executable, str(ROOT / 'scripts/build-blog.py')], check=True)
+    subprocess.run([sys.executable, str(ROOT / 'scripts/build-locations.py')], check=True)
     subprocess.run([sys.executable, str(ROOT / 'scripts/build-sitemap.py')], check=True)
