@@ -1,5 +1,127 @@
 [
   {
+    "name": "Silhouette vs. Pirouette: What Changes When the Vanes Open?",
+    "heading": "Silhouette vs. Pirouette: What Changes When the Vanes Open?",
+    "slug": "/blog/silhouette-vs-pirouette-shades/",
+    "title": "Silhouette vs. Pirouette Shades | John Crawford",
+    "description": "Compare Hunter Douglas Silhouette and Pirouette shades by vane design, view, daylight and room-darkening options before choosing your fabric.",
+    "excerpt": "Compare Hunter Douglas Silhouette and Pirouette shades by vane design, view, daylight and room-darkening options before choosing your fabric.",
+    "published": "2026-12-14",
+    "author": "John Crawford Company",
+    "cover": {
+      "src": "/assets/products/silhouette.jpg",
+      "width": 1280,
+      "height": 960,
+      "alt": "Horizontal fabric vanes filtering light beside two lounge chairs and a pink sofa.",
+      "caption": "Hunter Douglas Silhouette® Sheer Shades"
+    },
+    "intro": [
+      "A still photograph only shows one setting of a sheer shade. To understand the difference between Hunter Douglas Silhouette and Pirouette, it helps to watch the fabric vanes open and close, then look through them from where you normally sit.",
+      "Both collections combine fabric with a sheer layer to manage daylight and privacy. The way the vanes are arranged gives each a different appearance. That is the most useful place to start a Silhouette vs. Pirouette comparison."
+    ],
+    "sections": [
+      {
+        "id": "the-fabric-is-arranged-differently",
+        "heading": "The fabric is arranged differently",
+        "table": {
+          "columns": [
+            "Feature",
+            "Silhouette Sheer Shades",
+            "Pirouette Sheer Shades"
+          ],
+          "rows": [
+            [
+              "Construction",
+              "S-shaped fabric vanes between two sheer layers",
+              "Fabric vanes attached to a single back sheer"
+            ],
+            [
+              "Vane sizes",
+              "2, 3 or 4 inches",
+              "5 inches"
+            ],
+            [
+              "Open appearance",
+              "Tilting vanes create spaces for filtered views",
+              "Fabric vanes change shape to reveal the back sheer"
+            ],
+            [
+              "Room-darkening option",
+              "Selected Duolite or A Deux configurations",
+              "Optional A Deux configuration"
+            ],
+            [
+              "What to compare in person",
+              "Vane spacing, fabric and the view through the sheers",
+              "The broader fabric vanes, their movement and the view"
+            ]
+          ],
+          "caption": "The fabric is arranged differently"
+        }
+      },
+      {
+        "id": "silhouette-creates-a-repeated-horizontal-pattern",
+        "heading": "Silhouette creates a repeated horizontal pattern",
+        "paragraphs": [
+          "Silhouette Sheer Shades hold their S-shaped fabric vanes between front and back sheer layers. Tilting the vanes changes the light passing through and your view outside.",
+          "The choice of vane size affects the scale of the treatment. A wider vane produces a different pattern across the window from a narrower one. Consider that pattern alongside window divisions, nearby shelving and other horizontal lines already in the room.",
+          "It is useful to view the sample from more than one position. What looks open when you stand directly in front of the window may read differently from a sofa or an adjoining room. Your normal viewing position should be part of the comparison."
+        ]
+      },
+      {
+        "id": "pirouette-changes-shape-as-the-vanes-open",
+        "heading": "Pirouette changes shape as the vanes open",
+        "paragraphs": [
+          "Pirouette Sheer Shades use fabric vanes with a single sheer backing. Their broader vanes change shape as they open, giving the fabric a dimensional appearance. When comparing the two products, watch this movement rather than judging them only when fully closed.",
+          "Pirouette's 5-inch vanes create a different visual scale from the available Silhouette sizes. The fabric itself matters, too. A smooth material and a more visible texture can give the same construction a different character.",
+          "Neither appearance is automatically the better match for a large or small room. Consider how much you want the treatment to stand out and whether its pattern works with the furnishings you already have."
+        ]
+      },
+      {
+        "id": "compare-the-view-and-privacy-as-separate-needs",
+        "heading": "Compare the view and privacy as separate needs",
+        "paragraphs": [
+          "Open vanes allow a filtered view through the sheer fabric. That view changes with the selected material, vane position and lighting. Ask to see the treatment both open and closed instead of assuming every sheer fabric will give the same result.",
+          "Evening privacy needs its own discussion. Tell us if the window faces a sidewalk, another house or an outdoor seating area. We can review what coverage you need when the room is lit and which configuration is appropriate."
+        ]
+      },
+      {
+        "id": "a-darker-bedroom-needs-the-right-configuration",
+        "heading": "A darker bedroom needs the right configuration",
+        "paragraphs": [
+          "Both collections have selected configurations that combine the sheer treatment with a room-darkening roller behind it. Hunter Douglas offers Duolite or A Deux options for Silhouette and an A Deux option for Pirouette.",
+          "These are options to specify, not features to assume on every shade. We also consider light around the edges and the mounting arrangement when you want a darker room. Fabric, configuration and installation each contribute to the result."
+        ]
+      },
+      {
+        "id": "make-the-comparison-from-the-room-you-use",
+        "heading": "Make the comparison from the room you use",
+        "paragraphs": [
+          "Before choosing, note where you sit, when the sun is strongest and how often you expect to change the shade's position. Bring a photo showing the entire window wall so we can discuss the treatment alongside the rest of the room.",
+          "At John Crawford Company in Woodland Hills, we help compare Hunter Douglas shade fabrics and operating choices, then handle measuring and installation. Request an appointment to discuss Silhouette and Pirouette for your own windows."
+        ],
+        "links": [
+          {
+            "paragraph": 1,
+            "text": "Hunter Douglas shade fabrics",
+            "href": "/shades/"
+          },
+          {
+            "paragraph": 1,
+            "text": "Request an appointment",
+            "href": "/contact/"
+          }
+        ],
+        "cta": {
+          "text": "Request a free in-home consultation",
+          "href": "/contact/#appointment-form"
+        }
+      }
+    ],
+    "published_display": "December 14, 2026",
+    "css_class": "blog-article"
+  },
+  {
     "name": "Wood vs. Faux Wood Blinds: Parkland or EverWood for Your Room?",
     "heading": "Wood vs. Faux Wood Blinds: Parkland or EverWood for Your Room?",
     "slug": "/blog/wood-vs-faux-wood-blinds/",
