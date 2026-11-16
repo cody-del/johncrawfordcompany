@@ -1,5 +1,127 @@
 [
   {
+    "name": "Wood vs. Composite Shutters: Heritance or NewStyle?",
+    "heading": "Wood vs. Composite Shutters: Heritance or NewStyle?",
+    "slug": "/blog/wood-vs-composite-shutters/",
+    "title": "Wood vs. Composite Shutters | Heritance & NewStyle",
+    "description": "Compare Hunter Douglas Heritance wood shutters and NewStyle composite shutters, including finishes, louver sizes, panel layout and window clearance.",
+    "excerpt": "Compare Hunter Douglas Heritance wood shutters and NewStyle composite shutters, including finishes, louver sizes, panel layout and window clearance.",
+    "published": "2027-01-11",
+    "author": "John Crawford Company",
+    "cover": {
+      "src": "/assets/products/heritance.jpg",
+      "width": 1280,
+      "height": 608,
+      "alt": "Dark wood shutters across a wide window wall beside a dining table and kitchen.",
+      "caption": "Hunter Douglas Heritance® Wood Shutters"
+    },
+    "intro": [
+      "The material is one decision in a shutter project. The finish, louver size and panel layout determine much of what you will see and how comfortably the shutters will open around the room.",
+      "For Hunter Douglas, Heritance Wood Shutters and NewStyle Composite Shutters offer two ways to create a fitted interior shutter. Comparing wood vs. composite shutters is most useful when you look at these choices together rather than choosing a material before considering the window."
+    ],
+    "sections": [
+      {
+        "id": "the-material-and-finish-differ",
+        "heading": "The material and finish differ",
+        "table": {
+          "columns": [
+            "Choice",
+            "Heritance Wood Shutters",
+            "NewStyle Composite Shutters"
+          ],
+          "rows": [
+            [
+              "Construction material",
+              "Natural hardwood",
+              "Composite material"
+            ],
+            [
+              "Finish direction",
+              "Painted or stained wood; custom options available",
+              "Low-luster finish with a painted-wood appearance"
+            ],
+            [
+              "Louver sizes",
+              "2½, 3½ or 4½ inches",
+              "2½, 3½ or 4½ inches"
+            ],
+            [
+              "What to compare closely",
+              "Grain, stain or paint beside existing woodwork",
+              "Finish color and sheen beside trim and furnishings"
+            ],
+            [
+              "Planning needed for both",
+              "Frame fit, panel layout and opening clearance",
+              "Frame fit, panel layout and opening clearance"
+            ]
+          ],
+          "caption": "The material and finish differ"
+        }
+      },
+      {
+        "id": "consider-heritance-when-the-wood-finish-matters",
+        "heading": "Consider Heritance when the wood finish matters",
+        "paragraphs": [
+          "Heritance shutters are made from natural hardwood and offer painted and stained finishes, including custom paint and stain options. They deserve a close look if you want visible wood grain or are coordinating with cabinetry, furniture or an existing wood finish.",
+          "Compare the actual finish samples in the room. A stain can look different beside a wood floor than it does on its own. You may prefer a close relationship between the tones, or you may want the shutters to stand apart as a window feature.",
+          "Painted wood is another possibility. Choosing a painted appearance does not automatically settle the material question; it gives you a reason to compare both collections side by side."
+        ]
+      },
+      {
+        "id": "look-at-newstyle-for-its-composite-construction",
+        "heading": "Look at NewStyle for its composite construction",
+        "paragraphs": [
+          "NewStyle shutters combine composite materials with a low-luster finish intended to resemble finely painted wood. Hunter Douglas positions the collection around durability as well as appearance.",
+          "Assess the finish where it meets the frame and surrounding trim. Two similar whites can differ in warmth or sheen. The room's daylight can make those differences easier to see than a photograph does.",
+          "Both Heritance and NewStyle have several louver sizes. That allows the material choice and the scale of the louvers to be considered separately rather than assuming a particular material requires a particular look."
+        ]
+      },
+      {
+        "id": "plan-how-the-panels-will-open",
+        "heading": "Plan how the panels will open",
+        "paragraphs": [
+          "A shutter panel occupies space as it swings into the room. Nearby furniture, a deep sill or a projecting window handle can affect the arrangement. The number of panels also changes the pattern across the glass and where the panel edges fall.",
+          "Think about how often you expect to open the entire panel. If you usually adjust only the louvers, the priorities may differ from a window you regularly open for air or cleaning. We check the movement you need while reviewing the layout."
+        ]
+      },
+      {
+        "id": "louver-size-affects-more-than-the-closed-appearance",
+        "heading": "Louver size affects more than the closed appearance",
+        "paragraphs": [
+          "Broader louvers create a different pattern and view between them when open. They also need room to rotate without hitting handles or glass. Frame depth and the available mounting position help determine which arrangements work.",
+          "For a bedroom, discuss the darkness you expect. Shutters can reduce incoming light, but small gaps around panels and louvers may remain visible. We review coverage and whether another layer would suit your needs."
+        ]
+      },
+      {
+        "id": "include-the-rooms-exposure-in-the-discussion",
+        "heading": "Include the room's exposure in the discussion",
+        "paragraphs": [
+          "Tell us about moisture and strong sunlight before choosing. A bathroom or a particularly exposed window may call for another material comparison. Hunter Douglas Palm Beach Polysatin Vinyl Shutters are a separate vinyl option designed for those conditions; they are not the same material as NewStyle composite shutters.",
+          "From our Woodland Hills showroom, John Crawford Company helps compare shutter materials, finishes and panel arrangements, with measuring and installation handled by our team. An appointment gives us a chance to look at the window as well as the finish you like."
+        ],
+        "links": [
+          {
+            "paragraph": 1,
+            "text": "shutter materials",
+            "href": "/shutters/"
+          },
+          {
+            "paragraph": 1,
+            "text": "An appointment",
+            "href": "/contact/"
+          }
+        ],
+        "cta": {
+          "text": "Request a free in-home consultation",
+          "href": "/contact/#appointment-form"
+        }
+      }
+    ],
+    "published_display": "January 11, 2027",
+    "css_class": "blog-article"
+  },
+  {
     "name": "Do Woven Wood Shades Need a Liner? A Closer Look at Provenance",
     "heading": "Do Woven Wood Shades Need a Liner? A Closer Look at Provenance",
     "slug": "/blog/woven-wood-shades-with-liner/",
