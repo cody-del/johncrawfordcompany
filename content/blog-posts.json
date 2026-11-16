@@ -1,5 +1,127 @@
 [
   {
+    "name": "Do Woven Wood Shades Need a Liner? A Closer Look at Provenance",
+    "heading": "Do Woven Wood Shades Need a Liner? A Closer Look at Provenance",
+    "slug": "/blog/woven-wood-shades-with-liner/",
+    "title": "Woven Wood Shades With a Liner | Provenance Guide",
+    "description": "Explore Hunter Douglas Provenance woven wood shades with and without a liner. Compare privacy, daylight and independent liner options for your room.",
+    "excerpt": "Explore Hunter Douglas Provenance woven wood shades with and without a liner. Compare privacy, daylight and independent liner options for your room.",
+    "published": "2026-12-28",
+    "author": "John Crawford Company",
+    "cover": {
+      "src": "/assets/products/provenance.jpg",
+      "width": 1280,
+      "height": 945,
+      "alt": "Natural woven shades over tall windows beside a sofa and wood-framed lounge chair.",
+      "caption": "Hunter Douglas Provenance® Woven Wood Shades"
+    },
+    "intro": [
+      "The weave that gives a natural shade its texture also affects how light passes through it. A material that looks substantial against a sample-book backing may reveal more openings when held in front of a bright window.",
+      "That is why choosing woven wood shades with a liner starts with the room's privacy needs and daylight. With Hunter Douglas Provenance Woven Wood Shades, an optional independent liner adds another way to control both while keeping the woven material as the front-facing treatment."
+    ],
+    "sections": [
+      {
+        "id": "what-the-woven-material-contributes",
+        "heading": "What the woven material contributes",
+        "paragraphs": [
+          "Provenance shades are made from natural materials including woods, reeds, grasses and bamboo. The collection spans different weaves and textures, from airy materials to more opaque choices.",
+          "Look at the material against daylight as well as against a solid surface. You will get a better sense of the openings, the texture and the light entering through it. A sample's color is only part of the decision."
+        ]
+      },
+      {
+        "id": "compare-the-shade-with-and-without-a-liner",
+        "heading": "Compare the shade with and without a liner",
+        "table": {
+          "columns": [
+            "Consideration",
+            "Without an added liner",
+            "With an independent liner"
+          ],
+          "rows": [
+            [
+              "Light",
+              "Determined by the selected weave",
+              "Adjusted through the weave and the separate liner"
+            ],
+            [
+              "Privacy planning",
+              "Assess the material in the room's lighting",
+              "Adds a separate layer to control coverage"
+            ],
+            [
+              "Available liner opacity",
+              "Not applicable",
+              "Light-filtering or room-darkening choices"
+            ],
+            [
+              "Operation",
+              "The woven treatment is the primary layer",
+              "Liner operates independently from the front shade"
+            ],
+            [
+              "Appearance",
+              "Light passes directly through the weave",
+              "The backing can change how the weave and color appear"
+            ]
+          ],
+          "caption": "Compare the shade with and without a liner"
+        }
+      },
+      {
+        "id": "an-independent-liner-gives-the-two-layers-different-jobs",
+        "heading": "An independent liner gives the two layers different jobs",
+        "paragraphs": [
+          "Hunter Douglas houses the Provenance independent liner within the shade's headrail while allowing it to operate separately from the woven shade. The liner is available in light-filtering and room-darkening opacities.",
+          "That means you can leave the woven material covering the window and change the layer behind it as your needs change. For example, the front shade can remain lowered while the liner is adjusted for additional coverage later in the day.",
+          "The liner also affects the appearance of the woven material. Compare the combination together: changing the backing can make the weave look more defined or alter how its color reads. The room-facing result should be part of the selection."
+        ]
+      },
+      {
+        "id": "nighttime-privacy-deserves-a-separate-check",
+        "heading": "Nighttime privacy deserves a separate check",
+        "paragraphs": [
+          "A daytime sample view does not answer every privacy question. Consider what is outside the window and how the room is used after dark. A dining room facing a neighbor's window can need more coverage than a room opening onto a private yard.",
+          "An open weave may not provide the evening coverage you expect by itself. We review the selected material and liner options with that use in mind. If privacy is a priority, say so before choosing a weave simply because you like its texture."
+        ]
+      },
+      {
+        "id": "room-darkening-fabric-is-one-part-of-a-darker-room",
+        "heading": "Room-darkening fabric is one part of a darker room",
+        "paragraphs": [
+          "For a bedroom, a room-darkening liner can reduce light passing through the covered area. Light may still enter around the treatment's edges. Mounting position and coverage therefore need attention alongside the liner.",
+          "Existing drapery can be part of that discussion. It may offer another layer of coverage, but the shade, liner and curtains need room to move without interfering with one another. We check the arrangement before the order is finalized."
+        ]
+      },
+      {
+        "id": "match-the-liner-to-the-way-you-use-the-room",
+        "heading": "Match the liner to the way you use the room",
+        "paragraphs": [
+          "A breakfast area may call for softer daylight during the morning, while a guest bedroom may need more flexible light reduction. The same woven texture does not require the same liner choice at every window.",
+          "We also discuss how you want to operate the layers and which controls are available for the selected configuration. At a tall window, access to those controls belongs in the planning from the start.",
+          "John Crawford Company helps you compare natural woven materials and liner choices during a free in-home consultation or a scheduled Woodland Hills showroom visit. Seeing the samples against your windows gives the texture, privacy and backing equal attention."
+        ],
+        "links": [
+          {
+            "paragraph": 2,
+            "text": "natural woven materials",
+            "href": "/shades/"
+          },
+          {
+            "paragraph": 2,
+            "text": "free in-home consultation",
+            "href": "/services/consultation-measuring/"
+          }
+        ],
+        "cta": {
+          "text": "Request a free in-home consultation",
+          "href": "/contact/#appointment-form"
+        }
+      }
+    ],
+    "published_display": "December 28, 2026",
+    "css_class": "blog-article"
+  },
+  {
     "name": "Silhouette vs. Pirouette: What Changes When the Vanes Open?",
     "heading": "Silhouette vs. Pirouette: What Changes When the Vanes Open?",
     "slug": "/blog/silhouette-vs-pirouette-shades/",
