@@ -1,5 +1,122 @@
 [
   {
+    "name": "Cellular Shades vs. Roller Shades: Duette or Designer Roller?",
+    "heading": "Cellular Shades vs. Roller Shades: Duette or Designer Roller?",
+    "slug": "/blog/cellular-shades-vs-roller-shades/",
+    "title": "Cellular vs. Roller Shades | John Crawford Company",
+    "description": "Compare Hunter Douglas Duette cellular shades and Designer Roller Shades for insulation, privacy, fabric choices and the fit at your windows.",
+    "excerpt": "Compare Hunter Douglas Duette cellular shades and Designer Roller Shades for insulation, privacy, fabric choices and the fit at your windows.",
+    "published": "2026-11-17",
+    "author": "John Crawford Company",
+    "cover": {
+      "src": "/assets/products/duette.jpg",
+      "width": 1280,
+      "height": 929,
+      "alt": "Gray honeycomb shade across a wide bathroom window above a freestanding tub.",
+      "caption": "Hunter Douglas Duette® Honeycomb Shades"
+    },
+    "intro": [
+      "Cellular shades are worth considering when you want added insulation at the window. Roller shades offer a flat fabric surface that can bring color, texture or pattern into the room. Both give you choices for managing daylight and privacy, but their construction changes how they look and operate.",
+      "For Hunter Douglas shoppers, that comparison often comes down to Duette Honeycomb Shades and Designer Roller Shades. Choosing between them gets easier when you look beyond the fabric sample and consider the shade fully lowered, partly open and raised."
+    ],
+    "sections": [
+      {
+        "id": "what-changes-at-the-window",
+        "heading": "What changes at the window?",
+        "paragraphs": [
+          "A cellular shade has pleated fabric that forms pockets of air. A roller shade uses a continuous panel of fabric that wraps around a tube as it rises. Those differences remain visible as you use the shade throughout the day."
+        ],
+        "table": {
+          "columns": [
+            "What to compare",
+            "Duette Honeycomb Shades",
+            "Designer Roller Shades"
+          ],
+          "rows": [
+            [
+              "Fabric when lowered",
+              "Dimensional horizontal pleats",
+              "A flat panel showing color, texture or pattern"
+            ],
+            [
+              "Fabric when raised",
+              "Folds gather into a stack",
+              "Fabric wraps around a tube"
+            ],
+            [
+              "Construction to consider",
+              "Cellular pockets add insulation",
+              "A continuous fabric panel offers a simple appearance"
+            ],
+            [
+              "Light and privacy",
+              "Depend on fabric and configuration",
+              "Depend on fabric and configuration"
+            ]
+          ],
+          "caption": "What changes at the window?"
+        },
+        "after": [
+          "Neither style needs to be used throughout the entire house. A bedroom and a living room can call for different treatments, even when you want the rooms to feel connected."
+        ]
+      },
+      {
+        "id": "duette-consider-comfort-and-flexible-coverage",
+        "heading": "Duette: consider comfort and flexible coverage",
+        "paragraphs": [
+          "Duette Honeycomb Shades use a cellular structure that traps air within the fabric, adding insulation at the window. That construction deserves attention if the area beside your windows feels noticeably warmer or cooler than the rest of the room. The shade's fit and the window itself also affect comfort, so we consider the opening as part of the selection.",
+          "Duette shades have a pleated appearance when lowered. Look at that texture across the whole window, particularly if the room already has patterned upholstery, drapery or other fabrics.",
+          "Selected Duette configurations offer Top-Down/Bottom-Up operation. You can uncover glass at the top while keeping the lower portion covered, bringing daylight above eye level while maintaining coverage below. A window facing a walkway may benefit from that flexibility more than one overlooking a private garden."
+        ]
+      },
+      {
+        "id": "designer-roller-give-the-fabric-a-closer-look",
+        "heading": "Designer Roller: give the fabric a closer look",
+        "paragraphs": [
+          "Designer Roller Shades offer fabrics ranging from sheer to opaque, with textures, prints and patterns. Because the lowered shade presents a flat area of fabric, the material has a strong influence on its appearance. A quiet neutral can sit alongside patterned furnishings. A more visible weave or print can make the window a feature of the room.",
+          "Compare samples with the shade lowered in mind. A small pattern that looks subtle in a sample book may become more noticeable across a broad window.",
+          "The finish at the top deserves attention, too. Discuss how the roll and selected hardware will look, especially if the shade will sit beneath existing drapery or within a shallow frame."
+        ]
+      },
+      {
+        "id": "separate-daylight-privacy-and-bedroom-darkness",
+        "heading": "Separate daylight, privacy and bedroom darkness",
+        "paragraphs": [
+          "When comparing cellular shades vs. roller shades, the fabric choice can matter as much as the style. For a living room, you may want daylight to pass through while reducing its intensity. For a bedroom, you may prefer substantially less light. At a window facing the street, your first concern may be privacy after dark.",
+          "Ask how the selected material behaves when the room is lit at night. Room-darkening fabric addresses light passing through the material; coverage around the opening also matters. A narrow band of light beside a shade can be noticeable in a bedroom even when the fabric itself blocks light well."
+        ]
+      },
+      {
+        "id": "look-at-the-window-with-the-shade-raised",
+        "heading": "Look at the window with the shade raised",
+        "paragraphs": [
+          "The shade's appearance when open is easy to overlook while choosing a color. Cellular fabric gathers as it rises, while roller fabric wraps around its tube. The amount of glass left exposed depends on the dimensions, construction and mounting position.",
+          "John Crawford Company checks frame depth, window handles and mounting space alongside width and height. If you prefer motorized operation, we also review the available controls for your chosen shade and window size. The product and the installation need to work together."
+        ]
+      },
+      {
+        "id": "compare-the-choices-in-your-own-room",
+        "heading": "Compare the choices in your own room",
+        "paragraphs": [
+          "Schedule an appointment at John Crawford Company's Woodland Hills showroom in Los Angeles, or request a free in-home consultation to compare suitable fabrics beside your windows. We help with shade selection, measuring and installation."
+        ],
+        "links": [
+          {
+            "paragraph": 0,
+            "text": "free in-home consultation",
+            "href": "/services/consultation-measuring/"
+          }
+        ],
+        "cta": {
+          "text": "Request a free in-home consultation",
+          "href": "/contact/#appointment-form"
+        }
+      }
+    ],
+    "published_display": "November 17, 2026",
+    "css_class": "blog-article"
+  },
+  {
     "name": "How to Choose Window Treatments for Large Windows",
     "heading": "How to Choose Window Treatments for Large Windows",
     "slug": "/blog/how-to-choose-window-treatments-for-large-windows/",

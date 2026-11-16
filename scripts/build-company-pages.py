@@ -280,7 +280,7 @@ if __name__ == '__main__':
         if key == 'service_areas':
             page_head = page_head.replace('</head>', '<link rel="stylesheet" href="/service-areas.css?v=service-areas-3">\n</head>')
         if key == 'blog':
-            page_head = page_head.replace('</head>', '<link rel="stylesheet" href="/blog.css?v=large-windows-20261111">\n</head>')
+            page_head = page_head.replace('</head>', '<link rel="stylesheet" href="/blog.css?v=blog-guides-20261117">\n</head>')
         html = page_head + header + renderer(page) + footer + mobile + '</body></html>\n'
         target = DIST / page['slug'].strip('/') / 'index.html'
         target.parent.mkdir(parents=True, exist_ok=True)
