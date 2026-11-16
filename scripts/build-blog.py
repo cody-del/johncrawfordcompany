@@ -40,13 +40,22 @@ def paragraphs(block):
 def table(section):
     data = section['table']
     headings = ''.join(f'<th scope="col">{e(label)}</th>' for label in data['columns'])
-    rows = ''.join(
-        f'<tr><th scope="row"><a href="{e(row["href"])}">{e(row["product"])}</a></th>'
-        + ''.join(f'<td>{e(row[key])}</td>' for key in ['reason', 'light', 'planning']) + '</tr>'
-        for row in data['rows']
-    )
+    if data['rows'] and isinstance(data['rows'][0], list):
+        # A plain comparison: the first cell of each row labels it, the rest follow the columns.
+        rows = ''.join(
+            f'<tr><th scope="row">{e(row[0])}</th>' + ''.join(f'<td>{e(cell)}</td>' for cell in row[1:]) + '</tr>'
+            for row in data['rows']
+        )
+    else:
+        rows = ''.join(
+            f'<tr><th scope="row"><a href="{e(row["href"])}">{e(row["product"])}</a></th>'
+            + ''.join(f'<td>{e(row[key])}</td>' for key in ['reason', 'light', 'planning']) + '</tr>'
+            for row in data['rows']
+        )
+    caption = data.get('caption', 'Hunter Douglas product comparison for large windows')
+    table_class = ' class="article-comparison-pair"' if data['rows'] and isinstance(data['rows'][0], list) else ''
     return ('<div class="article-comparison" role="region" tabindex="0" aria-label="Product comparison">'
-            '<table><caption class="sr-only">Hunter Douglas product comparison for large windows</caption>'
+            f'<table{table_class}><caption class="sr-only">{e(caption)}</caption>'
             f'<thead><tr>{headings}</tr></thead><tbody>{rows}</tbody></table></div>')
 
 
@@ -56,6 +65,8 @@ def section_html(section):
         body += f'<h3>{e(subsection["heading"])}</h3>' + paragraphs(subsection)
     if section.get('table'):
         body += table(section)
+        # Paragraphs the article places after its table.
+        body += paragraphs({'paragraphs': section.get('after', []), 'links': section.get('after_links', [])})
     if section.get('note'):
         body += f'<p class="article-note">{e(section["note"])}</p>'
     if section.get('cta'):
@@ -70,7 +81,7 @@ def head(post):
     html = html.replace('content="website"', 'content="article"', 1)
     html = html.replace(BASE + '/assets/john-crawford-logo.png', BASE + post['cover']['src'])
     html = html.replace('content="John Crawford Company — Window Treatments"', f'content="{e(post["cover"]["alt"])}"')
-    html = html.replace('</head>', '<link rel="stylesheet" href="/blog.css?v=large-windows-20261111">'
+    html = html.replace('</head>', '<link rel="stylesheet" href="/blog.css?v=blog-guides-20261117">'
                         f'<meta property="article:published_time" content="{e(post["published"])}">\n</head>')
 
     def schema(match):
