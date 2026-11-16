@@ -1,3 +1,19 @@
+// GA4 phone_click for every tap-to-call link (header Call now, hero, footer, contact page and any
+// added later): one capture-phase listener, so a handler that stops the click can't hide it. It sits
+// first so an error further down can't keep it from installing. Same rule as generate_lead: gtag
+// exists only on www.johncrawfordcompany.com after the visitor allows Performance cookies, so before
+// consent (and on previews) nothing is sent or queued. GA4 only, no Ads or Meta event.
+document.addEventListener('click', event => {
+  const link = event.target.closest?.('a[href^="tel:"]');
+  if (!link) return;
+  try {
+    if (typeof gtag === 'function') gtag('event', 'phone_click', {
+      link_url: link.getAttribute('href'),
+      link_text: link.textContent.replace(/\s+/g, ' ').trim().slice(0, 100),
+    });
+  } catch {}
+}, true);
+
 const menuToggle = document.querySelector('.menu-toggle');
 const navigation = document.querySelector('.main-navigation');
 const dropdowns = [...document.querySelectorAll('.nav-dropdown, .header-call')];

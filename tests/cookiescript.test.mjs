@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readdirSync, readFileSync, statSync} from 'node:fs';
 import {join} from 'node:path';
+import vm from 'node:vm';
 import {fileURLToPath} from 'node:url';
 
 // The CookieScript banner (John Crawford's CookieScript account) must load on every page,
@@ -94,3 +95,43 @@ test('every page loads ClickCease once, after CookieScript, with its noscript fr
   }
 });
 
+
+// GA4 phone_click: app.js's first block, a capture-phase click listener on the document, sends
+// phone_click for any tel: link, only through gtag (which exists only after Performance consent on
+// the production host), so before consent nothing is sent or queued.
+function installPhoneClick(gtag) {
+  const app = readFileSync(new URL('../dist/app.js', import.meta.url), 'utf8');
+  const start = app.indexOf("document.addEventListener('click', event => {\n  const link = event.target.closest?.('a[href^=\"tel:\"]');");
+  assert.ok(start >= 0 && start < app.indexOf('const menuToggle'), 'the phone_click listener must come first in app.js');
+  const end = app.indexOf('}, true);\n', start) + '}, true);'.length;
+  const listeners = [];
+  const sandbox = {document: {addEventListener: (...args) => listeners.push(args)}};
+  if (gtag) sandbox.gtag = gtag;
+  vm.runInNewContext(app.slice(start, end), sandbox);
+  return listeners;
+}
+const fakeTarget = link => ({closest: selector => (selector === 'a[href^="tel:"]' ? link : null)});
+
+test('phone_click is one capture-phase document listener that sends link_url and link_text to GA4', () => {
+  const calls = [];
+  const listeners = installPhoneClick((...args) => calls.push(args));
+  assert.equal(listeners.length, 1);
+  const [type, handler, capture] = listeners[0];
+  assert.equal(type, 'click');
+  assert.equal(capture, true);
+  handler({target: fakeTarget({getAttribute: name => (name === 'href' ? 'tel:+18188845464' : null), textContent: '\n  Call   (818) 884-5464 \n'})});
+  handler({target: fakeTarget(null)});
+  handler({target: {}});
+  // JSON round trip: the call arguments come from the vm's own realm.
+  assert.deepEqual(JSON.parse(JSON.stringify(calls)), [['event', 'phone_click', {link_url: 'tel:+18188845464', link_text: 'Call (818) 884-5464'}]]);
+});
+
+test('phone_click sends nothing without consent (no gtag) and never queues to dataLayer', () => {
+  const [[, handler]] = installPhoneClick(null);
+  assert.doesNotThrow(() => handler({target: fakeTarget({getAttribute: () => 'tel:+18188845464', textContent: 'Call'})}));
+  const app = readFileSync(new URL('../dist/app.js', import.meta.url), 'utf8');
+  assert.doesNotMatch(app, /dataLayer/, 'app.js must not push to dataLayer itself: that would queue hits before consent');
+  const calls = app.match(/gtag\('event', '[a-z_]+'/g) || [];
+  assert.deepEqual(calls, ["gtag('event', 'phone_click'", "gtag('event', 'generate_lead'"]);
+  assert.match(app, /if \(typeof gtag === 'function'\) gtag\('event', 'phone_click'/);
+});
