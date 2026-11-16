@@ -1,5 +1,126 @@
 [
   {
+    "name": "Curtains Over Blinds: Getting the Rod, Clearance and Fabric Layers Right",
+    "heading": "Curtains Over Blinds: Getting the Rod, Clearance and Fabric Layers Right",
+    "slug": "/blog/curtains-over-blinds/",
+    "title": "Curtains Over Blinds: Planning Drapery | John Crawford",
+    "description": "Plan curtains over blinds with advice on rod projection, fabric stack, lining and Carole Fabrics custom drapes from John Crawford Company.",
+    "excerpt": "Plan curtains over blinds with advice on rod projection, fabric stack, lining and Carole Fabrics custom drapes from John Crawford Company.",
+    "published": "2027-01-25",
+    "author": "John Crawford Company",
+    "cover": {
+      "src": "/assets/products/carole-drapery.jpg",
+      "width": 1025,
+      "height": 513,
+      "alt": "Pale blue drapery beside a white-framed window, a sofa and a dark blue cabinet.",
+      "caption": "Carole Fabrics® Custom Drapes · Hunter Douglas"
+    },
+    "intro": [
+      "Adding curtains over blinds can change the appearance of a room without making the blind responsible for every part of the window's look. The blind can handle daily light adjustments while the drapery brings fabric, color and another layer of coverage.",
+      "Before choosing the fabric, decide what the curtains need to do. Panels that remain at the sides require a different arrangement from drapes that close across the glass each evening. That decision guides the rod or track, the fabric and the space needed around the existing blind."
+    ],
+    "sections": [
+      {
+        "id": "side-panels-or-curtains-that-close",
+        "heading": "Side panels or curtains that close?",
+        "table": {
+          "columns": [
+            "Planning question",
+            "Stationary side panels",
+            "Drapery that opens and closes"
+          ],
+          "rows": [
+            [
+              "Main role",
+              "Frame the window and add fabric",
+              "Cover the opening as well as frame it"
+            ],
+            [
+              "Movement",
+              "Remain in place",
+              "Travel along a rod or track"
+            ],
+            [
+              "Space to allow",
+              "The planned fullness at each side",
+              "The gathered fabric when fully open"
+            ],
+            [
+              "Privacy contribution",
+              "The blind still supplies most coverage across the glass",
+              "Drapery can add coverage when closed"
+            ],
+            [
+              "Hardware planning",
+              "Support the panels at their fixed positions",
+              "Support the fabric and allow the full travel"
+            ]
+          ],
+          "caption": "Side panels or curtains that close?"
+        }
+      },
+      {
+        "id": "measure-what-projects-in-front-of-the-wall",
+        "heading": "Measure what projects in front of the wall",
+        "paragraphs": [
+          "An existing blind may have a valance, headrail or bracket that extends beyond the frame. A curtain rod needs enough projection for the fabric to hang and move in front of it. The deepest part of the existing treatment is more useful than the glass alone when planning that clearance.",
+          "The controls need access, too. A curtain panel should not make the blind difficult to operate or catch on its hardware. If the window has a handle or opens into the room, we include that movement in the layout."
+        ]
+      },
+      {
+        "id": "allow-for-the-fabric-when-the-curtains-are-open",
+        "heading": "Allow for the fabric when the curtains are open",
+        "paragraphs": [
+          "Fabric gathers at the sides when drapery opens. The amount of space it occupies depends on the material, fullness, heading style and hardware. That gathered fabric can cover part of the glass if there is limited wall space beside the window.",
+          "We look at the available space before setting the rod width. A nearby corner, cabinet or doorway may limit where the fabric can sit. A symmetrical arrangement may look appealing on paper but need adjusting around the actual room."
+        ]
+      },
+      {
+        "id": "choose-fabric-and-lining-for-their-separate-roles",
+        "heading": "Choose fabric and lining for their separate roles",
+        "paragraphs": [
+          "Color and texture affect the appearance of the drapery. Lining influences how it hangs, how much light passes through and the coverage it provides. Compare the combination rather than selecting the face fabric first and treating the lining as an afterthought.",
+          "Carole Fabrics, a Hunter Douglas partner company, offers custom drapes and side panels in pleated, non-pleated and Ripplefold styles, with hardware and decorative trim options. That gives you choices in how the fabric forms at the top and falls beside the blind.",
+          "A patterned drape can work with a quiet blind finish, while a textured solid can add interest without another large pattern. Samples are helpful beside your existing rug, upholstery and window treatment."
+        ]
+      },
+      {
+        "id": "use-the-layers-to-address-the-light-you-want-to-change",
+        "heading": "Use the layers to address the light you want to change",
+        "paragraphs": [
+          "Describe the specific problem: an exposed room after dark, morning light at the sides of a bedroom blind, or a window that needs fabric around it. The answer may involve different drapery coverage or lining depending on that need.",
+          "Stationary panels alone will not close across the glass. If evening coverage is part of the goal, plan working drapery or another suitable treatment. For a darker bedroom, the arrangement around the sides and top deserves attention along with the fabrics."
+        ]
+      },
+      {
+        "id": "plan-the-complete-window-before-ordering",
+        "heading": "Plan the complete window before ordering",
+        "paragraphs": [
+          "Existing blinds do not all need replacing to add drapery. We first review their condition, the mounting space and the way the new layers will operate. The rod or track must support the chosen fabric and allow the movement you expect.",
+          "John Crawford Company helps with custom drapery fabric, lining and hardware selection as well as measuring and installation. Arrange a Woodland Hills showroom appointment or an in-home consultation to plan the layers around the blinds you already have."
+        ],
+        "links": [
+          {
+            "paragraph": 1,
+            "text": "custom drapery",
+            "href": "/drapery/"
+          },
+          {
+            "paragraph": 1,
+            "text": "in-home consultation",
+            "href": "/services/consultation-measuring/"
+          }
+        ],
+        "cta": {
+          "text": "Request a free in-home consultation",
+          "href": "/contact/#appointment-form"
+        }
+      }
+    ],
+    "published_display": "January 25, 2027",
+    "css_class": "blog-article"
+  },
+  {
     "name": "Wood vs. Composite Shutters: Heritance or NewStyle?",
     "heading": "Wood vs. Composite Shutters: Heritance or NewStyle?",
     "slug": "/blog/wood-vs-composite-shutters/",
