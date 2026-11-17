@@ -14,7 +14,7 @@ const files = dir => readdirSync(dir).flatMap(name => {
   return statSync(path).isDirectory() ? files(path) : [path];
 });
 
-test('the minified app.js keeps its globals, form endpoints, Turnstile, Lead and GA4 events', async () => {
+test('the minified app.js keeps its globals, form endpoints, Turnstile, Lead and GA4 events (generate_lead, phone_click)', async () => {
   const source = readFileSync(join(dist, 'app.js'), 'utf8');
   const app = await minifyAsset(source, '.js');
   assert.ok(app.length < source.length * 0.75, 'app.js should shrink');
@@ -28,7 +28,13 @@ test('the minified app.js keeps its globals, form endpoints, Turnstile, Lead and
     assert.ok(app.includes(text), `minified app.js lost ${text}`);
   }
   assert.deepEqual(app.match(/fbq\([^)]*\)/g), ['fbq("track","Lead")']);
-  assert.deepEqual(app.match(/gtag\([^)]*\)/g), ['gtag("event","generate_lead")']);
+  assert.deepEqual(app.match(/gtag\("event","[a-z_]+"/g), ['gtag("event","phone_click"', 'gtag("event","generate_lead"']);
+  assert.ok(app.includes('gtag("event","generate_lead")'), 'generate_lead must still send no parameters');
+  const phone = app.slice(0, app.indexOf('const menuToggle='));
+  assert.ok(phone.startsWith('document.addEventListener("click",') && phone.endsWith('},!0);'), 'phone_click must stay a first, capture-phase listener');
+  for (const text of [`a[href^="tel:"]`, 'typeof gtag=="function"&&gtag("event","phone_click",{link_url:', 'link_text:']) {
+    assert.ok(phone.includes(text), `minified phone_click listener lost ${text}`);
+  }
   assert.ok(app.indexOf('fbq("track","Lead")') > app.indexOf('Thank you. We received your request'), 'Lead must still follow the confirmed thank-you');
 });
 
