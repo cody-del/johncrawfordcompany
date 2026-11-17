@@ -17,7 +17,7 @@ http://www.johncrawfordcompany.com/*   https://www.johncrawfordcompany.com/:spla
 
 # Company and policy pages (/, /about, /accessibility and /contact keep their addresses)
 /home                             /                                          301
-/sitemap                          /sitemap.xml                               301
+/sitemap                          /about/                                    301
 /contact-us                       /contact/                                  301
 /privacy-policy                   /privacy/                                  301
 /terms-of-use                     /terms/                                    301

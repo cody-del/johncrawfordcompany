@@ -31,7 +31,7 @@
     "products_intro": "We carry Hunter Douglas and Alta window treatments. Start with the look you like, then compare the fabrics, materials and controls available for your windows.",
     "products": [
       {"title": "Shades", "text": "Compare roller, honeycomb, Roman, woven wood and sheer shades for daylight, privacy and texture.", "href": "/shades/"},
-      {"title": "Shutters", "text": "Compare wood, composite and vinyl shutters to find a finish and style you like.", "href": "/shutters/"},
+      {"title": "Plantation shutters", "text": "Compare wood, composite and vinyl plantation shutters to find a finish and style you like.", "href": "/shutters/"},
       {"title": "Blinds", "text": "Explore wood, faux wood and metal blinds, along with vertical options for broad windows and doors.", "href": "/blinds/"},
       {"title": "Drapery", "text": "Explore fabrics and hardware for custom drapery, on its own or layered with a shade.", "href": "/drapery/"},
       {"title": "Motorized shades", "text": "Learn about motorized shade options and how we handle installation and setup.", "href": "/motorized-shades/"}
@@ -52,7 +52,7 @@
     "faqs": [
       {"question": "Do I need an appointment for the showroom?", "answer": "Yes. Our Woodland Hills showroom is open by appointment, Monday–Saturday, 9 a.m.–5 p.m. Call or use the contact form to request a showroom visit, and we’ll arrange a time with you."},
       {"question": "Can you help with just one window?", "answer": "Yes. John has always welcomed single-window projects. You can come to us for one blind, a room you’re updating or window treatments for a whole home."},
-      {"question": "What if I need a blind or shade repaired?", "answer": "We review the product, its condition and the parts available to see whether a repair is possible. The repair request form lets you describe the problem and attach photos.", "link": {"text": "Send a repair request", "href": "/services/blind-shade-repair/#repair-inquiry"}}
+      {"question": "What if I need a blind or shade repaired?", "answer": "We review the product, its condition and the parts available to see whether a repair is possible. The repair request form lets you describe the problem and attach photos.", "link": {"text": "Send a blind or shade repair request", "href": "/services/blind-shade-repair/#repair-inquiry"}}
     ],
     "contact_heading": "Let’s talk about your Woodland Hills home.",
     "contact_text": "Choose a showroom visit or a free in-home consultation. We’ll help you find a starting point, even if you’re still deciding what you like."

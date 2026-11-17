@@ -154,8 +154,8 @@
   {
     "name": "Blinds",
     "slug": "/blinds/",
-    "title_tag": "Custom Blinds in Los Angeles | John Crawford Company",
-    "meta_description": "Find custom blinds in Los Angeles with John Crawford Company. Compare Hunter Douglas wood, faux wood, metal and vertical blinds, measured and installed for you.",
+    "title_tag": "Custom Blinds in Los Angeles & Woodland Hills | John Crawford Company",
+    "meta_description": "Find custom blinds in Los Angeles at John Crawford Company in Woodland Hills. Compare Hunter Douglas wood, faux wood, metal and vertical blinds, measured and installed for you.",
     "sections": [
       {
         "title": "Custom Blinds in Los Angeles, California",
@@ -237,7 +237,7 @@
       {
         "title": "One window is welcome",
         "paragraphs": [
-          "You don't need a whole-house project to call us. If you're replacing a blind in one room, we'll help you choose for that window and explain the next steps.",
+          "You don't need a whole-house project to call us. If you're replacing a blind in one room, we'll help you choose for that window and explain the next steps. From our Woodland Hills showroom, we work with customers across Los Angeles and nearby Valley communities.",
           "If you’re working on several rooms, the blinds can coordinate without all being the same. A bathroom may suit a different material from a living room."
         ]
       },
@@ -250,14 +250,14 @@
           },
           {
             "question": "Can blinds make a bedroom completely dark?",
-            "answer": "Closed slats reduce incoming light, but light can still pass through gaps and around the edges. If a darker bedroom is your main goal, we'll discuss suitable shade or drapery options as well.",
+            "answer": "Closed slats reduce incoming light, but light can still pass through gaps and around the edges. If a darker bedroom is your main goal, we'll discuss suitable shade, curtain or drapery options as well.",
             "links": [
               {
                 "text": "shade",
                 "href": "/shades/"
               },
               {
-                "text": "drapery options",
+                "text": "curtain or drapery options",
                 "href": "/drapery/"
               }
             ]
@@ -303,14 +303,14 @@
     "meta_description": "Compare plantation shutters in Los Angeles with John Crawford Company. See Hunter Douglas wood, composite and vinyl options in our Woodland Hills showroom.",
     "sections": [
       {
-        "title": "Custom Interior Shutters in Los Angeles, California",
+        "title": "Plantation Shutters in Los Angeles, California",
         "paragraphs": [
-          "Tilt the louvers for daylight and privacy, or open the panels for more of the view. See Hunter Douglas wood, composite and vinyl shutters at John Crawford Company in Woodland Hills, with measuring and installation by our team."
+          "Tilt the louvers for daylight and privacy, or open the panels for more of the view. See Hunter Douglas wood, composite and vinyl plantation shutters at John Crawford Company in Woodland Hills, with measuring and installation by our team."
         ],
         "cta": "Request a consultation"
       },
       {
-        "title": "Wood tones and painted finishes",
+        "title": "Wood, composite and vinyl plantation shutters",
         "paragraphs": [
           "A stained wood shutter can bring out the wood tones in your floor or furniture. For a painted look, compare the shutter finish with your window trim to see whether you want the colors to match.",
           "For a bathroom or a sunny room, consider Palm Beach™ Polysatin™ Vinyl Shutters, made to withstand moisture and strong sunlight. Compare them with wood and composite options below."
@@ -366,7 +366,7 @@
         ]
       },
       {
-        "title": "Questions about interior shutters",
+        "title": "Questions about plantation shutters",
         "faqs": [
           {
             "question": "Can shutters work on a door or an unusual window shape?",
@@ -377,13 +377,13 @@
             "answer": "Larger louvers give a broader look with fewer horizontal lines across the window. The right size also depends on the window depth and the clearance needed for the louvers to tilt. We can show you the available sizes."
           },
           {
-            "question": "What affects the cost of custom shutters?",
+            "question": "What affects the cost of plantation shutters?",
             "answer": "The material, window size, panel arrangement, frame and finish all contribute. After professional measuring and product selection, we can prepare a quote for your windows."
           }
         ]
       },
       {
-        "title": "See the materials and finishes in person",
+        "title": "See plantation shutters in Woodland Hills",
         "paragraphs": [
           "Schedule a visit to our Woodland Hills showroom to see shutter materials, finishes and louver sizes in person. You can also request a free in-home consultation to compare samples with your window trim and furnishings."
         ],
@@ -404,7 +404,7 @@
     "name": "Drapery",
     "slug": "/drapery/",
     "title_tag": "Custom Drapery & Curtains in Los Angeles | John Crawford Company",
-    "meta_description": "Plan custom drapery and curtains in Los Angeles with John Crawford Company. Explore fabrics, lining and hardware, with professional measuring and installation.",
+    "meta_description": "Plan custom drapery and curtains in Los Angeles with John Crawford Company in Woodland Hills. Compare fabrics, lining and hardware, with professional measuring and installation.",
     "sections": [
       {
         "title": "Custom Drapery and Curtains in Los Angeles, California",
@@ -464,9 +464,9 @@
         ]
       },
       {
-        "title": "Professional drapery measuring and installation",
+        "title": "Curtain and drapery measuring and installation",
         "paragraphs": [
-          "Professional measuring helps us work out the fabric, hardware and mounting details for your windows. Our team also installs the drapery, checks how it hangs and moves, and shows you how to use it."
+          "Professional measuring helps us work out the fabric, hardware and mounting details for your windows. Our team also installs the drapery, checks how it hangs and moves, and shows you how to use it. From our Woodland Hills showroom, we work with customers across Los Angeles and nearby Valley communities."
         ],
         "quote": {
           "text": "Quick response by John to organize materials fabrication and excellent installation service … to replace damaged curtain rods in a 22 foot run of drapery. Highly recommended!",
@@ -482,7 +482,7 @@
         ]
       },
       {
-        "title": "Questions about custom drapery",
+        "title": "Questions about custom drapery and curtains",
         "faqs": [
           {
             "question": "Do I need drapes, curtains or side panels?",
@@ -499,7 +499,7 @@
         ]
       },
       {
-        "title": "See drapery fabrics in Woodland Hills",
+        "title": "See curtain and drapery fabrics in Woodland Hills",
         "paragraphs": [
           "Schedule a visit to our Woodland Hills showroom to see drapery fabrics, linings and hardware in person. You can also request a free in-home consultation to compare samples in your own rooms."
         ],

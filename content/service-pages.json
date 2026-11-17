@@ -3,9 +3,9 @@
     "id": "repair",
     "name": "Blind & shade repair",
     "slug": "/services/blind-shade-repair/",
-    "title": "Blind & Shade Repair in Los Angeles | John Crawford Co.",
-    "description": "Blind and shade repair in Los Angeles. Share photos and describe the problem so John Crawford Company can review the product, available parts and repair options.",
-    "heading": "Blind and shade repair in Los Angeles",
+    "title": "Blind & Shade Repair in Woodland Hills, CA | John Crawford Co.",
+    "description": "Blind and shade repair in Woodland Hills, the San Fernando Valley and Los Angeles. Share photos of the problem so John Crawford Company can review the product, parts and repair options.",
+    "heading": "Blind and shade repair in Woodland Hills and the San Fernando Valley",
     "intro": "A blind that won’t tilt or a shade that stops halfway leaves you with less control over light and privacy. Tell us what’s happening, and we’ll help you find out whether the treatment can be repaired.",
     "hero_image": "parkland",
     "cta": "Ask about a repair",
@@ -291,6 +291,10 @@
         {
           "text": "Drapery and hardware",
           "href": "/drapery/"
+        },
+        {
+          "text": "Plantation shutters",
+          "href": "/shutters/"
         }
       ],
       "topics": [

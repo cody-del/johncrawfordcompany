@@ -60,7 +60,8 @@ for (const url of oldUrls) {
 // Lifestyle articles without an equivalent page stay 404 on purpose; sending them to the homepage would be a soft 404.
 const GSC_TARGETS = {
   '/home': '/',
-  '/sitemap': '/sitemap.xml',
+  // 2026-11-18 keyword-cluster pass: /sitemap showed for Hunter Douglas Los Angeles searches; send people to About, not the XML file.
+  '/sitemap': '/about/',
   '/motorized-window-coverings': '/motorized-shades/',
   '/more-products-services/services/wells-fargo-financing': '/contact/',
   '/hunter-douglas/featured/top-down-bottom-up-shades': '/shades/',
