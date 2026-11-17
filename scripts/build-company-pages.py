@@ -181,6 +181,15 @@ def consultation_form():
     </form>'''
 
 
+def linked_story(items):
+    """The About story, with its drapery mention linked to the drapery page (the page that should rank for drapery searches)."""
+    html = paragraphs(items)
+    phrase = 'how drapery will move on its track'
+    if html.count(phrase) != 1:
+        raise ValueError(f'About story must mention "{phrase}" once')
+    return html.replace(phrase, 'how <a href="/drapery/">drapery</a> will move on its track')
+
+
 def about_body(page):
     return f'''<main id="main">
     <section class="section company-hero linen" aria-labelledby="page-heading"><div class="container company-hero-grid">
@@ -189,7 +198,7 @@ def about_body(page):
       <figure class="company-hero-art company-photo"><img src="/assets/john-crawford-showroom.webp" alt="John Crawford outside his Woodland Hills showroom, pointing to the John Crawford Company sign." width="1024" height="768" fetchpriority="high" decoding="async"></figure>
     </div></section>
     <section class="section company-story" aria-labelledby="story-heading"><div class="container company-story-grid">
-      <h2 id="story-heading">{e(page['story_heading'])}</h2><div class="company-prose">{paragraphs(page['story'])}</div>
+      <h2 id="story-heading">{e(page['story_heading'])}</h2><div class="company-prose">{linked_story(page['story'])}</div>
     </div></section>
     <section class="section company-feature linen" aria-labelledby="approach-heading"><div class="container company-feature-grid">
       <figure class="company-photo"><img src="/assets/products/provenance.jpg" alt="Natural woven shades over tall windows beside a sofa and wood-framed lounge chair." width="1280" height="945" loading="lazy" decoding="async"><figcaption>Hunter Douglas Provenance® Woven Wood Shades</figcaption></figure>
@@ -218,6 +227,7 @@ def contact_body(page):
     </div><div class="container company-showroom-areas"><p>{e(page['areas'])}</p></div></section>
     <section class="section company-help" aria-labelledby="repair-heading"><div class="container company-help-grid">
       <h2 id="repair-heading">{e(page['repair_heading'])}</h2><div class="company-prose"><p>{e(page['repair'])}</p>
+      <p>Learn more about <a href="/services/blind-shade-repair/">blind and shade repair in Woodland Hills</a>, including the repair request form for photos.</p>
       <a class="text-link" href="mailto:john@johncrawford.com?subject=Window%20treatment%20repair">Email us about a repair</a>
       <nav class="company-product-links" aria-label="Explore window treatments"><a href="/shades/">Shades</a><a href="/blinds/">Blinds</a><a href="/shutters/">Shutters</a><a href="/drapery/">Drapery</a><a href="/motorized-shades/">Motorized shades</a></nav></div>
     </div></section>
