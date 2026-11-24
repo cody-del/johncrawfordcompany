@@ -277,7 +277,7 @@ document.querySelectorAll('form[data-lead-form]').forEach(form => {
   const status = form.querySelector('.lead-form-status');
   const button = form.querySelector('button[type="submit"]');
   const buttonLabel = button.textContent;
-  const fields = [...form.querySelectorAll('input:not([type="radio"]):not([name="website"]), select, textarea')];
+  const fields = [...form.querySelectorAll('input:not([type="radio"]):not([type="checkbox"]):not([name="website"]), select, textarea')];
   let pending = false;
   const human = humanCheck(form);
 
@@ -337,7 +337,11 @@ document.querySelectorAll('form[data-lead-form]').forEach(form => {
       const formData = new FormData(form);
       const photos = [...(form.querySelector('input[type="file"]')?.files ?? [])];
       formData.delete('photos');
+      // The optional SMS boxes go as true/false (false when unticked or missing); lead.mjs tags and notes them.
+      for (const name of ['sms_transactional', 'sms_marketing']) formData.delete(name);
       const payload = Object.fromEntries(formData);
+      payload.smsTransactionalOptIn = form.querySelector('input[name="sms_transactional"]')?.checked === true;
+      payload.smsMarketingOptIn = form.querySelector('input[name="sms_marketing"]')?.checked === true;
       payload.form = form.dataset.leadForm;
       payload.page = location.pathname;
       // Time since the page started loading, on this browser's own clock.

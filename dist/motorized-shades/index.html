@@ -27,7 +27,7 @@
   <link rel="preload" href="/assets/brand-latin-0.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/assets/fonts.css?v=fonts-2">
   <link rel="stylesheet" href="/styles.css?v=footer-blog-20261111">
-  <link rel="stylesheet" href="/hubs.css?v=contact-centered-1">
+  <link rel="stylesheet" href="/hubs.css?v=sms-consent-1">
   <script src="/app.js?v=header-contact-20261105" defer></script>
   <script type="application/ld+json">[{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.johncrawfordcompany.com/"}, {"@type": "ListItem", "position": 2, "name": "Motorized Shades", "item": "https://www.johncrawfordcompany.com/motorized-shades/"}]}, {"@context": "https://schema.org", "@type": "CollectionPage", "@id": "https://www.johncrawfordcompany.com/motorized-shades/#page", "url": "https://www.johncrawfordcompany.com/motorized-shades/", "name": "Motorized Shades in Los Angeles | John Crawford Company", "description": "Explore motorized shades in Los Angeles with John Crawford Company. Get help with Hunter Douglas PowerView, compatible controls, installation and setup.", "inLanguage": "en-US", "about": {"@type": "Thing", "name": "Motorized Shades"}, "publisher": {"@type": "HomeGoodsStore", "@id": "https://www.johncrawfordcompany.com/#business", "name": "John Crawford Company", "telephone": "+1-818-884-5464", "email": "john@johncrawford.com", "address": {"@type": "PostalAddress", "streetAddress": "22311 Ventura Blvd #101", "addressLocality": "Woodland Hills", "addressRegion": "CA", "postalCode": "91364", "addressCountry": "US"}, "openingHoursSpecification": [{"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"], "opens": "09:00", "closes": "17:00"}]}}]</script>
 </head>
@@ -96,7 +96,14 @@
             <div class="hub-form-field"><label for="consultation-name">Full name</label><input id="consultation-name" name="name" type="text" autocomplete="name" maxlength="120" required></div>
             <div class="hub-form-field"><label for="consultation-phone">Phone number</label><input id="consultation-phone" name="phone" type="tel" autocomplete="tel" minlength="7" maxlength="30" required></div>
             <div class="hub-form-field"><label for="consultation-email">Email</label><input id="consultation-email" name="email" type="email" autocomplete="email" maxlength="254" required></div>
-            <p class="hub-form-required" id="consultation-required">All fields are required.</p>
+            <p class="hub-form-required" id="consultation-required">Name, phone and email are required.</p>
+            <fieldset class="sms-consent">
+        <legend>SMS updates (optional)</legend>
+        <label class="sms-consent-option" for="consultation-sms-transactional"><input id="consultation-sms-transactional" name="sms_transactional" type="checkbox" value="yes" aria-describedby="consultation-sms-disclosure"><span>I agree to receive service texts from <strong>John Crawford Company</strong> about consultations, appointments, estimates, installations, repairs, and customer support.</span></label>
+        <label class="sms-consent-option" for="consultation-sms-marketing"><input id="consultation-sms-marketing" name="sms_marketing" type="checkbox" value="yes" aria-describedby="consultation-sms-disclosure"><span>I agree to receive promotional texts from <strong>John Crawford Company</strong> about offers and product news.</span></label>
+        <p class="sms-disclosure" id="consultation-sms-disclosure">For either option: Message frequency varies. Message and data rates may apply. Reply <strong>STOP</strong> to opt out or <strong>HELP</strong> for help. Consent is not a condition of purchase.</p>
+        <p class="sms-policy-links"><a href="/privacy/">Privacy Policy</a> · <a href="/terms/">Terms</a> · <a href="/sms-consent/">SMS details</a></p>
+      </fieldset>
             <div class="lead-form-trap" aria-hidden="true"><label>Leave this field empty <input name="website" type="text" tabindex="-1" autocomplete="off"></label></div>
             <button class="btn btn-primary" type="submit">Request a consultation</button>
           </div>
@@ -205,6 +212,7 @@
         <a href="/accessibility/">Accessibility</a>
           <a href="/privacy/">Privacy Policy</a>
         <a href="/terms/">Terms of Service</a>
+        <a href="/sms-consent/">SMS Terms</a>
       </nav>
       <a class="footer-credit" href="https://www.shadestrategy.com/">Built by www.shadestrategy.com</a>
     </div>

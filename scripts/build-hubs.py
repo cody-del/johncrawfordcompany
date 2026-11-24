@@ -4,6 +4,8 @@ from html import escape
 import json
 import re
 
+from sms_consent import sms_consent
+
 ROOT = Path(__file__).resolve().parents[1]
 DIST = ROOT / 'dist'
 PAGES = json.loads((ROOT / 'content/product-hubs.json').read_text())
@@ -83,7 +85,7 @@ def head(page, hero_key=None, accessibility=False):
     title = page['title_tag']
     desc = page['meta_description']
     path = page['slug']
-    hub_css_version = 'contact-centered-1' if hero_key else 'hubs-1'
+    hub_css_version = 'sms-consent-1' if hero_key else 'hubs-sms-consent-1'
     body_class = 'interior-page accent-review-page' if page['name'] == 'Shades' else 'interior-page'
     og = IMAGES[hero_key]['src'] if hero_key else '/assets/showroom-illustration.svg'
     schema = [{
@@ -184,7 +186,8 @@ def intro(section, page):
             <div class="hub-form-field"><label for="consultation-name">Full name</label><input id="consultation-name" name="name" type="text" autocomplete="name" maxlength="120" required></div>
             <div class="hub-form-field"><label for="consultation-phone">Phone number</label><input id="consultation-phone" name="phone" type="tel" autocomplete="tel" minlength="7" maxlength="30" required></div>
             <div class="hub-form-field"><label for="consultation-email">Email</label><input id="consultation-email" name="email" type="email" autocomplete="email" maxlength="254" required></div>
-            <p class="hub-form-required" id="consultation-required">All fields are required.</p>
+            <p class="hub-form-required" id="consultation-required">Name, phone and email are required.</p>
+            {sms_consent('consultation')}
             <div class="lead-form-trap" aria-hidden="true"><label>Leave this field empty <input name="website" type="text" tabindex="-1" autocomplete="off"></label></div>
             <button class="btn btn-primary" type="submit">Request a consultation</button>
           </div>
@@ -401,10 +404,10 @@ def support_page(name, slug, title, description, body):
 support_page('Privacy Policy', '/privacy/', 'Privacy Policy | John Crawford Company',
     'How John Crawford Company handles website consultation requests, contact information, hosting and embedded services.', '''
   <h1>Privacy Policy</h1>
-  <p class="statement-date">Effective November 6, 2026.</p>
+  <p class="statement-date">Effective November 25, 2026.</p>
   <p>This policy describes information collected through the John Crawford Company website and how to contact us about it.</p>
   <h2>Information you provide</h2>
-  <p>When you send a form on this website, we receive the contact details and project information you enter. If you email us, we receive the contact information, project details and any photos or attachments you choose to send.</p>
+  <p>When you send a form on this website, we receive the contact details and project information you enter, and your SMS consent choices: whether you selected the optional service text box, the optional promotional text box, both or neither, with the date, time and page of that choice. If you email us, we receive the contact information, project details and any photos or attachments you choose to send.</p>
   <h2>How your information is used</h2>
   <p>We use inquiry information to respond, discuss your project and provide the help you request. Our website providers also process information to operate and protect the website.</p>
   <h2>Website providers</h2>
@@ -412,6 +415,9 @@ support_page('Privacy Policy', '/privacy/', 'Privacy Policy | John Crawford Comp
   <h2>Embedded services and tracking</h2>
   <p>This website includes a Google Maps embed. Loading that map may allow Google to receive device and visit information and use its own cookies or similar technologies. Social profile links take you to separate services when you open them. Those providers' privacy practices apply to their services. See <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google's Privacy Policy<span class="sr-only"> (opens in a new tab)</span></a>.</p>
   <p>If you allow Targeting cookies in our cookie notice, we use the Meta Pixel (Meta Platforms) to measure our ads and to show our ads on Facebook and Instagram to people who visited this website. It records pages viewed and that a quote or appointment request was sent, never the details you type into a form. For visitors in California, we turn on Meta's Limited Data Use setting, which restricts how Meta may use this data. If you decline or later turn Targeting off in the cookie settings, the Meta Pixel does not run. We do not use audience-tracking analytics. To protect our advertising from fraudulent clicks, our pages also use ClickCease, a click-fraud detection service from CHEQ. It receives technical information about each visit, such as IP address, browser and device details, to identify automated or invalid ad clicks. Because it is a security measure, it runs for every visitor. A cookie notice from CookieScript lets you review and change your cookie choices; it saves your choice in a cookie on your device. The website does not change its behavior in response to browser Do Not Track signals. Embedded third-party services may follow their own tracking practices.</p>
+  <h2 id="mobile-information-sms">Mobile Information and SMS</h2>
+  <p>Mobile information will not be shared with third parties or affiliates for marketing or promotional purposes. Sharing with subcontractors and service providers that support customer service, scheduling, website operations, or message delivery is permitted only as needed to provide those services.</p>
+  <p>SMS consent is optional and is not a condition of purchase. If you choose to opt in, message frequency varies and message and data rates may apply. Reply STOP to cancel and HELP for assistance. Transactional and promotional SMS choices are collected separately. See our <a href="/sms-consent/">SMS consent and messaging information</a>.</p>
   <h2>Your inquiry and privacy requests</h2>
   <p>To ask about access, correction or deletion of information you provided directly to us, email <a href="mailto:john@johncrawford.com">john@johncrawford.com</a> or call <a href="tel:+18188845464">(818) 884-5464</a>. We may need to verify your request and retain records required for an ongoing project or by law.</p>
   <p>You can also write to John Crawford Company, 22311 Ventura Blvd #101, Woodland Hills, CA 91364.</p>
@@ -422,12 +428,15 @@ support_page('Privacy Policy', '/privacy/', 'Privacy Policy | John Crawford Comp
 support_page('Terms of Service', '/terms/', 'Terms of Service | John Crawford Company',
     'Terms for using the John Crawford Company website, requesting a consultation or quote, and visiting the Woodland Hills showroom.', '''
   <h1>Terms of Service</h1>
-  <p class="statement-date">Effective November 5, 2026.</p>
+  <p class="statement-date">Effective November 25, 2026.</p>
   <p>These terms apply to your use of the John Crawford Company website. By using the website, you agree to them.</p>
   <h2>Using this website</h2>
   <p>The website gives general information about window treatments, repairs, upholstery and our services. Product images show manufacturer collections and are not presented as John Crawford Company installations. Please do not misuse the website, send false information, interfere with its operation or submit automated requests through its forms.</p>
   <h2>Consultation and quote requests</h2>
   <p>Sending a form, email or phone request does not place an order or create an obligation to buy. Product choices, measurements, pricing, installation timing and other project details are confirmed with you directly before anything is ordered. Product features, colors and availability are set by the manufacturers and may change.</p>
+  <h2 id="sms-terms">SMS Terms</h2>
+  <p>By selecting an SMS opt-in checkbox, you consent only to the message category described beside that checkbox. Transactional messages may cover consultations, appointments, estimates, scheduling, project updates, repairs, and customer service. Promotional messages may cover offers, discounts, product announcements, and seasonal promotions. Message frequency varies; message and data rates may apply. Reply STOP to opt out and HELP for assistance. Consent is not a condition of purchase. Carriers are not liable for delayed or undelivered messages.</p>
+  <p>Both SMS checkboxes are optional and unchecked. See <a href="/sms-consent/">SMS consent and messaging information</a> for how consent is collected.</p>
   <h2>Showroom visits</h2>
   <p>Showroom visits are by appointment only. Call <a href="tel:+18188845464">(818) 884-5464</a> or use the website's contact form to arrange a time.</p>
   <h2>Third-party links and services</h2>
@@ -443,3 +452,22 @@ support_page('Terms of Service', '/terms/', 'Terms of Service | John Crawford Co
   <p>We will post changes on this page and update the effective date when these terms change.</p>
   <h2>Contact us</h2>
   <p>John Crawford Company, 22311 Ventura Blvd #101, Woodland Hills, CA 91364. Call <a href="tel:+18188845464">(818) 884-5464</a> or email <a href="mailto:john@johncrawford.com">john@johncrawford.com</a>.</p>''')
+
+
+support_page('SMS Consent and Messaging Information', '/sms-consent/', 'SMS Consent and Messaging Information | John Crawford Company',
+    'How John Crawford Company collects optional SMS consent on its website forms, and how service and promotional text messages are used.', '''
+  <h1>SMS Consent and Messaging Information</h1>
+  <p class="statement-date">Effective November 25, 2026.</p>
+  <p>This page explains how John Crawford Company collects consent to send text messages and how those messages are used.</p>
+  <h2>How Website Visitors Opt In</h2>
+  <p>Our only SMS opt-in methods are the lead forms on our website, www.johncrawfordcompany.com, and on our landing pages at go.johncrawfordcompany.com. On www.johncrawfordcompany.com, the forms are on the <a href="/contact/">contact page</a>, the <a href="/services/blind-shade-repair/">repair request page</a> and the <a href="/shades/">shades</a>, <a href="/blinds/">blinds</a>, <a href="/shutters/">shutters</a>, <a href="/drapery/">drapery</a> and <a href="/motorized-shades/">motorized shades</a> pages.</p>
+  <p>Website visitors enter their contact information and may independently select either, both or neither of two optional SMS checkboxes. The service-message checkbox covers consultations, appointments, estimates, installation scheduling, repairs, project updates and customer-service notifications. The promotional-message checkbox covers special offers, discounts, product announcements and seasonal promotions.</p>
+  <p>Neither checkbox is preselected, and consent is not required to request a consultation, request a repair or make a purchase. We do not use paper forms, login-gated forms, purchased lists, shared opt-in lists, keyword opt-in or third-party lead consent as SMS opt-in methods.</p>
+  <h2>Consent Is Specific and Voluntary</h2>
+  <p>Each SMS category has its own checkbox, and the form states beside them: message frequency varies, message and data rates may apply, and recipients can reply <strong>STOP</strong> to opt out or <strong>HELP</strong> for assistance. Consent is not a condition of purchase. A visitor may submit a form without selecting either SMS checkbox. We record each choice with the date, time and page where it was made.</p>
+  <h2>Mobile Information and Sharing</h2>
+  <p>John Crawford Company does not sell, rent, lease, or share SMS opt-in data, phone numbers, or consent records with third parties or affiliates for their marketing or promotional purposes. Our customer-relationship platform processes records only on our behalf to support the services selected by the visitor; it does not receive permission to use John Crawford Company opt-in data for its own marketing.</p>
+  <h2>Message Types</h2>
+  <p>Service messages are limited to consultations, appointments, estimates, installation scheduling, repairs, project updates and customer service. Promotional messages are sent only to people who separately select the promotional SMS checkbox. See our <a href="/privacy/">Privacy Policy</a> and <a href="/terms/#sms-terms">Terms of Service</a> for additional information.</p>
+  <h2>Contact Us</h2>
+  <address>John Crawford Company<br>22311 Ventura Blvd #101<br>Woodland Hills, CA 91364<br><a href="tel:+18188845464">(818) 884-5464</a><br><a href="mailto:john@johncrawford.com">john@johncrawford.com</a></address>''')

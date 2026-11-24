@@ -245,3 +245,12 @@
   .hub-detail--reverse .hub-detail-photo, .hub-detail--reverse .hub-detail-copy { order: initial; }
   .hub-detail--controls .hub-detail-photo img { object-position: 81% 58%; }
 }
+/* Optional SMS consent on every lead form (scripts/sms_consent.py). Two unchecked boxes, one disclosure. */
+.sms-consent { min-width: 0; margin: 4px 0 0; padding: 12px 0 0; border: 0; border-top: 1px solid var(--line); }
+.sms-consent legend { float: left; width: 100%; margin-bottom: 4px; padding: 0; color: var(--walnut); font-size: 13px; font-weight: 500; line-height: 1.5; }
+.sms-consent legend + * { clear: left; }
+.sms-consent .sms-consent-option { display: grid; grid-template-columns: 20px minmax(0, 1fr); gap: 10px; align-items: start; padding-block: 6px; color: var(--walnut); font-size: 13px; font-weight: 400; line-height: 1.55; cursor: pointer; }
+.sms-consent input[type="checkbox"] { width: 20px; height: 20px; margin: 1px 0 0; accent-color: var(--magenta); cursor: pointer; }
+.sms-consent input[type="checkbox"]:focus-visible { outline: 2px solid var(--walnut); outline-offset: 2px; }
+.sms-consent .sms-disclosure, .sms-consent .sms-policy-links { margin: 6px 0 0; color: var(--text); font-size: 12px; line-height: 1.6; }
+.sms-consent .sms-policy-links a { color: var(--magenta); text-decoration-thickness: 1px; }

@@ -61,6 +61,10 @@ export function createLeadHandler(submit = submitLead, rateLimited = createRateL
           }
         }
         data.elapsedMs = Number(data.elapsedMs);
+        // Multipart sends the SMS choices as text; only the exact text "true" is consent.
+        for (const name of ['smsTransactionalOptIn', 'smsMarketingOptIn']) {
+          if (Object.hasOwn(data, name)) data[name] = data[name] === 'true';
+        }
         if (data.form !== 'repair' || Object.values(data).some(value => typeof value === 'string' && value.length > 4000)) return send(400, {error: 'Invalid repair request.'});
       } else data = JSON.parse(body.toString('utf8'));
     } catch {

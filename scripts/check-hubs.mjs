@@ -57,7 +57,7 @@ for (const [route, { html, ids }] of pages) {
   requireThat(/name="description" content="[^"]+"/.test(html), `${route}: missing description`);
   requireThat(/name="robots" content="index, follow, max-image-preview:large"/.test(html), `${route}: wrong robots tag`);
   requireThat(html.includes(`<link rel="canonical" href="https://www.johncrawfordcompany.com${route}">`) && !html.includes('chatgpt.site'), `${route}: canonical must be its www.johncrawfordcompany.com URL`);
-  for (const policy of ['/accessibility/', '/privacy/', '/terms/']) {
+  for (const policy of ['/accessibility/', '/privacy/', '/terms/', '/sms-consent/']) {
     requireThat(html.includes(`href="${policy}"`), `${route}: footer must link ${policy}`);
   }
   requireThat(html.includes('22311 Ventura Blvd #101'), `${route}: show the verified showroom address`);
@@ -109,7 +109,7 @@ const services = JSON.parse(await readFile(resolve(root, 'content/service-pages.
 const serviceAreas = JSON.parse(await readFile(resolve(root, 'content/service-areas.json'), 'utf8'));
 const blogPosts = JSON.parse(await readFile(resolve(root, 'content/blog-posts.json'), 'utf8'));
 const locations = JSON.parse(await readFile(resolve(root, 'content/location-pages.json'), 'utf8'));
-const expectedRoutes = ['/', ...locations.map(location => location.slug), ...blogPosts.map(post => post.slug), ...hubs.map(hub => hub.slug), ...services.map(service => service.slug), '/accessibility/', '/privacy/', '/terms/', '/about/', '/contact/', '/blog/', serviceAreas.slug];
+const expectedRoutes = ['/', ...locations.map(location => location.slug), ...blogPosts.map(post => post.slug), ...hubs.map(hub => hub.slug), ...services.map(service => service.slug), '/accessibility/', '/privacy/', '/terms/', '/sms-consent/', '/about/', '/contact/', '/blog/', serviceAreas.slug];
 requireThat(pages.size === expectedRoutes.length && expectedRoutes.every(route => pages.has(route)), `Expected ${expectedRoutes.length} routes; found ${[...pages.keys()].join(', ')}`);
 for (const service of services) {
   const html = pages.get(service.slug)?.html || '';

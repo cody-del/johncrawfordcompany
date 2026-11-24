@@ -28,7 +28,8 @@ function mockGhl({uploadStatus = 200, throwUpload = false} = {}) {
 
 test('repair details, both lead tags and multiple photos reach the same GHL contact', async () => {
   const {calls, fetcher} = mockGhl();
-  const result = await submitLead(data, {env, fetcher, photos: [png(), png()]});
+  const now = () => new Date('2026-11-25T17:30:00.000Z');
+  const result = await submitLead(data, {env, fetcher, photos: [png(), png()], now});
   assert.equal(result.body.success, true);
   assert.equal(calls.length, 4);
   const contact = JSON.parse(calls[0].init.body);
@@ -48,7 +49,10 @@ test('repair details, both lead tags and multiple photos reach the same GHL cont
     'Source: Website: Repair page',
     'Name: Repair Test', 'Phone: +18185550142', 'Email: repair@example.com',
     'What’s broken: Shade will not lift.', 'Bought: 2020-06-15', 'Bought from: Original dealer',
-    'ZIP code: 91364', 'Photos selected: 2',
+    'ZIP code: 91364',
+    'Service SMS opt-in: No', 'Promotional SMS opt-in: No',
+    'SMS consent captured 2026-11-25T17:30:00.000Z from /services/blind-shade-repair/',
+    'Photos selected: 2',
   ].join('\n');
   assert.deepEqual(contact.customFields, [
     {id: 'INk19lHx5XU2HQQhdFNQ', fieldValue: expectedDetails},

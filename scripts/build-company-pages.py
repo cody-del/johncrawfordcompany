@@ -6,6 +6,8 @@ import re
 import subprocess
 import sys
 
+from sms_consent import sms_consent
+
 ROOT = Path(__file__).resolve().parents[1]
 DIST = ROOT / 'dist'
 CONTENT = json.loads((ROOT / 'content/company-pages.json').read_text())
@@ -125,7 +127,7 @@ def head(page, kind):
 <link rel="preload" href="/assets/brand-latin-1.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/brand-latin-0.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/fonts.css?v=fonts-2"><link rel="stylesheet" href="/styles.css?v=footer-blog-20261111">
-<link rel="stylesheet" href="/hubs.css?v=contact-centered-1"><link rel="stylesheet" href="/company-pages.css?v=company-pages-7">
+<link rel="stylesheet" href="/hubs.css?v=sms-consent-1"><link rel="stylesheet" href="/company-pages.css?v=company-pages-7">
 <script src="/app.js?v=header-contact-20261105" defer></script>
 <script type="application/ld+json">{json.dumps(schema, ensure_ascii=False).replace('<', chr(92)+'u003c')}</script>
 </head><body class="interior-page company-page company-page--{page.get('css_class', page['name'].lower())}"><noscript><iframe src="https://ob.esnbranding.com/ns/812741747104d2a36e3927a603f46db5.html?ch=" width="0" height="0" style="display:none"></iframe></noscript>
@@ -172,7 +174,8 @@ def consultation_form():
         </div>
       </fieldset>
       <div class="hub-form-field"><label for="company-message">Message</label><textarea id="company-message" name="message" rows="3" maxlength="3000" required></textarea></div>
-      <p class="hub-form-required">All fields except appointment choice are required.</p>
+      <p class="hub-form-required">All fields except appointment choice and SMS updates are required.</p>
+      ''' + sms_consent('company') + '''
       <div class="lead-form-trap" aria-hidden="true"><label>Leave this field empty <input name="website" type="text" tabindex="-1" autocomplete="off"></label></div>
       <button class="btn btn-primary" type="submit">Request a consultation</button>
       </div>

@@ -6,6 +6,8 @@ import json
 import re
 import importlib.util
 
+from sms_consent import sms_consent
+
 ROOT = Path(__file__).resolve().parents[1]
 DIST = ROOT / 'dist'
 PAGES = json.loads((ROOT / 'content/service-pages.json').read_text())
@@ -110,6 +112,7 @@ def repair_form():
         <div class="hub-form-field"><label for="repair-zip">ZIP code</label><input id="repair-zip" name="postal-code" type="text" inputmode="numeric" autocomplete="postal-code" pattern="[0-9]{5}" maxlength="5" required></div>
         <div class="hub-form-field repair-upload-field"><p class="repair-upload-label">Photos (optional)</p><div class="repair-upload-control"><label class="repair-upload-button" for="repair-photos"><span>Upload photos</span><input id="repair-photos" name="photos" type="file" accept="image/jpeg,image/png,image/webp" multiple aria-describedby="repair-photo-help repair-photo-selection" disabled></label><span id="repair-photo-selection" class="repair-photo-selection" aria-live="polite">No photos selected</span></div><p id="repair-photo-help">Up to 5 photos. JPG, PNG or WebP.</p><p><a href="mailto:john@johncrawford.com?subject=Repair%20photos">You can also email your photos</a>.</p></div>
         <p class="hub-form-required">Your name, phone, email, ZIP code and a description of the problem are required.</p>
+        ''' + sms_consent('repair') + '''
         <div class="lead-form-trap" aria-hidden="true"><label>Leave this field empty <input name="website" type="text" tabindex="-1" autocomplete="off"></label></div>
         <button class="btn btn-primary" type="submit">Request repair help</button>
       </div>

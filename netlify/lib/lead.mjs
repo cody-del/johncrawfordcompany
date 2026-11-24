@@ -21,7 +21,7 @@ export const EMAIL = /^(?!\.)(?!.*\.\.)([A-Z0-9_'+\-.]*)[A-Z0-9_+-]@([A-Z0-9][A-
 
 const CONTACT_LIMITS = {name: 120, phone: 30, email: 254};
 
-export async function submitLead(data, {fetcher = fetch, rateLimited = () => false, env = process.env, photos = []} = {}) {
+export async function submitLead(data, {fetcher = fetch, rateLimited = () => false, env = process.env, photos = [], now = () => new Date()} = {}) {
   const fail = (status, error) => ({status, body: {success: false, error}});
   if (!data || typeof data !== 'object' || Array.isArray(data)) return fail(400, 'Please check your contact details.');
   const form = typeof data.form === 'string' && Object.hasOwn(FORMS, data.form) ? FORMS[data.form] : null;
@@ -88,6 +88,18 @@ export async function submitLead(data, {fetcher = fetch, rateLimited = () => fal
     if (field.tags) contact.tags.push(field.tags[value]);
     note.push(`${field.label}: ${answer}`);
   }
+  // Optional SMS consent (A2P 10DLC): two independent unchecked boxes. Only a literal true counts.
+  // The choices are recorded either way; the opt-in tags go last, since GHL workflows trigger on tags.
+  const smsService = data.smsTransactionalOptIn === true;
+  const smsPromo = data.smsMarketingOptIn === true;
+  const consentPage = typeof data.page === 'string' && /^\/[\w\-./]{0,200}$/.test(data.page) ? data.page : 'unknown page';
+  note.push(
+    `Service SMS opt-in: ${smsService ? 'Yes' : 'No'}`,
+    `Promotional SMS opt-in: ${smsPromo ? 'Yes' : 'No'}`,
+    `SMS consent captured ${now().toISOString()} from ${consentPage}`,
+  );
+  if (smsService) contact.tags.push('sms-transactional-opt-in');
+  if (smsPromo) contact.tags.push('sms-marketing-opt-in');
   // Save the complete inquiry snapshot during upsert. The Note Added workflow
   // starts only after the final submission note is saved, following photo processing.
   // Tags label the request; they do not replace that automation handoff.
