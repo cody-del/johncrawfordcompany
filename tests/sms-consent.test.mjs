@@ -114,8 +114,8 @@ test('the campaign package quotes the form wording exactly', () => {
   assert.ok(source.includes(`LEGAL_NAME = '${LEGAL}'`));
   for (const url of ['https://www.johncrawfordcompany.com/privacy/', 'https://www.johncrawfordcompany.com/terms/', 'https://www.johncrawfordcompany.com/sms-consent/']) assert.ok(doc.includes(url));
   const samples = [...doc.matchAll(/^\d\. `([^`]+)`$/gm)].map(match => match[1]);
-  assert.equal(samples.length, 3);
-  for (const sample of samples) assert.ok(sample.startsWith('John Crawford Company:') && sample.endsWith('Reply STOP to opt out.'), sample);
+  assert.equal(samples.length, 6);
+  for (const sample of samples) assert.ok(sample.startsWith('John Crawford Company:') && sample.endsWith('Reply STOP to opt out or HELP for help.'), sample);
 });
 
 // ---- Server: tags and note lines ----
@@ -201,4 +201,20 @@ test('without photos the SMS tags go on the first save with the lead tags, befor
   assert.equal((await submitLead(repair({smsTransactionalOptIn: true, smsMarketingOptIn: true}), {fetcher, env, now})).status, 200);
   assert.deepEqual(calls.map(call => new URL(call.url).pathname), ['/contacts/upsert', '/contacts/c-1/notes']);
   assert.deepEqual(calls[0].body.tags, ['website-lead', 'website-repair-request', 'sms-transactional-opt-in', 'sms-marketing-opt-in']);
+});
+
+// Matches the approved Shenandoah package: every sample names the brand and carries STOP and HELP,
+// and the privacy page describes only what actually runs (Netlify hosting, GA4 behind Performance cookies).
+test('campaign samples name the brand and include STOP and HELP', () => {
+  const doc = read('docs/a2p-campaign-package.md');
+  const samples = [...doc.matchAll(/^\d\. `(John Crawford Company: [^`]+)`$/gm)].map(m => m[1]);
+  assert.equal(samples.length, 6);
+  for (const s of samples) assert.match(s, /Reply STOP to opt out or HELP for help\.$/);
+});
+
+test('privacy page is accurate about hosting and analytics', () => {
+  const privacy = text(page('/privacy/'));
+  assert.doesNotMatch(privacy, /ChatGPT Sites|audience-tracking/);
+  assert.match(privacy, /If you allow Performance cookies, we use Google Analytics 4/);
+  assert.match(privacy, /22311 Ventura Blvd #101, Woodland Hills, CA 91364/);
 });

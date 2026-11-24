@@ -58,16 +58,19 @@ Paste into "How do end-users consent to receive messages?":
 
 Bracketed values are filled from the recipient's real request or project.
 
-**Service:**
+**Service (Customer Care campaign):**
 
-1. `John Crawford Company: Hi [First Name], thanks for your request. We will call you to set up your free in-home consultation. Questions? Call (818) 884-5464. Reply STOP to opt out.`
-2. `John Crawford Company: Reminder: your appointment is on [Date] at [Time]. Need to reschedule? Call (818) 884-5464. Reply STOP to opt out.`
+1. `John Crawford Company: Hi [First Name], thanks for requesting a free consultation. We will contact you to confirm a convenient time. Reply STOP to opt out or HELP for help.`
+2. `John Crawford Company: Reminder: your appointment is scheduled for [Date] at [Time]. Questions? Call (818) 884-5464. Reply STOP to opt out or HELP for help.`
+3. `John Crawford Company: Hi [First Name], your update for [Project or Repair Request] is ready. Reply to this message or call (818) 884-5464 for assistance. Reply STOP to opt out or HELP for help.`
 
-**Promotional:**
+**Promotional (Marketing campaign):**
 
-1. `John Crawford Company: Hi [First Name], [Offer Description] on custom shades and shutters runs through [Offer End Date]. Call (818) 884-5464 to book a visit. Reply STOP to opt out.`
+1. `John Crawford Company: Hi [First Name], [Offer Description] is available through [Offer End Date]. Reply STOP to opt out or HELP for help.`
+2. `John Crawford Company: [Product Announcement] is now available for custom window treatment projects in [Service Area]. Reply STOP to opt out or HELP for help.`
+3. `John Crawford Company: Our [Seasonal Promotion] on custom shades, shutters and drapery ends on [Offer End Date]. Call (818) 884-5464 to learn more. Reply STOP to opt out or HELP for help.`
 
-For a Mixed campaign, submit service samples 1 and 2 and promotional sample 1.
+Use the service samples only for the Customer Care campaign and the promotional samples only for the Marketing campaign. For a Mixed campaign, submit service samples 1 and 2 and promotional sample 1.
 
 ## Keyword replies
 
