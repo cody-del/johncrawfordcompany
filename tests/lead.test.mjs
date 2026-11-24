@@ -8,7 +8,8 @@ import {createLeadHandler, createRateLimiter} from '../netlify/lib/lead-http.mjs
 // (Netlify sets it for production builds) from switching the human check on here.
 delete process.env.TURNSTILE_SECRET_KEY;
 
-const expectedSubmission = "John Crawford form submission: Website lead\nSource: Website: Contact page\nName: Ada Lovelace\nPhone: +18185550142\nEmail: ada@example.com\nProduct interest: Shutters\nZIP code: 91364\nI’d like to schedule: Showroom visit\nMessage: Three bedroom windows.\nPrefer mornings.";
+const expectedSubmission = "John Crawford form submission: Website lead\nSource: Website: Contact page\nName: Ada Lovelace\nPhone: +18185550142\nEmail: ada@example.com\nProduct interest: Shutters\nZIP code: 91364\nI’d like to schedule: Showroom visit\nMessage: Three bedroom windows.\nPrefer mornings.\nService SMS opt-in: No\nPromotional SMS opt-in: No\nSMS consent captured 2026-11-25T17:30:00.000Z from /contact/";
+const now = () => new Date('2026-11-25T17:30:00.000Z');
 const env = {GHL_PRIVATE_TOKEN: 'pit-test', GHL_LOCATION_ID: 'loc-test'};
 const person = {name: 'Ada Lovelace', phone: '818-555-0142', email: 'Ada@Example.com', website: '', elapsedMs: MIN_FILL_MS + 500};
 const contact = (extra = {}) => ({
@@ -34,7 +35,7 @@ function ghl({upsert = {status: 200, body: {contact: {id: 'c-1'}}}, note = {stat
 
 test('a contact-page lead maps each answer once and keeps the complete workflow note', async () => {
   const {calls, fetcher} = ghl();
-  const result = await submitLead(contact(), {fetcher, env});
+  const result = await submitLead(contact(), {fetcher, env, now});
   assert.deepEqual(result, {status: 200, body: {success: true, contactId: 'c-1'}});
   assert.equal(calls[0].url, `${GHL_API}/contacts/upsert`);
   assert.deepEqual(calls[0].body, {
@@ -96,10 +97,10 @@ test('an omitted appointment choice does not clear an existing contact preferenc
 
 test('a repair lead skips blank optional answers', async () => {
   const {calls, fetcher} = ghl();
-  assert.equal((await submitLead(repair(), {fetcher, env})).status, 200);
+  assert.equal((await submitLead(repair(), {fetcher, env, now})).status, 200);
   assert.equal(calls[0].body.source, 'Website: Repair page');
   assert.deepEqual(calls[0].body.tags, ['website-lead', 'website-repair-request']);
-  assert.equal(calls[1].body.body, 'John Crawford form submission: Website repair request\nSource: Website: Repair page\nName: Ada Lovelace\nPhone: +18185550142\nEmail: ada@example.com\nWhat’s broken: Cord snapped on a cellular shade.\nBought from: Costco\nZIP code: 91367\nPhotos selected: 0');
+  assert.equal(calls[1].body.body, 'John Crawford form submission: Website repair request\nSource: Website: Repair page\nName: Ada Lovelace\nPhone: +18185550142\nEmail: ada@example.com\nWhat’s broken: Cord snapped on a cellular shade.\nBought from: Costco\nZIP code: 91367\nService SMS opt-in: No\nPromotional SMS opt-in: No\nSMS consent captured 2026-11-25T17:30:00.000Z from /services/blind-shade-repair/\nPhotos selected: 0');
   assert.deepEqual(calls[0].body.customFields, [
     {id: 'INk19lHx5XU2HQQhdFNQ', fieldValue: calls[1].body.body},
     {id: 'OfVLHC3hwaE9autFcPpz', fieldValue: 'Cord snapped on a cellular shade.'},
