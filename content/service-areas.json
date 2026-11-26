@@ -5,7 +5,7 @@
   "title": "Window Treatment Service Areas | John Crawford Company",
   "description": "Find John Crawford Company's window treatment service areas, including the San Fernando Valley, Calabasas, Conejo Valley, Simi Valley and Stevenson Ranch.",
   "heading": "Areas We Serve",
-  "intro": "From our Woodland Hills showroom, we help with custom window treatments, professional measuring and installation in the communities below.",
+  "intro": "From our Woodland Hills showroom, we help with custom window treatments, professional measuring and installation in the communities below, including plantation shutters in Los Angeles neighborhoods across the San Fernando Valley.",
   "contact_heading": "Let’s plan a visit.",
   "contact_text": "Tell us where you’re located and what you’d like to change about your windows. If your community isn’t listed, give us a call.",
   "regions": [
@@ -65,6 +65,12 @@
         "Stevenson Ranch",
         "FivePoint Valencia"
       ]
+    }
+  ],
+  "intro_links": [
+    {
+      "text": "plantation shutters in Los Angeles",
+      "href": "/shutters/"
     }
   ]
 }

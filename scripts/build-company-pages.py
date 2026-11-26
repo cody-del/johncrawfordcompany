@@ -237,6 +237,16 @@ def contact_body(page):
     </main>'''
 
 
+def linked_intro(page):
+    html = e(page['intro'])
+    for link in page.get('intro_links', []):
+        text = e(link['text'])
+        if text not in html:
+            raise ValueError(f'Intro link text not found: {link["text"]}')
+        html = html.replace(text, f'<a href="{e(link["href"])}">{text}</a>', 1)
+    return html
+
+
 def service_areas_body(page):
     regions = []
     destinations = {location['name']: location['slug'] for location in LOCATION_PAGES}
@@ -251,7 +261,7 @@ def service_areas_body(page):
         )
     return f'''<main id="main">
     <section class="section area-hero linen" aria-labelledby="page-heading"><div class="container">
-      {breadcrumbs(page)}<h1 id="page-heading">{e(page['heading'])}</h1><p class="area-intro">{e(page['intro'])}</p>
+      {breadcrumbs(page)}<h1 id="page-heading">{e(page['heading'])}</h1><p class="area-intro">{linked_intro(page)}</p>
       <div class="area-actions"><a class="btn btn-primary" href="/contact/#appointment-form">Request a consultation</a><a class="text-link" href="tel:+18188845464">Call (818) 884-5464</a></div>
     </div></section>
     <section class="section area-directory" aria-label="Service area communities"><div class="container area-regions">{''.join(regions)}</div></section>
