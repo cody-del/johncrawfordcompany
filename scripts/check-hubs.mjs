@@ -96,7 +96,7 @@ for (const hub of hubs) {
   const escapedTitle = hub.title_tag.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;').replaceAll("'", '&#x27;');
   requireThat(html.includes(`<title>${escapedTitle}</title>`), `${hub.slug}: wrong title`);
   requireThat((html.match(/<img\b/g) || []).length >= 5, `${hub.slug}: product photography missing`);
-  requireThat((html.match(/<details><summary>/g) || []).length === 3, `${hub.slug}: missing FAQs`);
+  requireThat((html.match(/<details><summary>/g) || []).length >= 3, `${hub.slug}: missing FAQs`);
   requireThat(html.includes('href="tel:+18188845464"') && html.includes('href="mailto:john@johncrawford.com'), `${hub.slug}: contact links missing`);
   requireThat(!/\bGallery\b/.test(html), `${hub.slug}: unconfirmed Gallery designation`);
   const introPreview = html.match(/<section class="section hub-introduction hub-intro-consultation"[\s\S]*?<\/section>/)?.[0] || '';

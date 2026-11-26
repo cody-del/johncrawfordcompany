@@ -345,7 +345,7 @@ for page in PAGES:
         body += [catalog(catalog_section, CONFIG[name]['catalog'], name)]
         # Keep the material advice with the form, followed by the shutter collections.
         if name == 'Shutters':
-            body += [detail_panel(secs[2:4], 'newstyle', 'Shutter panels, louvers and light', 'shutter-details', modifiers=' hub-detail--shutters'), advice([secs[4]]), faq(secs[5]), contact(secs[6])]
+            body += [detail_panel(secs[2:4], 'newstyle', 'Shutter panels, louvers and light', 'shutter-details', modifiers=' hub-detail--shutters'), advice([secs[4], secs[5]]), faq(secs[6]), contact(secs[7])]
         elif name == 'Drapery':
             body += [drapery_details(secs[3:5]), advice([secs[5]], linen=True), faq(secs[6], linen=False), contact(secs[7])]
         else:

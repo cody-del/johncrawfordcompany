@@ -52,6 +52,7 @@
     "faqs": [
       {"question": "Do I need an appointment for the showroom?", "answer": "Yes. Our Woodland Hills showroom is open by appointment, Monday–Saturday, 9 a.m.–5 p.m. Call or use the contact form to request a showroom visit, and we’ll arrange a time with you."},
       {"question": "Can you help with just one window?", "answer": "Yes. John has always welcomed single-window projects. You can come to us for one blind, a room you’re updating or window treatments for a whole home."},
+      {"question": "Do you install plantation shutters in Woodland Hills?", "answer": "Yes. We measure and install wood, composite and vinyl plantation shutters, and you can compare finishes and louver sizes at the showroom before you choose.", "link": {"text": "Plantation shutters in Los Angeles", "href": "/shutters/"}},
       {"question": "What if I need a blind or shade repaired?", "answer": "We review the product, its condition and the parts available to see whether a repair is possible. The repair request form lets you describe the problem and attach photos.", "link": {"text": "Send a blind or shade repair request", "href": "/services/blind-shade-repair/#repair-inquiry"}}
     ],
     "contact_heading": "Let’s talk about your Woodland Hills home.",
