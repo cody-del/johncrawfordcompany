@@ -1,5 +1,127 @@
 [
   {
+    "name": "Wood vs. Faux Wood Blinds: Parkland or EverWood for Your Room?",
+    "heading": "Wood vs. Faux Wood Blinds: Parkland or EverWood for Your Room?",
+    "slug": "/blog/wood-vs-faux-wood-blinds/",
+    "title": "Wood vs. Faux Wood Blinds | Parkland & EverWood",
+    "description": "Compare Hunter Douglas Parkland wood blinds and EverWood faux wood blinds for finish, moisture exposure, light control and window fit.",
+    "excerpt": "Compare Hunter Douglas Parkland wood blinds and EverWood faux wood blinds for finish, moisture exposure, light control and window fit.",
+    "published": "2026-11-30",
+    "author": "John Crawford Company",
+    "cover": {
+      "src": "/assets/products/parkland.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Dark horizontal wood blinds across a bank of windows behind a white sofa.",
+      "caption": "Hunter Douglas Parkland® Wood Blinds"
+    },
+    "intro": [
+      "",
+      "Two white blinds can look similar from across a room. The decision between wood and faux wood becomes more useful when you consider what happens around the window: direct sun, bathroom humidity, nearby finishes and the way you open it each day.",
+      "Hunter Douglas Parkland Wood Blinds and EverWood Faux Wood Blinds offer different materials in a familiar horizontal style. Both let you tilt the slats for daylight and privacy. The choice begins with the room and the finish you want to see."
+    ],
+    "sections": [
+      {
+        "id": "parkland-and-everwood-at-a-glance",
+        "heading": "Parkland and EverWood at a glance",
+        "table": {
+          "columns": [
+            "Decision",
+            "Parkland Wood Blinds",
+            "EverWood Faux Wood Blinds"
+          ],
+          "rows": [
+            [
+              "Material",
+              "Real wood",
+              "Alternative wood material"
+            ],
+            [
+              "Appearance",
+              "Painted finishes or stains that show wood grain",
+              "Wood-style colors and finishes"
+            ],
+            [
+              "Exposure to discuss",
+              "The room's sunlight and moisture conditions",
+              "Designed to resist humidity, fading and warping"
+            ],
+            [
+              "Slat choices",
+              "2-inch or 2½-inch slats",
+              "2-inch or 2½-inch slats"
+            ],
+            [
+              "Daily light control",
+              "Tilt the slats or raise the blind",
+              "Tilt the slats or raise the blind"
+            ]
+          ],
+          "caption": "Parkland and EverWood at a glance"
+        }
+      },
+      {
+        "id": "start-with-the-finish-beside-the-window",
+        "heading": "Start with the finish beside the window",
+        "paragraphs": [
+          "Parkland is a natural starting point when visible wood grain is part of the look you want. Its stained finishes let the material contribute to the room alongside wood floors, furniture or trim. Painted wood is another option when you prefer a more uniform color.",
+          "EverWood provides a wood-style appearance in a different material. A painted look can coordinate across rooms even when exposure conditions lead you to use different products at different windows.",
+          "Compare finish samples with the surfaces that will stay in the room. A warm white blind can look different beside cooler white trim. For a stained blind, consider whether you want the wood tones to blend with your furniture or provide a deliberate contrast."
+        ]
+      },
+      {
+        "id": "treat-moisture-and-sunlight-as-part-of-the-product-choice",
+        "heading": "Treat moisture and sunlight as part of the product choice",
+        "paragraphs": [
+          "A bathroom window and a living room window may need different materials. EverWood Faux Wood Blinds are designed to stand up to humidity and sunlight, with protection against fading, discoloration, warping and bowing. Those qualities make them worth comparing where moisture or strong sun affects the decision.",
+          "Tell us what the window is exposed to before settling on a finish. A room label alone does not explain the conditions: a kitchen window near steam can be different from one well away from the cooking area. We review the location and the product's suitability for it."
+        ]
+      },
+      {
+        "id": "slat-size-changes-the-appearance-and-the-clearance",
+        "heading": "Slat size changes the appearance and the clearance",
+        "paragraphs": [
+          "Both Parkland and EverWood offer 2-inch and 2½-inch slats. The broader slat changes the spacing you see when the blind is open and the horizontal pattern across the glass when it is closed.",
+          "The slats also need room to tilt. Window cranks, door handles and a shallow frame can affect how the blind is mounted. John Crawford Company measures the opening and checks those obstructions so the selection accounts for operation as well as appearance."
+        ]
+      },
+      {
+        "id": "decide-whether-you-mostly-tilt-or-fully-raise-the-blind",
+        "heading": "Decide whether you mostly tilt or fully raise the blind",
+        "paragraphs": [
+          "Some people leave a blind lowered and adjust the slats as the light changes. Others raise it each morning to expose more glass. Think about your routine while comparing the controls and the fabric-free space you want at the window.",
+          "A raised horizontal blind leaves a stack of slats. Ask how that stack will sit at the top of your particular opening. For a bedroom, also discuss your expectations for darkness: closed slats reduce light, but gaps between slats and around the treatment can still admit it."
+        ]
+      },
+      {
+        "id": "choose-for-each-room-then-coordinate-the-result",
+        "heading": "Choose for each room, then coordinate the result",
+        "paragraphs": [
+          "Wood vs. faux wood blinds does not have to be a whole-house decision. Parkland may provide the grain you want in a sitting room, while EverWood suits the exposure in another space. Comparing the actual finishes helps keep those choices visually related.",
+          "John Crawford Company's blinds selection includes Hunter Douglas wood and faux wood options, with professional measuring and installation. Bring your room photos and finish ideas to an appointment at our Woodland Hills showroom, or arrange an in-home visit to compare samples where the blinds will be used."
+        ],
+        "links": [
+          {
+            "paragraph": 1,
+            "text": "blinds selection",
+            "href": "/blinds/"
+          },
+          {
+            "paragraph": 1,
+            "text": "in-home visit",
+            "href": "/services/consultation-measuring/"
+          }
+        ],
+        "cta": {
+          "text": "Request a free in-home consultation",
+          "href": "/contact/#appointment-form"
+        }
+      }
+    ],
+    "published_display": "November 30, 2026",
+    "css_class": "blog-article"
+  },
+  {
     "name": "Cellular Shades vs. Roller Shades: Duette or Designer Roller?",
     "heading": "Cellular Shades vs. Roller Shades: Duette or Designer Roller?",
     "slug": "/blog/cellular-shades-vs-roller-shades/",
